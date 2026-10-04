@@ -113,3 +113,11 @@ Remaining at this checkpoint: final verification, independent audit, current-hea
 Tasks 1–6 have implementation/documentation evidence. Task 7 has verified static-output mapping, Wrangler dry-run/deployment and live browser evidence. Inspection/repair of the native Build job is unfulfilled: the Builds API returns Forbidden and no dashboard browser is enabled. The repository/application build and manual deployment work; native automation is not claimed fixed. Task 8 has full verification and an independent audit; final-head audit/integration follows. This limitation is recorded, not silently dropped or presented as a passed native check.
 
 Initial audit corrections: repaired Windows encoding, removed obsolete present-tense proposal claims, updated source-check scope and persisted separate runtime/command evidence. No product semantics were changed.
+
+## Final independent audit and integration handoff
+
+A fresh independent audit of head a90bce29b395a579cab219942703973a3e4f29e2 found no blocking application defect and judged AC1–AC6 evidenced for the authorized executable-shell scope. It identified native Builds inspection/repair as a disclosed operational limitation, not a green native job. Juan's scoped continuous-delivery instruction supplies the human-pause waiver; no review vote is fabricated.
+
+Current-head GitHub verification passed: [run 37193955852](https://github.com/juangcarmona/pintatonica/actions/runs/37193955852). Actual deployment and runtime evidence are linked in the evidence directory. Affected architecture/design/operations documentation has been reconciled before archival; design tokens and product intent were unchanged.
+
+All shell implementation tasks are supported. Native build diagnostic/repair remains an explicit unmet operational subtask because the documented Builds API requires Workers CI permissions unavailable in the current session and no dashboard browser is enabled. Do not claim Git-driven automation repaired. No additional pipeline or credentials are added to work around that access boundary.

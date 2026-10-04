@@ -109,7 +109,7 @@ Never copy workstation Firebase/gcloud refresh/access/OAuth tokens, CLI sessions
 
 These are local results on the shared working tree, not current-head remote CI evidence or a human Done approval. Changes by another agent after verification require rechecking the affected commands. Known APM replay/dependency findings remain recorded in [tooling](../tooling.md); this operational change does not waive them.
 
-## Remaining manual steps
+## Historical provisioning steps (before GH-1)
 
 1. Firebase Console → Authentication → Get started → Sign-in method → Google → Enable → Save (set a support email).
 2. Inspect the already-connected Cloudflare project's production/preview branch policy, build settings and public Firebase variable scopes. Add only missing public configuration needed by its actual build; never create a deployment token or duplicate integration.

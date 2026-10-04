@@ -32,6 +32,6 @@ We will build static shells with Astro and publish dist through the existing Clo
 ## References
 
 - [GH-1](https://github.com/juangcarmona/pintatonica/issues/1)
-- [Delivery plan](../delivery/plans/GH-1.md)
+- [Delivery plan](../delivery/completed/GH-1.md)
 - [Astro manual installation](https://docs.astro.build/en/install-and-setup/)
 - [Cloudflare static assets](https://developers.cloudflare.com/workers/static-assets/)
