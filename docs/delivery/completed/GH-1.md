@@ -123,3 +123,11 @@ Current-head GitHub verification passed: [run 37193955852](https://github.com/ju
 All shell implementation tasks are supported. Native build diagnostic/repair remains an explicit unmet operational subtask because the documented Builds API requires Workers CI permissions unavailable in the current session and no dashboard browser is enabled. Do not claim Git-driven automation repaired. No additional pipeline or credentials are added to work around that access boundary.
 
 Node 22.12 compatibility: test:web explicitly enables Node type stripping when importing the browser guard TypeScript; relying on Node 24 default stripping would not support the declared Node floor.
+
+## Post-integration production result
+
+PR #10 merged as 0dc8daa9c64380cd915f5d9975552f5e1d8b0b1b. The main-branch native Cloudflare production build succeeded: [build 1b0da9dd](https://dash.cloudflare.com/2c0c4073a19c3990ea0ad6f6f9f0150a/workers/services/view/pintatonica/production/builds/1b0da9dd-7680-4b96-9d29-9144d45e838c). GitHub verification and product snapshot publication also passed for that merged commit.
+
+The native integration deployed version 2c86fbab-278a-42ee-9ed8-aa24b0d9dc7f after the manual merged-main fallback. [Production public shell](https://pintatonica.jgcarmona-pro.workers.dev) and [/band shell](https://pintatonica.jgcarmona-pro.workers.dev/band/) were driven again at mobile/desktop sizes with working keyboard navigation, no overflow, no private requests and no page errors. This establishes Git-driven production deployment, not only manual deployability.
+
+Earlier failed Workers Builds statuses belonged to PR/non-production builds. Their diagnostic API remains inaccessible, and no claim is made that preview automation has been repaired. The production build is now green. Local main was fast-forwarded without staging concurrent workflow edits; a stale unmanaged npm-era cookie directory was removed from node_modules, after which its build and eight web tests passed. No application change was needed for that local cache repair.
