@@ -1,0 +1,10 @@
+
+> pintatonica@0.0.0 security:check <worktree>
+> node src/tooling/security/check-secrets.mjs
+
+11:52AM INF 4 commits scanned.
+11:52AM INF scanned ~1023016 bytes (1.02 MB) in 277ms
+11:52AM INF no leaks found
+11:52AM INF scanned ~1070900 bytes (1.07 MB) in 147ms
+11:52AM INF no leaks found
+Index and working-tree scans passed (including untracked and ignored environment/log files)

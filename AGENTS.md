@@ -15,7 +15,7 @@ Use pnpm for dependency installation and package scripts; preserve `pnpm-lock.ya
 
 ## Current gate
 
-Establish tooling and open `CHG-INITIAL` for an iterative interview with Juan. Keep the accepted model empty until Juan explicitly approves the proposed baseline. Ask focused questions by topic and update the active change. No application features, backlog or technology selection at this gate. Design is exempt from the product gate: the design system may be developed now, but tokens must trace to the logo or accepted MVP, and each new colour needs a contrast test.
+The ProductShape baseline is accepted in docs/product/model. GH-1 delivers only an executable shell; remaining product features use the ordered GitHub delivery slices. Preserve accepted product intent. Source, assets, tests and executable configuration/helpers stay within src/; root declarative package/hosting metadata is allowed. Use Node >=22.12, pnpm and Java >=21. Build and verify before integration; inspect runtime/deployment evidence separately from CI.
 
 ## Delivery
 

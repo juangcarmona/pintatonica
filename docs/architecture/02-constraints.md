@@ -13,4 +13,6 @@ description: Constraints that restrict architecture decisions and their conseque
 | Accepted product precedes application architecture and delivery | [Lifecycle](../engineering-lifecycle.md) | Current documents record evidence and open design space rather than select an application stack. | Explicit project gate. |
 | GitHub delivery, native plan mode, no SDD framework | [Lifecycle](../engineering-lifecycle.md) | Plans are durable Markdown artifacts; no OpenSpec or other specification workspace is introduced. | Reconcile with Juan if needs change. |
 
-Product-owned constraints are still proposed under [CHG-INITIAL](../product/changes/active/chg-initial/change.md), particularly [CON-SINGLE-BAND](../product/changes/active/chg-initial/proposed/requirements/constraints/con-single-band.md) and the quality candidates in [10](10-quality-requirements.md). Their architectural consequences will be assessed after acceptance; this table does not convert them into accepted technical constraints.
+Product constraints belong to the accepted model, including CON-SINGLE-BAND. The shell realizes the scoped quality drivers in [10](10-quality-requirements.md); architecture does not redefine them.
+
+<!-- pdac:cite id="CON-SINGLE-BAND" digest="sha256:59e879c69ee07f61737be895e059ea3b1be35d6f3a82236715821277082dfabb" -->

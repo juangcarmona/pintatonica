@@ -17,4 +17,4 @@ Architecture explains system structure and realization; product intent stays in 
 | 11 | [Risks and Technical Debt](11-risks-and-technical-debt.md) |
 | 12 | [Glossary](12-glossary.md) |
 
-Diagrams are embedded in the owning views. The evidence-led documentation currently describes repository bootstrap support and unresolved application architecture; see [Introduction and Goals](01-introduction-and-goals.md) for baseline status.
+Diagrams are embedded in the owning views. The evidence-led documentation currently describes the executable shell, existing data-security scaffolding and remaining feature architecture; see [Introduction and Goals](01-introduction-and-goals.md) for baseline status.

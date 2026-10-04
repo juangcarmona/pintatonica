@@ -10,22 +10,20 @@ description: Runtime infrastructure and the mapping of software building blocks 
 
 ### Overview
 
-No application hosting deployment is evidenced by build artifacts in this repository. Juan confirmed the existing Cloudflare native Git connection on 2026-10-04; it owns production/preview deployment, not GitHub Actions. Firebase project/web-app metadata was verified through supported CLI commands. A local Wrangler OAuth session was established, but account discovery scope/resource identity remain unresolved and Cloudflare project/build/environment settings are unverified. [Infrastructure notes](infrastructure.md) own configuration inventory and operational evidence; this section records topology and evidence limits.
-
-[.firebaserc](../../.firebaserc) maps the Firebase project. [firebase.json](../../firebase.json) now maps Firestore rules/index files and local Auth/Firestore emulators. Rule/client scaffolding exists under src/firebase/. Production rule deployment is reported in infrastructure notes, not independently verified here. The notes list enabling Google sign-in as a remaining manual step, so Google login is not claimed operational.
-
-### Topology Rationale
-
-Firestore and Firebase Auth are the reported platform direction; Cloudflare's native Git integration owns hosting deployment, while framework/build mapping is unselected in this repository. GitHub Actions validates only and has no production deployment identity. Firebase rules remain manually deployed through operator identity; no Admin credentials or service-account keys are introduced. Local emulators use a demo project distinct from the configured production alias. See [04](04-solution-strategy.md) and [09](09-architecture-decisions.md) for the decision-recording gap.
+The existing Cloudflare Worker is named pintatonica in the account referenced by [Wrangler metadata](../../wrangler.jsonc). Its existing native Git build connection is evidenced by Workers Builds statuses on PR #10. Wrangler's authenticated deployment listing confirmed existing versions; no new resource/account/token is introduced.
 
 ### Building Block Mapping
 
-| Building block or artifact | Infrastructure element | Environment |
+| Building block | Infrastructure element | Environment |
 | --- | --- | --- |
-| Repository verification support | Local Node runtime | Developer workstation |
-| Repository validation and secret scanning | Read-only GitHub runner specified by file; publication/execution unverified | PR and main validation |
-| Firebase client and rules | Configured Firebase project / reported Firestore provisioning | Production state reported, not independently verified |
-| Firebase rule verification | Local Auth/Firestore emulator configuration with demo project | Developer/CI test environment |
-| Application UI | Existing Cloudflare native Git connection confirmed by Juan; build and variable scopes unverified | Production/preview policy requires platform inspection |
+| dist HTML/CSS/JS/logo | Cloudflare Worker static assets | Production; native non-production build policy remains platform-owned |
+| Existing Firebase SDK client | Browser; optional public build configuration | Production configuration only when supplied |
+| Existing rules/data boundary | Firebase project pintatonica-band | Separate cloud data service; no shell data operations |
+| Full verification | GitHub read-only validation workflow | PR/main with Node 24, pnpm and Java 21 |
+| Rules tests | Firestore emulator, demo-pintatonica | Local/CI only |
 
-Infrastructure notes report the Madrid region and a free, unbilled Firebase project. These are reported inventory facts, not verified cost or performance guarantees. Native deployment is not proven to wait for CI, and preview builds using production Firebase configuration would share its data boundary. Build mapping and end-to-end environment separation remain unresolved; the observed access boundary is described in [08](08-crosscutting-concepts.md).
+### Deployment and trust boundaries
+
+Wrangler's build command runs pnpm build and assets.directory maps dist. Unknown routes return 404 rather than an SPA fallback. The native integration owns deployment; GitHub Actions provides verification without deployment credentials. Native deployment is not claimed to wait for CI. The user authorized GH-1 implementation, verified integration and deployment in one continuous run.
+
+The shell has no private data, server script, paid compute or new storage binding. Missing public Firebase build values leave it usable. Preview variable policy and future private-data environment isolation must be verified before slice 2. Actual published URLs/version evidence belong in [infrastructure](infrastructure.md) and the delivery record.

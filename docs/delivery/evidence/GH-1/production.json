@@ -1,0 +1,47 @@
+{
+  "url": "http://127.0.0.1:64638",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "route": "/",
+      "status": 200,
+      "heading": "Música,\njuntos.",
+      "keyboardSkip": true,
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/",
+      "status": 200,
+      "heading": "La banda.",
+      "keyboardSkip": true,
+      "overflow": false
+    },
+    {
+      "firebase": "initialized in production browser",
+      "emulator": null
+    },
+    {
+      "viewport": "desktop",
+      "route": "/",
+      "status": 200,
+      "heading": "Música,\njuntos.",
+      "keyboardSkip": true,
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/",
+      "status": 200,
+      "heading": "La banda.",
+      "keyboardSkip": true,
+      "overflow": false
+    },
+    {
+      "firebase": "initialized in production browser",
+      "emulator": null
+    }
+  ],
+  "privateRequests": 0,
+  "pageErrors": 0
+}

@@ -8,9 +8,9 @@ description: System boundary, communication partners, external interfaces, and c
 
 ## Business Context
 
-The full application boundary has not been designed. The candidate product's audiences and external material are described by [CHG-INITIAL](../product/changes/active/chg-initial/change.md), with [ACT-VISITOR](../product/changes/active/chg-initial/proposed/actors/act-visitor.md), [ACT-MEMBER](../product/changes/active/chg-initial/proposed/actors/act-member.md) and [UC-REPERTOIRE](../product/changes/active/chg-initial/proposed/use-cases/uc-repertoire.md). Firebase client and access-rule scaffolding exists; user-facing integrations are not yet evidenced.
+The full application boundary has not been designed. The accepted product's audiences and external material are described by [CHG-INITIAL](../product/changes/completed/chg-initial/change.md), with [ACT-VISITOR](../product/model/actors/act-visitor.md), [ACT-MEMBER](../product/model/actors/act-member.md) and [UC-REPERTOIRE](../product/model/use-cases/uc-repertoire.md). Firebase client and access-rule scaffolding exists; user-facing integrations are not yet evidenced.
 
-The [scheduling prototype evidence](../product/changes/active/chg-initial/evidence/calendar.md) is an input to definition. Its runtime and access mechanism are not this repository's architecture.
+The [scheduling prototype evidence](../product/changes/completed/chg-initial/evidence/calendar.md) is an input to definition. Its runtime and access mechanism are not this repository's architecture.
 
 ## Technical Context
 
@@ -22,7 +22,7 @@ flowchart LR
     Repository --> ProductShape["Local ProductShape CLI"]
     Repository --> DesignChecks["Local design verification"]
     APM["APM and canonical agent-toolkit"] --> Repository
-    GitHub["GitHub repository"] -. "configured git remote; delivery setup pending" .-> Repository
+    GitHub["GitHub repository"] -. "configured git remote; issues and CI published" .-> Repository
 ```
 
 This is a tooling context, not an application deployment diagram. Installed dependency resolution is captured in [apm.yml](../../apm.yml), [apm.lock.yaml](../../apm.lock.yaml) and [pnpm-lock.yaml](../../pnpm-lock.yaml). Project-owned role skills address the GitHub repository through the adopted lifecycle; they do not demonstrate a published workflow.
