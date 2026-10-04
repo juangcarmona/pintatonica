@@ -1,0 +1,36 @@
+node_modules/
+apm_modules/
+.env
+.env.*
+!.env.example
+coverage/
+dist/
+*.log
+
+# APM consumer projections: restore from apm.yml and apm.lock.yaml.
+# ProductShape integrations in .agents remain committed under their own lock.
+.agents/skills/adopt/
+.agents/skills/adr/
+.agents/skills/architecture-docs/
+.agents/skills/collect-usage/
+.agents/skills/git-worktrees/
+.agents/skills/harden-process/
+.agents/skills/implement/
+.agents/skills/integrate/
+.agents/skills/propose/
+.agents/skills/rebase-safely/
+.agents/skills/refine/
+.agents/skills/refine-to-ready/
+.agents/skills/review/
+.agents/skills/review-entry/
+.agents/skills/status/
+.agents/skills/verify-done/
+.agents/skills/verify-like-ci/
+.agents/skills/verify-runtime/
+
+# Product Definition as Code: regenerable outputs, never canonical.
+.product/generated/
+.product/cache/
+
+# Firebase tooling
+/.firebase/

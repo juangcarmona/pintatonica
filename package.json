@@ -1,0 +1,35 @@
+{
+  "name": "pintatonica",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Pintatónica repository tooling; product definition pending",
+  "scripts": {
+    "design:check": "node src/tooling/design/check-design.mjs",
+    "design:test": "node --test \"src/tests/design/**/*.test.mjs\"",
+    "product:validate": "prodshape validate",
+    "product:doctor": "prodshape doctor",
+    "product:integrity": "prodshape integration update --check",
+    "security:check": "node src/tooling/security/check-secrets.mjs",
+    "security:test": "node --test src/tests/security/*.test.mjs",
+    "verify:fast": "pnpm design:check && pnpm design:test && pnpm typecheck && pnpm security:test",
+    "verify": "pnpm verify:fast && pnpm product:validate && pnpm product:integrity && pnpm product:doctor && pnpm firebase:rules:test",
+    "prepare": "husky",
+    "firebase:emulators": "firebase emulators:start --only auth,firestore --project demo-pintatonica",
+    "firebase:rules:test": "firebase emulators:exec --only firestore --project demo-pintatonica \"node --test src/tests/firebase/*.test.mjs\"",
+    "typecheck": "tsc --noEmit -p src/tsconfig.json"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "@prodshape/cli": "0.22.0",
+    "firebase-tools": "^15.32.1",
+    "husky": "^9.1.7",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "firebase": "^12.19.0"
+  },
+  "packageManager": "pnpm@10.34.6"
+}

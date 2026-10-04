@@ -1,0 +1,16 @@
+name: pintatonica
+version: 1.0.0
+description: APM project for pintatonica
+author: Juan G. Carmona
+dependencies:
+  apm:
+    - juangcarmona/agent-toolkit/packages/agentic-sdlc
+    - git: juangcarmona/agent-toolkit
+      skills:
+        - adr
+        - architecture-docs
+        - git-worktrees
+        - rebase-safely
+  mcp: []
+includes: auto
+scripts: {}

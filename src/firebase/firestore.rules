@@ -1,0 +1,47 @@
+rules_version = '2';
+
+// Deny by default. Private access = Google-authenticated user + active members/{uid} record (BR-MEMBERSHIP).
+// Members are provisioned out of band (Console/Admin); clients never write members.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isMember() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/members/$(request.auth.uid))
+        && get(/databases/$(database)/documents/members/$(request.auth.uid)).data.active == true;
+    }
+
+    function isSelf(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // A user may read only their own record, so the app can tell whether they are a member.
+    // Active members may read the roster.
+    match /members/{uid} {
+      allow read: if isSelf(uid) || isMember();
+      allow write: if false;
+    }
+
+    // availability/{uid}: weekly pattern (intervals as {day, start, end}).
+    // availability/{uid}/overrides/{date}: date override; empty intervals means unavailable.
+    // Members read everyone's availability (overlap calculation) and write only their own.
+    match /availability/{uid} {
+      allow read: if isMember();
+      allow write: if isMember() && isSelf(uid);
+
+      match /overrides/{date} {
+        allow read: if isMember();
+        allow write: if isMember() && isSelf(uid);
+      }
+    }
+
+    // Who may confirm a rehearsal is unresolved in the product model; any active member for now.
+    match /rehearsals/{id} {
+      allow read, write: if isMember();
+    }
+
+    match /setlists/{id} {
+      allow read, write: if isMember();
+    }
+  }
+}

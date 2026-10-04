@@ -1,0 +1,3 @@
+# CLAUDE Instructions
+
+YOU MUST FOLLOW @AGENTS.md.

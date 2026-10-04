@@ -1,0 +1,12 @@
+title = "Pintatonica secret scanning"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Dependency caches, installed toolkit projections and Git internals only"
+paths = [
+  '''(^|[/\\])node_modules([/\\]|$)''',
+  '''(^|[/\\])apm_modules([/\\]|$)''',
+  '''(^|[/\\])\.git([/\\]|$)''',
+]
