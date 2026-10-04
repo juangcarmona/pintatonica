@@ -15,12 +15,12 @@ Use pnpm for dependency installation and package scripts; preserve `pnpm-lock.ya
 
 ## Current gate
 
-Establish tooling and open `CHG-INITIAL` for an iterative interview with Juan. Keep the accepted model empty until Juan explicitly approves the proposed baseline. Ask focused questions by topic and update the active change. No application features, backlog or technology selection at this gate. Design is exempt from the product gate: the design system may be developed now, but tokens must trace to the logo or accepted MVP, and each new colour needs a contrast test.
+The ProductShape baseline is accepted in docs/product/model. GH-1 delivers only an executable shell; remaining product features use the ordered GitHub delivery slices. Preserve accepted product intent. Source, assets, tests and executable configuration/helpers stay within src/; root declarative package/hosting metadata is allowed. Use Node >=22.12, pnpm and Java >=21. Build and verify before integration; inspect runtime/deployment evidence separately from CI.
 
 ## Delivery
 
 Use the installed agent-toolkit `agentic-sdlc` skills for refinement, proposal, implementation, integration and review. Read [docs/tooling.md](docs/tooling.md) before restoring or updating tools. Before a delivery stage, read the adopted [engineering lifecycle](docs/engineering-lifecycle.md): GitHub Issues, native plan mode and durable Markdown plans, without an SDD framework. ProductShape changes and delivery plans have distinct lifecycles.
 
-Delivery planning follows an accepted product baseline, documented architecture and a basic design system (now established in `docs/design/`). Derive vertical slices from accepted artifact IDs. Use SDD and TDD where appropriate: accepted intent → cited delivery context → behaviour → tests → implementation → verification → review.
+Delivery planning follows an accepted product baseline, documented architecture and a basic design system (now established in `docs/design/`). Derive vertical slices from accepted artifact IDs. Use SDD and TDD where appropriate: accepted intent â†’ cited delivery context â†’ behaviour â†’ tests â†’ implementation â†’ verification â†’ review.
 
 Read the installed `git-worktrees` skill before creating or managing worktrees. Preserve user work. Generated toolkit and ProductShape capabilities are updated by their installers, not edited locally.

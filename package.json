@@ -2,7 +2,7 @@
   "name": "pintatonica",
   "version": "0.0.0",
   "private": true,
-  "description": "Pintatónica repository tooling; product definition pending",
+  "description": "Pintat\u00c3\u00b3nica public website and member-area shell",
   "scripts": {
     "design:check": "node src/tooling/design/check-design.mjs",
     "design:test": "node --test \"src/tests/design/**/*.test.mjs\"",
@@ -12,25 +12,37 @@
     "security:check": "node src/tooling/security/check-secrets.mjs",
     "security:test": "node --test src/tests/security/*.test.mjs",
     "verify:fast": "pnpm design:check && pnpm design:test && pnpm typecheck && pnpm security:test",
-    "verify": "pnpm verify:fast && pnpm product:validate && pnpm product:integrity && pnpm product:doctor && pnpm firebase:rules:test",
+    "verify": "pnpm verify:fast && pnpm build && pnpm test:web && pnpm product:validate && pnpm product:integrity && pnpm product:doctor && pnpm firebase:rules:test",
     "prepare": "husky",
     "firebase:emulators": "firebase emulators:start --only auth,firestore --project demo-pintatonica",
     "firebase:rules:test": "firebase emulators:exec --only firestore --project demo-pintatonica \"node --test src/tests/firebase/*.test.mjs\"",
-    "typecheck": "tsc --noEmit -p src/tsconfig.json"
+    "typecheck": "astro check --tsconfig src/tsconfig.json --config src/astro.config.mjs",
+    "dev": "astro dev --config src/astro.config.mjs",
+    "build": "astro build --config src/astro.config.mjs",
+    "preview": "astro preview --config src/astro.config.mjs",
+    "test:web": "node --test src/tests/web/*.test.mjs",
+    "test": "pnpm design:test && pnpm security:test && pnpm test:web",
+    "deploy": "wrangler deploy",
+    "verify:runtime": "node src/tooling/web/verify-runtime.mjs"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12.0"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.10",
     "@firebase/rules-unit-testing": "^5.0.2",
     "@prodshape/cli": "0.22.0",
+    "astro": "7.3.5",
     "fflate": "0.8.3",
     "firebase-tools": "^15.32.1",
     "husky": "^9.1.7",
-    "typescript": "^7.0.2"
+    "playwright": "1.63.0",
+    "typescript": "^6.0.2",
+    "wrangler": "4.147.0"
   },
   "dependencies": {
     "firebase": "^12.19.0"
   },
-  "packageManager": "pnpm@10.34.6"
+  "packageManager": "pnpm@10.34.6",
+  "type": "module"
 }

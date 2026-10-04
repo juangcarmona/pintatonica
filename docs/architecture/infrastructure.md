@@ -1,6 +1,6 @@
 # Infrastructure
 
-Provisioned 2026-10-04. Architecture status: Firebase Authentication, Firestore and Cloudflare were accepted by Juan on 2026-10-04 for the MVP; the architecture README unresolved-decisions table should be reconciled with a formal decision record. Product artifacts remain draft in `CHG-INITIAL`; the data model below is provisional and cites them.
+Provisioned 2026-10-04. Architecture status: Firebase Authentication, Firestore and Cloudflare were accepted by Juan on 2026-10-04 for the MVP; the architecture README unresolved-decisions table should be reconciled with a formal decision record. The accepted ProductShape model owns product intent; the data model below remains implementation scaffolding.
 
 ## Firebase
 
@@ -30,7 +30,7 @@ rehearsals/{id}
 setlists/{id}
 ```
 
-Songs, repertoire and public content stay repository-managed. Rules: [src/firebase/firestore.rules](../../src/firebase/firestore.rules), deny by default. A member reads all availability and writes only their own; any active member may write rehearsals and setlists until the product defines who confirms (BR-REHEARSAL-CONFIRMATION). Rules are deployed with `pnpm exec firebase deploy --only firestore`.
+Public content is repository-managed; repertoire metadata editing/persistence must be evaluated during GH-6 rather than assumed to follow this scaffold. Rules: [src/firebase/firestore.rules](../../src/firebase/firestore.rules), deny by default. A member reads all availability and writes only their own; any active member may write rehearsals and setlists consistent with the accepted confirmation policy (BR-REHEARSAL-CONFIRMATION). Rules are deployed with `pnpm exec firebase deploy --only firestore`.
 
 ## Local development
 
@@ -40,7 +40,7 @@ Songs, repertoire and public content stay repository-managed. Rules: [src/fireba
 
 ## Environment variables
 
-[.env.example](../../.env.example) contains names and placeholders only. Firebase browser configuration is public, including the browser API key; it is not backend authorization. [Client initialization](../../src/firebase/client.ts) consumes `PUBLIC_` variables through `import.meta.env`; no application bundler is selected yet, so the eventual build must explicitly support that convention. GitHub validation does not initialize the browser client and needs none of these values.
+[.env.example](../../.env.example) contains names and placeholders only. Firebase browser configuration is public, including the browser API key; it is not backend authorization. [Client initialization](../../src/firebase/client.ts) consumes `PUBLIC_` variables through `import.meta.env`; Astro now supports this convention through a guarded browser entry. GitHub validation does not initialize the browser client and needs none of these values.
 
 ### Configuration contract
 
@@ -111,7 +111,11 @@ These are local results on the shared working tree, not current-head remote CI e
 
 ## Remaining manual steps
 
-1. Firebase Console → Authentication → Get started → Sign-in method → Google → Enable → Save (set a support email).
+1. Firebase Console â†’ Authentication â†’ Get started â†’ Sign-in method â†’ Google â†’ Enable â†’ Save (set a support email).
 2. Inspect the already-connected Cloudflare project's production/preview branch policy, build settings and public Firebase variable scopes. Add only missing public configuration needed by its actual build; never create a deployment token or duplicate integration.
 3. Create member documents `members/{uid}` after each member first signs in.
 4. After authorized initial publication and a successful current-head CI run, configure the verified `productshape` check as required on `main`, respecting human review requirements. No remote branch exists yet, so this task does not create a protection that could lock bootstrap publication. No commit or push is performed here.
+
+## GH-1 hosting mapping
+
+Wrangler deployment listing on 2026-10-04 confirmed the existing pintatonica Worker in account 2c0c4073a19c3990ea0ad6f6f9f0150a, obtained from its published Workers Builds check link. Root wrangler.jsonc owns build/static-assets mapping and is discoverable by the existing native deployment command. Its custom build runs pnpm build, so a native deploy with no preceding build still obtains dist. Static assets use explicit 404 handling. No new Worker, account, token, binding or paid service is created. Public environment scopes remain uninspected; missing values are safe for this non-sensitive shell. Published version/URL evidence will be appended after deployment.

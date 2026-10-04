@@ -1,0 +1,36 @@
+---
+import '../styles/tokens.css';
+import '../styles/shell.css';
+interface Props { title: string; area?: 'public' | 'band' }
+const { title, area = 'public' } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Pintatónica. Música y espacio de la banda." />
+    <title>{title} · Pintatónica</title>
+    <link rel="icon" type="image/png" href="/brand/logo.png" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Pintatónica, inicio">Pintatónica<span aria-hidden="true">.</span></a>
+      <nav aria-label="Principal">
+        <a href="/" aria-current={area === 'public' ? 'page' : undefined}>Inicio</a>
+        <a href="/band/" aria-current={area === 'band' ? 'page' : undefined}>La banda</a>
+      </nav>
+    </header>
+    <main id="contenido" tabindex="-1"><slot /></main>
+    <footer class="site-footer"><span>Pintatónica</span><span>Música, juntos.</span></footer>
+    <script>
+      import { initializeBrowserFirebase } from '../firebase/browser';
+      void initializeBrowserFirebase().catch((error: unknown) => {
+        // Report only a diagnostic code; SDK errors can include configuration.
+        const code = error && typeof error === 'object' && 'code' in error ? error.code : 'initialization-failed';
+        console.warn('Firebase initialization unavailable:', code);
+      });
+    </script>
+  </body>
+</html>

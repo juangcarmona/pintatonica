@@ -50,14 +50,14 @@ An independent done-gate-auditor must reconcile the approved plan with the actua
 
 ### Deterministic checks
 
-Current source: [.github/workflows/verify.yml](../.github/workflows/verify.yml), Node 24 and Temurin Java 21: `pnpm install --frozen-lockfile`, `pnpm security:check`, then `pnpm verify`. The single workflow validates PRs and pushes to main, with no deployment steps or repository Secrets/Variables. Its `productshape` job name is retained. Publication/execution remains unverified; no remote branch exists yet, so no required-check protection is claimed configured.
+Current source: [.github/workflows/verify.yml](../.github/workflows/verify.yml), Node 24 and Temurin Java 21: `pnpm install --frozen-lockfile`, `pnpm security:check`, then `pnpm verify`. The single workflow validates PRs and pushes to main, with no deployment steps or repository Secrets/Variables. Its `productshape` job name is retained. The remote main and PR workflow are published; inspect current checks and rulesets live before merge.
 
 | Check | Current command | Evidence |
 | --- | --- | --- |
 | Design policy | pnpm design:check | Scanned-file and violation counts; currently zero application files scanned, not proof of application quality. |
 | Design tests | pnpm design:test | Node test runner; nine tests pass in this session. |
-| Product structure | pnpm product:validate | ProductShape diagnostics; accepted model currently empty. |
-| Initial change | pnpm product:change:validate | Draft overlay validation; not product approval. |
+| Product structure | pnpm product:validate | ProductShape diagnostics; accepted model contains 55 artifacts. |
+| Web build/tests | pnpm build and pnpm test:web | Built route/asset and configuration guards; composed into verify. |
 | Generated integration integrity | pnpm product:integrity | Installation-lock agreement. |
 | Product tooling health | pnpm product:doctor | Repository health report. |
 | Firebase typecheck | pnpm typecheck | Strict TypeScript checks for the existing Firebase client; not whole-application coverage. |
@@ -65,7 +65,7 @@ Current source: [.github/workflows/verify.yml](../.github/workflows/verify.yml),
 | Secret scanning | pnpm security:check | Checksum-pinned Gitleaks, redacted history/index/worktree scans; history is N/A until commits exist. |
 | Security helper tests | pnpm security:test | Fail-closed execution, checksum integrity, environment placeholders, index coverage and real synthetic-secret detection/redaction; included in verify:fast. |
 
-Application build, application-wide type/lint/format checks and runtime verification: N/A until application architecture and tooling exist; the Firebase client typecheck does run now. Add real checks before relevant delivery. Dependency audit and APM replay findings in docs/tooling.md remain known limitations, not silently passing gates. verify-like-ci reads actual workflow definitions on every run; verify-runtime is required for user-facing application changes once a runnable application exists. Cloudflare native deployment ownership and the minimum-secret configuration contract are recorded in [infrastructure](architecture/infrastructure.md); CI success does not prove native deployment waited for it.
+GH-1 adds Astro source checking, production build, built-route tests and a browser runtime harness. No separate application lint/format tool is claimed installed. Dependency audit and APM replay findings in docs/tooling.md remain known limitations, not silently passing gates. verify-like-ci reads actual workflow definitions on every run; verify-runtime is required for user-facing application changes once a runnable application exists. Cloudflare native deployment ownership and the minimum-secret configuration contract are recorded in [infrastructure](architecture/infrastructure.md); CI success does not prove native deployment waited for it.
 
 ## Lifecycle stages and states
 
@@ -135,7 +135,7 @@ Project-owned adaptations installed on 2026-10-04 under .agents/skills/, availab
 | sync-specs | Authored-format reference; no SDD workspace. Update affected architecture/design/operational docs on an up-to-date branch; verify citations against accepted product. Product semantic changes stay in separate Product Changes; never rewrite accepted model. N/A specification delta is explicit. |
 | archive-change | Authored-format reference; after document reconciliation, preserve completed plan under docs/delivery/completed/GH-N.md. This archives a delivery plan, not CHG-INITIAL. |
 
-All 15 role skills are installed. Contract sections are preserved from upstream templates. The four no-framework plan-role implementations and native-state adapter are authored against those contracts; GitHub and branch roles adapt the shipped references. All role sources belong in version control under .agents/skills/ and are read by this Codex session; they are currently uncommitted. No other harness copies are installed. Delivery plan paths are adopted conventions; no delivery plan or backlog exists yet.
+All 15 role skills are installed. Contract sections are preserved from upstream templates. The four no-framework plan-role implementations and native-state adapter are authored against those contracts; GitHub and branch roles adapt the shipped references. All role sources belong in version control under .agents/skills/ and are read by this Codex session; they are currently uncommitted. No other harness copies are installed. Delivery plan paths are adopted conventions; GH-1 has an approved plan and GH-1 through GH-9 form the ordered delivery backlog.
 
 ## Provided roles
 
@@ -151,6 +151,6 @@ Future changes preserve all contract headings and are shown as diffs for confirm
 
 ## Live discovery and prerequisites
 
-GitHub juangcarmona/pintatonica exists with Issues enabled and no issues, published workflows or branches returned in this session. Existing labels contain no status: lifecycle labels. Local main is unborn and repository files are untracked. The remote defaultBranchRef is empty; main is a proposed future integration target, not a verified remote default. Before first delivery, establish the initial commit/remote default and resolve target and protection live. Adoption does not commit, push, create issues, change GitHub settings or accept the product baseline.
+GitHub main, CI, issues #1–#9 and PR #10 are published. Actual native issue states remain OPEN/CLOSED. No custom lifecycle labels, sprint or board are used. Read protections/checks live before integration. Juan approved GH-1 implementation and continuous verified integration/deployment without a further approval pause; this scoped authorization does not change the normal lifecycle for future items.
 
 User-confirmed inputs: GitHub, no SDD framework, native plan mode, greenfield. Juan accepted the proposed adoption in full on 2026-10-04 and confirmed remote workflows will be addressed later. Amend Ready/Done dimensions through reconcile or review with a recorded reason and human confirmation.

@@ -34,7 +34,7 @@ uv tool run --from apm-cli==0.33.0 apm install --target agent-skills --frozen
 uv tool run --from apm-cli==0.33.0 apm audit --ci --no-policy
 ```
 
-APM 0.33.0 is invoked in an isolated uv environment; the pre-existing machine APM 0.21.0 reported replay drift for the upstream three-skill subset after a successful install. Version 0.33.0 reduces the discrepancy to four files for `adr`, `git-worktrees` and `rebase-safely`, reported as orphaned during replay even though deployed-file presence, content integrity, subset selection and lock consistency pass. Frozen reinstall and explicit declaration of those three shared skills did not resolve the full audit. **The full APM audit remains failing; investigate the replay/ownership discrepancy before delivery.** Do not disable drift checks to present a passing full audit. Keep the exact tool version when reproducing checks.
+APM 0.33.0 is invoked in an isolated uv environment; the pre-existing machine APM 0.21.0 reported replay drift for the upstream three-skill subset after a successful install. Version 0.33.0 reduces the discrepancy to four files for `adr`, `git-worktrees` and `rebase-safely`, reported as orphaned during replay even though deployed-file presence, content integrity, subset selection and lock consistency pass. Frozen reinstall and explicit declaration of those three shared skills did not resolve the full audit. **The full APM audit remains failing; retain this tooling limitation and diagnose the replay/ownership discrepancy.** Do not disable drift checks to present a passing full audit. Keep the exact tool version when reproducing checks.
 
 The `agent-skills` target provides callable lifecycle skills in `.agents/skills/`; it does not supply harness-specific slash commands or agent registrations. Package command and agent definitions remain in the installed dependency. Configure the target harness and project roles during interactive adoption, including the separate Done-gate auditor before implementation.
 
@@ -44,7 +44,7 @@ The repository has no commits yet; the official change creator used `base-revisi
 
 ## Dependency finding
 
-The initial npm-based bootstrap audit reported four high-severity affected packages along one development-tool dependency chain: ProductShape → fast-glob → micromatch → braces. The advisory is [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), stack exhaustion from deeply nested patterns. That audit reported no available fix for the documented CLI baseline. This is historical bootstrap evidence; use `pnpm audit` for a current dependency report. Keep the upstream finding recorded for the next supported update.
+The initial npm-based bootstrap audit reported four high-severity affected packages along one development-tool dependency chain: ProductShape â†’ fast-glob â†’ micromatch â†’ braces. The advisory is [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), stack exhaustion from deeply nested patterns. That audit reported no available fix for the documented CLI baseline. This is historical bootstrap evidence; use `pnpm audit` for a current dependency report. Keep the upstream finding recorded for the next supported update.
 
 ## CI and secret scanning
 
@@ -77,3 +77,9 @@ APM's manifest and lock are committed. Downloaded `apm_modules/` and APM-generat
 ## Product acceptance gate
 
 Juan explicitly approves the proposed baseline before its status becomes approved. Validate the overlay, inspect `change apply CHG-INITIAL --dry-run`, and apply explicitly on a working branch. Applying materializes the candidate baseline; the documented human pull-request merge accepts it. Neither application nor merge proves implementation.
+
+## Executable shell (GH-1)
+
+Astro 7.3.5, @astrojs/check 0.9.10 and TypeScript 6.0.2 are pinned; the checker does not support the previous TypeScript 7 pin. Wrangler 4.147.0 consumes root declarative metadata; application/executable configuration stays in src/. Commands and runtime setup are in the root README. pnpm verify adds build and eight web assertions while retaining existing checks. Playwright is a browser-driving library for explicit runtime evidence, not a new application framework. A Chromium download timed out locally; installed Edge successfully drove the same harness.
+
+The authoritative scanner now pins Gitleaks 8.29.1, verifies official SHA-256 checksums, extracts Windows ZIPs with fflate and reuses a version/hash-checked user-local cache; earlier scanner prose above is historical bootstrap evidence. GH-1 changes no scanner logic. Frozen APM restoration in the isolated worktree encountered a Windows activation Access Denied error; the previously restored canonical auditor payload in the main checkout remains available for the independent audit. This is not a passing full APM audit.

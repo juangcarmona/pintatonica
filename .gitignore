@@ -34,3 +34,8 @@ dist/
 
 # Firebase tooling
 /.firebase/
+
+.astro/
+.wrangler/
+src/.wrangler/
+artifacts/

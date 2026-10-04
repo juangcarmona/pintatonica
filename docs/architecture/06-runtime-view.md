@@ -6,20 +6,27 @@ description: Architecturally significant runtime scenarios and building-block in
 
 # Runtime View
 
-## Local Repository Verification
+## Shell request and browser startup
 
-The only executable interaction documented here is bootstrap verification. [package.json](../../package.json) composes the design checker/tests and ProductShape checks. Those participants are the support blocks in [05](05-building-block-view.md). The [pre-commit hook](../../.husky/pre-commit) selects the fast subset; the [local workflow file](../../.github/workflows/verify.yml) selects the full chain. Exact commands belong to [tooling](../tooling.md), not a second runbook here.
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Host as Cloudflare static assets
+    participant Guard as Browser entry
+    participant SDK as Firebase SDK
+    Browser->>Host: GET / or /band/
+    Host-->>Browser: Static branded HTML and assets
+    Browser->>Guard: Run client script
+    alt Required public configuration present
+        Guard->>SDK: Dynamic import existing singleton
+        Note over SDK: Development emulator connections require DEV and explicit opt-in
+    else Missing or placeholder configuration
+        Guard-->>Browser: Keep shell usable without SDK startup
+    end
+```
 
-### Notable Interactions
+Build evaluation never imports the eager SDK client. Initialization failure reports a diagnostic code while the static shell remains usable. No sign-in, membership lookup, private read or write occurs in this slice. Production cannot activate development emulators.
 
-Design rules inspect eligible source files while tests verify the checker and canonical token properties. ProductShape validates the empty accepted model, active-change overlay and managed integration integrity. Passing validation does not accept product semantics.
+## Verification
 
-### Failure Behavior
-
-A failing command prevents the chained verification from being reported as successful. No scanned application files is limited scope, not evidence that a future UI meets its quality obligations. Missing remote execution is not a passing GitHub result; the lifecycle's verification roles preserve that distinction.
-
-## Application Runtime
-
-SDK startup creates or reuses the Firebase app and exports Auth/Firestore clients. Emulator connections occur only when both a development build and the explicit emulator opt-in are present. A Firestore request is evaluated against the current identity/membership and ownership rules described in [08](08-crosscutting-concepts.md); a denied request does not depend on hiding UI.
-
-The [rules tests](../../src/tests/firebase/firestore.rules.test.mjs) exercise direct data operations with authenticated and unauthenticated contexts in a demo project. Their existence is not evidence of a test run in this documentation task. No sign-in screen, overlap engine or rehearsal-confirmation interaction has been implemented. Proposed behaviour remains in [CHG-INITIAL](../product/changes/active/chg-initial/change.md); full user-facing runtime sequences await the application design.
+[Package scripts](../../package.json) compose source/design/security checks, production build, HTTP route/asset tests, ProductShape validation and Firestore emulator tests. Runtime verification drives both shells in a browser at mobile/desktop sizes, tests keyboard skip navigation and records page errors/private requests. Evidence is recorded in the [GH-1 delivery plan](../delivery/plans/GH-1.md).

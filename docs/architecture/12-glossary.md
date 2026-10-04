@@ -14,4 +14,4 @@ description: Architecture-specific technical terms and abbreviations.
 | Managed capability projection | Installer-generated agent content restored from its source and lock, distinguished from project-owned role adapters. |
 | Project-owned role adapter | A local skill implementing an agent-toolkit contract for this repository's chosen tools and conventions. |
 
-Band, Member, Availability, Rehearsal opportunity, Confirmed rehearsal, Song and Setlist are product terms, not architecture glossary entries. Their proposed meanings remain in [CHG-INITIAL domain terms](../product/changes/active/chg-initial/proposed/domain/terms/); their accepted home will be ProductShape's model.
+Band, Member, Availability, Rehearsal opportunity, Confirmed rehearsal, Song and Setlist are product terms, not architecture glossary entries. Their canonical meanings remain in [ProductShape domain terms](../product/model/domain/terms/).

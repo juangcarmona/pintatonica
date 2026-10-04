@@ -1,6 +1,6 @@
-# Executable web shell — implementation plan
+# Executable web shell â€” implementation plan
 
-Work item: [GH-1 — Executable web shell](https://github.com/juangcarmona/pintatonica/issues/1). Branch: work/GH-1-executable-web-shell. Only this slice is selected.
+Work item: [GH-1 â€” Executable web shell](https://github.com/juangcarmona/pintatonica/issues/1). Branch: work/GH-1-executable-web-shell. Only this slice is selected.
 
 Planning mode: native plan mode is unavailable in this session; this saved proposal is unapproved. Ready evaluation is recorded in GH-1. Stop at the human Planned gate; no source/configuration implementation has been performed.
 
@@ -95,3 +95,13 @@ Juan approved publication of the nine delivery issues and this plan-only draft P
 <!-- pdac:cite id="QR-USABILITY" digest="sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b" -->
 
 <!-- pdac:cite id="QR-VERIFICATION" digest="sha256:1a0f617f80f103442dddf61fc11a360e4ca9e023d6f18bcace259ffa3fa0e73e" -->
+
+## Implementation progress and scoped authorization
+
+Juan approved this plan and directed continuous implementation, verification, integration and Cloudflare deployment without another approval pause on 2026-10-04. This is GH-1-specific authorization, not a fabricated GitHub approval vote or a lifecycle change for other issues.
+
+Completed: compatible pinned tooling; src-local Astro/config/layout/pages/styles; guarded Firebase browser entry; built-route/configuration tests; browser evidence for absent config, configured development emulators, and configured production with emulator opt-in ignored; affected architecture/contributor documentation and ADR-0001.
+
+Recorded implementation choices: Node floor is 22.12; TypeScript 6.0.2 replaces 7.0.2 for Astro checker compatibility. Root wrangler.jsonc is declarative metadata required for existing native build discovery; all executable files remain under src/. The default ADR location docs/adr/ is selected under the greenfield delivery authorization. Playwright's library drives repeatable runtime evidence without a broad E2E framework. Failed Chromium download was replaced with installed Edge; test fixture encoding was corrected to UTF-8 and the dev toolbar was disabled to keep shell observations explicit.
+
+Remaining at this checkpoint: final verification, independent audit, current-head CI, deployment evidence and integration/archival.
