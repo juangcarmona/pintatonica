@@ -121,3 +121,5 @@ A fresh independent audit of head a90bce29b395a579cab219942703973a3e4f29e2 found
 Current-head GitHub verification passed: [run 37193955852](https://github.com/juangcarmona/pintatonica/actions/runs/37193955852). Actual deployment and runtime evidence are linked in the evidence directory. Affected architecture/design/operations documentation has been reconciled before archival; design tokens and product intent were unchanged.
 
 All shell implementation tasks are supported. Native build diagnostic/repair remains an explicit unmet operational subtask because the documented Builds API requires Workers CI permissions unavailable in the current session and no dashboard browser is enabled. Do not claim Git-driven automation repaired. No additional pipeline or credentials are added to work around that access boundary.
+
+Node 22.12 compatibility: test:web explicitly enables Node type stripping when importing the browser guard TypeScript; relying on Node 24 default stripping would not support the declared Node floor.
