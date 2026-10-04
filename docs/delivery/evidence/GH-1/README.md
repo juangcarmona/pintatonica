@@ -35,6 +35,6 @@ Known limitations: no real login/member workflow; no musical features; public ed
 - [Live deployment observations](deployed.json)
 - [GitHub verification at implementation head 885f600](https://github.com/juangcarmona/pintatonica/actions/runs/37193425260)
 
-The live public and /band routes at https://pintatonica.jgcarmona-pro.workers.dev returned 200 and passed the same browser assertions. Initial manual deployment version: e75907c6-15fe-412b-b435-41caa7a6ac82. Public shell assets were deployed without Firebase configuration or private calls.
+The live public and /band routes at [Pintatonica shell](https://pintatonica.jgcarmona-pro.workers.dev) returned 200 and passed the same browser assertions. Initial manual deployment version: e75907c6-15fe-412b-b435-41caa7a6ac82. Public shell assets were deployed without Firebase configuration or private calls.
 
 Native Workers Builds still reported failure for head 885f600. Its published GitHub check contains only a build link, not an error log. The documented same-provider Builds API returned Forbidden (12004) using the existing Wrangler session, held only in memory; no credentials were printed, persisted or added to CI. No dashboard browser is enabled. This prevents diagnosis/configuration of that native job in this session; the failure is not relabelled passing. Wrangler deployment to the existing Worker succeeded, establishing a working manual delivery path while native automation remains an operational limitation.
