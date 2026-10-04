@@ -2,7 +2,7 @@
   "name": "pintatonica",
   "version": "0.0.0",
   "private": true,
-  "description": "Pintat\u00c3\u00b3nica public website and member-area shell",
+  "description": "Pintatonica public website and member-area shell",
   "scripts": {
     "design:check": "node src/tooling/design/check-design.mjs",
     "design:test": "node --test \"src/tests/design/**/*.test.mjs\"",

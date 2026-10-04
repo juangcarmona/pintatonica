@@ -24,3 +24,17 @@ At 390×844 and 1440×1000, both routes served 200, had one page heading/current
 The existing pintatonica Cloudflare Worker was identified from its native check link and confirmed with authenticated Wrangler deployment/version listing. Its native build mapping now uses root declarative wrangler.jsonc, which runs pnpm build and maps dist static assets. No new service, paid binding, credential or deployment pipeline was added. Current-head CI, independent audit and actual published URL/version evidence will be recorded before integration completion.
 
 Known limitations: no real login/member workflow; no musical features; public editorial content remains a later slice. Native preview variable scopes and provider-specific rules need inspection before private features. Full APM replay/Windows restoration is not reported as passing; the locked canonical auditor payload already restored in the main checkout is used for the independent audit.
+
+## Durable results and deployment
+
+- [Full local verification transcript](verification.txt)
+- [Redacted scanner transcript](security-check.txt)
+- [Absent configuration observations](absent-configuration.json)
+- [Configured development observations](development.json)
+- [Configured production observations](production.json)
+- [Live deployment observations](deployed.json)
+- [GitHub verification at implementation head 885f600](https://github.com/juangcarmona/pintatonica/actions/runs/37193425260)
+
+The live public and /band routes at https://pintatonica.jgcarmona-pro.workers.dev returned 200 and passed the same browser assertions. Initial manual deployment version: e75907c6-15fe-412b-b435-41caa7a6ac82. Public shell assets were deployed without Firebase configuration or private calls.
+
+Native Workers Builds still reported failure for head 885f600. Its published GitHub check contains only a build link, not an error log. The documented same-provider Builds API returned Forbidden (12004) using the existing Wrangler session, held only in memory; no credentials were printed, persisted or added to CI. No dashboard browser is enabled. This prevents diagnosis/configuration of that native job in this session; the failure is not relabelled passing. Wrangler deployment to the existing Worker succeeded, establishing a working manual delivery path while native automation remains an operational limitation.

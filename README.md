@@ -17,7 +17,7 @@ Use pnpm dev, pnpm build and pnpm preview. Output is dist/. pnpm test runs desig
 
 Copy .env.example to ignored .env only when Firebase browser initialization is needed; replace required public placeholders. Missing configuration leaves both shells usable. Emulator opt-in works only in development. No credentials are needed for CI or an empty shell build.
 
-Cloudflare native Workers Builds owns deployment. Root wrangler.jsonc is declarative hosting metadata, runs pnpm build and maps dist; pnpm deploy uses existing operator authentication for a manual fallback. No deployment token or new GitHub pipeline is introduced. See [infrastructure](docs/architecture/infrastructure.md) for evidence and limits.
+Cloudflare native Workers Builds owns deployment. Root wrangler.jsonc is declarative hosting metadata, runs pnpm build and maps dist; pnpm run deploy uses existing operator authentication for a manual fallback. No deployment token or new GitHub pipeline is introduced. See [infrastructure](docs/architecture/infrastructure.md) for evidence and limits.
 
 ## Local prerequisites
 

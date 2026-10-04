@@ -44,7 +44,7 @@ The repository has no commits yet; the official change creator used `base-revisi
 
 ## Dependency finding
 
-The initial npm-based bootstrap audit reported four high-severity affected packages along one development-tool dependency chain: ProductShape â†’ fast-glob â†’ micromatch â†’ braces. The advisory is [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), stack exhaustion from deeply nested patterns. That audit reported no available fix for the documented CLI baseline. This is historical bootstrap evidence; use `pnpm audit` for a current dependency report. Keep the upstream finding recorded for the next supported update.
+The initial npm-based bootstrap audit reported four high-severity affected packages along one development-tool dependency chain: ProductShape → fast-glob → micromatch → braces. The advisory is [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), stack exhaustion from deeply nested patterns. That audit reported no available fix for the documented CLI baseline. This is historical bootstrap evidence; use `pnpm audit` for a current dependency report. Keep the upstream finding recorded for the next supported update.
 
 ## CI and secret scanning
 

@@ -1,6 +1,6 @@
 # Engineering lifecycle
 
-Project: Pintatónica (`juangcarmona/pintatonica`). Adopted: 2026-10-04. Last amended: 2026-10-04. Juan explicitly accepted this bootstrap configuration.
+Project: PintatÃ³nica (`juangcarmona/pintatonica`). Adopted: 2026-10-04. Last amended: 2026-10-04. Juan explicitly accepted this bootstrap configuration.
 
 ## Definition of Ready
 
@@ -54,13 +54,13 @@ Current source: [.github/workflows/verify.yml](../.github/workflows/verify.yml),
 
 | Check | Current command | Evidence |
 | --- | --- | --- |
-| Design policy | pnpm design:check | Scanned-file and violation counts; currently zero application files scanned, not proof of application quality. |
+| Design policy | pnpm design:check | Scanned-file and violation counts; GH-1 now scans application source; inspect actual counts per run. |
 | Design tests | pnpm design:test | Node test runner; nine tests pass in this session. |
 | Product structure | pnpm product:validate | ProductShape diagnostics; accepted model contains 55 artifacts. |
 | Web build/tests | pnpm build and pnpm test:web | Built route/asset and configuration guards; composed into verify. |
 | Generated integration integrity | pnpm product:integrity | Installation-lock agreement. |
 | Product tooling health | pnpm product:doctor | Repository health report. |
-| Firebase typecheck | pnpm typecheck | Strict TypeScript checks for the existing Firebase client; not whole-application coverage. |
+| Firebase typecheck | pnpm typecheck | Astro checker covers application Astro and TypeScript source. |
 | Firestore rules | pnpm firebase:rules:test | Permission and denial scenarios under demo-pintatonica; Java 21 required; included once in pnpm verify. |
 | Secret scanning | pnpm security:check | Checksum-pinned Gitleaks, redacted history/index/worktree scans; history is N/A until commits exist. |
 | Security helper tests | pnpm security:test | Fail-closed execution, checksum integrity, environment placeholders, index coverage and real synthetic-secret detection/redaction; included in verify:fast. |
@@ -151,6 +151,6 @@ Future changes preserve all contract headings and are shown as diffs for confirm
 
 ## Live discovery and prerequisites
 
-GitHub main, CI, issues #1–#9 and PR #10 are published. Actual native issue states remain OPEN/CLOSED. No custom lifecycle labels, sprint or board are used. Read protections/checks live before integration. Juan approved GH-1 implementation and continuous verified integration/deployment without a further approval pause; this scoped authorization does not change the normal lifecycle for future items.
+GitHub main, CI, issues #1â€“#9 and PR #10 are published. Actual native issue states remain OPEN/CLOSED. No custom lifecycle labels, sprint or board are used. Read protections/checks live before integration. Juan approved GH-1 implementation and continuous verified integration/deployment without a further approval pause; this scoped authorization does not change the normal lifecycle for future items.
 
 User-confirmed inputs: GitHub, no SDD framework, native plan mode, greenfield. Juan accepted the proposed adoption in full on 2026-10-04 and confirmed remote workflows will be addressed later. Amend Ready/Done dimensions through reconcile or review with a recorded reason and human confirmation.

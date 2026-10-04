@@ -6,6 +6,7 @@ const app = process.env.RUNTIME_URL ? undefined : await serveBuild();
 const url = process.env.RUNTIME_URL ?? app.url;
 const browser = await chromium.launch(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {});
 const observations = [];
+const evidenceName = process.env.RUNTIME_FIREBASE ?? 'absent-configuration';
 await mkdir('artifacts/runtime', { recursive: true });
 try {
   for (const [label, viewport] of [['mobile', { width: 390, height: 844 }], ['desktop', { width: 1440, height: 1000 }]]) {
@@ -51,6 +52,6 @@ try {
     assert.deepEqual(privateRequests, []);
     await context.close();
   }
-  await writeFile('artifacts/runtime/observations.json', JSON.stringify({ url, observations, privateRequests: 0, pageErrors: 0 }, null, 2));
+  await writeFile(`artifacts/runtime/${evidenceName}.json`, JSON.stringify({ url, observations, privateRequests: 0, pageErrors: 0 }, null, 2));
   console.log(JSON.stringify({ url, observations, privateRequests: 0, pageErrors: 0 }, null, 2));
 } finally { await browser.close(); await app?.close(); }

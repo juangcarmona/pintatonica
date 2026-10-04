@@ -2,7 +2,7 @@
 
 Work item: [GH-1 â€” Executable web shell](https://github.com/juangcarmona/pintatonica/issues/1). Branch: work/GH-1-executable-web-shell. Only this slice is selected.
 
-Planning mode: native plan mode is unavailable in this session; this saved proposal is unapproved. Ready evaluation is recorded in GH-1. Stop at the human Planned gate; no source/configuration implementation has been performed.
+Planning mode was unavailable during proposal. Juan subsequently approved the saved plan and explicitly authorized verified implementation, integration and deployment without a further approval pause. Ready evaluation remains recorded in GH-1.
 
 ## Proposal
 
@@ -55,7 +55,7 @@ Choose a minimal manual Astro scaffold over a generated demo app to preserve the
 7. Match the existing Cloudflare integration to the verified build output without adding a deployment pipeline or paid service. Capture available native build/preview logs and both-route runtime evidence; name any platform-access blocker or remaining production verification.
 8. Run the full current CI-derived verification, security:check and runtime checks. Have the lifecycle's independent Done auditor reconcile approved tasks with the diff, then present evidence to Juan. Stop for human review; integrate only through the existing lifecycle.
 
-These are implementation steps inside the selected slice, not additional backlog items. No task is executed by authoring this plan.
+These are implementation steps inside the selected slice, not additional backlog items. Completion evidence is recorded below.
 
 ## Test plan
 
@@ -72,11 +72,11 @@ These are implementation steps inside the selected slice, not additional backlog
 | Documentation and ProductShape citations | Accepted model unchanged, citations current, affected instructions reflect actual build | Documentation, product/spec consistency |
 | Independent task/diff audit and Juan review | Every task evidenced or explicitly dropped, deliberate limits identified, no self-approved Done | Human review, completeness, known limitations |
 
-At Done, list current-head command results and runtime evidence, not merely earlier scaffold checks. A missing check or inaccessible deployment evidence is reported explicitly. The independent auditor reports findings; Juan approves the approach and final change. No Planned approval or implementation is asserted by this proposal.
+At Done, list current-head command results and runtime evidence, not merely earlier scaffold checks. A missing check or inaccessible deployment evidence is reported explicitly. The independent auditor reports findings; Juan approves the approach and final change. The initial proposal did not assert implementation; the completed implementation and checks are evidenced below.
 
 ## Delivery handoff
 
-Juan approved publication of the nine delivery issues and this plan-only draft PR. GH-1 is Ready; this plan awaits the human Planned gate. GH-2 through GH-9 remain unrefined and unstarted. Implementation continues on this branch only after explicit plan approval.
+Juan approved publication of the nine delivery issues and this plan-only draft PR. GH-1 passed Ready and Juan approved Planned. GH-2 through GH-9 remain unrefined and unstarted. Implementation continued on this branch under explicit continuous-delivery authorization.
 
 ## ProductShape citations
 
@@ -105,3 +105,11 @@ Completed: compatible pinned tooling; src-local Astro/config/layout/pages/styles
 Recorded implementation choices: Node floor is 22.12; TypeScript 6.0.2 replaces 7.0.2 for Astro checker compatibility. Root wrangler.jsonc is declarative metadata required for existing native build discovery; all executable files remain under src/. The default ADR location docs/adr/ is selected under the greenfield delivery authorization. Playwright's library drives repeatable runtime evidence without a broad E2E framework. Failed Chromium download was replaced with installed Edge; test fixture encoding was corrected to UTF-8 and the dev toolbar was disabled to keep shell observations explicit.
 
 Remaining at this checkpoint: final verification, independent audit, current-head CI, deployment evidence and integration/archival.
+
+## Verification and delivery reconciliation
+
+[Durable command/runtime evidence](../evidence/GH-1/README.md) links each test lane, all three Firebase configuration modes, inspected screenshots and the actual Cloudflare deployment. GitHub verification passed on implementation head 885f600; the final head is checked separately.
+
+Tasks 1–6 have implementation/documentation evidence. Task 7 has verified static-output mapping, Wrangler dry-run/deployment and live browser evidence. Inspection/repair of the native Build job is unfulfilled: the Builds API returns Forbidden and no dashboard browser is enabled. The repository/application build and manual deployment work; native automation is not claimed fixed. Task 8 has full verification and an independent audit; final-head audit/integration follows. This limitation is recorded, not silently dropped or presented as a passed native check.
+
+Initial audit corrections: repaired Windows encoding, removed obsolete present-tense proposal claims, updated source-check scope and persisted separate runtime/command evidence. No product semantics were changed.
