@@ -1,24 +1,24 @@
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { chmod, copyFile, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { homedir } from 'node:os';
+import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { setTimeout as delay } from 'node:timers/promises';
+import { unzipSync } from 'fflate';
 
-export const version = '8.30.1';
+// Avoid 8.30.1's reported detection regression: github.com/gitleaks/gitleaks/issues/2170.
+export const version = '8.29.1';
 const archives = {
-  'linux-x64': {
-    name: `gitleaks_${version}_linux_x64.tar.gz`,
-    sha256: '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb',
-  },
-  'win32-x64': {
-    name: `gitleaks_${version}_windows_x64.zip`,
-    sha256: 'd29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e',
-  },
+  'linux-x64': `gitleaks_${version}_linux_x64.tar.gz`,
+  'win32-x64': `gitleaks_${version}_windows_x64.zip`,
 };
+export const cacheRoot = process.platform === 'win32'
+  ? join(process.env.LOCALAPPDATA || join(homedir(), 'AppData', 'Local'), 'Pintatonica', 'Cache')
+  : join(homedir(), '.cache', 'pintatonica');
 
 export function verifyArchive(bytes, expected) {
-  if (createHash('sha256').update(bytes).digest('hex') !== expected) {
+  if (!/^[a-f0-9]{64}$/.test(expected) || createHash('sha256').update(bytes).digest('hex') !== expected) {
     throw new Error('Gitleaks archive checksum mismatch');
   }
 }
@@ -29,21 +29,111 @@ export function scannerEnvironment(source = process.env) {
   return Object.fromEntries(Object.entries(source).filter(([name]) => allowed.has(name.toUpperCase())));
 }
 
-export async function installScanner(directory) {
-  const archive = archives[`${process.platform}-${process.arch}`];
+async function download(url, fetcher) {
+  const response = await fetcher(url, { signal: AbortSignal.timeout(120_000) });
+  if (!response.ok) throw new Error(`Gitleaks download failed: HTTP ${response.status} (${url})`);
+  return Buffer.from(await response.arrayBuffer());
+}
+
+export async function extractScanner(path, directory, platform = process.platform, run = spawnSync) {
+  const executable = platform === 'win32' ? 'gitleaks.exe' : 'gitleaks';
+  try {
+    await mkdir(directory, { recursive: true });
+    if (platform === 'win32') {
+      // Extract only the executable to a controlled path, never ZIP entry paths.
+      const files = unzipSync(await readFile(path), { filter: (entry) => basename(entry.name.replaceAll('\\', '/')) === executable });
+      const matches = Object.entries(files);
+      if (matches.length !== 1) throw new Error(`Expected one ${executable} in ZIP, found ${matches.length}`);
+      const binary = join(directory, executable);
+      await writeFile(binary, matches[0][1], { flag: 'wx', mode: 0o700 });
+      return binary;
+    }
+    const result = run('tar', ['-xf', path, '-C', directory], { encoding: 'utf8', env: scannerEnvironment() });
+    if (result.error || result.status !== 0) {
+      throw new Error(result.error?.message || `tar exit ${result.status}: ${String(result.stderr).trim().slice(0, 4096)}`);
+    }
+    const found = [];
+    async function find(folder) {
+      for (const entry of await readdir(folder, { withFileTypes: true })) {
+        const child = join(folder, entry.name);
+        if (entry.isDirectory()) await find(child);
+        else if (entry.isFile() && entry.name === executable) found.push(child);
+      }
+    }
+    await find(directory);
+    if (found.length !== 1) throw new Error(`Expected one ${executable} in archive, found ${found.length}`);
+    return found[0];
+  } catch (error) {
+    throw new Error(`Gitleaks extraction failed (${platform}, ${path} -> ${directory}): ${error.message}`, { cause: error });
+  }
+}
+
+function expectedVersion(binary, run) {
+  const result = run(binary, ['version'], { encoding: 'utf8', env: scannerEnvironment(), timeout: 10_000 });
+  return !result.error && result.status === 0 && String(result.stdout).trim().replace(/^v/, '') === version;
+}
+
+async function validCache(binary, run) {
+  try {
+    const receipt = JSON.parse(await readFile(join(binary, '..', 'install.json'), 'utf8'));
+    verifyArchive(await readFile(binary), receipt.binarySha256);
+    return receipt.version === version && expectedVersion(binary, run);
+  } catch { return false; }
+}
+
+export async function installScanner(base = cacheRoot, {
+  platform = process.platform, arch = process.arch, fetcher = fetch, run = spawnSync,
+  extract = extractScanner, lockTimeout = 130_000,
+} = {}) {
+  const key = `${platform}-${arch}`;
+  const archive = archives[key];
   if (!archive) throw new Error('Security scanning supports Linux x64 and Windows x64');
-  const response = await fetch(
-    `https://github.com/gitleaks/gitleaks/releases/download/v${version}/${archive.name}`,
-    { signal: AbortSignal.timeout(120_000) },
-  );
-  if (!response.ok) throw new Error(`Gitleaks download failed: HTTP ${response.status}`);
-  const bytes = Buffer.from(await response.arrayBuffer());
-  verifyArchive(bytes, archive.sha256);
-  const path = join(directory, archive.name);
-  await writeFile(path, bytes);
-  const extracted = spawnSync('tar', ['-xf', path, '-C', directory], { stdio: 'pipe', env: scannerEnvironment() });
-  if (extracted.error || extracted.status !== 0) throw new Error('Gitleaks extraction failed');
-  return join(directory, process.platform === 'win32' ? 'gitleaks.exe' : 'gitleaks');
+  const parent = join(base, 'gitleaks', version);
+  const destination = join(parent, key);
+  const binary = join(destination, platform === 'win32' ? 'gitleaks.exe' : 'gitleaks');
+  const lock = join(parent, `${key}.lock`);
+  await mkdir(parent, { recursive: true, mode: 0o700 });
+  const deadline = Date.now() + lockTimeout;
+  // Exclusive directory ownership serializes publishers across Node processes.
+  // A crashed owner's lock fails closed; never delete a possibly live install lock.
+  for (;;) {
+    try { await mkdir(lock); break; }
+    catch (error) {
+      if (error.code !== 'EEXIST') throw error;
+      if (Date.now() >= deadline) throw new Error(`Gitleaks install lock timed out: ${lock}; remove only after confirming no installer is running`);
+      await delay(50);
+    }
+  }
+  let staging;
+  try {
+    if (await validCache(binary, run)) return binary;
+    staging = await mkdtemp(join(parent, `${key}.tmp-`));
+    const url = `https://github.com/gitleaks/gitleaks/releases/download/v${version}/`;
+    const checksums = (await download(`${url}gitleaks_${version}_checksums.txt`, fetcher)).toString('utf8');
+    const matches = checksums.split(/\r?\n/).map((line) => line.trim().split(/\s+/))
+      .filter(([, name]) => name === archive);
+    if (matches.length !== 1 || !/^[a-f0-9]{64}$/.test(matches[0][0])) throw new Error(`Gitleaks checksum entry missing or ambiguous: ${archive}`);
+    const bytes = await download(`${url}${archive}`, fetcher);
+    verifyArchive(bytes, matches[0][0]);
+    const archivePath = join(staging, archive);
+    await writeFile(archivePath, bytes, { flag: 'wx' });
+    const extractedDirectory = join(staging, 'extracted');
+    const executable = await extract(archivePath, extractedDirectory, platform, run);
+    if (!expectedVersion(executable, run)) throw new Error(`Gitleaks installed binary is not version ${version}`);
+    const stagedBinary = join(staging, basename(binary));
+    await copyFile(executable, stagedBinary);
+    if (platform !== 'win32') await chmod(stagedBinary, 0o700);
+    await writeFile(join(staging, 'install.json'), JSON.stringify({ version, binarySha256: createHash('sha256').update(await readFile(stagedBinary)).digest('hex') }));
+    await rm(extractedDirectory, { recursive: true, force: true });
+    await rm(archivePath);
+    await rm(destination, { recursive: true, force: true });
+    await rename(staging, destination);
+    staging = undefined;
+    return binary;
+  } finally {
+    try { if (staging) await rm(staging, { recursive: true, force: true }); }
+    finally { await rm(lock, { recursive: true, force: true }); }
+  }
 }
 
 export function scanRepository(binary, root, run = spawnSync, log = console.log) {
@@ -74,14 +164,11 @@ export function scanRepository(binary, root, run = spawnSync, log = console.log)
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const directory = await mkdtemp(join(tmpdir(), 'pintatonica-gitleaks-'));
   try {
     const root = fileURLToPath(new URL('../../../', import.meta.url));
-    scanRepository(await installScanner(directory), root);
+    scanRepository(await installScanner(), root);
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;
-  } finally {
-    await rm(directory, { recursive: true, force: true });
   }
 }
