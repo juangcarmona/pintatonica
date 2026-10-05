@@ -15,7 +15,7 @@ Apply Juan's recorded feedback: document title only Pintatónica, Backstage priv
 - [x] TDD public safe-data/upcoming/brand regressions and typed editorial surface.
 - [x] Public sections/selected music-media-gigs, honest content/error states, fixed accessible branded navigation and Backstage section navigation.
 - [x] Actual anonymous/mobile/desktop/keyboard/public isolation browser checks; rerun predecessor access/scheduling/confirmation/repertoire/preparation/setlist journeys and inspect screenshots.
-- [ ] Free-tier/operations evidence and documentation reconciliation; full current CI-derived checks and independent implementation audit.
+- [x] Free-tier/operations evidence and documentation reconciliation; full current CI-derived checks and independent implementation audit.
 - [ ] Fresh integration audit; fold/archive/final-head checks/audit, ready screenshot PR, authorized merge and native production observation.
 
 ## Test plan and Done
@@ -25,3 +25,7 @@ Built-page regressions assert approved title/wordmark/tone/navigation/sections, 
 ## Evidence and observed corrections
 
 [GH-9 evidence](../evidence/GH-9/README.md) records current checks, runtime, inspected screenshots and source identity. Audited corrections: song-media-only empty wording, observable resize waits and built-page UI readiness instead of network idle. No product semantic delta or new ADR; ADR-0002 remains the mutable metadata/public projection decision. Actual contact/media are deliberately unconfigured pending approved material. Final integration outcomes are recorded after execution in issue #9.
+
+Independent IMPLEMENT audit on implemented source: no remaining substantive finding; 78 tests and all 70 source hashes reconciled. Exact implementation head: 67cf455dd6aa1d23a3242a91a83bd121331d340f. Juan's recorded FF-through-9 authorization applies to named judgement roles; no GitHub approval vote is fabricated. Fresh integration and final-head audits/checks remain separate requirements.
+
+Fresh independent INTEGRATE audit on 67cf455: deterministic Done, no substantive findings. Both exact-head GitHub CI and native Cloudflare preview SUCCESS; anonymous deployed public/Backstage observation passes with entry assets matching the verified build. Architecture/design/operations deltas are reconciled on a branch zero behind main; no SDD/ProductShape semantic delta. Final-head audit and actual merge/production still execute after archival; issue closeout records their observed outcomes.

@@ -1,6 +1,6 @@
 # GH-9 evidence
 
-[Plan](../../plans/GH-9.md), [PR #19](https://github.com/juangcarmona/pintatonica/pull/19). Accepted ProductShape model unchanged. Public-data/upcoming and approved-brand regressions ran red before implementation, then green. Static editorial sections and anonymous safe projections complete public discovery without new services.
+[Plan](../../completed/GH-9.md), [PR #19](https://github.com/juangcarmona/pintatonica/pull/19). Accepted ProductShape model unchanged. Public-data/upcoming and approved-brand regressions ran red before implementation, then green. Static editorial sections and anonymous safe projections complete public discovery without new services.
 
 [Checks](checks.txt) record frozen installation, security scanning and full current workflow verification: 9 design, 18 security, 38 web and 13 emulator rules tests. Source checking and ProductShape validation/health/integrity passed. Markdown lint excludes only the existing long-line style (MD013); all other rules pass. Architecture citations are current; source identity is in [manifest](source-manifest.json).
 
