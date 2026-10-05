@@ -1,0 +1,15 @@
+# Slices 3–9 readiness review
+
+Juan authorized sequential FF delivery through slice 9 on 2026-10-05, including plan decisions, implementation, tests, screenshots in ready PRs, independent audits, verified merge and native Cloudflare deployment. No review vote or branch-protection bypass is implied. Scope remains the accepted ProductShape model. Native plan mode is unavailable; durable plans precede code. Earlier merged work has retrospective debt; it does not block delivery.
+
+| Slice | Intent / readiness | Questions or inputs |
+| --- | --- | --- |
+| GH-3 | UC-AVAILABILITY, FR-AVAILABILITY, BR-AVAILABILITY, BR-MEMBERSHIP, TERM-PLANNING-HORIZON, SB-DATE-EXCEPTION: own recurring intervals, replacement date overrides including empty, remove override, saved band view in Madrid over six weeks. Ready. | None. UI/persistence details are delegated engineering choices. |
+| GH-4 | UC-OPPORTUNITIES, FR-SCHEDULING, BR-OPPORTUNITY, BR-PARTIAL-AVAILABILITY, SB-OPPORTUNITY, SB-PARTIAL-WINDOW: dynamic active roster; continuous two hours; separate partial windows with two or more but fewer than all; participation/duration ranking and full-group week highlighting. Ready after 3. | None. No duration threshold for partial windows; all-member short overlaps are neither category. |
+| GH-5 | UC-CONFIRM, FR-SCHEDULING, BR-REHEARSAL-CONFIRMATION, JRN-NEXT-REHEARSAL: explicit member confirmation, agreed attendance/timing, shared upcoming rehearsals. Ready after 4. | Attendance is shown for each candidate; confirmation is an explicit band-agreement action, no voting/cancellation policy invented. |
+| GH-6 | UC-REPERTOIRE, FR-REPERTOIRE, BR-MEMBERSHIP, BR-PUBLIC-SELECTION: shared editable songs/resources, protected working data, explicit public projection. Ready after 5. | Architectural persistence/public-projection trade-off belongs to its plan/ADR. Real repertoire can be entered later; never seed fabricated songs in production. |
+| GH-7 | UC-PREPARE, FR-PREPARATION, BR-MEMBERSHIP: shared selected songs and focus on confirmed rehearsal. Ready after 5/6. | None. Lightweight musical notes only. |
+| GH-8 | UC-SETLIST, FR-PREPARATION, FR-PUBLIC, BR-PUBLIC-SELECTION, TERM-GIG, TERM-SETLIST: ordered songs/duration/notes and basic gigs with a safe public projection. Ready after 6/7. | None. No booking, ticketing, advanced event flow or public internal preparation. |
+| GH-9 | UC-PUBLIC, FR-PUBLIC, JRN-DISCOVER, BR-PUBLIC-SELECTION: public areas and final journey/security/mobile polish. Functional surfaces can proceed after predecessors. | Public contact, approved introduction and media are editorial inputs, requested asynchronously. Missing material must remain explicitly empty; never publish the privately supplied account as contact without permission. |
+
+Existing quality artifacts apply throughout: QR-SECURITY, QR-USABILITY, QR-COST-OPERATIONS, QR-MAINTAINABILITY, QR-VERIFICATION and CON-SINGLE-BAND. No semantic gap currently requires a Product Change. Each slice gets its own refined issue, plan, branch and PR; only one is implemented at a time.
