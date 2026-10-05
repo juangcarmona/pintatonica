@@ -16,4 +16,4 @@ All lifecycle dimensions satisfied: concrete title/problem/actor, approved prior
 
 ## Lifecycle
 
-Ready under Juan's explicit sequential FF-through-9 authorization. Durable plan: docs/delivery/plans/GH-5.md; one branch/PR. GitHub closes only after integration. No fabricated approval or bypass.
+Ready under Juan's explicit sequential FF-through-9 authorization. Durable plan: docs/delivery/completed/GH-5.md; one branch/PR. GitHub closes only after integration. No fabricated approval or bypass.
