@@ -1,11 +1,12 @@
 import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
 import { after, afterEach, before, describe, it } from 'node:test';
 import {
   assertFails,
   assertSucceeds,
   initializeTestEnvironment,
 } from '@firebase/rules-unit-testing';
-import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, writeBatch } from 'firebase/firestore';
 
 let env;
 
@@ -33,6 +34,34 @@ const seedMembers = () =>
   });
 
 describe('firestore rules', () => {
+  it('public song selection is atomic and exposes no private material', async()=>{
+    await seedMembers();
+    const member=env.authenticatedContext('alice',{firebase:{sign_in_provider:'google.com'}}).firestore();
+    const anonymous=env.unauthenticatedContext().firestore();
+    const song={title:'Tema',artist:'Artista',public:false,publicMediaUrl:'',notes:'Privado',resources:[{url:'https://drive.google.com/private'}],revision:1};
+    await assertSucceeds(setDoc(doc(member,'songs/s1'),song));
+    await assertFails(setDoc(doc(member,'publicSongs/s1'),{title:'Tema',artist:'Artista',mediaUrl:''}));
+    let batch=writeBatch(member);batch.set(doc(member,'songs/s1'),{...song,public:true});batch.set(doc(member,'publicSongs/s1'),{title:'Tema',artist:'Artista',mediaUrl:''});await assertSucceeds(batch.commit());
+    const publicRows=await assertSucceeds(getDocs(collection(anonymous,'publicSongs')));assert.equal(publicRows.size,1);assert.deepEqual(publicRows.docs[0].data(),{title:'Tema',artist:'Artista',mediaUrl:''});
+    await assertFails(getDoc(doc(anonymous,'songs/s1')));
+    batch=writeBatch(member);batch.set(doc(member,'songs/s1'),{...song,public:true});batch.set(doc(member,'publicSongs/s1'),{title:'Tema',artist:'Artista',mediaUrl:'',notes:'Privado'});await assertFails(batch.commit());
+    await assertFails(setDoc(doc(member,'songs/s1'),song));
+    await assertFails(deleteDoc(doc(member,'publicSongs/s1')));
+    batch=writeBatch(member);batch.set(doc(member,'songs/s1'),song);batch.delete(doc(member,'publicSongs/s1'));await assertSucceeds(batch.commit());
+    assert.equal((await getDoc(doc(anonymous,'publicSongs/s1'))).exists(),false);
+    assert.equal((await getDoc(doc(member,'songs/s1'))).data().notes,'Privado');
+  });
+  it('all active members edit shared songs; other identities cannot read or publish them',async()=>{
+    await seedMembers();
+    const alice=env.authenticatedContext('alice',{firebase:{sign_in_provider:'google.com'}}).firestore();
+    const bob=env.authenticatedContext('bob',{firebase:{sign_in_provider:'google.com'}}).firestore();
+    const song={title:'Tema',artist:'Artista',public:false,publicMediaUrl:'',revision:1};
+    await assertSucceeds(setDoc(doc(alice,'songs/shared'),song));await assertSucceeds(setDoc(doc(bob,'songs/shared'),{...song,title:'Cambio compartido',revision:2}));
+    for(const id of ['stranger','former']){
+      const db=env.authenticatedContext(id,{firebase:{sign_in_provider:'google.com'}}).firestore();
+      await assertFails(getDoc(doc(db,'songs/shared')));await assertFails(setDoc(doc(db,'songs/shared'),song));await assertFails(setDoc(doc(db,'publicSongs/shared'),{title:'Tema',artist:'Artista',mediaUrl:''}));
+    }
+  });
   it('denies a non-Google identity even when its member record is active', async () => {
     await seedMembers();
     const db = env.authenticatedContext('alice', { firebase: { sign_in_provider: 'password' } }).firestore();

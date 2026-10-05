@@ -9,5 +9,6 @@ description: Index of architecturally significant decisions and affected views.
 | Decision | ADR | Affected architecture |
 | --- | --- | --- |
 | Build static shells with Astro and the existing Cloudflare Worker | [ADR-0001](../adr/0001-build-static-shells-with-astro.md) | Strategy, building blocks, runtime, deployment |
+| Store shared songs with safe public projections | [ADR-0002](../adr/0002-store-shared-songs-with-safe-public-projections.md) | Context, building blocks, crosscutting persistence/security |
 
-Records use docs/adr/, the toolkit default selected for this greenfield delivery. The earlier Firebase provisioning direction remains documented in [infrastructure](infrastructure.md); full persistence decisions await the relevant feature slices.
+Records use docs/adr/, the toolkit default selected for this greenfield delivery. Firebase provisioning remains documented in [infrastructure](infrastructure.md); the repertoire/public boundary is recorded in ADR-0002.

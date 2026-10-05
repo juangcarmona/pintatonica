@@ -53,6 +53,10 @@ summary { cursor: pointer; font-weight: var(--font-weight-bold); }
 .confirmation-form fieldset { border: var(--border-width) solid var(--border-default); padding: var(--space-3); }
 .check-field { display: flex; align-items: center; gap: var(--space-3); }
 .field input[type="checkbox"] { width: auto; flex: 0 0 auto; }
+.resource-row { border-top: var(--border-width) solid var(--border-default); margin-block: var(--space-4); }
+.song-details { overflow-wrap: anywhere; }
+.song-details a { color: var(--text-default); }
+.song-editor { max-width: 48rem; }
 @media (max-width: 40rem) {
   .site-header, .site-footer { padding: var(--space-4); }
   .hero, .band-shell { padding: var(--space-8) var(--space-4); }

@@ -8,7 +8,7 @@ description: System boundary, communication partners, external interfaces, and c
 
 ## Business Context
 
-The full application boundary has not been designed. The accepted product's audiences and external material are described by [CHG-INITIAL](../product/changes/completed/chg-initial/change.md), with [ACT-VISITOR](../product/model/actors/act-visitor.md), [ACT-MEMBER](../product/model/actors/act-member.md) and [UC-REPERTOIRE](../product/model/use-cases/uc-repertoire.md). Firebase client and access-rule scaffolding exists; user-facing integrations are not yet evidenced.
+The deployed static public shell and Google/member-gated private application use Firebase Auth and Firestore. Accepted audiences and external material belong to [ACT-VISITOR](../product/model/actors/act-visitor.md), [ACT-MEMBER](../product/model/actors/act-member.md) and [UC-REPERTOIRE](../product/model/use-cases/uc-repertoire.md). Private repertoire uses external HTTP/HTTPS resource links; provider access permissions remain outside the application. Deliberately selected public song projections form a separate anonymous read boundary; its mechanism belongs to [section 08](08-crosscutting-concepts.md).
 
 The [scheduling prototype evidence](../product/changes/completed/chg-initial/evidence/calendar.md) is an input to definition. Its runtime and access mechanism are not this repository's architecture.
 
@@ -34,7 +34,7 @@ This is a tooling context, not an application deployment diagram. Installed depe
 | Contributors | Product proposals, architecture/design documentation and local verification | [AGENTS.md](../../AGENTS.md); [lifecycle](../engineering-lifecycle.md) |
 | ProductShape | Markdown/configuration input and diagnostics/generated outputs | [.product/config.yaml](../../.product/config.yaml); [tooling](../tooling.md) |
 | Agent Toolkit / APM | Skill distribution and locked source provenance | [apm.yml](../../apm.yml) |
-| GitHub | Git remote and future Issues/PR delivery | Lifecycle adoption discovery; no published CI evidence |
-| Firebase Auth / Firestore | SDK initialization and access-rule configuration | [Client](../../src/firebase/client.ts); cloud provisioning reported in [infrastructure notes](infrastructure.md) |
-| Google identity | Intended sign-in provider; enabling sign-in remains a reported manual step | Infrastructure notes; no operational login evidence here |
-| Docs/Drive, YouTube | Proposed application relationships only | CHG-INITIAL; protocols, permissions and integration boundaries unselected |
+| GitHub | Issues/PRs, verification and ProductShape snapshots | [Delivery](../delivery/README.md); existing workflows |
+| Firebase Auth / Firestore | Google identity, protected private records and safe public projections | [Client](../../src/firebase/client.ts); [rules](../../src/firebase/firestore.rules) |
+| Google identity | Enabled real sign-in; manually provisioned membership remains separate | [GH-2 evidence](../delivery/evidence/GH-2/README.md); [member operations](../operations/member-access.md) |
+| Docs/Drive, YouTube / repository files | External resource links; no hosting, copying or permission bypass | [Repertoire link validation](../../src/band/repertoire.ts) |
