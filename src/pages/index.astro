@@ -1,11 +1,18 @@
 ---
 import Shell from '../layouts/Shell.astro';
+import {publicProfile,contactLink} from '../public-site/content';
+import {safeURL} from '../band/repertoire';
+const contact=contactLink(publicProfile.contact);
 ---
-<Shell title="Inicio">
+<Shell title="Pintatónica">
   <section class="hero" aria-labelledby="inicio-titulo">
-    <p class="eyebrow">Pintatónica</p>
-    <h1 id="inicio-titulo">Música,<br />juntos.</h1>
-    <img class="band-logo" src="/brand/logo.png" alt="Pintatónica" width="1024" height="1024" />
-    <div class="hero-bottom"><p>Estamos preparando nuestra nueva web.</p><a class="button" href="/band/">Espacio de la banda <span aria-hidden="true">↗</span></a></div>
+    <div><p class="eyebrow">Banda de música</p><h1 id="inicio-titulo">Pintatónica</h1><p>Repertorio, actuaciones y material seleccionado de la banda.</p><a class="button public-button" href="#repertorio">Nuestro repertorio <span aria-hidden="true">↓</span></a></div>
+    <img class="band-logo" src="/brand/logo.png" alt="Pintatónica" width="1024" height="1024" fetchpriority="high" />
   </section>
+  <section class="public-section paper-section" id="quienes-somos" tabindex="-1" aria-labelledby="banda-heading"><p class="eyebrow">La banda</p><h2 id="banda-heading">Quiénes somos</h2><p class="introduction">{publicProfile.introduction}</p></section>
+  <section class="public-section" id="repertorio" tabindex="-1" aria-labelledby="repertorio-heading"><p class="eyebrow">Nuestra música</p><h2 id="repertorio-heading">Repertorio</h2><div class="public-grid" data-public-music role="status" aria-live="polite"><p>Cargando repertorio…</p></div><noscript>Activa JavaScript para consultar el repertorio publicado.</noscript></section>
+  <section class="public-section paper-section" id="media" tabindex="-1" aria-labelledby="media-heading"><p class="eyebrow">Ver y escuchar</p><h2 id="media-heading">En imágenes y sonido</h2><div class="public-grid">{publicProfile.media.map(item=><article class="public-card">{item.kind==='photo'&&<img class="public-image" src={safeURL(item.url)} alt={item.label} loading="lazy" />}<a href={safeURL(item.url)} target="_blank" rel="noopener noreferrer">{item.label}</a></article>)}</div><div class="media-links" data-public-song-media role="status" aria-live="polite"><p>Cargando enlaces…</p></div><noscript>Activa JavaScript para consultar los enlaces publicados.</noscript></section>
+  <section class="public-section" id="conciertos" tabindex="-1" aria-labelledby="conciertos-heading"><p class="eyebrow">En directo</p><h2 id="conciertos-heading">Próximos conciertos</h2><div class="public-grid" data-public-gigs role="status" aria-live="polite"><p>Cargando conciertos…</p></div><noscript>Activa JavaScript para consultar los conciertos publicados.</noscript></section>
+  <section class="public-section paper-section" id="contacto" tabindex="-1" aria-labelledby="contacto-heading"><p class="eyebrow">Hablemos</p><h2 id="contacto-heading">Contacto</h2>{contact?<a class="button public-button" href={contact}>{publicProfile.contact!.label}</a>:<p>Todavía no hay un contacto público disponible.</p>}<a class="backstage-entry" href="/band/">Backstage <span aria-hidden="true">↗</span></a></section>
 </Shell>
+<script>import '../public-site/browser';</script>

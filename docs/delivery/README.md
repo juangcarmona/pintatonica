@@ -1,6 +1,6 @@
 # MVP delivery map
 
-Derived delivery state from the accepted [ProductShape model](../product/model/), not another source of product intent. Slice numbers below are ordering references, not GitHub issue identifiers or new lifecycle states. Slices 1–7 are merged and deployed; slice 8 is active. Juan authorized sequential FF delivery through slice 9 on 2026-10-05. Slice 9 is prepared but remains unstarted; each receives its own plan, verification, independent audit and PR before integration.
+Derived delivery state from the accepted [ProductShape model](../product/model/), not another source of product intent. Slice numbers below are ordering references, not GitHub issue identifiers or new lifecycle states. Slices 1–8 are merged and deployed. Slice 9 completes the functional MVP under Juan's sequential FF authorization of 2026-10-05. Each slice has its own plan, verification, independent audit and PR; exact integration/deployment outcomes live in the linked issues. Real public contact/media remain editorial inputs, not fabricated content.
 
 The canonical lifecycle remains [engineering-lifecycle.md](../engineering-lifecycle.md): refine → propose → human Planned gate → implement → verify/audit → integrate → review. No SDD framework or technical-layer backlog is introduced.
 

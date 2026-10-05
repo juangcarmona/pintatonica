@@ -12,12 +12,16 @@ Apply Juan's recorded feedback: document title only Pintatónica, Backstage priv
 
 ## Tasks
 
-- [ ] TDD public safe-data/upcoming/brand regressions and typed editorial surface.
-- [ ] Public sections/selected music-media-gigs, honest content/error states, fixed accessible branded navigation and Backstage section navigation.
-- [ ] Actual anonymous/mobile/desktop/keyboard/public isolation browser checks; rerun predecessor access/scheduling/confirmation/repertoire/preparation/setlist journeys and inspect screenshots.
+- [x] TDD public safe-data/upcoming/brand regressions and typed editorial surface.
+- [x] Public sections/selected music-media-gigs, honest content/error states, fixed accessible branded navigation and Backstage section navigation.
+- [x] Actual anonymous/mobile/desktop/keyboard/public isolation browser checks; rerun predecessor access/scheduling/confirmation/repertoire/preparation/setlist journeys and inspect screenshots.
 - [ ] Free-tier/operations evidence and documentation reconciliation; full current CI-derived checks and independent implementation audit.
 - [ ] Fresh integration audit; fold/archive/final-head checks/audit, ready screenshot PR, authorized merge and native production observation.
 
 ## Test plan and Done
 
 Built-page regressions assert approved title/wordmark/tone/navigation/sections, immutable logo, absence of private account/names/data and guarded member dashboard. Pure public-data tests reject unsafe links and sort/filter Madrid gigs. Browser demo seeds selected/unselected songs/gigs, private material and past events, then anonymously proves only intended fields, public discovery and real denied private reads; menu keyboard/Escape/resize/navigation and configured editorial contact/media rendering are exercised without publishing fixtures. All earlier browser suites rerun against current source. Frozen install/security/full pnpm verify, design/citations/Markdown/diff checks, source identity, inspected screenshots, exact-head CI/native checks and independent audits satisfy all applicable Done dimensions under Juan's recorded authorization. Report pending real contact/media, provider access, SDK warning/browser coverage and quota assumptions honestly; do not claim measured production traffic or new paid infrastructure.
+
+## Evidence and observed corrections
+
+[GH-9 evidence](../evidence/GH-9/README.md) records current checks, runtime, inspected screenshots and source identity. Audited corrections: song-media-only empty wording, observable resize waits and built-page UI readiness instead of network idle. No product semantic delta or new ADR; ADR-0002 remains the mutable metadata/public projection decision. Actual contact/media are deliberately unconfigured pending approved material. Final integration outcomes are recorded after execution in issue #9.

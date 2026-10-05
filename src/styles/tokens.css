@@ -53,6 +53,8 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  --header-height: 5.5rem;
+  --menu-line-width: 2rem;
 
   /* Shape: the logo is square-cornered */
   --radius-none: 0;

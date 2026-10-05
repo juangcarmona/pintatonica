@@ -1,6 +1,6 @@
 # Pintatónica
 
-A greenfield repository for a music group's public presence and internal organisation. The accepted ProductShape model drives an ordered MVP delivery backlog. The executable Astro shell establishes local build and existing Cloudflare deployment.
+A greenfield repository for a music group's public presence and internal organisation. The accepted ProductShape model drives an ordered MVP delivery backlog. The Astro application provides the public band presence and member workflows through the existing Cloudflare deployment.
 
 | Concern | Home | Authority |
 | --- | --- | --- |
@@ -11,7 +11,7 @@ A greenfield repository for a music group's public presence and internal organis
 
 ## Current phase
 
-GH-1/GH-2 provide the deployed public shell and Google/member-gated /band. GH-3 adds own recurring availability, replacement date exceptions and a six-week Madrid band view; the static HTML contains no private member or schedule data. GH-4 adds separated full-group and partial-window inspection. GH-5 adds explicit shared full/partial rehearsal confirmation. GH-6 adds shared repertoire metadata/resources with explicit safe public selection. GH-7 adds shared rehearsal focus and songs; GH-8 adds shared ordered setlists and basic gigs with safe public data under Juan's sequential FF authorization. [Delivery map](docs/delivery/README.md) and [PR #18](https://github.com/juangcarmona/pintatonica/pull/18) carry current delivery/verification status.
+GH-1/GH-2 provide the deployed public shell and Google/member-gated /band. GH-3 adds own recurring availability, replacement date exceptions and a six-week Madrid band view; the static HTML contains no private member or schedule data. GH-4 adds separated full-group and partial-window inspection. GH-5 adds explicit shared full/partial rehearsal confirmation. GH-6 adds shared repertoire metadata/resources with explicit safe public selection. GH-7 adds shared rehearsal focus and songs; GH-8 adds shared ordered setlists and basic gigs with safe public data under Juan's sequential FF authorization. GH-9 completes public selected repertoire/media, upcoming gigs, editorial sections and accessible branded navigation. [Public content operations](docs/operations/public-content.md) records pending contact/media and expected free-tier usage. [Delivery map](docs/delivery/README.md) and [PR #19](https://github.com/juangcarmona/pintatonica/pull/19) carry delivery/verification status.
 
 Use pnpm dev, pnpm build and pnpm preview. Output is dist/. pnpm test runs design/security/web suites after a build; pnpm verify runs the complete canonical chain including build and emulator tests. Browser evidence uses pnpm verify:runtime after a build; install Chromium with pnpm exec playwright install chromium, or select an installed browser through PLAYWRIGHT_CHANNEL (for example msedge). Evidence is written to ignored artifacts/runtime/.
 

@@ -19,3 +19,5 @@ All token values live in one file: [`src/styles/tokens.css`](../../src/styles/to
 - A new colour needs a logo or accepted-MVP justification and a contrast test.
 - Document the layer here, not the value.
 - `src/tests/design/tokens.test.mjs` pins the logo colours and the approved contrast pairs.
+
+Navigation geometry uses `--header-height` and `--menu-line-width` from the canonical stylesheet. These describe fixed-header clearance and the four-line menu; no palette values are duplicated here.

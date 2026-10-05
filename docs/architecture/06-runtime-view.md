@@ -44,3 +44,11 @@ See the [GH-2 plan](../delivery/completed/GH-2.md), [controller tests](../../src
 <!-- pdac:cite id="BR-MEMBERSHIP" digest="sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45" -->
 
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->
+
+## Public discovery and complete MVP verification
+
+Astro emits the editorial sections and approved contact/media configuration at build time. The browser independently fetches publicSongs and publicGigs once per page visit, renders text safely, filters upcoming gigs in Madrid time and reports empty/unavailable states. No anonymous private read or Auth request is needed. The compact navigation responds to keyboard, Escape, link activation and viewport changes.
+
+[Public runtime harness](../../src/tooling/web/verify-public-runtime.mjs) observes discovery and actual private-read denial using demo fixtures. GH-9 reruns the predecessor access, availability, opportunities, confirmation, repertoire, preparation and setlist browser suites against the current source; evidence distinguishes synthetic local journeys from anonymous deployed observations.
+
+<!-- pdac:cite id="FR-PUBLIC" digest="sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3" -->

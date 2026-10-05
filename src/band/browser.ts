@@ -41,7 +41,10 @@ void initializeBrowserFirebase().then((client) => {
     if(state.kind==='member' && workspace && client.auth.currentUser){
       const rehearsals=document.createElement('div'),availability=document.createElement('div'),repertoire=document.createElement('div');
       const setlists=document.createElement('div'),gigs=document.createElement('div');
-      workspace.append(rehearsals,availability,repertoire,setlists,gigs);
+      const sections=[['Ensayos',rehearsals],['Disponibilidad',availability],['Repertorio',repertoire],['Setlists',setlists],['Conciertos',gigs]] as const;
+      const navigation=document.createElement('nav');navigation.className='band-navigation';navigation.setAttribute('aria-label','Backstage');
+      for(const [index,[label,section]] of sections.entries()){section.id=`band-section-${index}`;section.tabIndex=-1;const link=document.createElement('a');link.href=`#${section.id}`;link.textContent=label;navigation.append(link);}
+      workspace.append(navigation,rehearsals,availability,repertoire,setlists,gigs);
       const stopRehearsals=mountRehearsals(client.db,rehearsals),stopAvailability=mountAvailability(client.db,client.auth.currentUser.uid,availability),stopRepertoire=mountRepertoire(client.db,repertoire);
       const stopSetlists=mountSetlists(client.db,setlists),stopGigs=mountGigs(client.db,gigs);
       disposeWorkspace=()=>{stopRehearsals();stopAvailability();stopRepertoire();stopSetlists();stopGigs();workspace.replaceChildren();};
