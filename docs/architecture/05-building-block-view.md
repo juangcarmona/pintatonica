@@ -6,6 +6,10 @@ description: Static decomposition, responsibilities, interfaces, and dependencie
 
 # Building Block View
 
+## Availability workspace
+
+The browser access entry mounts [availability-view.ts](../../src/band/availability-view.ts) only for an admitted UID and disposes its listeners and DOM on loss of admission. [availability.ts](../../src/band/availability.ts) owns civil-date/interval transformations independently of Firebase and DOM. The view composes native labelled forms, dynamic active-roster listeners and a read-only band overview. Persistence ownership is documented in [08](08-crosscutting-concepts.md).
+
 ## Whitebox Overall System
 
 ```mermaid

@@ -11,7 +11,7 @@ A greenfield repository for a music group's public presence and internal organis
 
 ## Current phase
 
-GH-1 provides the public / shell, existing logo/tokens and Cloudflare deployment. GH-2 adds Google sign-in/out and recognised active-member access at /band; the static HTML contains no member identity. Musical workflows remain later slices. [PR #12](https://github.com/juangcarmona/pintatonica/pull/12) carries the access delivery record and live verification status.
+GH-1/GH-2 provide the deployed public shell and Google/member-gated /band. GH-3 adds own recurring availability, replacement date exceptions and a six-week Madrid band view; the static HTML contains no private member or schedule data. Calculation, confirmation and musical preparation remain later slices under Juan's sequential FF authorization. [Delivery map](docs/delivery/README.md) and [PR #13](https://github.com/juangcarmona/pintatonica/pull/13) carry current delivery/verification status.
 
 Use pnpm dev, pnpm build and pnpm preview. Output is dist/. pnpm test runs design/security/web suites after a build; pnpm verify runs the complete canonical chain including build and emulator tests. Browser evidence uses pnpm verify:runtime after a build; install Chromium with pnpm exec playwright install chromium, or select an installed browser through PLAYWRIGHT_CHANNEL (for example msedge). Evidence is written to ignored artifacts/runtime/.
 
