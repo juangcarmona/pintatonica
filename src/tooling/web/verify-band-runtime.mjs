@@ -36,6 +36,11 @@ try {
     await page.reload(); await page.waitForFunction(()=>document.querySelectorAll('[data-day]').length===2);
     assert.equal(await weekly.locator('[data-start]').nth(0).inputValue(),'18:00');
     const monday=await page.evaluate(async()=> (await import('/src/band/availability.ts')).planningDates()[0]);
+    async function reloadDate() {
+      await page.reload();
+      await page.waitForFunction(()=>Array.from(document.querySelectorAll('button')).find(node=>node.textContent==='Guardar excepción')?.disabled===false);
+      await override.getByLabel('Fecha',{exact:true}).fill(monday);await override.getByLabel('Fecha',{exact:true}).press('Tab');
+    }
     await override.getByLabel('Fecha',{exact:true}).fill(monday); await override.getByLabel('Fecha',{exact:true}).press('Tab');
     await override.getByRole('button',{name:'Quitar intervalo',exact:true}).nth(1).click();
     await override.locator('[data-start]').fill('19:00');await override.locator('[data-end]').fill('21:00');
@@ -46,18 +51,26 @@ try {
     assert.equal(await override.locator('[data-end]').inputValue(),'21:00');
     await override.getByRole('button',{name:'Guardar excepción',exact:true}).click();await page.getByText('Disponibilidad guardada.',{exact:true}).waitFor();
     assert.equal(await weekly.locator('[data-start]').nth(0).inputValue(),'18:00');
+    await reloadDate();
+    assert.equal(await override.locator('[data-start]').inputValue(),'19:00');assert.equal(await override.locator('[data-end]').inputValue(),'21:00');
+    await page.locator('.planning-day').first().getByText('Miembro de prueba: 19:00–21:00 · excepción',{exact:true}).waitFor();
     await override.getByRole('button',{name:'Marcar no disponible',exact:true}).click();
     await override.getByRole('button',{name:'Guardar excepción',exact:true}).click();await page.getByText('Disponibilidad guardada.',{exact:true}).waitFor();
     assert.equal(await override.locator('[data-start]').count(),0);
+    await reloadDate();assert.equal(await override.locator('[data-start]').count(),0);
+    await page.locator('.planning-day').first().getByText('Miembro de prueba: No disponible · excepción',{exact:true}).waitFor();
     await override.getByRole('button',{name:'Restaurar horario habitual',exact:true}).click();await page.getByText('Disponibilidad guardada.',{exact:true}).waitFor();
     assert.equal(await override.locator('[data-start]').count(),2);
+    await reloadDate();assert.equal(await override.locator('[data-start]').count(),2);
+    await page.locator('.planning-day').first().getByText('Miembro de prueba: 18:00–20:00, 21:00–22:00',{exact:true}).waitFor();
     await weekly.locator('[data-end]').nth(0).fill('17:00');await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).click();
     await page.getByText('No se ha guardado. Revisa las horas y vuelve a intentarlo.',{exact:true}).waitFor();
     await page.reload();await page.waitForFunction(()=>document.querySelectorAll('[data-day]').length===2);
     assert.equal(await weekly.locator('[data-end]').nth(0).inputValue(),'20:00');
     const other=`other-${label}`;
     await seed(`members/${other}`,{active:{booleanValue:true},name:{stringValue:'Otro miembro de prueba'}});
-    await page.getByText('Otro miembro de prueba: No disponible',{exact:true}).first().waitFor();
+    await seed(`availability/${other}/overrides/${monday}`,{intervals:{arrayValue:{values:[{mapValue:{fields:{start:{stringValue:'10:00'},end:{stringValue:'12:00'}}}}]}}});
+    await page.locator('.planning-day').first().getByText('Otro miembro de prueba: 10:00–12:00 · excepción',{exact:true}).waitFor();
     const denied=await page.evaluate(async(other)=>{
       const {db}=await import('/src/firebase/client.ts');
       const source=await (await fetch('/src/firebase/client.ts')).text();
@@ -75,7 +88,7 @@ try {
     assert.equal(await page.locator('[data-band-workspace]').textContent(),'');
     await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
     await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).waitFor();
-    observations.push({viewport:label,weeklyIntervalsPersistAfterReload:true,replacementPreservesHabit:true,emptyOverride:true,restoreHabit:true,dirtyDraftNeverLabelledSaved:true,weeklySavePreservesExceptionDraft:true,invalidSaveFailsWithoutChangingStoredHabit:true,dynamicBandRead:true,crossMemberWriteDenied:true,workspaceDisposedOnSuspension:true,weeks:6,horizontalOverflow:false,pageErrors:0});
+    observations.push({viewport:label,weeklyIntervalsPersistAfterReload:true,replacementPreservesHabit:true,replacementPersistsInOverviewAfterReload:true,emptyOverridePersistsAfterReload:true,restorationPersistsInOverviewAfterReload:true,dirtyDraftNeverLabelledSaved:true,weeklySavePreservesExceptionDraft:true,invalidSaveFailsWithoutChangingStoredHabit:true,otherMemberSavedExceptionVisible:true,crossMemberWriteDenied:true,workspaceDisposedOnSuspension:true,weeks:6,horizontalOverflow:false,pageErrors:0});
     await context.close();
   }
   await writeFile(`${output}/runtime.json`,JSON.stringify({project,observations},null,2)+'\n');console.log(JSON.stringify(observations));

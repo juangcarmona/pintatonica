@@ -20,7 +20,7 @@ Use civil Madrid dates and clock times rather than browser-local Date parsing. T
 - [x] Implement active-member availability persistence/UI, six-week day/member inspection and safe save/error/disposal behaviour.
 - [x] Verify direct data ownership/denial and browser saved/reloaded weekly/date/empty/restored flows with synthetic demo members at mobile/desktop.
 - [x] Reconcile affected arc42/runtime docs and delivery map; validate unchanged accepted product and current citations.
-- [ ] Run frozen install, security scan, full CI-derived verification and runtime screenshots; obtain independent Done audit.
+- [x] Run frozen install, security scan, full CI-derived verification and runtime screenshots; obtain independent Done audit.
 - [ ] Archive reconciled plan, push and require fresh final-head audit/CI/native preview; mark PR ready with screenshots, merge under scoped authorization and observe production.
 
 ## Test plan
@@ -33,6 +33,12 @@ All adopted Done dimensions apply: acceptance/completeness/tests/security, curre
 
 ## Verification progress
 
-CI-derived local verification passes 61 tests; browser demo scenarios pass at both viewports, with screenshots in ../evidence/GH-3/. Native/remote CI and independent audit remain pending. Browser runs caught and resolved snapshot acknowledgement overwriting saved status; a Vite module-instance mismatch in the ownership test was corrected to check the actual permission-denied result. Initialization loading is distinct from true unavailable data; metadata-only server confirmations are observed. No product semantic gap or model edit.
+CI-derived local verification passes 61 tests; browser demo scenarios pass at both viewports, with screenshots in ../evidence/GH-3/. At that early checkpoint native/remote CI and independent audit were pending; later results below supersede it. Browser runs caught and resolved snapshot acknowledgement overwriting saved status; a Vite module-instance mismatch in the ownership test was corrected to check the actual permission-denied result. Initialization loading is distinct from true unavailable data; metadata-only server confirmations are observed. No product semantic gap or model edit.
 
 Independent audit identified success text persisting over unsaved edits and a weekly acknowledgement discarding an exception draft. Per-editor dirty state now invalidates success text, preserves unrelated drafts across snapshots/saves and distinguishes saved work from other unsaved changes. Explicit date navigation asks before discarding a dirty date draft. Browser regressions prove both fixes and private workspace disposal/restart on persisted lifecycle events. The full verification lane is rerun after these corrections. Root README/operations now document the availability phase/harness.
+
+Integration audit then identified that the recorded browser flags did not prove date persistence after reload. The harness now reloads/reselects each replacement, empty override and restoration, asserting both form values and the effective band overview at both viewports. It also reads another member's saved date exception, not merely an empty placeholder. All scenarios pass. Repaired implementation b46da18 passed native preview and GitHub CI; anonymous preview entries match the verified build. Final archive-head checks/audit remain required, and actual integration/deployment outcomes are recorded on the issue/PR.
+
+## Integration handoff
+
+Fresh integration-stage auditor closed all implementation and persistence-evidence findings; the local deterministic Done case is satisfied. Affected architecture/runtime operations are reconciled and this plan is archived after that fold. Juan's explicit FF-through-9 authorization supplies the scoped judgement dispositions; no agent casts a GitHub approval. The final archived commit must pass its own CI/native preview and fresh independent audit before merge. Actual merge, production and final closure outcomes belong to issue #3 / PR #13; the final integration task remains unchecked here until those recorded outcomes.

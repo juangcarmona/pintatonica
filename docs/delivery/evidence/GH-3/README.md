@@ -1,6 +1,6 @@
 # GH-3 evidence
 
-[Plan](../../plans/GH-3.md), [issue #3](https://github.com/juangcarmona/pintatonica/issues/3), [PR #13](https://github.com/juangcarmona/pintatonica/pull/13).
+[Plan](../../completed/GH-3.md), [issue #3](https://github.com/juangcarmona/pintatonica/issues/3), [PR #13](https://github.com/juangcarmona/pintatonica/pull/13).
 
 [CI-derived transcript](checks.txt): frozen install, redacted security scan and full pnpm verify pass. 61 tests: 9 design, 18 security, 25 web/domain and 9 Firestore rules. Typecheck has zero diagnostics; two static pages build; 55 accepted ProductShape artifacts validate unchanged. Design checks and documentation lint pass; official architecture/plan citations are current. SDK bundle-size warning remains disclosed, not suppressed.
 
@@ -13,3 +13,5 @@ The first browser run exposed save-status acknowledgement being overwritten by a
 Native preview/current-head CI, independent audits, merge and production observations are separately recorded in PR #13 / issue #3 after actual completion. Product intent and later-slice exclusions are preserved. Same-day time controls require end after start; overnight spans are represented on their respective dates rather than an invented cross-date policy. No deployment, audit or finished-change approval is inferred from local tests.
 
 Audit-driven regressions additionally prove a changed draft is never labelled saved, a weekly save preserves an unrelated exception draft and clearing/restarting the private workspace on persisted page events works. Earlier audit findings are fixed with per-editor dirty state; full local verification is repeated after the fix. A changing date with an unsaved draft requires explicit discard confirmation.
+
+The final browser observations explicitly reload and reselect replacement, empty and restored date exceptions and assert their effective overview, plus another member's saved exception. This closes the integration auditor's previously unproven date-roundtrip task. [Implementation checks](implementation-head-checks.json) bind b46da18 to successful GitHub/native preview; [preview observations](native-preview.json) show signed-out mobile/desktop and byte-identical built entries. The new commit changes the harness/evidence only; final archived-head checks are recorded separately before merge.

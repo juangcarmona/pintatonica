@@ -29,7 +29,7 @@ QR-SECURITY, QR-USABILITY, QR-MAINTAINABILITY, QR-COST-OPERATIONS, QR-VERIFICATI
 - [Executable web shell — refined issue draft](proposals/executable-web-shell-issue.md).
 - [Completed GH-1 implementation plan](completed/GH-1.md) and [merged PR #10](https://github.com/juangcarmona/pintatonica/pull/10).
 - [Archived GH-2 access plan](completed/GH-2.md) and [PR #12](https://github.com/juangcarmona/pintatonica/pull/12) record the active slice's verified implementation and integration handoff.
-- GitHub issues #1–#9 are published. GH-1/GH-2 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [GH-3 plan](plans/GH-3.md) is the current work. Slices 4–9 remain unstarted.
+- GitHub issues #1–#9 are published. GH-1/GH-2 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [GH-3 plan](completed/GH-3.md) is the current work. Slices 4–9 remain unstarted.
 
 ## Product gaps and delivery risks
 
