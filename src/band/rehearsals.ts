@@ -1,4 +1,4 @@
-export type Rehearsal={id:string;date:string;start:string;end:string;required:string[];available:string[];expected:string[];names:Record<string,string>;kind:'full'|'partial';confirmedBy:string};
+export type Rehearsal={id:string;date:string;start:string;end:string;required:string[];available:string[];expected:string[];names:Record<string,string>;kind:'full'|'partial';confirmedBy:string;songIds?:string[];focus?:string;preparationRevision?:number};
 export function attendance(required:string[],expected:string[]):{expected:string[];kind:'full'|'partial'} {
   if(!expected.length||new Set(expected).size!==expected.length||expected.some(id=>!required.includes(id)))throw Error('Selecciona miembros válidos.');
   return {expected:[...expected].sort(),kind:expected.length===required.length?'full':'partial'};

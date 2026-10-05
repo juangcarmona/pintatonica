@@ -1,0 +1,237 @@
+{
+  "baseHead": "bc2209b",
+  "files": [
+    {
+      "sha256": "51face19a4fc1566e20f065b7cd24604d480d25128f5454ace1a34e62740d0e3",
+      "path": "src\\astro.config.mjs"
+    },
+    {
+      "sha256": "3e147193228cb6a58a427db56960bc1e2c2f4d26ae03e062139e9c95fe0d21de",
+      "path": "src\\tsconfig.json"
+    },
+    {
+      "sha256": "34ba6c32e72236f7b83f30697f9ba61f2c8bbf15b5b8a61b9c729aea547fee0f",
+      "path": "src\\band\\access.ts"
+    },
+    {
+      "sha256": "52511320788aee568c4d807d2407b53716a5f7b5bc886180c46623ad1a89ef75",
+      "path": "src\\band\\availability-view.ts"
+    },
+    {
+      "sha256": "90c9360fde08a98d9802c5e47adc8ab5eae68edbf8e10a506138048bb9e5e983",
+      "path": "src\\band\\availability.ts"
+    },
+    {
+      "sha256": "4d1ffc429bb4c1c90f1003ca86d4a0e1dc68784452db4347d8e86f947b95ff94",
+      "path": "src\\band\\browser.ts"
+    },
+    {
+      "sha256": "65da44ec51e33970aea854629d98f0c0a53af077582b87bda9de74bdbd278afb",
+      "path": "src\\band\\dom.ts"
+    },
+    {
+      "sha256": "99bb1d3c1ccc8aa0d16b34d50708a9ee66882ab017ae1ede4d6746796cb61901",
+      "path": "src\\band\\firebase-access.ts"
+    },
+    {
+      "sha256": "2be21a07c540eaa73db8de9283d61682e6efa1f5f25f4cc3b81b9638c861c2d4",
+      "path": "src\\band\\opportunities-view.ts"
+    },
+    {
+      "sha256": "c9e1d9b9e9aeb94ac73a7f4eaa945131bf2f9bdef8cf9bc52d870928a9ec7d7f",
+      "path": "src\\band\\opportunities.ts"
+    },
+    {
+      "sha256": "6fe15c7d848ddb135a5d5a686fa95b15d9e6d171f8494325ac95f8b903f4dc73",
+      "path": "src\\band\\preparation-view.ts"
+    },
+    {
+      "sha256": "f7513d56e84734fe22242f6183c90fdca106fa7ee171d4de7d0e1d8a94b6f805",
+      "path": "src\\band\\preparation.ts"
+    },
+    {
+      "sha256": "ba483c15f18a60304aed1af930a2fa29808f57ea082609a61a5677becb0b3044",
+      "path": "src\\band\\rehearsals-view.ts"
+    },
+    {
+      "sha256": "ed2f577cdecd99e1b5807d10ee216e89a4cbddc63c61f726a047c97d8a778986",
+      "path": "src\\band\\rehearsals.ts"
+    },
+    {
+      "sha256": "830cef44f56d789749edce3225147aae80a6f63ab169e12f8e377f60e48f13e6",
+      "path": "src\\band\\repertoire-store.ts"
+    },
+    {
+      "sha256": "17593b48ad94c252616015a7a32a2e6fae33253238b9fc9c3da38fe0afa8b6ce",
+      "path": "src\\band\\repertoire-view.ts"
+    },
+    {
+      "sha256": "269573a05b0d365e5f5e959ca43ef0d62af9b709f5dbc4d378ceccff3c983f03",
+      "path": "src\\band\\repertoire.ts"
+    },
+    {
+      "sha256": "c5a9147409f68f988957d540fb3c6f60a6266e4d1c0ce6907bdfeea8a0e30262",
+      "path": "src\\firebase\\browser.ts"
+    },
+    {
+      "sha256": "9c2631caf3ba277de94d6629ea30508da5a20261a733a14d36be24abf7c26eca",
+      "path": "src\\firebase\\client.ts"
+    },
+    {
+      "sha256": "48910dda51ca7839a67a6faf04f7c24d9fc122cb327978d17147a2af6b37b257",
+      "path": "src\\firebase\\configuration.ts"
+    },
+    {
+      "sha256": "cafc71ae69e0f365916412e88f3678948ef2e13f8432f966a01a0d70f90316f1",
+      "path": "src\\firebase\\firestore.indexes.json"
+    },
+    {
+      "sha256": "5cdfe425f18d3bf2d7829916f4e693af244ffb03340e02f2c998f67c24219308",
+      "path": "src\\firebase\\firestore.rules"
+    },
+    {
+      "sha256": "bf8a8a1ec580e96c38bbd5e35c610ec621bd7c83c5a7212f49195b94a08cc33a",
+      "path": "src\\firebase\\public-config.ts"
+    },
+    {
+      "sha256": "a701fa916a3fb376dca464474cabb4113cb97ad24273bc127ea8e5b9d210e849",
+      "path": "src\\layouts\\Shell.astro"
+    },
+    {
+      "sha256": "091437548cb46df273275b5bac171e885d3f7ed3c849cf57532cb83284857c1d",
+      "path": "src\\pages\\index.astro"
+    },
+    {
+      "sha256": "91ec4a2e45425a229a289e2ca0a1f8791665be6d761e7e880ebc7bcc14c0c1ab",
+      "path": "src\\pages\\band\\index.astro"
+    },
+    {
+      "sha256": "4a7db6ebc6285044cc825885a6e7514ca00c25d0d3d4c1fd7d80a2386cb05354",
+      "path": "src\\public\\brand\\logo.png"
+    },
+    {
+      "sha256": "532c63f347af50d9ef501a47452dd6c1510a2a2f655708038603372476388618",
+      "path": "src\\styles\\shell.css"
+    },
+    {
+      "sha256": "79f3922d01f57e2b21bfb432d70e572fdc7af2ac518514a8732cc721eddae21b",
+      "path": "src\\styles\\tokens.css"
+    },
+    {
+      "sha256": "12b4813e07159e6c30bb7989e26649131605a379c5660259e2ad65b02ebc5054",
+      "path": "src\\tests\\design\\rules.test.mjs"
+    },
+    {
+      "sha256": "e21602dbde5a109e28472cf8252cde7005d4fc08b942f314f7f5213b93603fde",
+      "path": "src\\tests\\design\\tokens.test.mjs"
+    },
+    {
+      "sha256": "975d00a4f928e4480eb8f19eac6237ff9092ec492698a82445c07d5bbed0a4b4",
+      "path": "src\\tests\\firebase\\firestore.rules.test.mjs"
+    },
+    {
+      "sha256": "d078a07c5f3545344e3b980262ef6186ec738ab4cff2dffb54fe68b92efcc23c",
+      "path": "src\\tests\\security\\check-secrets.test.mjs"
+    },
+    {
+      "sha256": "0d1635210886e283799d1bb1e8da6dd57d50a80c829e977dfb589a1c261bb078",
+      "path": "src\\tests\\web\\access.test.mjs"
+    },
+    {
+      "sha256": "b6beee40e00b62a13f3c4b555c6c80e57dbd429ceb6d35c6a074674a1eb9843b",
+      "path": "src\\tests\\web\\availability.test.mjs"
+    },
+    {
+      "sha256": "41e52b6e0b0bb697f620d131e15143a31fcfbf411d0e9750521d22bada6ea9d8",
+      "path": "src\\tests\\web\\configuration.test.mjs"
+    },
+    {
+      "sha256": "fc1dbd02efd33eca9e73bbb32ba73117692bd3d1824eff71c9425a68eee41925",
+      "path": "src\\tests\\web\\opportunities.test.mjs"
+    },
+    {
+      "sha256": "f33a65f4293c33c642701fca18d49e17b81844a2d088f8d31e5651e86fec33d5",
+      "path": "src\\tests\\web\\preparation.test.mjs"
+    },
+    {
+      "sha256": "f70de53c7e751761a0af7169845aeb28981b7fc4f8064644f514573f1af8ee4b",
+      "path": "src\\tests\\web\\rehearsals.test.mjs"
+    },
+    {
+      "sha256": "eb2145a0a3f060c0fb20881fb4170067ef3f61275a8b84483fe072d66bdf6bf8",
+      "path": "src\\tests\\web\\repertoire.test.mjs"
+    },
+    {
+      "sha256": "7fcfbac97206ce14b1ca5f50473b241bcf294b80bdf47a46f44a5bc2431e2628",
+      "path": "src\\tests\\web\\shell.test.mjs"
+    },
+    {
+      "sha256": "5c7149aea2eff6552e096075c4b36f7842cb4b0962fe7d8a311e0ecec3f41ee5",
+      "path": "src\\tooling\\design\\check-design.mjs"
+    },
+    {
+      "sha256": "66031a39e054c521ca56fd6251c1c55fdece10c86d966e31f779ec08c8485789",
+      "path": "src\\tooling\\design\\config.mjs"
+    },
+    {
+      "sha256": "6fcad7998b2327e5be26be65a87681c04371293d6173593050d89463bafb9e55",
+      "path": "src\\tooling\\design\\util.mjs"
+    },
+    {
+      "sha256": "5bc1e3e31338a19180f69220a4b57cef83e3994865b14247c5fc13042f0bc5bb",
+      "path": "src\\tooling\\design\\rules\\DS001-colors.mjs"
+    },
+    {
+      "sha256": "abad2a8269c6048e2ae141a17f4954f48dff684d8c7e10eca30e8355a5cdc143",
+      "path": "src\\tooling\\design\\rules\\DS002-spacing.mjs"
+    },
+    {
+      "sha256": "881bb9301fbd1b9b5844a6b60d4a9f7c60eb4e4f27984af38aca5fb2dbc55635",
+      "path": "src\\tooling\\design\\rules\\DS003-radius.mjs"
+    },
+    {
+      "sha256": "0946957f9c0e1359b32aea942b3a5f7ace789f078c9e9727df48b16e1a32a695",
+      "path": "src\\tooling\\design\\rules\\DS004-effects.mjs"
+    },
+    {
+      "sha256": "05e7b7cede649cba7a7aea11eb4286bb874b81cac33d3d8739108b6ae8965b97",
+      "path": "src\\tooling\\security\\check-secrets.mjs"
+    },
+    {
+      "sha256": "60dcfcc15e6f4b1d9fab129d5f2298a1ae43bb52d55321d029fef6ed2a44396b",
+      "path": "src\\tooling\\web\\band-session.mjs"
+    },
+    {
+      "sha256": "89be5ef95b4c23c9ee59bdd08d013d1bcfc7e6a3bb3a3fe4612a6fa0251ecb1c",
+      "path": "src\\tooling\\web\\serve-build.mjs"
+    },
+    {
+      "sha256": "5796f2f228eab898ef048a9e6218aacfcf06756487d1286a318cc221570512f3",
+      "path": "src\\tooling\\web\\verify-access-runtime.mjs"
+    },
+    {
+      "sha256": "248151ce5beba1fa07c8cda9d453556c74ebf73e779240d6d038d6c7cfe190f7",
+      "path": "src\\tooling\\web\\verify-band-runtime.mjs"
+    },
+    {
+      "sha256": "09d026cc66dc1ad333631f236287d002defb4ab842943fca635dfe0ac4e75727",
+      "path": "src\\tooling\\web\\verify-confirmation-runtime.mjs"
+    },
+    {
+      "sha256": "fe41caf82310157331a40baff4b0e04a8e6d1aacac2f028c11904ea3aec10918",
+      "path": "src\\tooling\\web\\verify-opportunities-runtime.mjs"
+    },
+    {
+      "sha256": "f179c3ab40e90f2c385f610626117347029459a704757294281182ac768b7599",
+      "path": "src\\tooling\\web\\verify-preparation-runtime.mjs"
+    },
+    {
+      "sha256": "2b39c4366ffe49eac4648731a15f0a1c178c88ef6e145317fb07c7f0d23d28ea",
+      "path": "src\\tooling\\web\\verify-repertoire-runtime.mjs"
+    },
+    {
+      "sha256": "5f3ba7c50fb323962ae9dfdb0572119d976a5094ea47c0e5a96866b9f79c546c",
+      "path": "src\\tooling\\web\\verify-runtime.mjs"
+    }
+  ]
+}

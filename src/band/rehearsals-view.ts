@@ -4,6 +4,8 @@ import {dateLabel} from './availability';
 import type {Window} from './opportunities';
 import type {MemberAvailability} from './availability-view';
 import {element,field,input} from './dom';
+import {preparationEditor} from './preparation-view';
+import type {Song} from './repertoire';
 export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window,members:MemberAvailability[]) {
   const form=element('form',undefined,'confirmation-form');
   const id=doc(collection(db,'rehearsals')).id;
@@ -30,23 +32,27 @@ export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window
   return form;
 }
 export function mountRehearsals(db:Firestore,host:HTMLElement) {
-  let alive=true,loaded=false,stored:Rehearsal[]=[],visibleIds='';host.append(element('h2','Próximos ensayos'),element('p','Cargando ensayos confirmados…'));
+  let alive=true,loaded=false,stored:Rehearsal[]=[],visibleIds='',songs:Song[]|null=null;
+  const cards=new Map<string,{card:HTMLElement;summary:HTMLElement;editor:ReturnType<typeof preparationEditor>}>();
+  const empty=element('p','Cargando ensayos confirmados…');host.append(element('h2','Próximos ensayos'),empty);
   function render(force=false) {
     if(!alive||!loaded)return;
     const rehearsals=upcoming(stored),ids=rehearsals.map(item=>item.id).join(',');
     if(!force&&ids===visibleIds)return;visibleIds=ids;
-    host.replaceChildren(element('h2','Próximos ensayos'));
-    if(!rehearsals.length)host.append(element('p','Todavía no hay ensayos confirmados próximos.'));
-    for(const item of rehearsals) {
-      const card=element('article',undefined,'panel');card.dataset.rehearsal=item.id;
-      card.append(element('h3',`${dateLabel(item.date)} · ${item.start}–${item.end} · Madrid`),element('p',item.kind==='full'?'Ensayo confirmado · grupo completo':'Ensayo confirmado · asistencia parcial'),element('p',`Esperados: ${item.expected.map(id=>item.names[id]??'Miembro').join(', ')}`),element('p',`Disponibles al confirmar: ${item.available.map(id=>item.names[id]??'Miembro').join(', ')}`));
-      host.append(card);
+    for(const [id,entry] of cards)if(!rehearsals.some(item=>item.id===id)){entry.editor.dispose();entry.card.remove();cards.delete(id);}
+    empty.hidden=rehearsals.length>0;empty.textContent='Todavía no hay ensayos confirmados próximos.';
+    for(const [index,item] of rehearsals.entries()) {
+      let entry=cards.get(item.id);
+      if(!entry){const card=element('article',undefined,'panel'),summary=element('div'),editor=preparationEditor(db,item.id);card.dataset.rehearsal=item.id;card.append(summary,editor.form);entry={card,summary,editor};cards.set(item.id,entry);}
+      entry.summary.replaceChildren(element('h3',`${dateLabel(item.date)} · ${item.start}–${item.end} · Madrid`),element('p',item.kind==='full'?'Ensayo confirmado · grupo completo':'Ensayo confirmado · asistencia parcial'),element('p',`Esperados: ${item.expected.map(id=>item.names[id]??'Miembro').join(', ')}`),element('p',`Disponibles al confirmar: ${item.available.map(id=>item.names[id]??'Miembro').join(', ')}`));
+      entry.editor.update(item,songs);const position=host.children[index+2]??null;if(position!==entry.card)host.insertBefore(entry.card,position);
     }
   }
   const stop=onSnapshot(collection(db,'rehearsals'),{includeMetadataChanges:true},snapshot=>{
     if(!alive||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
     stored=snapshot.docs.map(record=>({...record.data(),id:record.id} as Rehearsal));loaded=true;render(true);
-  },()=>{loaded=false;if(alive)host.replaceChildren(element('h2','Próximos ensayos'),element('p','No se han podido cargar los ensayos. Vuelve a entrar para reintentar.'));});
+  },()=>{loaded=false;if(alive){for(const entry of cards.values())entry.editor.dispose();cards.clear();host.replaceChildren(element('h2','Próximos ensayos'),element('p','No se han podido cargar los ensayos. Vuelve a entrar para reintentar.'));}});
+  const stopSongs=onSnapshot(collection(db,'songs'),{includeMetadataChanges:true},snapshot=>{if(!alive||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;songs=snapshot.docs.map(record=>({...record.data(),id:record.id} as Song)).sort((a,b)=>a.title.localeCompare(b.title));render(true);},()=>{songs=null;render(true);});
   const timer=window.setInterval(()=>render(),60_000);
-  return ()=>{alive=false;clearInterval(timer);stop();host.replaceChildren();};
+  return ()=>{alive=false;clearInterval(timer);stop();stopSongs();for(const entry of cards.values())entry.editor.dispose();host.replaceChildren();};
 }

@@ -34,6 +34,11 @@ const seedMembers = () =>
   });
 
 describe('firestore rules', () => {
+  it('shared rehearsal preparation is editable by active members and denied to all other callers',async()=>{
+    await seedMembers();
+    for(const id of ['alice','bob']){const db=env.authenticatedContext(id,{firebase:{sign_in_provider:'google.com'}}).firestore();await assertSucceeds(setDoc(doc(db,'rehearsals/r1'),{songIds:['s1'],focus:'Trabajar puente',preparationRevision:1},{merge:true}));}
+    for(const id of [null,'stranger','former']){const db=id?env.authenticatedContext(id,{firebase:{sign_in_provider:'google.com'}}).firestore():env.unauthenticatedContext().firestore();await assertFails(setDoc(doc(db,'rehearsals/r1'),{focus:'No permitido'},{merge:true}));}
+  });
   it('public song selection is atomic and exposes no private material', async()=>{
     await seedMembers();
     const member=env.authenticatedContext('alice',{firebase:{sign_in_provider:'google.com'}}).firestore();
