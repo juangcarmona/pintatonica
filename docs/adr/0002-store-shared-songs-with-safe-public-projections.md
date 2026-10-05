@@ -33,7 +33,7 @@ Juan's explicit FF-through-9 delegation authorizes this bounded engineering deci
 
 ## References
 
-- [GH-6 plan](../delivery/plans/GH-6.md)
+- [GH-6 plan](../delivery/completed/GH-6.md)
 - [FR-REPERTOIRE](../product/model/requirements/functional/fr-repertoire.md)
 - [BR-PUBLIC-SELECTION](../product/model/business-rules/br-public-selection.md)
 - [Existing static topology](0001-build-static-shells-with-astro.md)

@@ -14,4 +14,4 @@ No media hosting, migration, complex CMS, granular permissions or fabricated pro
 
 ## Lifecycle
 
-Ready under Juan's explicit FF-through-9 authorization. Plan: docs/delivery/plans/GH-6.md. One branch/PR; GitHub closes after actual integration. No fabricated vote or protection bypass.
+Ready under Juan's explicit FF-through-9 authorization. Plan: docs/delivery/completed/GH-6.md. One branch/PR; GitHub closes after actual integration. No fabricated vote or protection bypass.
