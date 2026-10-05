@@ -30,7 +30,7 @@ QR-SECURITY, QR-USABILITY, QR-MAINTAINABILITY, QR-COST-OPERATIONS, QR-VERIFICATI
 - [Completed GH-1 implementation plan](completed/GH-1.md) and [merged PR #10](https://github.com/juangcarmona/pintatonica/pull/10).
 - [Archived GH-2 access plan](completed/GH-2.md) and [PR #12](https://github.com/juangcarmona/pintatonica/pull/12) record recognised access.
 - [Archived GH-3 availability plan](completed/GH-3.md) and [merged PR #13](https://github.com/juangcarmona/pintatonica/pull/13) record saved availability.
-- GitHub issues #1–#9 are published. GH-1–GH-3 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [GH-4 plan](plans/GH-4.md) is current. Slices 5–9 remain unstarted.
+- GitHub issues #1–#9 are published. GH-1–GH-3 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [GH-4 plan](completed/GH-4.md) is current. Slices 5–9 remain unstarted.
 
 ## Product gaps and delivery risks
 

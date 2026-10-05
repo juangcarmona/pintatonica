@@ -1,6 +1,8 @@
 # GH-4 evidence
 
-[Plan](../../plans/GH-4.md), [full local checks](checks.txt), [browser assertions](runtime.json), [mobile](mobile.png), [desktop](desktop.png).
+[Plan](../../completed/GH-4.md), [full local checks](checks.txt), [browser assertions](runtime.json), [mobile](mobile.png), [desktop](desktop.png).
+
+[Verified source manifest](source-manifest.json) records the implementation SHA and hashes of every tracked src file, so subsequent evidence/archive-only commits do not obscure which application was tested.
 
 Frozen install, security scan and full verification passed: 9 design, 18 security, 28 web/domain and 9 rules tests. The real browser harness is `src/tooling/web/verify-opportunities-runtime.mjs`, using only local `demo-pintatonica`, synthetic members and isolated fixtures. It verifies effective saved date overrides, dynamic required membership, separate lists/ranking, full-only week highlighting, 119-minute rejection and no automatic rehearsal persistence. No production fixtures or personal identities are captured.
 

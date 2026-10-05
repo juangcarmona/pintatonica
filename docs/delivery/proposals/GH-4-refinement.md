@@ -22,4 +22,4 @@ Title, problem, actor, priority, dependencies, observable acceptance, scope, pro
 
 ## Lifecycle
 
-Ready. Juan's explicit 2026-10-05 FF-through-9 authorization covers proposal, implementation, audited merge and deployment. GitHub remains OPEN until actual integration. Plan: docs/delivery/plans/GH-4.md. No fabricated review vote or protection bypass.
+Ready. Juan's explicit 2026-10-05 FF-through-9 authorization covers proposal, implementation, audited merge and deployment. GitHub remains OPEN until actual integration. Plan: docs/delivery/completed/GH-4.md. No fabricated review vote or protection bypass.
