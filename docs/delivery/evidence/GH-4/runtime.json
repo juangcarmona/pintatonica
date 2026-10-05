@@ -1,0 +1,27 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "fullAndPartialSeparate": true,
+      "savedOverridesRecalculate": true,
+      "dynamicActiveRoster": true,
+      "onlyFullHighlightsWeeks": true,
+      "shortFullNotDemoted": true,
+      "noAutomaticRehearsal": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "fullAndPartialSeparate": true,
+      "savedOverridesRecalculate": true,
+      "dynamicActiveRoster": true,
+      "onlyFullHighlightsWeeks": true,
+      "shortFullNotDemoted": true,
+      "noAutomaticRehearsal": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    }
+  ]
+}
