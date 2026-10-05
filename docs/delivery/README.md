@@ -1,6 +1,6 @@
 # MVP delivery map
 
-Derived delivery state from the accepted [ProductShape model](../product/model/), not another source of product intent. Slice numbers below are ordering references, not GitHub issue identifiers or new lifecycle states. Slices 1–6 are merged and deployed; slice 7 is active. Juan authorized sequential FF delivery through slice 9 on 2026-10-05. Slices 8–9 are prepared but remain unstarted; each receives its own plan, verification, independent audit and PR before integration.
+Derived delivery state from the accepted [ProductShape model](../product/model/), not another source of product intent. Slice numbers below are ordering references, not GitHub issue identifiers or new lifecycle states. Slices 1–7 are merged and deployed; slice 8 is active. Juan authorized sequential FF delivery through slice 9 on 2026-10-05. Slice 9 is prepared but remains unstarted; each receives its own plan, verification, independent audit and PR before integration.
 
 The canonical lifecycle remains [engineering-lifecycle.md](../engineering-lifecycle.md): refine → propose → human Planned gate → implement → verify/audit → integrate → review. No SDD framework or technical-layer backlog is introduced.
 
@@ -30,7 +30,7 @@ QR-SECURITY, QR-USABILITY, QR-MAINTAINABILITY, QR-COST-OPERATIONS, QR-VERIFICATI
 - [Completed GH-1 implementation plan](completed/GH-1.md) and [merged PR #10](https://github.com/juangcarmona/pintatonica/pull/10).
 - [Archived GH-2 access plan](completed/GH-2.md) and [PR #12](https://github.com/juangcarmona/pintatonica/pull/12) record recognised access.
 - [Archived GH-3 availability plan](completed/GH-3.md) and [merged PR #13](https://github.com/juangcarmona/pintatonica/pull/13) record saved availability.
-- GitHub issues #1–#9 are published. GH-1–GH-6 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [Archived GH-4 plan](completed/GH-4.md) records opportunity inspection; [Archived GH-5 plan](completed/GH-5.md) records confirmation; [Archived GH-6 plan](completed/GH-6.md) records repertoire; [GH-7 plan](completed/GH-7.md) is current. Slices 8–9 remain unstarted.
+- GitHub issues #1–#9 are published. GH-1–GH-7 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [Archived GH-4 plan](completed/GH-4.md) records opportunity inspection; [Archived GH-5 plan](completed/GH-5.md) records confirmation; [Archived GH-6 plan](completed/GH-6.md) records repertoire; [Archived GH-7 plan](completed/GH-7.md) records shared focus; [GH-8 plan](completed/GH-8.md) is current. Slice 9 remains unstarted.
 
 ## Product gaps and delivery risks
 

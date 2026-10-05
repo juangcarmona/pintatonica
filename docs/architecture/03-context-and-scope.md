@@ -8,7 +8,7 @@ description: System boundary, communication partners, external interfaces, and c
 
 ## Business Context
 
-The deployed static public shell and Google/member-gated private application use Firebase Auth and Firestore. Accepted audiences and external material belong to [ACT-VISITOR](../product/model/actors/act-visitor.md), [ACT-MEMBER](../product/model/actors/act-member.md) and [UC-REPERTOIRE](../product/model/use-cases/uc-repertoire.md). Private repertoire uses external HTTP/HTTPS resource links; provider access permissions remain outside the application. Deliberately selected public song projections form a separate anonymous read boundary; its mechanism belongs to [section 08](08-crosscutting-concepts.md).
+The deployed static public shell and Google/member-gated private application use Firebase Auth and Firestore. Accepted audiences and external material belong to [ACT-VISITOR](../product/model/actors/act-visitor.md), [ACT-MEMBER](../product/model/actors/act-member.md) and [UC-REPERTOIRE](../product/model/use-cases/uc-repertoire.md). Private repertoire uses external HTTP/HTTPS resource links; provider access permissions remain outside the application. Deliberately selected song and gig projections form a separate anonymous read boundary; its mechanism belongs to [section 08](08-crosscutting-concepts.md).
 
 The [scheduling prototype evidence](../product/changes/completed/chg-initial/evidence/calendar.md) is an input to definition. Its runtime and access mechanism are not this repository's architecture.
 

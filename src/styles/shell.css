@@ -57,6 +57,9 @@ summary { cursor: pointer; font-weight: var(--font-weight-bold); }
 .song-details { overflow-wrap: anywhere; }
 .song-details a { color: var(--text-default); }
 .song-editor { max-width: 48rem; }
+.setlist-editor, .gig-editor { max-width: 48rem; }
+.setlist-editor li { padding-block: var(--space-2); }
+.setlist-editor li .button { margin-inline-start: var(--space-2); }
 @media (max-width: 40rem) {
   .site-header, .site-footer { padding: var(--space-4); }
   .hero, .band-shell { padding: var(--space-8) var(--space-4); }

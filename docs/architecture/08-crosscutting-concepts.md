@@ -8,9 +8,13 @@ description: Shared architectural mechanisms applied across multiple building bl
 
 ## Shared metadata and public projections
 
-Private song records are mutable only by admitted members. The browser transaction reads a revision, rejects a stale draft, and writes the private record plus its explicitly selected public whitelist (or deletes that whitelist when unselected). Rules validate both projected after-states, including absence on unpublish; read security is document-level, never simulated by hiding fields in UI. Public readers reach publicSongs only, which contains title, artist and a separately supplied public media URL. Internal links/notes never enter that projection. Safe link validation rejects executable schemes and embedded credentials; following a link does not alter external provider permissions.
+Private shared metadata is mutable only by admitted members. Browser transactions read revisions, reject stale drafts, and write private records plus explicitly selected public whitelists (or delete those whitelists when unselected). Rules validate both projected after-states, including absence on unpublish; read security is document-level, never simulated by hiding fields in UI. Public readers reach publicSongs (title, artist, separate public media URL) and publicGigs (name, date/time, venue, public information). Internal links, focus, setlists and preparation notes never enter those projections. Safe link validation rejects executable schemes and embedded credentials; following a link does not alter external provider permissions.
 
 Schema, rules and tests remain repository-managed; current mutable repertoire lives in Firestore under [ADR-0002](../adr/0002-store-shared-songs-with-safe-public-projections.md). Source: [validation](../../src/band/repertoire.ts), [transactions](../../src/band/repertoire-store.ts), [rules](../../src/firebase/firestore.rules). Atomic rule validation uses the official [Firestore after-state primitives](https://firebase.google.com/docs/reference/rules/rules.firestore).
+
+Private rehearsal preparation updates only song/focus fields with its own revision, retaining confirmed attendance/time. Setlists refer to repertoire and either a rehearsal or gig; transaction reads ensure references still exist before saving. Native shared editors keep dirty drafts during snapshots and require explicit reload after conflict. Source: [preparation](../../src/band/preparation-view.ts), [setlists](../../src/band/setlists-view.ts), [gigs](../../src/band/gigs-view.ts). This extends the existing consistency mechanism; it adds no service or topology.
+
+<!-- pdac:cite id="FR-PREPARATION" digest="sha256:0bc5dae67dd450f814bafba786a9bcb657ecba07acada44b3c9f3113ee70b50f" -->
 
 ## Confirmation persistence
 
