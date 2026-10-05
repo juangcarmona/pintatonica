@@ -1,6 +1,6 @@
 # GH-8 evidence
 
-[Plan](../../plans/GH-8.md), [PR #18](https://github.com/juangcarmona/pintatonica/pull/18). Product model unchanged. Ordered selection, duration/association validation and safe gig projection ran red before code, then green. Existing member boundary is extended to private gigs and atomically matched public whitelists, without new services.
+[Plan](../../completed/GH-8.md), [PR #18](https://github.com/juangcarmona/pintatonica/pull/18). Product model unchanged. Ordered selection, duration/association validation and safe gig projection ran red before code, then green. Existing member boundary is extended to private gigs and atomically matched public whitelists, without new services.
 
 [Checks](checks.txt) record frozen install/security/full workflow verification. [Runtime](runtime.json) uses synthetic demo data only: ordered songs and musical notes reload, gig/rehearsal association, second-member editing, preserved conflicts, denied save, anonymous private/setlist denial, public whitelist and unpublication. Screenshots [mobile](mobile.png), [desktop](desktop.png), [mobile gig](mobile-gig.png), [desktop gig](desktop-gig.png) were inspected; readable metadata, resources, no overflow/errors.
 
