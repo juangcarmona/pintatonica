@@ -17,8 +17,8 @@ The existing Cloudflare Worker is named pintatonica in the account referenced by
 | Building block | Infrastructure element | Environment |
 | --- | --- | --- |
 | dist HTML/CSS/JS/logo | Cloudflare Worker static assets | Production; native non-production build policy remains platform-owned |
-| Existing Firebase SDK client | Browser; optional public build configuration | Production configuration only when supplied |
-| Existing rules/data boundary | Firebase project pintatonica-band | Separate cloud data service; no shell data operations |
+| Firebase SDK client/access controller | Browser; repository-owned public config with complete override support | Existing production Firebase project; demo-only local overrides |
+| Rules/data boundary | Firebase project pintatonica-band | Google identity plus active membership; no server build data access |
 | Full verification | GitHub read-only validation workflow | PR/main with Node 24, pnpm and Java 21 |
 | Rules tests | Firestore emulator, demo-pintatonica | Local/CI only |
 
@@ -26,4 +26,4 @@ The existing Cloudflare Worker is named pintatonica in the account referenced by
 
 Wrangler's build command runs pnpm build and assets.directory maps dist. Unknown routes return 404 rather than an SPA fallback. The native integration owns deployment; GitHub Actions provides verification without deployment credentials. Native deployment is not claimed to wait for CI. The user authorized GH-1 implementation, verified integration and deployment in one continuous run.
 
-The shell has no private data, server script, paid compute or new storage binding. Missing public Firebase build values leave it usable. Preview variable policy and future private-data environment isolation must be verified before slice 2. Actual published URLs/version evidence belong in [infrastructure](infrastructure.md) and the delivery record.
+Static output has no member identity, server script, paid compute or new storage binding. The public configuration and access mechanism are owned by [08](08-crosscutting-concepts.md). The stable GH-2 preview and production use the same Firebase project and rules; only their exact domains are authorized. Synthetic tests use local demo emulators. Actual published URLs/version evidence belongs in [infrastructure](infrastructure.md) and the delivery record.

@@ -14,7 +14,7 @@ Accepted quality meaning remains in [ProductShape](../product/model/requirements
 | --- | --- | --- |
 | QR-COST-OPERATIONS | Static assets, no new paid runtime, binding or storage; existing free-tier infrastructure | [07](07-deployment-view.md); full MVP usage envelope remains a later verification |
 | QR-USABILITY | Existing tokens, responsive shell, semantic navigation and keyboard skip | Browser evidence in GH-1; complete journeys are not delivered |
-| QR-SECURITY | Browser config guard, no private calls in shells, retained data-rule denial and secret checks | [06](06-runtime-view.md); login/provider boundary remains slice 2 |
+| QR-SECURITY | Google-provider and active-membership rules plus independent browser gate and secret checks | [08](08-crosscutting-concepts.md); GH-2 emulator/live evidence distinguishes verified paths |
 | QR-MAINTAINABILITY | Source-local components/config/tests, pinned packages, source checking | [05](05-building-block-view.md); package scripts |
 | QR-VERIFICATION | Frozen install, build and HTTP tests composed into existing CI; repeatable browser harness | [Lifecycle](../engineering-lifecycle.md); deployment observed separately from CI |
 

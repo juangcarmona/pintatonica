@@ -28,6 +28,13 @@ test('published logo is the exact existing brand asset', async () => {
   assert.equal(response.headers.get('content-type'), 'image/png');
   assert.deepEqual(Buffer.from(await response.arrayBuffer()), await readFile('src/public/brand/logo.png'));
 });
+test('built member page withholds identity and dashboard until browser authorization', async () => {
+  const html = await (await fetch(app.url + '/band/')).text();
+  assert.match(html, /data-member-dashboard[^>]*hidden/);
+  assert.match(html, /data-member-name><\/span>/);
+  assert.match(html, /data-google-login[^>]*hidden/);
+  assert.match(html, /Activa JavaScript/);
+});
 test('unknown routes remain missing rather than becoming the member shell', async () => {
   assert.equal((await fetch(app.url + '/unknown-route')).status, 404);
 });

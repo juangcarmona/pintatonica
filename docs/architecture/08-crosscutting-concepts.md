@@ -18,20 +18,24 @@ CSS custom properties provide one canonical token-value source. The source check
 
 ### Evidence
 
-[tokens.css](../../src/styles/tokens.css), [checker configuration](../../src/tooling/design/config.mjs), [checker](../../src/tooling/design/check-design.mjs) and [tests](../../src/tests/design/) establish the current mechanism. Zero eligible application files are currently scanned; no application surface exists to prove adoption in actual components.
+[tokens.css](../../src/styles/tokens.css), [checker configuration](../../src/tooling/design/config.mjs), [checker](../../src/tooling/design/check-design.mjs) and [tests](../../src/tests/design/) establish the mechanism. The checker scans the implemented public shell and member access UI; actual counts are recorded by each verification run.
 
 ## Firebase Identity and Data Access
 
 ### Scope
 
-The current mechanism spans the SDK client and Firestore security boundary. Its technical shape is observable; the accepted product baseline remains absent, and no accepted product citation can be emitted yet.
+The mechanism spans the browser access controller, SDK and Firestore security boundary. Accepted intent belongs to ProductShape; this section explains its realization.
 
 ### Mechanism
 
-[client.ts](../../src/firebase/client.ts) initializes a shared Firebase app with public build configuration, exporting Auth and Firestore handles. Development-only emulator opt-in isolates local requests from production configuration. [firestore.rules](../../src/firebase/firestore.rules) checks request authentication plus an active membership document, permits members to read availability and to mutate only their own availability/overrides, and prevents client membership writes. Unmatched collections are denied.
+[client.ts](../../src/firebase/client.ts) initializes shared Auth/Firestore handles. The existing app's [public web configuration](../../src/firebase/public-config.ts) is the reproducible native-build default; a complete explicit build override may replace it. Partial overrides fail closed instead of mixing project identities. The SDK never initializes during static build evaluation. Development-only emulator opt-in requires a demo project identifier; production never connects to local emulators.
 
-Current rules let an authenticated identity read its own membership record, including non-active membership status, and let any active member mutate rehearsals/setlists. These are observed permissions, not newly accepted product policies. The rule predicate does not itself inspect the sign-in provider; Google-only enforcement depends on provider configuration or a later rule decision and is unverified. Membership provisioning is reported as out of band in [infrastructure notes](infrastructure.md).
+[firestore.rules](../../src/firebase/firestore.rules) independently checks the token's Google sign-in provider and a server-side active membership record. A Google identity can read its own membership status; active members may read the roster and permitted private collections. Ownership checks still restrict availability writes; clients cannot write membership records. Unmatched collections remain denied. Membership provisioning uses the verified Firebase UID outside the member-facing flow; procedures belong to the [membership runbook](../operations/member-access.md).
 
 ### Evidence
 
-The client, rules, [firebase.json](../../firebase.json) and [emulator-backed tests](../../src/tests/firebase/firestore.rules.test.mjs) establish the scaffolding. The tests include denied unauthenticated/non-member/deactivated access, member-owned writes and protected membership mutation. Execution and production deployment are not claimed by this source inspection. Scheduling, time handling and application error presentation remain unimplemented.
+The [emulator-backed rules tests](../../src/tests/firebase/firestore.rules.test.mjs) exercise direct denied unauthenticated/non-member/inactive/non-Google requests, permitted member-owned writes and protected membership mutation. The [access tests](../../src/tests/web/access.test.mjs) and [runtime harness](../../src/tooling/web/verify-access-runtime.mjs) prove the separate UI gate. Scheduling and musical features remain later slices. Deployment and live-account evidence is recorded in the GH-2 delivery evidence, not inferred from source inspection.
+
+<!-- pdac:cite id="BR-MEMBERSHIP" digest="sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45" -->
+
+<!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->

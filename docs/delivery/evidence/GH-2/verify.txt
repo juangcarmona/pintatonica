@@ -1,0 +1,213 @@
+
+> pintatonica@0.0.0 verify C:\dev\juangcarmona\pintatonica
+> pnpm verify:fast && pnpm build && pnpm test:web && pnpm product:validate && pnpm product:integrity && pnpm product:doctor && pnpm firebase:rules:test
+
+
+> pintatonica@0.0.0 verify:fast C:\dev\juangcarmona\pintatonica
+> pnpm design:check && pnpm design:test && pnpm typecheck && pnpm security:test
+
+
+> pintatonica@0.0.0 design:check C:\dev\juangcarmona\pintatonica
+> node src/tooling/design/check-design.mjs
+
+design:check scanned 11 file(s), 0 violation(s).
+
+> pintatonica@0.0.0 design:test C:\dev\juangcarmona\pintatonica
+> node --test "src/tests/design/**/*.test.mjs"
+
+✔ DS001 flags hex and colour functions, ignores tokens and id selectors (1.9482ms)
+✔ DS002 flags literal spacing, allows tokens and zero (0.3085ms)
+✔ DS003 flags literal radius, allows tokens and zero (0.3655ms)
+✔ DS004 flags shadows, blurs and gradients (0.3516ms)
+✔ run excludes configured paths and reports violations elsewhere (4.0353ms)
+✔ repository src/ currently passes the design check (5.6992ms)
+✔ brand colours match the logo sample (0.9152ms)
+✔ approved text/background pairs meet WCAG AA (4.5:1) (1.1429ms)
+✔ focus ring has 3:1 contrast on page surface (0.1812ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.8376
+
+> pintatonica@0.0.0 typecheck C:\dev\juangcarmona\pintatonica
+> astro check --tsconfig src/tsconfig.json --config src/astro.config.mjs
+
+07:46:04 [vite] Re-optimizing dependencies because vite config has changed
+07:46:04 [types] Generated 191ms
+07:46:04 [check] Getting diagnostics for Astro files in C:\dev\juangcarmona\pintatonica...
+Result (11 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+
+> pintatonica@0.0.0 security:test C:\dev\juangcarmona\pintatonica
+> node --test src/tests/security/*.test.mjs
+
+✔ scanner verifies archive bytes and rejects a changed download (1.334ms)
+✔ scanner subprocesses receive OS paths but no credentials or scanner overrides (0.5501ms)
+✔ unborn repository still scans the working tree with redaction (0.671ms)
+✔ all-ref history failure blocks success but still scans the working tree (0.5414ms)
+✔ staged changes are scanned without printing their content (0.4953ms)
+✔ scanner execution errors and unknown history fail closed (1.1269ms)
+✔ environment example contains only placeholders and a false emulator default (0.5955ms)
+✔ real scanner detects an ignored synthetic secret and redacts reports (670.541ms)
+✔ only the exact public Firebase key is exempt; other Google keys remain detected (1046.6396ms)
+✔ corrupted archive is rejected with the underlying ZIP extraction error (12.0248ms)
+✔ official checksum mismatch stops installation before extraction (6.8747ms)
+✔ valid cached binary is version-checked and reused without downloading (29.5977ms)
+✔ incomplete and corrupt previous installs are safely replaced (31.6981ms)
+✔ cached or downloaded wrong-version binaries cannot be accepted (18.5091ms)
+✔ simultaneous installers publish only one verified cache (57.2875ms)
+✔ extraction failure retains process exit and stderr diagnostics (4.1419ms)
+✔ failed installation never runs or reports a successful security scan (4.0734ms)
+✔ a busy installation lock fails closed without deleting another owner (8.4535ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1984.6038
+
+> pintatonica@0.0.0 build C:\dev\juangcarmona\pintatonica
+> astro build --config src/astro.config.mjs
+
+07:46:10 [types] Generated 70ms
+07:46:10 [build] output: "static"
+07:46:10 [build] mode: "static"
+07:46:10 [build] directory: C:\dev\juangcarmona\pintatonica\dist\
+07:46:10 [build] Collecting build info...
+07:46:10 [build] ✓ Completed in 114ms.
+07:46:10 [build] Building static entrypoints...
+07:46:11 [vite] ✓ built in 145ms
+07:46:11 [WARN] [vite] [plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+07:46:11 [vite] ✓ built in 191ms
+07:46:11 [build] Rearranging server assets...
+
+ generating static routes
+07:46:11   ├─ /band/index.html (+12ms)
+07:46:11   ├─ /index.html (+4ms)
+07:46:11 ✓ Completed in 123ms.
+
+07:46:11 [build] ✓ Completed in 509ms.
+07:46:11 [build] 2 page(s) built in 631ms
+07:46:11 [build] Complete!
+
+> pintatonica@0.0.0 test:web C:\dev\juangcarmona\pintatonica
+> node --experimental-strip-types --test src/tests/web/*.test.mjs
+
+✔ signed-out state contains no member identity (1.4659ms)
+✔ active Google member is recognised by membership without name selection (0.1936ms)
+✔ missing and inactive memberships deny access (0.1439ms)
+✔ non-Google identity never initiates membership reads (0.0976ms)
+✔ revocation removes the recognised member immediately (0.1136ms)
+✔ stale membership callbacks cannot restore a prior identity (0.1509ms)
+✔ failed membership checks and auth observation fail closed (0.1559ms)
+✔ sign-in failure is safe and does not grant access (0.7975ms)
+✔ sign-out clears identity before completion; stale callbacks cannot restore it (0.2544ms)
+✔ failed sign-out cannot retain dashboard or claim success (0.2692ms)
+✔ stopped controller ignores delayed observations (0.1541ms)
+✔ navigation suspension clears identity and restoration rechecks membership (0.2055ms)
+✔ missing, blank and example configuration does not initialize Firebase (0.9982ms)
+✔ server initialization guard never imports the eager Firebase client (0.2179ms)
+✔ native builds use the existing public app; partial overrides fail closed (0.2613ms)
+✔ built / is a branded, non-sensitive HTML shell (55.0085ms)
+✔ built /band/ is a branded, non-sensitive HTML shell (12.7012ms)
+✔ built /band is a branded, non-sensitive HTML shell (12.0164ms)
+✔ published logo is the exact existing brand asset (5.8062ms)
+✔ built member page withholds identity and dashboard until browser authorization (3.356ms)
+✔ unknown routes remain missing rather than becoming the member shell (1.9018ms)
+✔ missing production build fails the serving harness (1.6569ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 236.0883
+
+> pintatonica@0.0.0 product:validate C:\dev\juangcarmona\pintatonica
+> prodshape validate
+
+0 error(s), 0 warning(s) across 55 artifact(s)
+
+> pintatonica@0.0.0 product:integrity C:\dev\juangcarmona\pintatonica
+> prodshape integration update --check
+
+All managed integration files match the installation lock.
+
+> pintatonica@0.0.0 product:doctor C:\dev\juangcarmona\pintatonica
+> prodshape doctor
+
+ok   configuration: .product/config.yaml valid (or defaults in effect)
+ok   model validation: 0 error(s), 0 warning(s) across 55 artifact(s)
+ok   product structure: docs/product/model present
+ok   authoring templates: 11 authoring template(s) present
+ok   framework version: integrations generated with v0.22.0
+ok   managed files: all managed files match the installation lock
+ok   skill references: all skill references resolve
+ok   generated outputs: .product/generated present
+All checks passed.
+
+> pintatonica@0.0.0 firebase:rules:test C:\dev\juangcarmona\pintatonica
+> firebase emulators:exec --only firestore --project demo-pintatonica "node --test src/tests/firebase/*.test.mjs"
+
+i  emulators: Starting emulators: firestore
+i  emulators: Detected demo project ID "demo-pintatonica", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
++  firestore: Firestore Emulator was started in standard edition.
++  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: node --test src/tests/firebase/*.test.mjs
+[2026-10-05T05:46:21.063Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d82 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L35, false for 'update' @ L35
+▶ firestore rules
+  ✔ denies a non-Google identity even when its member record is active (739.0869ms)
+[2026-10-05T05:46:21.231Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d85 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L35, false for 'update' @ L35
+  ✔ denies unauthenticated access to private data (144.3947ms)
+[2026-10-05T05:46:21.386Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d88 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L35:23 for 'create' @ L35, evaluation error at L35:23 for 'update' @ L35, false for 'create' @ L35
+[2026-10-05T05:46:21.406Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d89 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L27, false for 'update' @ L27
+  ✔ denies an authenticated non-member (171.1736ms)
+  ✔ denies a deactivated member (55.7553ms)
+  ✔ lets a user read only their own member record to learn their status (69.8061ms)
+  ✔ lets an active member read private data and the roster (67.1117ms)
+  ✔ lets a member write own availability and overrides, with multiple intervals (97.2719ms)
+[2026-10-05T05:46:21.748Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d94 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L35, false for 'update' @ L35
+[2026-10-05T05:46:21.773Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d95 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L39, false for 'update' @ L39
+[2026-10-05T05:46:21.788Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d96 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L27, false for 'update' @ L27
+[2026-10-05T05:46:21.795Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d97 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L27
+  ✔ denies a member mutating another member's availability or identity (98.6403ms)
+[2026-10-05T05:46:21.864Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x4a967d99 error. Code: 7 Message: 7 PERMISSION_DENIED: No matching allow statements
+  ✔ lets a member manage rehearsals and setlists; denies unknown collections (69.5737ms)
+✔ firestore rules (2383.6968ms)
+ℹ tests 9
+ℹ suites 1
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2782.9816
++  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+!  Firestore Emulator has exited upon receiving signal: SIGINT
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

@@ -24,15 +24,15 @@ Initialize/enable the existing project's Firebase Authentication through the ins
 
 ## Tasks
 
-- [ ] Record refined criteria and Ready disposition on GH-2; publish this plan in its single draft PR.
-- [ ] Add meaningful failing controller/state and Google-provider rules tests before implementation.
-- [ ] Implement browser controller, Firebase adapter and accessible `/band` access/dashboard states.
-- [ ] Enforce Google plus active membership in rules without weakening existing ownership/provisioning checks.
-- [ ] Reconcile affected runtime/security architecture and operational provisioning docs; preserve accepted model.
-- [ ] Verify frozen install, security scan, full CI checks and browser/emulator allowed/denied/revocation/sign-out evidence.
-- [ ] Configure the existing live Google provider/domains and verify public build configuration where permitted; provision verified member identity or report interactive blocker explicitly.
+- [x] Record refined criteria and Ready disposition on GH-2; publish this plan in its single draft PR.
+- [x] Add meaningful failing controller/state and Google-provider rules tests before implementation.
+- [x] Implement browser controller, Firebase adapter and accessible `/band` access/dashboard states.
+- [x] Enforce Google plus active membership in rules without weakening existing ownership/provisioning checks.
+- [x] Reconcile affected runtime/security architecture and operational provisioning docs; preserve accepted model.
+- [x] Verify frozen install, security scan, full CI checks and browser/emulator allowed/denied/revocation/sign-out evidence.
+- [x] Configure the existing live Google provider/domains and verify public build configuration where permitted; provision verified member identity or report interactive blocker explicitly.
 - [ ] Obtain the required independent Done audit, resolve findings, publish finished PR, and integrate only with current-head checks and scoped authorization.
-- [ ] Deploy/observe production and close out with actual results; archive plan and record review entry.
+- [ ] Deploy/observe production and close out with actual results; archive plan; offer the optional review after integration.
 
 ## Test plan
 
@@ -44,4 +44,20 @@ Definition of Done: acceptance and plan completeness, meaningful tests, CI-deriv
 
 ## Progress and deviations
 
-Planning started from updated main `0517f31`. Existing rules lack provider enforcement; Authentication configuration is absent (`CONFIGURATION_NOT_FOUND`). Operational setup is part of this slice; no product gap requires a Product Change. Earlier merged PR review-log debt (#10/#11) remains non-blocking.
+Planning started from updated main `0517f31`. The original rules lacked provider enforcement; the new direct non-Google test reproduced the unintended access before the fix. Authentication originally returned `CONFIGURATION_NOT_FOUND`; the existing project's supported CLI provisioning flow enabled Google on 2026-10-05 while billing remained disabled. The first provisioning attempt duplicated an automatically added redirect URI; retry without that redundant field succeeded. Rules were deployed after emulator tests passed.
+
+Native-build deviation: the verified Firebase web app's public identifiers are now repository-owned defaults, with complete environment overrides supported and partial overrides denied. This makes native Cloudflare deployment reproducible without inaccessible dashboard build settings. API restrictions were inspected; the browser key is public identification, not authorization. Gitleaks requires an exact-key exception limited to its Google/generic key detectors; a real-scanner regression proves other Google keys and ignored synthetic GitHub secrets remain blocked. No credential, token, member email or service-account key is committed.
+
+Runtime evidence observed Google-emulator popup sign-in, non-member denial, recognition after manual provisioning, revocation and sign-out on desktop/mobile. Initial rules tests: 9 passing; controller tests: 12 passing. Screenshots were inspected. A runtime-harness observation initially referenced an unexported app handle; using the actual Auth app handle fixed the harness. Its explicit demo/project guard remains enforced.
+
+GH-2 preview was published for the initial tester. After Juan's real Google sign-in, the matching Google-linked, email-verified Firebase identity was observed and its membership was provisioned against the verified UID. A first write attempt exposed array query-parameter encoding in the CLI helper; an atomic Firestore write mask correctly provisioned only active/name fields. Neither email nor UID was stored in repository artifacts. Juan explicitly confirmed the preview shows the recognised greeting and that sign-out returns to the signed-out state (2026-10-05, “Yes, both work”). This live confirmation is separate from synthetic emulator evidence. No product gap requires a Product Change. Earlier merged PR review-log debt (#10/#11) remains non-blocking.
+
+Verification observed before final publication: frozen install, full `pnpm verify` with 58 tests, security scan, 17 current architecture citations and two current plan citations. Markdown validation uses the existing architecture Markdown configuration; the unconfigured default 80-column style check initially reported line-length-only issues in repository-style prose, while the project configuration reported zero issues. Full verification is repeated before final integration. Browser evidence and verification transcript are linked from `docs/delivery/evidence/GH-2/README.md`.
+
+Independent audit identified a back/forward-cache lifecycle defect: pagehide stopped observation permanently while preserving the member DOM. The session now clears identity on suspension and creates fresh observers on persisted restoration. A regression test and demo browser lifecycle-event exercise cover revocation while suspended and subsequent re-admission. This is a security-state lifecycle correction, not a product change. Actual BFCache eligibility across browser engines is not claimed. The new shell process inherited Java 17; the already installed Temurin 21 was selected only for verification processes, without repository paths or machine configuration changes.
+
+Known limitation: the SDK bundle emits Vite's existing 500 kB chunk warning; builds still succeed, and no server/UI framework was added. The basic dashboard delivers access only; musical workflows and GH-9 visual feedback remain explicitly out of scope. Popup operation was observed in local mobile-size/desktop browsers and confirmed with Juan's real account; no claim is made for every mobile browser engine.
+
+<!-- pdac:cite id="BR-MEMBERSHIP" digest="sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45" -->
+
+<!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->
