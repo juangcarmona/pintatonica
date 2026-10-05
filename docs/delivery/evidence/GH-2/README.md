@@ -1,6 +1,6 @@
 # GH-2 verification evidence
 
-Plan: [GH-2](../../plans/GH-2.md). Issue: [#2](https://github.com/juangcarmona/pintatonica/issues/2). PR: [#12](https://github.com/juangcarmona/pintatonica/pull/12).
+Plan: [GH-2](../../completed/GH-2.md). Issue: [#2](https://github.com/juangcarmona/pintatonica/issues/2). PR: [#12](https://github.com/juangcarmona/pintatonica/pull/12).
 
 ## Deterministic lane
 
@@ -29,6 +29,12 @@ Google Authentication was enabled on the existing `pintatonica-band` project thr
 The initial live tester completed real Google sign-in. A read-only operator query verified the matching identity is Google-linked and email-verified; manual membership provisioning used that Firebase UID. Personal email/UID and tokens are absent from these artifacts. Juan confirmed the preview displays the recognised greeting and sign-out returns to the signed-out state on 2026-10-05 (“Yes, both work”). This is human live-account evidence, separate from emulator observations.
 
 Initial manually published preview: [GH-2 /band](https://work-gh-2-recognised-member-access-pintatonica.jgcarmona-pro.workers.dev/band/), deployment `37d8e7d0`. It verified the access implementation before the later equivalent repository-owned public-config default. Final-head native preview and production evidence are recorded after publication.
+
+## Published implementation and integration handoff
+
+[Published checks](implementation-head-checks.json) bind successful GitHub verification and native Cloudflare preview to implementation commit `38d44c08eca74e14ed746bff9a2bf0a3bd898c5e`. [Anonymous native-preview observations](native-preview.json) show signed-out access on mobile/desktop without identity, overflow or page errors; served entry assets match the locally verified production build byte-for-byte.
+
+The independent toolkit auditor confirmed the earlier lifecycle/evidence findings were resolved and found no remaining implementation blocker. Juan's explicit GH-2 FF authorization supplies the scoped continuation/integration decision; his live account confirmation supplies the real OAuth observation. Neither is represented as a fabricated GitHub review. Architecture and operational reconciliation is complete; the delivery plan is archived before integration. Final archived-head checks/audit and production observations are recorded in PR #12 and issue #2 after their actual results, rather than guessed here.
 
 ## Limits
 

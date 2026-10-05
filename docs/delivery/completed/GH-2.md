@@ -32,7 +32,8 @@ Initialize/enable the existing project's Firebase Authentication through the ins
 - [x] Verify frozen install, security scan, full CI checks and browser/emulator allowed/denied/revocation/sign-out evidence.
 - [x] Configure the existing live Google provider/domains and verify public build configuration where permitted; provision verified member identity or report interactive blocker explicitly.
 - [ ] Obtain the required independent Done audit, resolve findings, publish finished PR, and integrate only with current-head checks and scoped authorization.
-- [ ] Deploy/observe production and close out with actual results; archive plan; offer the optional review after integration.
+- [x] Reconcile affected architecture/operations and archive this delivery plan before integration; no ProductShape semantic delta.
+- [ ] Deploy/observe production and close out with actual results; offer the optional review after integration.
 
 ## Test plan
 
@@ -57,6 +58,8 @@ Verification observed before final publication: frozen install, full `pnpm verif
 Independent audit identified a back/forward-cache lifecycle defect: pagehide stopped observation permanently while preserving the member DOM. The session now clears identity on suspension and creates fresh observers on persisted restoration. A regression test and demo browser lifecycle-event exercise cover revocation while suspended and subsequent re-admission. This is a security-state lifecycle correction, not a product change. Actual BFCache eligibility across browser engines is not claimed. The new shell process inherited Java 17; the already installed Temurin 21 was selected only for verification processes, without repository paths or machine configuration changes.
 
 Known limitation: the SDK bundle emits Vite's existing 500 kB chunk warning; builds still succeed, and no server/UI framework was added. The basic dashboard delivers access only; musical workflows and GH-9 visual feedback remain explicitly out of scope. Popup operation was observed in local mobile-size/desktop browsers and confirmed with Juan's real account; no claim is made for every mobile browser engine.
+
+Integration handoff: commit `38d44c08eca74e14ed746bff9a2bf0a3bd898c5e` passed GitHub CI and native Cloudflare preview. Anonymous preview entry assets match the verified local build. The independent audit confirmed the lifecycle fix and linked evidence, with no remaining code blocker; its pending remote-evidence gap is closed by the linked published-check record. Juan's GH-2 FF authorization applies to the stated Done judgement dimensions and verified scope, without an agent granting human approval. The archived final head must still pass its own checks and fresh independent audit before merge. Integration, production and optional review are post-handoff outcomes recorded in PR #12 / issue #2; unchecked tasks above are not claimed complete prematurely.
 
 <!-- pdac:cite id="BR-MEMBERSHIP" digest="sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45" -->
 
