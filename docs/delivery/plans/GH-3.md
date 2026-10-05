@@ -16,10 +16,10 @@ Use civil Madrid dates and clock times rather than browser-local Date parsing. T
 
 ## Tasks
 
-- [ ] Prove civil-date, interval validation and override semantics through the pure availability seam using independent literal examples.
-- [ ] Implement active-member availability persistence/UI, six-week day/member inspection and safe save/error/disposal behaviour.
-- [ ] Verify direct data ownership/denial and browser saved/reloaded weekly/date/empty/restored flows with synthetic demo members at mobile/desktop.
-- [ ] Reconcile affected arc42/runtime docs and delivery map; validate unchanged accepted product and current citations.
+- [x] Prove civil-date, interval validation and override semantics through the pure availability seam using independent literal examples.
+- [x] Implement active-member availability persistence/UI, six-week day/member inspection and safe save/error/disposal behaviour.
+- [x] Verify direct data ownership/denial and browser saved/reloaded weekly/date/empty/restored flows with synthetic demo members at mobile/desktop.
+- [x] Reconcile affected arc42/runtime docs and delivery map; validate unchanged accepted product and current citations.
 - [ ] Run frozen install, security scan, full CI-derived verification and runtime screenshots; obtain independent Done audit.
 - [ ] Archive reconciled plan, push and require fresh final-head audit/CI/native preview; mark PR ready with screenshots, merge under scoped authorization and observe production.
 
@@ -28,3 +28,9 @@ Use civil Madrid dates and clock times rather than browser-local Date parsing. T
 Delegated test seams: pure effective-availability/civil-date API; real Firestore ownership rules; user-visible browser forms and saved band view. TDD uses failing examples before their implementation, not implementation-mirroring tests. Include multiple separated intervals, invalid bounds, Madrid midnight/DST, six Monday-based weeks, replacement/empty/removal overrides, persistence/reload, readonly other member, denied non-member/cross-member writes and identity disposal. Use only demo-pintatonica emulators/synthetic identities; production verification stays anonymous and never writes test schedules into the live band.
 
 All adopted Done dimensions apply: acceptance/completeness/tests/security, current CI-derived checks, architecture/design/docs, ProductShape consistency, linked current-head/runtime evidence, independent audit, Juan-owned judgement under scoped FF authorization and explicit limitations. No product-model edit; no failed/unrun check is a pass.
+
+<!-- pdac:cite id="BR-AVAILABILITY" digest="sha256:3846c5660be556161069445fe1cf8c8e96bb2fe5df0cc36121a5d8a2def914b3" -->
+
+## Verification progress
+
+CI-derived local verification passes 61 tests; browser demo scenarios pass at both viewports, with screenshots in ../evidence/GH-3/. Native/remote CI and independent audit remain pending. Browser runs caught and resolved snapshot acknowledgement overwriting saved status; a Vite module-instance mismatch in the ownership test was corrected to check the actual permission-denied result. Initialization loading is distinct from true unavailable data; metadata-only server confirmations are observed. No product semantic gap or model edit.

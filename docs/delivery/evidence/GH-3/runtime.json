@@ -1,0 +1,31 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "weeklyIntervalsPersistAfterReload": true,
+      "replacementPreservesHabit": true,
+      "emptyOverride": true,
+      "restoreHabit": true,
+      "invalidSaveFailsWithoutChangingStoredHabit": true,
+      "dynamicBandRead": true,
+      "crossMemberWriteDenied": true,
+      "weeks": 6,
+      "horizontalOverflow": false,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "weeklyIntervalsPersistAfterReload": true,
+      "replacementPreservesHabit": true,
+      "emptyOverride": true,
+      "restoreHabit": true,
+      "invalidSaveFailsWithoutChangingStoredHabit": true,
+      "dynamicBandRead": true,
+      "crossMemberWriteDenied": true,
+      "weeks": 6,
+      "horizontalOverflow": false,
+      "pageErrors": 0
+    }
+  ]
+}

@@ -6,6 +6,12 @@ description: Shared architectural mechanisms applied across multiple building bl
 
 # Crosscutting Concepts
 
+## Availability persistence and time representation
+
+GH-3 realizes BR-AVAILABILITY through the existing UID-owned Firestore paths. Weekly rows contain weekday numbers (Sunday 0), start/end clock strings; override document IDs are civil YYYY-MM-DD dates with replacement interval arrays. An empty replacement and absence of a document stay distinct. The pure transformer uses UTC only as a civil-date arithmetic carrier; current date is derived explicitly with Europe/Madrid, so client timezone and DST cannot shift calendar dates.
+
+The client validates and normalizes interval unions before writes. Server acknowledgements, not local pending snapshots, supply saved state. Active roster and each member's weekly/override records use live subscriptions; form actions write only the authenticated UID's paths. Existing rules enforce ownership and membership independently. No backend process, new service, index or paid capacity is needed. Source and regression evidence: [availability](../../src/band/availability.ts), [workspace](../../src/band/availability-view.ts), [tests](../../src/tests/web/availability.test.mjs).
+
 ## Visual Token Consistency
 
 ### Scope
@@ -39,3 +45,5 @@ The [emulator-backed rules tests](../../src/tests/firebase/firestore.rules.test.
 <!-- pdac:cite id="BR-MEMBERSHIP" digest="sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45" -->
 
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->
+
+<!-- pdac:cite id="BR-AVAILABILITY" digest="sha256:3846c5660be556161069445fe1cf8c8e96bb2fe5df0cc36121a5d8a2def914b3" -->

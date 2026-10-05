@@ -1,6 +1,7 @@
 import { initializeBrowserFirebase } from '../firebase/browser';
 import { createAccessSession, type AccessState } from './access';
 import { firebaseAccessPort } from './firebase-access';
+import { mountAvailability } from './availability-view';
 
 const status = document.querySelector<HTMLElement>('[data-access-status]');
 const dashboard = document.querySelector<HTMLElement>('[data-member-dashboard]');
@@ -28,7 +29,13 @@ void initializeBrowserFirebase().then((client) => {
     if (status) status.textContent = 'El acceso privado aún no está configurado. Vuelve a intentarlo más tarde.';
     return;
   }
-  const controller = createAccessSession(firebaseAccessPort(client.auth, client.db), render);
+  let disposeWorkspace=()=>{};
+  const workspace=document.querySelector<HTMLElement>('[data-band-workspace]');
+  const controller = createAccessSession(firebaseAccessPort(client.auth, client.db), (state)=>{
+    disposeWorkspace(); disposeWorkspace=()=>{};
+    render(state);
+    if(state.kind==='member' && workspace && client.auth.currentUser)disposeWorkspace=mountAvailability(client.db,client.auth.currentUser.uid,workspace);
+  });
   login.addEventListener('click', () => { void controller.signIn(); });
   logout.addEventListener('click', () => { void controller.signOut(); });
   controller.start();
