@@ -4,6 +4,8 @@ import { firebaseAccessPort } from './firebase-access';
 import { mountAvailability } from './availability-view';
 import {mountRehearsals} from './rehearsals-view';
 import {mountRepertoire} from './repertoire-view';
+import {mountSetlists} from './setlists-view';
+import {mountGigs} from './gigs-view';
 
 const status = document.querySelector<HTMLElement>('[data-access-status]');
 const dashboard = document.querySelector<HTMLElement>('[data-member-dashboard]');
@@ -38,9 +40,11 @@ void initializeBrowserFirebase().then((client) => {
     render(state);
     if(state.kind==='member' && workspace && client.auth.currentUser){
       const rehearsals=document.createElement('div'),availability=document.createElement('div'),repertoire=document.createElement('div');
-      workspace.append(rehearsals,availability,repertoire);
+      const setlists=document.createElement('div'),gigs=document.createElement('div');
+      workspace.append(rehearsals,availability,repertoire,setlists,gigs);
       const stopRehearsals=mountRehearsals(client.db,rehearsals),stopAvailability=mountAvailability(client.db,client.auth.currentUser.uid,availability),stopRepertoire=mountRepertoire(client.db,repertoire);
-      disposeWorkspace=()=>{stopRehearsals();stopAvailability();stopRepertoire();workspace.replaceChildren();};
+      const stopSetlists=mountSetlists(client.db,setlists),stopGigs=mountGigs(client.db,gigs);
+      disposeWorkspace=()=>{stopRehearsals();stopAvailability();stopRepertoire();stopSetlists();stopGigs();workspace.replaceChildren();};
     }
   });
   login.addEventListener('click', () => { void controller.signIn(); });

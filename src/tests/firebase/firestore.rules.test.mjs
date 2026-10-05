@@ -34,6 +34,18 @@ const seedMembers = () =>
   });
 
 describe('firestore rules', () => {
+  it('gig publication exposes only the explicit whitelist and never private preparation or setlists',async()=>{
+    await seedMembers();const member=env.authenticatedContext('alice',{firebase:{sign_in_provider:'google.com'}}).firestore(),anonymous=env.unauthenticatedContext().firestore();
+    const gig={title:'Actuación',date:'2026-11-02',time:'19:00',venue:'Lugar',info:'Info pública',notes:'Privado',public:true};
+    const projection={title:gig.title,date:gig.date,time:gig.time,venue:gig.venue,info:gig.info};
+    await assertFails(setDoc(doc(member,'gigs/g1'),gig));
+    let batch=writeBatch(member);batch.set(doc(member,'gigs/g1'),gig);batch.set(doc(member,'publicGigs/g1'),projection);await assertSucceeds(batch.commit());
+    assert.deepEqual((await assertSucceeds(getDoc(doc(anonymous,'publicGigs/g1')))).data(),projection);
+    await assertFails(getDoc(doc(anonymous,'gigs/g1')));await assertFails(getDocs(collection(anonymous,'setlists')));
+    await assertFails(setDoc(doc(member,'publicGigs/g1'),{...projection,notes:'Privado'}));await assertFails(setDoc(doc(member,'gigs/g1'),{...gig,public:false}));
+    for(const uid of ['stranger','former']){const db=env.authenticatedContext(uid,{firebase:{sign_in_provider:'google.com'}}).firestore();await assertFails(getDoc(doc(db,'gigs/g1')));await assertFails(setDoc(doc(db,'gigs/g1'),{...gig,public:false}));}
+    batch=writeBatch(member);batch.set(doc(member,'gigs/g1'),{...gig,public:false});batch.delete(doc(member,'publicGigs/g1'));await assertSucceeds(batch.commit());assert.equal((await getDoc(doc(anonymous,'publicGigs/g1'))).exists(),false);
+  });
   it('shared rehearsal preparation is editable by active members and denied to all other callers',async()=>{
     await seedMembers();
     for(const id of ['alice','bob']){const db=env.authenticatedContext(id,{firebase:{sign_in_provider:'google.com'}}).firestore();await assertSucceeds(setDoc(doc(db,'rehearsals/r1'),{songIds:['s1'],focus:'Trabajar puente',preparationRevision:1},{merge:true}));}

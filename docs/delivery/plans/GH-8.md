@@ -12,12 +12,18 @@ Private gigs contain basic name, Madrid civil date/optional time, venue, public-
 
 ## Tasks
 
-- [ ] TDD ordered setlist/gig validation and safe projection; direct security-layer tests.
-- [ ] Shared setlist and gig native editors/details, persistent order/association, revision and draft/error handling.
-- [ ] Demo-only mobile/desktop create/reorder/reload/second-member/conflict/public-isolation browser evidence and inspected screenshots.
-- [ ] Reconcile architecture/operations/citations/delivery; full workflow-derived checks and independent implementation audit.
+- [x] TDD ordered setlist/gig validation and safe projection; direct security-layer tests.
+- [x] Shared setlist and gig native editors/details, persistent order/association, revision and draft/error handling.
+- [x] Demo-only mobile/desktop create/reorder/reload/second-member/conflict/public-isolation browser evidence and inspected screenshots.
+- [x] Reconcile architecture/operations/citations/delivery; full workflow-derived checks and independent implementation audit.
 - [ ] Fresh integration audit; fold/archive/final-head audits/checks, ready screenshot PR, authorized merge, deploy tested existing rules and observe native production.
 
 ## Test plan and Done
 
 Literal ordered-song tests preserve sequence/repeats, reject missing songs/target and invalid duration; validate calendar dates and whitelist excludes internal notes. Rules prove shared-member access and denied other identities, anonymous public-safe read and private/setlist denial, atomic publication/unpublication and injected-field rejection. Real UI creates basic gig and associated setlist, changes song order, saves/reloads, other member edits and stale draft rejects; also associates a confirmed rehearsal. Failed/unsaved status never claims saved. Frozen install, security, full pnpm verify, source manifest, inspected screenshots/runtime, current-head CI/native checks and separate implement/integration/final audits satisfy all applicable adopted Done dimensions. Human dispositions are Juan's explicit delegation, not fabricated review. External resource permissions, SDK warning/browser coverage and empty real production content remain disclosed.
+
+## Progress
+
+TDD red/green passes; actual mobile/desktop ordering, reload, both associations, second-member conflict, failed commit, safe public projection/private denial and unpublication pass. Exact-label runtime caught select naming; visible-label binding fixes the helper and remains guarded by exact selectors. Repertoire/preparation suites reran after this change. Boundary move controls remain disabled across refresh. Owned orphan from emulator watcher startup failure was safely identified/stopped; ready restart verified. Affected public-boundary architecture and operations are reconciled; no new ADR/topology or product semantics. Full checks/audits and integration follow.
+
+Independent implementation audit finds no substantive findings; 64source hashes match. Full75tests pass (9design18security35web13rules), design27files0violations,22architecturecitationscurrent, Markdown/diffchecks pass. Currentpushed-head gates/integrationremainpending.

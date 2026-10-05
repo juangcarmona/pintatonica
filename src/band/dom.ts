@@ -8,7 +8,7 @@ export function button(text: string, action: () => void, className = 'button sec
   const node = element('button',text,className); node.type='button'; node.addEventListener('click',action); return node;
 }
 export function field(label: string, input: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): HTMLLabelElement {
-  const node=element('label',undefined,'field'); node.append(element('span',label),input); return node;
+  const node=element('label',undefined,'field'),text=element('span',label);text.id=`band-field-${crypto.randomUUID()}`;input.setAttribute('aria-labelledby',text.id);node.append(text,input);return node;
 }
 export function input(type: string, value=''): HTMLInputElement {
   const node=element('input'); node.type=type; node.value=value; return node;

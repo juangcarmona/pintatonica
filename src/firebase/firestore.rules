@@ -49,6 +49,34 @@ service cloud.firestore {
       allow read, write: if isMember();
     }
 
+    function gigProjection(gig) {
+      return {'title': gig.title, 'date': gig.date, 'time': gig.time, 'venue': gig.venue, 'info': gig.info};
+    }
+
+    match /gigs/{id} {
+      allow read: if isMember();
+      allow create, update: if isMember()
+        && request.resource.data.public is bool
+        && request.resource.data.title is string && request.resource.data.date is string
+        && request.resource.data.time is string && request.resource.data.venue is string
+        && request.resource.data.info is string
+        && (request.resource.data.public
+          ? getAfter(/databases/$(database)/documents/publicGigs/$(id)).data == gigProjection(request.resource.data)
+          : !existsAfter(/databases/$(database)/documents/publicGigs/$(id)));
+      allow delete: if isMember() && !existsAfter(/databases/$(database)/documents/publicGigs/$(id));
+    }
+
+    match /publicGigs/{id} {
+      allow read: if true;
+      allow create, update: if isMember()
+        && request.resource.data.keys().hasOnly(['title', 'date', 'time', 'venue', 'info'])
+        && getAfter(/databases/$(database)/documents/gigs/$(id)).data.public == true
+        && request.resource.data == gigProjection(getAfter(/databases/$(database)/documents/gigs/$(id)).data);
+      allow delete: if isMember()
+        && (!existsAfter(/databases/$(database)/documents/gigs/$(id))
+          || getAfter(/databases/$(database)/documents/gigs/$(id)).data.public == false);
+    }
+
     function songProjection(song) {
       return {'title': song.title, 'artist': song.artist, 'mediaUrl': song.publicMediaUrl};
     }
