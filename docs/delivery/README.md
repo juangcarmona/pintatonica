@@ -1,6 +1,6 @@
 # MVP delivery map
 
-Derived delivery state from the accepted [ProductShape model](../product/model/), not another source of product intent. Slice numbers below are ordering references, not GitHub issue identifiers or new lifecycle states. Slice 1 is completed, merged and deployed; slices 2–9 remain unstarted and await their own refinement and approval. This map does not authorize implementation.
+Derived delivery state from the accepted [ProductShape model](../product/model/), not another source of product intent. Slice numbers below are ordering references, not GitHub issue identifiers or new lifecycle states. Slice 1 is completed, merged and deployed; slice 2 is active under Juan's scoped FF authorization. Slices 3–9 remain unstarted. This map does not authorize implementation.
 
 The canonical lifecycle remains [engineering-lifecycle.md](../engineering-lifecycle.md): refine → propose → human Planned gate → implement → verify/audit → integrate → review. No SDD framework or technical-layer backlog is introduced.
 
@@ -28,8 +28,8 @@ QR-SECURITY, QR-USABILITY, QR-MAINTAINABILITY, QR-COST-OPERATIONS, QR-VERIFICATI
 
 - [Executable web shell — refined issue draft](proposals/executable-web-shell-issue.md).
 - [Completed GH-1 implementation plan](completed/GH-1.md) and [merged PR #10](https://github.com/juangcarmona/pintatonica/pull/10).
-- No other slice is started or planned internally. Future issue bodies are the corresponding outcome/reference/dependency/boundary rows, refined only when selected.
-- GitHub issues #1–#9 are published. GH-1 is closed after approved implementation, verification, merge and deployment. Slices 2–9 remain unstarted; GH-2 is the next delivery slice.
+- [Archived GH-2 access plan](completed/GH-2.md) and [PR #12](https://github.com/juangcarmona/pintatonica/pull/12) record the active slice's verified implementation and integration handoff.
+- GitHub issues #1–#9 are published. GH-1 is closed after approved implementation, verification, merge and deployment. GH-2 is active; slices 3–9 remain unstarted.
 
 ## Product gaps and delivery risks
 

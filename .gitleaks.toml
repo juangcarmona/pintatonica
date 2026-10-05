@@ -10,3 +10,12 @@ paths = [
   '''(^|[/\\])apm_modules([/\\]|$)''',
   '''(^|[/\\])\.git([/\\]|$)''',
 ]
+# Exact Firebase browser identifier only; all other Google API keys remain scanned.
+# API restrictions checked for this existing web app. See docs/tooling.md.
+[[allowlists]]
+description = "Public Firebase browser key for the existing Pintatonica web app"
+targetRules = ["gcp-api-key", "generic-api-key"]
+regexTarget = "secret"
+regexes = [
+  '''^AIzaSyDRX1v9gDqTF9c00HYOjoGyX93oPdGnvsA$'''
+]

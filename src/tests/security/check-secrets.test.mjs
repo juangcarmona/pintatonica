@@ -96,6 +96,23 @@ test('real scanner detects an ignored synthetic secret and redacts reports', asy
     await rm(directory, { recursive: true, force: true });
   }
 });
+test('only the exact public Firebase key is exempt; other Google keys remain detected', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'pintatonica-public-config-test-'));
+  try {
+    const binary = await installScanner();
+    const publicKey = readFileSync(new URL('../../firebase/public-config.ts', import.meta.url), 'utf8').match(/"apiKey": "([^"]+)"/)[1];
+    const otherKey = ['AI', 'za', randomBytes(27).toString('base64url').slice(0, 35)].join('');
+    const configPath = join(process.cwd(), '.gitleaks.toml');
+    await writeFile(join(directory, '.env.local'), `PUBLIC_FIREBASE_API_KEY=${publicKey}\n`);
+    const allowed = spawnSync(binary, ['dir', directory, '--config', configPath, '--redact=100', '--no-banner'], { encoding: 'utf8', env: scannerEnvironment() });
+    assert.equal(allowed.status, 0);
+    await writeFile(join(directory, '.env.local'), `GOOGLE_API_KEY=${otherKey}\n`);
+    const denied = spawnSync(binary, ['dir', directory, '--config', configPath, '--redact=100', '--no-banner'], { encoding: 'utf8', env: scannerEnvironment() });
+    assert.equal(denied.status, 1);
+    assert.ok(!`${denied.stdout}${denied.stderr}`.includes(otherKey));
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});
+
 async function fixture(t, { bytes, checksum } = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'pintatonica-installer-test-'));
   t.after(() => rm(directory, { recursive: true, force: true }));

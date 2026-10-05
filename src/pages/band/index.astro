@@ -5,8 +5,18 @@ import Shell from '../../layouts/Shell.astro';
   <section class="band-shell" aria-labelledby="banda-titulo">
     <p class="eyebrow">Espacio de Pintatónica</p>
     <h1 id="banda-titulo">La banda.</h1>
-    <p>Estamos preparando este espacio para los miembros de Pintatónica.</p>
-    <p>El acceso privado estará disponible próximamente.</p>
+    <p data-access-status role="status" aria-live="polite">Comprobando el acceso…</p>
+    <button class="button" type="button" data-google-login hidden>Entrar con Google</button>
+    <button class="button secondary" type="button" data-google-logout hidden>Salir de la cuenta</button>
+    <section data-member-dashboard hidden aria-label="Panel de la banda">
+      <h2>Hola, <span data-member-name></span></h2>
+      <p>Este es tu espacio privado en Pintatónica.</p>
+      <p>La coordinación de ensayos y el repertorio llegarán en próximas entregas.</p>
+    </section>
+    <noscript>Activa JavaScript para iniciar sesión y acceder al área privada.</noscript>
     <a class="button secondary" href="/">Volver al inicio <span aria-hidden="true">↗</span></a>
   </section>
 </Shell>
+<script>
+  import '../../band/browser';
+</script>

@@ -1,22 +1,18 @@
 import { getApps, initializeApp, type FirebaseApp } from 'firebase/app';
 import { connectAuthEmulator, getAuth, type Auth } from 'firebase/auth';
 import { connectFirestoreEmulator, getFirestore, type Firestore } from 'firebase/firestore';
+import { firebaseConfiguration } from './configuration';
 
 // Single Firebase initialisation point. Web SDK config is public browser configuration, not a secret.
 // Values come from PUBLIC_-prefixed build variables (see .env.example).
 const env = (import.meta as unknown as { env: Record<string, string | boolean | undefined> }).env;
 
-const config = {
-  apiKey: env.PUBLIC_FIREBASE_API_KEY as string,
-  authDomain: env.PUBLIC_FIREBASE_AUTH_DOMAIN as string,
-  projectId: env.PUBLIC_FIREBASE_PROJECT_ID as string,
-  storageBucket: env.PUBLIC_FIREBASE_STORAGE_BUCKET as string,
-  messagingSenderId: env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID as string,
-  appId: env.PUBLIC_FIREBASE_APP_ID as string,
-};
+const config = firebaseConfiguration(env);
+if (!config) throw new Error('Firebase public configuration is incomplete');
 
 // Emulators are opt-in and only in dev builds; a production build never connects to them.
 const useEmulators = env.DEV === true && env.PUBLIC_FIREBASE_USE_EMULATORS === 'true';
+if (useEmulators && !config.projectId.startsWith('demo-')) throw new Error('Emulators require a demo Firebase project');
 
 const app: FirebaseApp = getApps()[0] ?? initializeApp(config);
 export const auth: Auth = getAuth(app);

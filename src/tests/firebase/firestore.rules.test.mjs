@@ -33,6 +33,13 @@ const seedMembers = () =>
   });
 
 describe('firestore rules', () => {
+  it('denies a non-Google identity even when its member record is active', async () => {
+    await seedMembers();
+    const db = env.authenticatedContext('alice', { firebase: { sign_in_provider: 'password' } }).firestore();
+    await assertFails(getDoc(doc(db, 'rehearsals/r1')));
+    await assertFails(getDoc(doc(db, 'members/alice')));
+    await assertFails(setDoc(doc(db, 'availability/alice'), { weekly: [] }));
+  });
   it('denies unauthenticated access to private data', async () => {
     await seedMembers();
     const db = env.unauthenticatedContext().firestore();
@@ -43,7 +50,7 @@ describe('firestore rules', () => {
 
   it('denies an authenticated non-member', async () => {
     await seedMembers();
-    const db = env.authenticatedContext('stranger').firestore();
+    const db = env.authenticatedContext('stranger', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertFails(getDoc(doc(db, 'rehearsals/r1')));
     await assertFails(getDoc(doc(db, 'members/alice')));
     await assertFails(setDoc(doc(db, 'availability/stranger'), { weekly: [] }));
@@ -52,26 +59,26 @@ describe('firestore rules', () => {
 
   it('denies a deactivated member', async () => {
     await seedMembers();
-    const db = env.authenticatedContext('former').firestore();
+    const db = env.authenticatedContext('former', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertFails(getDoc(doc(db, 'rehearsals/r1')));
   });
 
   it('lets a user read only their own member record to learn their status', async () => {
     await seedMembers();
-    const db = env.authenticatedContext('stranger').firestore();
+    const db = env.authenticatedContext('stranger', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertSucceeds(getDoc(doc(db, 'members/stranger')));
   });
 
   it('lets an active member read private data and the roster', async () => {
     await seedMembers();
-    const db = env.authenticatedContext('alice').firestore();
+    const db = env.authenticatedContext('alice', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertSucceeds(getDoc(doc(db, 'rehearsals/r1')));
     await assertSucceeds(getDoc(doc(db, 'members/bob')));
   });
 
   it('lets a member write own availability and overrides, with multiple intervals', async () => {
     await seedMembers();
-    const db = env.authenticatedContext('alice').firestore();
+    const db = env.authenticatedContext('alice', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertSucceeds(
       setDoc(doc(db, 'availability/alice'), {
         weekly: [
@@ -86,7 +93,7 @@ describe('firestore rules', () => {
 
   it("denies a member mutating another member's availability or identity", async () => {
     await seedMembers();
-    const db = env.authenticatedContext('alice').firestore();
+    const db = env.authenticatedContext('alice', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertFails(setDoc(doc(db, 'availability/bob'), { weekly: [] }));
     await assertFails(setDoc(doc(db, 'availability/bob/overrides/2026-11-02'), { intervals: [] }));
     await assertFails(setDoc(doc(db, 'members/bob'), { name: 'Hacked', active: true }));
@@ -95,7 +102,7 @@ describe('firestore rules', () => {
 
   it('lets a member manage rehearsals and setlists; denies unknown collections', async () => {
     await seedMembers();
-    const db = env.authenticatedContext('alice').firestore();
+    const db = env.authenticatedContext('alice', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertSucceeds(setDoc(doc(db, 'setlists/s1'), { songs: [] }));
     await assertSucceeds(setDoc(doc(db, 'rehearsals/r2'), { start: '2026-11-09T18:00' }));
     await assertFails(setDoc(doc(db, 'whatever/x'), { a: 1 }));

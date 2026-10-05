@@ -11,11 +11,11 @@ A greenfield repository for a music group's public presence and internal organis
 
 ## Current phase
 
-GH-1 provides the public / and non-sensitive /band shells, existing logo/tokens and guarded Firebase client wiring. Login, membership and musical workflows remain later slices; the /band shell contains no private data. [PR #10](https://github.com/juangcarmona/pintatonica/pull/10) carries the delivery record.
+GH-1 provides the public / shell, existing logo/tokens and Cloudflare deployment. GH-2 adds Google sign-in/out and recognised active-member access at /band; the static HTML contains no member identity. Musical workflows remain later slices. [PR #12](https://github.com/juangcarmona/pintatonica/pull/12) carries the access delivery record and live verification status.
 
 Use pnpm dev, pnpm build and pnpm preview. Output is dist/. pnpm test runs design/security/web suites after a build; pnpm verify runs the complete canonical chain including build and emulator tests. Browser evidence uses pnpm verify:runtime after a build; install Chromium with pnpm exec playwright install chromium, or select an installed browser through PLAYWRIGHT_CHANNEL (for example msedge). Evidence is written to ignored artifacts/runtime/.
 
-Copy .env.example to ignored .env only when Firebase browser initialization is needed; replace required public placeholders. Missing configuration leaves both shells usable. Emulator opt-in works only in development. No credentials are needed for CI or an empty shell build.
+The existing Firebase web app's public configuration lives in src/firebase/public-config.ts; CI and native builds need no credentials or dashboard-only values. A complete PUBLIC_FIREBASE_* override can replace it; partial or placeholder overrides deny initialization. Copy .env.example only when overriding configuration and fill all four required values. Emulator opt-in works only in development with an explicit demo-pintatonica project configuration. See [member access operations](docs/operations/member-access.md) for manual membership and pnpm verify:access browser evidence.
 
 Cloudflare native Workers Builds owns deployment. Root wrangler.jsonc is declarative hosting metadata, runs pnpm build and maps dist; pnpm run deploy uses existing operator authentication for a manual fallback. No deployment token or new GitHub pipeline is introduced. See [infrastructure](docs/architecture/infrastructure.md) for evidence and limits.
 

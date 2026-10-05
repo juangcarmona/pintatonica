@@ -23,14 +23,14 @@ Google sign-in, plus an active membership record: `Google user + members/{uid}.a
 ## Firestore model (provisional)
 
 ```text
-members/{uid}                       name, email, active, role
+members/{uid}                       name, active; optional private email metadata
 availability/{uid}                  weekly: [{day, start, end}]  (several intervals per day)
 availability/{uid}/overrides/{date} intervals: [...]             (empty = unavailable)
 rehearsals/{id}
 setlists/{id}
 ```
 
-Public content is repository-managed; repertoire metadata editing/persistence must be evaluated during GH-6 rather than assumed to follow this scaffold. Rules: [src/firebase/firestore.rules](../../src/firebase/firestore.rules), deny by default. A member reads all availability and writes only their own; any active member may write rehearsals and setlists consistent with the accepted confirmation policy (BR-REHEARSAL-CONFIRMATION). Rules are deployed with `pnpm exec firebase deploy --only firestore`.
+Public content is repository-managed; repertoire metadata editing/persistence must be evaluated during GH-6 rather than assumed to follow this scaffold. Rules: [src/firebase/firestore.rules](../../src/firebase/firestore.rules), deny by default. The access mechanism is documented in [08](08-crosscutting-concepts.md); provisioning and configuration procedures live in the [member-access runbook](../operations/member-access.md). Rules are deployed with `pnpm exec firebase deploy --only firestore:rules --project pintatonica-band`.
 
 ## Local development
 

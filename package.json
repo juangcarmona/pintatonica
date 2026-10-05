@@ -23,7 +23,8 @@
     "test:web": "node --experimental-strip-types --test src/tests/web/*.test.mjs",
     "test": "pnpm design:test && pnpm security:test && pnpm test:web",
     "deploy": "wrangler deploy",
-    "verify:runtime": "node src/tooling/web/verify-runtime.mjs"
+    "verify:runtime": "node src/tooling/web/verify-runtime.mjs",
+    "verify:access": "node src/tooling/web/verify-access-runtime.mjs"
   },
   "engines": {
     "node": ">=22.12.0"

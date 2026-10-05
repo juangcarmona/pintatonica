@@ -5,14 +5,19 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    function isMember() {
+    function isGoogleIdentity() {
       return request.auth != null
+        && request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+
+    function isMember() {
+      return isGoogleIdentity()
         && exists(/databases/$(database)/documents/members/$(request.auth.uid))
         && get(/databases/$(database)/documents/members/$(request.auth.uid)).data.active == true;
     }
 
     function isSelf(uid) {
-      return request.auth != null && request.auth.uid == uid;
+      return isGoogleIdentity() && request.auth.uid == uid;
     }
 
     // A user may read only their own record, so the app can tell whether they are a member.
@@ -35,7 +40,7 @@ service cloud.firestore {
       }
     }
 
-    // Who may confirm a rehearsal is unresolved in the product model; any active member for now.
+    // Active members may confirm rehearsals under BR-REHEARSAL-CONFIRMATION.
     match /rehearsals/{id} {
       allow read, write: if isMember();
     }
