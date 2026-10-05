@@ -10,6 +10,8 @@ description: Static decomposition, responsibilities, interfaces, and dependencie
 
 The browser access entry mounts [availability-view.ts](../../src/band/availability-view.ts) only for an admitted UID and disposes its listeners and DOM on loss of admission. [availability.ts](../../src/band/availability.ts) owns civil-date/interval transformations independently of Firebase and DOM. The view composes native labelled forms, dynamic active-roster listeners and a read-only band overview. Persistence ownership is documented in [08](08-crosscutting-concepts.md).
 
+[opportunities.ts](../../src/band/opportunities.ts) sweeps effective interval boundaries as a pure calculation; [opportunities-view.ts](../../src/band/opportunities-view.ts) presents its distinct outputs. The workspace supplies only fully loaded, server-confirmed active-roster data and disposes calculation presentation with the rest of the private view. No scheduling data is published publicly or persisted merely by inspecting calculated windows.
+
 ## Whitebox Overall System
 
 ```mermaid
@@ -35,8 +37,10 @@ flowchart LR
 | Data security | Google identity, active membership and ownership enforcement; see [08](08-crosscutting-concepts.md) | [rules](../../src/firebase/firestore.rules) |
 | Delivery support | ProductShape, toolkit, design/security checks, emulator and shell verification | [package.json](../../package.json); [lifecycle](../engineering-lifecycle.md) |
 
-Astro configuration is executable source under src/. Root Wrangler JSON is declarative hosting metadata for native build discovery, not an application module. Output/dependency/cache directories are ignored. No UI framework, overlap engine or server API is introduced.
+Astro configuration is executable source under src/. Root Wrangler JSON is declarative hosting metadata for native build discovery, not an application module. Output/dependency/cache directories are ignored. The overlap engine is a browser-local pure module; no UI framework or server API is introduced.
 
 <!-- pdac:cite id="BR-MEMBERSHIP" digest="sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45" -->
 
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->
+
+<!-- pdac:cite id="BR-OPPORTUNITY" digest="sha256:cc00716d47bbf9de4c555b4f9aa4fb723b5e0f35b20f1e7b5b76612760708cbc" -->

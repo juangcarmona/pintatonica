@@ -12,10 +12,10 @@ The admitted availability workspace composes a separate opportunities view. Publ
 
 ## Tasks
 
-- [ ] TDD pure overlap boundaries, duration, dynamic membership, partial ranking and effective dates.
-- [ ] Compose member-only reactive opportunity sections and full-week indication; preserve availability editing/disposal.
-- [ ] Browser verification on mobile/desktop with synthetic demo-only fixtures, no automatic rehearsal writes; capture screenshots.
-- [ ] Reconcile architecture/delivery docs and product citations; run frozen install/security/full CI-derived verification.
+- [x] TDD pure overlap boundaries, duration, dynamic membership, partial ranking and effective dates.
+- [x] Compose member-only reactive opportunity sections and full-week indication; preserve availability editing/disposal.
+- [x] Browser verification on mobile/desktop with synthetic demo-only fixtures, no automatic rehearsal writes; capture screenshots.
+- [x] Reconcile architecture/delivery docs and product citations; run frozen install/security/full CI-derived verification.
 - [ ] Independent implementation/integration audits, archive after document fold, push and fresh final-head audit/checks, ready PR with screenshots, merge/deploy under recorded authorization.
 
 ## Test plan and Done
@@ -25,3 +25,7 @@ Tests use literal expected intervals: 120 versus 119 minutes, split windows, abs
 ## Progress
 
 Planned before code. No additional product decision required.
+
+<!-- pdac:cite id="BR-OPPORTUNITY" digest="sha256:cc00716d47bbf9de4c555b4f9aa4fb723b5e0f35b20f1e7b5b76612760708cbc" -->
+
+Pure examples ran red before implementation, then green. Full CI-derived frozen install/security/verify passes: 64 tests. Demo-only mobile/desktop runtime proves real saved overrides, roster expansion/removal, separate lists and qualification badges, with no rehearsal writes. Evidence: ../evidence/GH-4/README.md. No accepted-product changes or new infrastructure. Independent audits and final-head integration remain pending.

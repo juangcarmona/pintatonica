@@ -45,6 +45,10 @@ p { margin-block: var(--space-4); }
 .planning-day { border-top: var(--border-width) solid var(--color-ink); padding-block: var(--space-2); }
 .planning-day h4 { margin-block: var(--space-2); }
 summary { cursor: pointer; font-weight: var(--font-weight-bold); }
+.opportunity { border-top: var(--border-width) solid var(--border-default); padding-block: var(--space-3); }
+.opportunity h4 { margin-block: var(--space-2); }
+.partial-windows { border-style: dashed; }
+.has-full-opportunity { border-width: var(--border-width-heavy); }
 @media (max-width: 40rem) {
   .site-header, .site-footer { padding: var(--space-4); }
   .hero, .band-shell { padding: var(--space-8) var(--space-4); }

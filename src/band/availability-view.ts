@@ -1,6 +1,7 @@
 import { collection, deleteDoc, doc, onSnapshot, setDoc, type Firestore } from 'firebase/firestore';
 import { dateLabel, effectiveAvailability, madridDate, normalizeIntervals, planningDates, validDate, weekdays, type Interval, type Overrides, type WeeklyInterval } from './availability';
 import { button, element, field, input } from './dom';
+import {renderOpportunities} from './opportunities-view';
 
 export type MemberAvailability = {uid:string; name:string; weekly:WeeklyInterval[]; overrides:Overrides};
 export function mountAvailability(db: Firestore, uid: string, host: HTMLElement) {
@@ -18,8 +19,10 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
   const overrideRows=element('div');
   const selectedDate=input('date',madridDate()); selectedDate.min=dates[0]; selectedDate.max=dates.at(-1)!;
   const overview=element('div',undefined,'planning-weeks');
+  const opportunities=element('div',undefined,'opportunities');
+  let rosterReady=false, readFailed=false;
   const title=element('h2','Disponibilidad');
-  host.append(title,element('p','Tu horario habitual y las excepciones por fecha. Todas las horas son de Madrid.'),status,editor,element('h3','Próximas seis semanas'),overview);
+  host.append(title,element('p','Tu horario habitual y las excepciones por fecha. Todas las horas son de Madrid.'),status,editor,opportunities,element('h3','Próximas seis semanas'),overview);
   function rows(container:HTMLElement, slots:(Interval & {day?:number})[], weekly=false) {
     container.replaceChildren(); for(const slot of slots) addRow(container,slot,weekly);
   }
@@ -77,9 +80,12 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
   const displaySlots=(slots:Interval[])=>slots.length ? slots.map(slot=>`${slot.start}–${slot.end}`).join(', ') : 'No disponible';
   function renderOverview() {
     if(!alive)return; overview.replaceChildren();
+    const qualified=renderOpportunities(opportunities,dates,[...members.values()],rosterReady&&!readFailed&&[...members.keys()].every(id=>weeklyReady.has(id)&&overridesReady.has(id)));
     for(let week=0;week<6;week++) {
       const section=element('details',undefined,'panel week'); if(week===0)section.open=true;
-      section.append(element('summary',`${dateLabel(dates[week*7])} — ${dateLabel(dates[week*7+6])}`));
+      const hasFull=dates.slice(week*7,week*7+7).some(date=>qualified.has(date));
+      section.classList.toggle('has-full-opportunity',hasFull);
+      section.append(element('summary',`${dateLabel(dates[week*7])} — ${dateLabel(dates[week*7+6])}${hasFull?' · Grupo completo':''}`));
       for(const date of dates.slice(week*7,week*7+7)) {
         const day=element('section',undefined,'planning-day'); day.append(element('h4',dateLabel(date)));
         for(const member of members.values()) day.append(element('p',`${member.name}: ${weeklyReady.has(member.uid)&&overridesReady.has(member.uid)?displaySlots(effectiveAvailability(member.weekly,member.overrides,date)):'Cargando…'}${Object.hasOwn(member.overrides,date)?' · excepción':''}`));
@@ -88,7 +94,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
       overview.append(section);
     }
   }
-  function fail() {if(alive)status.textContent='No se ha podido cargar la disponibilidad. Vuelve a entrar para reintentar.';}
+  function fail() {if(alive){readFailed=true;status.textContent='No se ha podido cargar la disponibilidad. Vuelve a entrar para reintentar.';renderOverview();}}
   function enableEditing() {
     const wasLoaded=loaded;
     loaded=weeklyLoaded && overridesLoaded;
@@ -96,6 +102,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
   }
   const roster=onSnapshot(collection(db,'members'),{includeMetadataChanges:true},snapshot=>{
     if(!alive || snapshot.metadata.fromCache)return;
+    rosterReady=true;
     const active=new Set(snapshot.docs.filter(record=>record.data().active===true).map(record=>record.id));
     for(const [id,stops] of subscriptions)if(!active.has(id)){stops.forEach(stop=>stop());subscriptions.delete(id);members.delete(id);weeklyReady.delete(id);overridesReady.delete(id);}
     for(const record of snapshot.docs) {
