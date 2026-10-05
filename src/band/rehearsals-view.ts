@@ -17,6 +17,7 @@ export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window
   form.append(attendanceGroup,agreement,submit,status);
   form.addEventListener('submit',(event)=>{event.preventDefault();void(async()=>{
     try {
+      if(!upcoming([{date,start:slot.start,end:slot.end}]).length)throw Error('La ventana ha terminado.');
       const expected=Array.from(form.querySelectorAll<HTMLInputElement>('[data-expected]:checked')).map(check=>check.value);
       const decision=attendance(required,expected);
       if(!agreed.checked)throw Error('Confirma el acuerdo.');
@@ -29,17 +30,23 @@ export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window
   return form;
 }
 export function mountRehearsals(db:Firestore,host:HTMLElement) {
-  let alive=true;host.append(element('h2','Próximos ensayos'),element('p','Cargando ensayos confirmados…'));
-  const stop=onSnapshot(collection(db,'rehearsals'),{includeMetadataChanges:true},snapshot=>{
-    if(!alive||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
+  let alive=true,loaded=false,stored:Rehearsal[]=[],visibleIds='';host.append(element('h2','Próximos ensayos'),element('p','Cargando ensayos confirmados…'));
+  function render(force=false) {
+    if(!alive||!loaded)return;
+    const rehearsals=upcoming(stored),ids=rehearsals.map(item=>item.id).join(',');
+    if(!force&&ids===visibleIds)return;visibleIds=ids;
     host.replaceChildren(element('h2','Próximos ensayos'));
-    const rehearsals=upcoming(snapshot.docs.map(record=>({...record.data(),id:record.id} as Rehearsal)));
     if(!rehearsals.length)host.append(element('p','Todavía no hay ensayos confirmados próximos.'));
     for(const item of rehearsals) {
       const card=element('article',undefined,'panel');card.dataset.rehearsal=item.id;
       card.append(element('h3',`${dateLabel(item.date)} · ${item.start}–${item.end} · Madrid`),element('p',item.kind==='full'?'Ensayo confirmado · grupo completo':'Ensayo confirmado · asistencia parcial'),element('p',`Esperados: ${item.expected.map(id=>item.names[id]??'Miembro').join(', ')}`),element('p',`Disponibles al confirmar: ${item.available.map(id=>item.names[id]??'Miembro').join(', ')}`));
       host.append(card);
     }
-  },()=>{if(alive)host.replaceChildren(element('h2','Próximos ensayos'),element('p','No se han podido cargar los ensayos. Vuelve a entrar para reintentar.'));});
-  return ()=>{alive=false;stop();host.replaceChildren();};
+  }
+  const stop=onSnapshot(collection(db,'rehearsals'),{includeMetadataChanges:true},snapshot=>{
+    if(!alive||snapshot.metadata.fromCache||snapshot.metadata.hasPendingWrites)return;
+    stored=snapshot.docs.map(record=>({...record.data(),id:record.id} as Rehearsal));loaded=true;render(true);
+  },()=>{loaded=false;if(alive)host.replaceChildren(element('h2','Próximos ensayos'),element('p','No se han podido cargar los ensayos. Vuelve a entrar para reintentar.'));});
+  const timer=window.setInterval(()=>render(),60_000);
+  return ()=>{alive=false;clearInterval(timer);stop();host.replaceChildren();};
 }

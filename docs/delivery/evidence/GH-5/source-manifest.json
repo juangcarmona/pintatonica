@@ -1,5 +1,5 @@
 {
-  "baseHead": "7e2232cc265ee160c2ae11a03e0d1dd15bd217e0",
+  "baseHead": "a5bb1135cc19be2c50248c15b3da54b8d533d6c4",
   "files": [
     {
       "path": "src\\astro.config.mjs",
@@ -39,7 +39,7 @@
     },
     {
       "path": "src\\band\\rehearsals-view.ts",
-      "sha256": "e41c3f13bb70b6e3a4f1898e7e06abff623ba2d58a722d2cd5d065d8daee6013"
+      "sha256": "a59f161c75217c3c8ef47df2e082ed15861dc658c0bb7f086a13338e676838a0"
     },
     {
       "path": "src\\band\\rehearsals.ts",
@@ -167,7 +167,7 @@
     },
     {
       "path": "src\\tooling\\web\\band-session.mjs",
-      "sha256": "5968fd6c8302539dc0d6db601c12e0b33c36b12d48370bbd513c381dbc9de387"
+      "sha256": "236f604303df293df1f9b1f7dec0a67498e3c4462d004a3a5bca3d00efac90be"
     },
     {
       "path": "src\\tooling\\web\\serve-build.mjs",
@@ -183,7 +183,7 @@
     },
     {
       "path": "src\\tooling\\web\\verify-confirmation-runtime.mjs",
-      "sha256": "ee380552ae14e847fd49e43d168da96865bf2334f63d3b9094f761e295882af8"
+      "sha256": "f7b6172ca952e4c0706e7d4e5128b03aed9f5239dfe0183ee35d04840888335f"
     },
     {
       "path": "src\\tooling\\web\\verify-opportunities-runtime.mjs",

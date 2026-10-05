@@ -7,6 +7,8 @@
       "failedWriteNeverConfirmed": true,
       "retrySingleSavedRecord": true,
       "persistsAfterReload": true,
+      "expiredOpenWindowCannotConfirm": true,
+      "upcomingExpiresWithoutSnapshot": true,
       "otherMemberSeesExpectedAttendance": true,
       "noOverflow": true,
       "pageErrors": 0
@@ -17,6 +19,8 @@
       "failedWriteNeverConfirmed": true,
       "retrySingleSavedRecord": true,
       "persistsAfterReload": true,
+      "expiredOpenWindowCannotConfirm": true,
+      "upcomingExpiresWithoutSnapshot": true,
       "otherMemberSeesExpectedAttendance": true,
       "noOverflow": true,
       "pageErrors": 0

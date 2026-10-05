@@ -13,16 +13,16 @@ Already up to date
 │   to run scripts.                                                            │
 │                                                                              │
 ╰──────────────────────────────────────────────────────────────────────────────╯
-Done in 1.1s using pnpm v10.34.6
+Done in 2.5s using pnpm v10.34.6
 
 > pintatonica@0.0.0 security:check C:\dev\juangcarmona\pintatonica
 > node src/tooling/security/check-secrets.mjs
 
-9:03AM INF 27 commits scanned.
-9:03AM INF scanned ~1816969 bytes (1.82 MB) in 420ms
-9:03AM INF no leaks found
-9:03AM INF scanned ~2031400 bytes (2.03 MB) in 165ms
-9:03AM INF no leaks found
+1:12PM INF 28 commits scanned.
+1:12PM INF scanned ~1855875 bytes (1.86 MB) in 628ms
+1:12PM INF no leaks found
+1:12PM INF scanned ~1924928 bytes (1.92 MB) in 689ms
+1:12PM INF no leaks found
 Index and working-tree scans passed (including untracked and ignored environment/log files)
 
 > pintatonica@0.0.0 verify C:\dev\juangcarmona\pintatonica
@@ -41,15 +41,15 @@ design:check scanned 18 file(s), 0 violation(s).
 > pintatonica@0.0.0 design:test C:\dev\juangcarmona\pintatonica
 > node --test "src/tests/design/**/*.test.mjs"
 
-✔ DS001 flags hex and colour functions, ignores tokens and id selectors (2.0732ms)
-✔ DS002 flags literal spacing, allows tokens and zero (0.3333ms)
-✔ DS003 flags literal radius, allows tokens and zero (0.2153ms)
-✔ DS004 flags shadows, blurs and gradients (0.2604ms)
-✔ run excludes configured paths and reports violations elsewhere (9.812ms)
-✔ repository src/ currently passes the design check (8.2466ms)
-✔ brand colours match the logo sample (0.6094ms)
-✔ approved text/background pairs meet WCAG AA (4.5:1) (0.8261ms)
-✔ focus ring has 3:1 contrast on page surface (0.136ms)
+✔ DS001 flags hex and colour functions, ignores tokens and id selectors (2.9575ms)
+✔ DS002 flags literal spacing, allows tokens and zero (0.3514ms)
+✔ DS003 flags literal radius, allows tokens and zero (0.2356ms)
+✔ DS004 flags shadows, blurs and gradients (0.2945ms)
+✔ run excludes configured paths and reports violations elsewhere (14.1594ms)
+✔ repository src/ currently passes the design check (9.1446ms)
+✔ brand colours match the logo sample (0.6601ms)
+✔ approved text/background pairs meet WCAG AA (4.5:1) (1.0663ms)
+✔ focus ring has 3:1 contrast on page surface (0.1628ms)
 ℹ tests 9
 ℹ suites 0
 ℹ pass 9
@@ -57,14 +57,14 @@ design:check scanned 18 file(s), 0 violation(s).
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 99.989
+ℹ duration_ms 121.7885
 
 > pintatonica@0.0.0 typecheck C:\dev\juangcarmona\pintatonica
 > astro check --tsconfig src/tsconfig.json --config src/astro.config.mjs
 
-09:03:39 [vite] Re-optimizing dependencies because vite config has changed
-09:03:39 [types] Generated 207ms
-09:03:39 [check] Getting diagnostics for Astro files in C:\dev\juangcarmona\pintatonica...
+13:12:56 [vite] Re-optimizing dependencies because vite config has changed
+13:12:56 [types] Generated 368ms
+13:12:56 [check] Getting diagnostics for Astro files in C:\dev\juangcarmona\pintatonica...
 Result (18 files):
 - 0 errors
 - 0 warnings
@@ -74,24 +74,24 @@ Result (18 files):
 > pintatonica@0.0.0 security:test C:\dev\juangcarmona\pintatonica
 > node --test src/tests/security/*.test.mjs
 
-✔ scanner verifies archive bytes and rejects a changed download (1.4222ms)
-✔ scanner subprocesses receive OS paths but no credentials or scanner overrides (0.5747ms)
-✔ unborn repository still scans the working tree with redaction (0.8675ms)
-✔ all-ref history failure blocks success but still scans the working tree (0.574ms)
-✔ staged changes are scanned without printing their content (0.9018ms)
-✔ scanner execution errors and unknown history fail closed (1.721ms)
-✔ environment example contains only placeholders and a false emulator default (0.9796ms)
-✔ real scanner detects an ignored synthetic secret and redacts reports (668.6274ms)
-✔ only the exact public Firebase key is exempt; other Google keys remain detected (1062.6775ms)
-✔ corrupted archive is rejected with the underlying ZIP extraction error (17.1431ms)
-✔ official checksum mismatch stops installation before extraction (6.0028ms)
-✔ valid cached binary is version-checked and reused without downloading (33.5569ms)
-✔ incomplete and corrupt previous installs are safely replaced (33.5293ms)
-✔ cached or downloaded wrong-version binaries cannot be accepted (20.2092ms)
-✔ simultaneous installers publish only one verified cache (60.5468ms)
-✔ extraction failure retains process exit and stderr diagnostics (3.4619ms)
-✔ failed installation never runs or reports a successful security scan (3.8556ms)
-✔ a busy installation lock fails closed without deleting another owner (4.1963ms)
+✔ scanner verifies archive bytes and rejects a changed download (1.634ms)
+✔ scanner subprocesses receive OS paths but no credentials or scanner overrides (0.9635ms)
+✔ unborn repository still scans the working tree with redaction (0.8969ms)
+✔ all-ref history failure blocks success but still scans the working tree (0.6646ms)
+✔ staged changes are scanned without printing their content (0.6178ms)
+✔ scanner execution errors and unknown history fail closed (1.4086ms)
+✔ environment example contains only placeholders and a false emulator default (0.8239ms)
+✔ real scanner detects an ignored synthetic secret and redacts reports (804.3245ms)
+✔ only the exact public Firebase key is exempt; other Google keys remain detected (1236.8125ms)
+✔ corrupted archive is rejected with the underlying ZIP extraction error (19.3359ms)
+✔ official checksum mismatch stops installation before extraction (8.8764ms)
+✔ valid cached binary is version-checked and reused without downloading (43.1338ms)
+✔ incomplete and corrupt previous installs are safely replaced (44.7386ms)
+✔ cached or downloaded wrong-version binaries cannot be accepted (27.911ms)
+✔ simultaneous installers publish only one verified cache (68.7397ms)
+✔ extraction failure retains process exit and stderr diagnostics (4.5007ms)
+✔ failed installation never runs or reports a successful security scan (5.5372ms)
+✔ a busy installation lock fails closed without deleting another owner (5.069ms)
 ℹ tests 18
 ℹ suites 0
 ℹ pass 18
@@ -99,69 +99,69 @@ Result (18 files):
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 2007.2825
+ℹ duration_ms 2390.9135
 
 > pintatonica@0.0.0 build C:\dev\juangcarmona\pintatonica
 > astro build --config src/astro.config.mjs
 
-09:03:46 [types] Generated 61ms
-09:03:46 [build] output: "static"
-09:03:46 [build] mode: "static"
-09:03:46 [build] directory: C:\dev\juangcarmona\pintatonica\dist\
-09:03:46 [build] Collecting build info...
-09:03:46 [build] ✓ Completed in 101ms.
-09:03:46 [build] Building static entrypoints...
-09:03:46 [vite] ✓ built in 166ms
-09:03:47 [WARN] [vite] [plugin builtin:vite-reporter]
+13:13:07 [types] Generated 99ms
+13:13:07 [build] output: "static"
+13:13:07 [build] mode: "static"
+13:13:07 [build] directory: C:\dev\juangcarmona\pintatonica\dist\
+13:13:07 [build] Collecting build info...
+13:13:07 [build] ✓ Completed in 157ms.
+13:13:07 [build] Building static entrypoints...
+13:13:08 [vite] ✓ built in 996ms
+13:13:08 [WARN] [vite] [plugin builtin:vite-reporter]
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-09:03:47 [vite] ✓ built in 211ms
-09:03:47 [build] Rearranging server assets...
+13:13:08 [vite] ✓ built in 443ms
+13:13:08 [build] Rearranging server assets...
 
  generating static routes
-09:03:47   ├─ /band/index.html (+11ms)
-09:03:47   ├─ /index.html (+3ms)
-09:03:47 ✓ Completed in 155ms.
+13:13:11   ├─ /band/index.html (+39ms)
+13:13:11   ├─ /index.html (+11ms)
+13:13:11 ✓ Completed in 2.73s.
 
-09:03:47 [build] ✓ Completed in 582ms.
-09:03:47 [build] 2 page(s) built in 690ms
-09:03:47 [build] Complete!
+13:13:11 [build] ✓ Completed in 4.25s.
+13:13:11 [build] 2 page(s) built in 4.41s
+13:13:11 [build] Complete!
 
 > pintatonica@0.0.0 test:web C:\dev\juangcarmona\pintatonica
 > node --experimental-strip-types --test src/tests/web/*.test.mjs
 
-✔ signed-out state contains no member identity (1.4221ms)
-✔ active Google member is recognised by membership without name selection (0.2117ms)
-✔ missing and inactive memberships deny access (0.1722ms)
-✔ non-Google identity never initiates membership reads (0.1339ms)
-✔ revocation removes the recognised member immediately (0.1668ms)
-✔ stale membership callbacks cannot restore a prior identity (0.1996ms)
-✔ failed membership checks and auth observation fail closed (0.1902ms)
-✔ sign-in failure is safe and does not grant access (1.5306ms)
-✔ sign-out clears identity before completion; stale callbacks cannot restore it (0.2699ms)
-✔ failed sign-out cannot retain dashboard or claim success (0.3196ms)
-✔ stopped controller ignores delayed observations (0.1877ms)
-✔ navigation suspension clears identity and restoration rechecks membership (0.2936ms)
-✔ a replacement date exception preserves later weekly habits; empty and removal are distinct (1.69ms)
-✔ Madrid civil dates and six Monday-based weeks remain correct across DST and month boundaries (27.5824ms)
-✔ separated intervals remain separate; overlapping or touching intervals form a continuous union (1.2208ms)
-✔ missing, blank and example configuration does not initialize Firebase (1.163ms)
-✔ server initialization guard never imports the eager Firebase client (0.2869ms)
-✔ native builds use the existing public app; partial overrides fail closed (0.2929ms)
-✔ full opportunities use all active members and a continuous fixed two hours (1.7767ms)
-✔ partial windows remain secondary, include short overlaps, and rank participation then duration (0.2593ms)
-✔ membership is dynamic; touching intervals stay continuous without duplicate participants (0.2349ms)
-✔ expected attendance, not candidate classification, distinguishes full from partial rehearsals (1.3646ms)
-✔ upcoming includes ongoing/future rehearsals and filters finished Madrid times across DST (16.0536ms)
-✔ built / is a branded, non-sensitive HTML shell (69.2409ms)
-✔ built /band/ is a branded, non-sensitive HTML shell (12.5359ms)
-✔ built /band is a branded, non-sensitive HTML shell (9.4137ms)
-✔ published logo is the exact existing brand asset (4.3078ms)
-✔ built member page withholds identity and dashboard until browser authorization (2.5223ms)
-✔ unknown routes remain missing rather than becoming the member shell (1.2646ms)
-✔ missing production build fails the serving harness (0.6876ms)
+✔ signed-out state contains no member identity (2.3107ms)
+✔ active Google member is recognised by membership without name selection (0.4149ms)
+✔ missing and inactive memberships deny access (0.1923ms)
+✔ non-Google identity never initiates membership reads (0.1447ms)
+✔ revocation removes the recognised member immediately (0.2131ms)
+✔ stale membership callbacks cannot restore a prior identity (0.2383ms)
+✔ failed membership checks and auth observation fail closed (0.2557ms)
+✔ sign-in failure is safe and does not grant access (0.4349ms)
+✔ sign-out clears identity before completion; stale callbacks cannot restore it (0.5766ms)
+✔ failed sign-out cannot retain dashboard or claim success (0.5746ms)
+✔ stopped controller ignores delayed observations (0.2117ms)
+✔ navigation suspension clears identity and restoration rechecks membership (0.2543ms)
+✔ a replacement date exception preserves later weekly habits; empty and removal are distinct (2.6469ms)
+✔ Madrid civil dates and six Monday-based weeks remain correct across DST and month boundaries (22.3717ms)
+✔ separated intervals remain separate; overlapping or touching intervals form a continuous union (1.6092ms)
+✔ missing, blank and example configuration does not initialize Firebase (1.3322ms)
+✔ server initialization guard never imports the eager Firebase client (0.1993ms)
+✔ native builds use the existing public app; partial overrides fail closed (0.2414ms)
+✔ full opportunities use all active members and a continuous fixed two hours (2.5052ms)
+✔ partial windows remain secondary, include short overlaps, and rank participation then duration (0.3267ms)
+✔ membership is dynamic; touching intervals stay continuous without duplicate participants (0.3277ms)
+✔ expected attendance, not candidate classification, distinguishes full from partial rehearsals (1.775ms)
+✔ upcoming includes ongoing/future rehearsals and filters finished Madrid times across DST (17.5485ms)
+✔ built / is a branded, non-sensitive HTML shell (74.257ms)
+✔ built /band/ is a branded, non-sensitive HTML shell (17.0469ms)
+✔ built /band is a branded, non-sensitive HTML shell (12.5447ms)
+✔ published logo is the exact existing brand asset (6.7373ms)
+✔ built member page withholds identity and dashboard until browser authorization (3.2007ms)
+✔ unknown routes remain missing rather than becoming the member shell (2.4398ms)
+✔ missing production build fails the serving harness (0.862ms)
 ℹ tests 30
 ℹ suites 0
 ℹ pass 30
@@ -169,7 +169,7 @@ Result (18 files):
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 298.9294
+ℹ duration_ms 349.8689
 
 > pintatonica@0.0.0 product:validate C:\dev\juangcarmona\pintatonica
 > prodshape validate
@@ -203,38 +203,38 @@ i  firestore: Firestore Emulator logging to firestore-debug.log
 +  firestore: Firestore Emulator was started in standard edition.
 +  firestore: Firestore Emulator UI websocket is running on 9150.
 i  Running script: node --test src/tests/firebase/*.test.mjs
-[2026-10-05T07:03:57.423Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c40 error. Code: 7 Message: 7 PERMISSION_DENIED:
+[2026-10-05T11:13:26.155Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed6464d error. Code: 7 Message: 7 PERMISSION_DENIED:
 false for 'create' @ L35, false for 'update' @ L35
 ▶ firestore rules
-  ✔ denies a non-Google identity even when its member record is active (799.9527ms)
-[2026-10-05T07:03:57.567Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c43 error. Code: 7 Message: 7 PERMISSION_DENIED:
+  ✔ denies a non-Google identity even when its member record is active (1111.2289ms)
+[2026-10-05T11:13:26.344Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64650 error. Code: 7 Message: 7 PERMISSION_DENIED:
 false for 'create' @ L35, false for 'update' @ L35
-  ✔ denies unauthenticated access to private data (119.2878ms)
-[2026-10-05T07:03:57.717Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c46 error. Code: 7 Message: 7 PERMISSION_DENIED:
+  ✔ denies unauthenticated access to private data (148.1592ms)
+[2026-10-05T11:13:26.587Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64653 error. Code: 7 Message: 7 PERMISSION_DENIED:
 evaluation error at L35:23 for 'create' @ L35, evaluation error at L35:23 for 'update' @ L35, false for 'create' @ L35
-[2026-10-05T07:03:57.742Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c47 error. Code: 7 Message: 7 PERMISSION_DENIED:
+[2026-10-05T11:13:26.602Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64654 error. Code: 7 Message: 7 PERMISSION_DENIED:
 false for 'create' @ L27, false for 'update' @ L27
-[2026-10-05T07:03:57.756Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c48 error. Code: 7 Message: 7 PERMISSION_DENIED:
+[2026-10-05T11:13:26.644Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64655 error. Code: 7 Message: 7 PERMISSION_DENIED:
 evaluation error at L45:29 for 'create' @ L45, evaluation error at L45:29 for 'update' @ L45, false for 'create' @ L45
-  ✔ denies an authenticated non-member (185.335ms)
-[2026-10-05T07:03:57.835Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c4b error. Code: 7 Message: 7 PERMISSION_DENIED:
+  ✔ denies an authenticated non-member (298.1297ms)
+[2026-10-05T11:13:26.769Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64658 error. Code: 7 Message: 7 PERMISSION_DENIED:
 evaluation error at L45:29 for 'create' @ L45, evaluation error at L45:29 for 'update' @ L45, false for 'create' @ L45
-  ✔ denies a deactivated member (81.1346ms)
-  ✔ lets a user read only their own member record to learn their status (67.2476ms)
-  ✔ lets an active member read private data and the roster (80.3473ms)
-  ✔ lets a member write own availability and overrides, with multiple intervals (100.2261ms)
-[2026-10-05T07:03:58.140Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c54 error. Code: 7 Message: 7 PERMISSION_DENIED:
+  ✔ denies a deactivated member (124.7632ms)
+  ✔ lets a user read only their own member record to learn their status (115.7253ms)
+  ✔ lets an active member read private data and the roster (137.6597ms)
+  ✔ lets a member write own availability and overrides, with multiple intervals (157.7314ms)
+[2026-10-05T11:13:27.275Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64661 error. Code: 7 Message: 7 PERMISSION_DENIED:
 false for 'create' @ L35, false for 'update' @ L35
-[2026-10-05T07:03:58.163Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c55 error. Code: 7 Message: 7 PERMISSION_DENIED:
+[2026-10-05T11:13:27.305Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64662 error. Code: 7 Message: 7 PERMISSION_DENIED:
 false for 'create' @ L39, false for 'update' @ L39
-[2026-10-05T07:03:58.175Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c56 error. Code: 7 Message: 7 PERMISSION_DENIED:
+[2026-10-05T11:13:27.323Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64663 error. Code: 7 Message: 7 PERMISSION_DENIED:
 false for 'create' @ L27, false for 'update' @ L27
-[2026-10-05T07:03:58.183Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c57 error. Code: 7 Message: 7 PERMISSION_DENIED:
+[2026-10-05T11:13:27.336Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64664 error. Code: 7 Message: 7 PERMISSION_DENIED:
 false for 'delete' @ L27
-  ✔ denies a member mutating another member's availability or identity (99.5215ms)
-[2026-10-05T07:03:58.258Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x12151c59 error. Code: 7 Message: 7 PERMISSION_DENIED: No matching allow statements
-  ✔ lets a member manage rehearsals and setlists; denies unknown collections (73.893ms)
-✔ firestore rules (2615.4606ms)
+  ✔ denies a member mutating another member's availability or identity (155.0601ms)
+[2026-10-05T11:13:27.464Z]  @firebase/firestore: Firestore (12.19.0): GrpcConnection RPC 'Write' stream 0x3ed64666 error. Code: 7 Message: 7 PERMISSION_DENIED: No matching allow statements
+  ✔ lets a member manage rehearsals and setlists; denies unknown collections (126.1141ms)
+✔ firestore rules (3527.1222ms)
 ℹ tests 9
 ℹ suites 1
 ℹ pass 9
@@ -242,7 +242,7 @@ false for 'delete' @ L27
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 3004.9428
+ℹ duration_ms 3982.5346
 +  Script exited successfully (code 0)
 i  emulators: Shutting down emulators.
 i  firestore: Stopping Firestore Emulator

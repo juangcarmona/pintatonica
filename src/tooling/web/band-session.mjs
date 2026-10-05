@@ -14,9 +14,10 @@ export function firestoreValue(value) {
   return {mapValue:{fields:Object.fromEntries(Object.entries(value).map(([key,item])=>[key,firestoreValue(item)]))}};
 }
 export const seedData=(path,data)=>seed(path,Object.fromEntries(Object.entries(data).map(([key,value])=>[key,firestoreValue(value)])));
-export async function memberSession(browser,label,viewport,{reset=true}={}) {
+export async function memberSession(browser,label,viewport,{reset=true,clock=false}={}) {
   if(reset){const response=await fetch(`http://127.0.0.1:8080/emulator/v1/projects/${project}/databases/(default)/documents`,{method:'DELETE'});assert.equal(response.ok,true);}
   const context=await browser.newContext({viewport});const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  if(clock)await page.clock.install({time:new Date()});
   await page.goto(origin+'/band/');
   const pending=page.waitForEvent('popup');await page.getByRole('button',{name:'Entrar con Google',exact:true}).click();const popup=await pending;await popup.waitForLoadState();
   await popup.getByText('Add new account',{exact:true}).click();await popup.locator('#email-input').fill(`${label}-${Date.now()}@example.test`);await popup.locator('#display-name-input').fill('Cuenta sintética');await popup.getByRole('button',{name:'Sign in with Google.com',exact:true}).click();
