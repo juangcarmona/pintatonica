@@ -6,6 +6,12 @@ description: Shared architectural mechanisms applied across multiple building bl
 
 # Crosscutting Concepts
 
+## Shared metadata and public projections
+
+Private song records are mutable only by admitted members. The browser transaction reads a revision, rejects a stale draft, and writes the private record plus its explicitly selected public whitelist (or deletes that whitelist when unselected). Rules validate both projected after-states, including absence on unpublish; read security is document-level, never simulated by hiding fields in UI. Public readers reach publicSongs only, which contains title, artist and a separately supplied public media URL. Internal links/notes never enter that projection. Safe link validation rejects executable schemes and embedded credentials; following a link does not alter external provider permissions.
+
+Schema, rules and tests remain repository-managed; current mutable repertoire lives in Firestore under [ADR-0002](../adr/0002-store-shared-songs-with-safe-public-projections.md). Source: [validation](../../src/band/repertoire.ts), [transactions](../../src/band/repertoire-store.ts), [rules](../../src/firebase/firestore.rules). Atomic rule validation uses the official [Firestore after-state primitives](https://firebase.google.com/docs/reference/rules/rules.firestore).
+
 ## Confirmation persistence
 
 The admitted workspace composes a live rehearsal collection view alongside availability. Explicit client writes snapshot civil date/clock values, required/available/expected UIDs and display names, and the confirming UID. Separate attendance validation and Madrid-time upcoming selection are pure transformations in [rehearsals.ts](../../src/band/rehearsals.ts); [rehearsals-view.ts](../../src/band/rehearsals-view.ts) owns Firestore interaction and DOM lifecycle. The random document identity is retained across a failed attempt/retry; pending controls stay disabled, and only server-confirmed collection snapshots populate shared saved rehearsals. Submission rechecks the clock, and a disposable minute timer removes finished rehearsals even without data changes; unchanged visible IDs avoid unnecessary timer rerenders. Existing membership rules protect both read and write. No calculation persists a rehearsal, no external calendar integration is introduced, and loss of admission disposes both views/listeners/timers.
@@ -53,3 +59,5 @@ The [emulator-backed rules tests](../../src/tests/firebase/firestore.rules.test.
 <!-- pdac:cite id="BR-AVAILABILITY" digest="sha256:3846c5660be556161069445fe1cf8c8e96bb2fe5df0cc36121a5d8a2def914b3" -->
 
 <!-- pdac:cite id="BR-REHEARSAL-CONFIRMATION" digest="sha256:2522bd383ef243a1aced24f77f917fced2c7c03178d6f077717a56b4be9c5ef0" -->
+
+<!-- pdac:cite id="BR-PUBLIC-SELECTION" digest="sha256:573557a2468714b35e9fdbd01c58bd6822d12d6f66998c818c0eac96f35b4807" -->

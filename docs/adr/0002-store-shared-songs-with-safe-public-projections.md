@@ -37,3 +37,5 @@ Juan's explicit FF-through-9 delegation authorizes this bounded engineering deci
 - [FR-REPERTOIRE](../product/model/requirements/functional/fr-repertoire.md)
 - [BR-PUBLIC-SELECTION](../product/model/business-rules/br-public-selection.md)
 - [Existing static topology](0001-build-static-shells-with-astro.md)
+
+<!-- pdac:cite id="FR-REPERTOIRE" digest="sha256:19c0f3e6a2bf99f8ce11f96b382d0d029570459ab8638cd6fa0cdef6073689f4" -->

@@ -12,10 +12,10 @@ Atomic transactions update private song metadata and a separate publicSongs whit
 
 ## Tasks
 
-- [ ] Record storage ADR and pure TDD validation/public-whitelist/resource scenarios.
-- [ ] Shared member repertoire details/editing, dirty/failure/conflict handling and atomic safe public selection; data-layer rules/tests.
-- [ ] Demo-only mobile/desktop browser create/edit/reload/second-member/resource/public-isolation checks; screenshots.
-- [ ] Reconcile architecture/operations/delivery/citations; full frozen install/security/CI-derived verification and independent implementation audit.
+- [x] Record storage ADR and pure TDD validation/public-whitelist/resource scenarios.
+- [x] Shared member repertoire details/editing, dirty/failure/conflict handling and atomic safe public selection; data-layer rules/tests.
+- [x] Demo-only mobile/desktop browser create/edit/reload/second-member/resource/public-isolation checks; screenshots.
+- [x] Reconcile architecture/operations/delivery/citations; full frozen install/security/CI-derived verification.
 - [ ] Fresh integration audit, archive after fold, final-head checks/audit, ready screenshot PR, authorized merge, deploy existing rules and observe native production.
 
 ## Test plan and Done
@@ -25,3 +25,7 @@ Literal private records with working notes/resources test public projection excl
 ## Progress
 
 Planned before code; no product gap found. Implement after this saved proposal gate under existing scoped authorization.
+
+<!-- pdac:cite id="BR-PUBLIC-SELECTION" digest="sha256:573557a2468714b35e9fdbd01c58bd6822d12d6f66998c818c0eac96f35b4807" -->
+
+Pure whitelist/URL scenarios ran red before code and green after. Full CI-derived frozen install/security/verify passes 70 tests. Demo browser proves create/reload, external resource access, real anonymous projection/private denial, second-member edits, draft conflict, bad URL rejection and unpublication. A real browser save-status race was corrected by ignoring an unchanged-revision acknowledgement; the existing save scenario is its regression. Initial emulator startup left an owned orphan; it was stopped and Java21 full verification reran successfully. No weakened tests or product changes. Independent audits and actual deployment/rules release remain subsequent. Evidence: ../evidence/GH-6/README.md.

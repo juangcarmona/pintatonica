@@ -3,6 +3,7 @@ import { createAccessSession, type AccessState } from './access';
 import { firebaseAccessPort } from './firebase-access';
 import { mountAvailability } from './availability-view';
 import {mountRehearsals} from './rehearsals-view';
+import {mountRepertoire} from './repertoire-view';
 
 const status = document.querySelector<HTMLElement>('[data-access-status]');
 const dashboard = document.querySelector<HTMLElement>('[data-member-dashboard]');
@@ -36,10 +37,10 @@ void initializeBrowserFirebase().then((client) => {
     disposeWorkspace(); disposeWorkspace=()=>{};
     render(state);
     if(state.kind==='member' && workspace && client.auth.currentUser){
-      const rehearsals=document.createElement('div'),availability=document.createElement('div');
-      workspace.append(rehearsals,availability);
-      const stopRehearsals=mountRehearsals(client.db,rehearsals),stopAvailability=mountAvailability(client.db,client.auth.currentUser.uid,availability);
-      disposeWorkspace=()=>{stopRehearsals();stopAvailability();workspace.replaceChildren();};
+      const rehearsals=document.createElement('div'),availability=document.createElement('div'),repertoire=document.createElement('div');
+      workspace.append(rehearsals,availability,repertoire);
+      const stopRehearsals=mountRehearsals(client.db,rehearsals),stopAvailability=mountAvailability(client.db,client.auth.currentUser.uid,availability),stopRepertoire=mountRepertoire(client.db,repertoire);
+      disposeWorkspace=()=>{stopRehearsals();stopAvailability();stopRepertoire();workspace.replaceChildren();};
     }
   });
   login.addEventListener('click', () => { void controller.signIn(); });

@@ -14,6 +14,8 @@ The browser access entry mounts [availability-view.ts](../../src/band/availabili
 
 ## Whitebox Overall System
 
+The admitted browser entry also composes [repertoire-view.ts](../../src/band/repertoire-view.ts), separating pure metadata/link validation from [transactional persistence](../../src/band/repertoire-store.ts). Repertoire collection reads never enter public pages. The safe public projection and consistency boundary are owned by [section 08](08-crosscutting-concepts.md) and justified by [ADR-0002](../adr/0002-store-shared-songs-with-safe-public-projections.md).
+
 ```mermaid
 flowchart LR
     Pages["Astro pages / and /band"] --> Layout["Shared shell layout"]

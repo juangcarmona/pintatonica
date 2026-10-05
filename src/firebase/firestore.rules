@@ -48,5 +48,34 @@ service cloud.firestore {
     match /setlists/{id} {
       allow read, write: if isMember();
     }
+
+    function songProjection(song) {
+      return {'title': song.title, 'artist': song.artist, 'mediaUrl': song.publicMediaUrl};
+    }
+
+    match /songs/{id} {
+      allow read: if isMember();
+      allow create, update: if isMember()
+        && request.resource.data.public is bool
+        && request.resource.data.title is string
+        && request.resource.data.artist is string
+        && request.resource.data.publicMediaUrl is string
+        && (request.resource.data.public
+          ? getAfter(/databases/$(database)/documents/publicSongs/$(id)).data == songProjection(request.resource.data)
+          : !existsAfter(/databases/$(database)/documents/publicSongs/$(id)));
+      allow delete: if isMember() && !existsAfter(/databases/$(database)/documents/publicSongs/$(id));
+    }
+
+    // Public documents are explicit whitelists, never field-filtered private records.
+    match /publicSongs/{id} {
+      allow read: if true;
+      allow create, update: if isMember()
+        && request.resource.data.keys().hasOnly(['title', 'artist', 'mediaUrl'])
+        && getAfter(/databases/$(database)/documents/songs/$(id)).data.public == true
+        && request.resource.data == songProjection(getAfter(/databases/$(database)/documents/songs/$(id)).data);
+      allow delete: if isMember()
+        && (!existsAfter(/databases/$(database)/documents/songs/$(id))
+          || getAfter(/databases/$(database)/documents/songs/$(id)).data.public == false);
+    }
   }
 }
