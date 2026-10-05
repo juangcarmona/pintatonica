@@ -3,6 +3,7 @@
   "name": "pintatonica",
   "account_id": "2c0c4073a19c3990ea0ad6f6f9f0150a",
   "compatibility_date": "2026-10-04",
+  "previews": {},
   "build": {
     "command": "pnpm build"
   },
