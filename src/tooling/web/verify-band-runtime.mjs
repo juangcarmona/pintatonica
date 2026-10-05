@@ -39,6 +39,11 @@ try {
     await override.getByLabel('Fecha',{exact:true}).fill(monday); await override.getByLabel('Fecha',{exact:true}).press('Tab');
     await override.getByRole('button',{name:'Quitar intervalo',exact:true}).nth(1).click();
     await override.locator('[data-start]').fill('19:00');await override.locator('[data-end]').fill('21:00');
+    await page.getByText('Cambios sin guardar.',{exact:true}).waitFor();
+    await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).click();
+    await page.getByText('Guardado. Todavía hay cambios sin guardar.',{exact:true}).waitFor();
+    assert.equal(await override.locator('[data-start]').inputValue(),'19:00','Saving the weekly habit must preserve the exception draft');
+    assert.equal(await override.locator('[data-end]').inputValue(),'21:00');
     await override.getByRole('button',{name:'Guardar excepción',exact:true}).click();await page.getByText('Disponibilidad guardada.',{exact:true}).waitFor();
     assert.equal(await weekly.locator('[data-start]').nth(0).inputValue(),'18:00');
     await override.getByRole('button',{name:'Marcar no disponible',exact:true}).click();
@@ -66,7 +71,11 @@ try {
     await page.screenshot({path:`${output}/${label}-availability.png`,fullPage:true});
     await page.locator('.availability-editors').screenshot({path:`${output}/${label}-editor.png`});
     assert.deepEqual(errors,[]);
-    observations.push({viewport:label,weeklyIntervalsPersistAfterReload:true,replacementPreservesHabit:true,emptyOverride:true,restoreHabit:true,invalidSaveFailsWithoutChangingStoredHabit:true,dynamicBandRead:true,crossMemberWriteDenied:true,weeks:6,horizontalOverflow:false,pageErrors:0});
+    await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
+    assert.equal(await page.locator('[data-band-workspace]').textContent(),'');
+    await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
+    await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).waitFor();
+    observations.push({viewport:label,weeklyIntervalsPersistAfterReload:true,replacementPreservesHabit:true,emptyOverride:true,restoreHabit:true,dirtyDraftNeverLabelledSaved:true,weeklySavePreservesExceptionDraft:true,invalidSaveFailsWithoutChangingStoredHabit:true,dynamicBandRead:true,crossMemberWriteDenied:true,workspaceDisposedOnSuspension:true,weeks:6,horizontalOverflow:false,pageErrors:0});
     await context.close();
   }
   await writeFile(`${output}/runtime.json`,JSON.stringify({project,observations},null,2)+'\n');console.log(JSON.stringify(observations));

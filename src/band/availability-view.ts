@@ -5,6 +5,7 @@ import { button, element, field, input } from './dom';
 export type MemberAvailability = {uid:string; name:string; weekly:WeeklyInterval[]; overrides:Overrides};
 export function mountAvailability(db: Firestore, uid: string, host: HTMLElement) {
   let alive=true, loaded=false, weeklyLoaded=false, overridesLoaded=false, ownWeekly:WeeklyInterval[]=[], ownOverrides:Overrides={};
+  let weeklyDirty=false, overrideDirty=false;
   const members=new Map<string,MemberAvailability>();
   const weeklyReady=new Set<string>(), overridesReady=new Set<string>();
   const subscriptions = new Map<string,(()=>void)[]>();
@@ -31,7 +32,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
     }
     const start=input('time',slot.start), end=input('time',slot.end); start.required=end.required=true;
     start.dataset.start=''; end.dataset.end='';
-    row.append(field('Desde',start),field('Hasta',end),button('Quitar intervalo',()=>row.remove())); container.append(row);
+    row.append(field('Desde',start),field('Hasta',end),button('Quitar intervalo',()=>{row.remove();markDirty(weekly);})); container.append(row);
   }
   function readRows(container:HTMLElement, weekly=false): (Interval & {day?:number})[] {
     return Array.from(container.children).map((row)=>({
@@ -40,31 +41,39 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
       ...(weekly ? {day:Number(row.querySelector<HTMLSelectElement>('[data-day]')!.value)} : {}),
     }));
   }
-  function loadOverride() { rows(overrideRows, effectiveAvailability(ownWeekly,ownOverrides,selectedDate.value)); }
-  weeklyForm.append(element('h3','Horario semanal'),element('p','Sin intervalos en un día significa que no tienes disponibilidad.'),weeklyRows,button('Añadir intervalo semanal',()=>addRow(weeklyRows,undefined,true)));
+  function markDirty(weekly:boolean) {if(weekly)weeklyDirty=true;else overrideDirty=true;status.textContent='Cambios sin guardar.';}
+  function loadOverride() { if(!overrideDirty)rows(overrideRows, effectiveAvailability(ownWeekly,ownOverrides,selectedDate.value)); }
+  weeklyForm.addEventListener('input',()=>markDirty(true));
+  overrideForm.addEventListener('input',(event)=>{if(event.target!==selectedDate)markDirty(false);});
+  weeklyForm.append(element('h3','Horario semanal'),element('p','Sin intervalos en un día significa que no tienes disponibilidad.'),weeklyRows,button('Añadir intervalo semanal',()=>{addRow(weeklyRows,undefined,true);markDirty(true);}));
   const weeklySave=element('button','Guardar horario semanal','button'); weeklySave.type='submit'; weeklyForm.append(weeklySave);
-  overrideForm.append(element('h3','Excepción para una fecha'),field('Fecha',selectedDate),element('p','Estos intervalos sustituyen el horario habitual de ese día. Sin intervalos significa no disponible.'),overrideRows,button('Añadir intervalo para esta fecha',()=>addRow(overrideRows)),button('Marcar no disponible',()=>overrideRows.replaceChildren()));
+  overrideForm.append(element('h3','Excepción para una fecha'),field('Fecha',selectedDate),element('p','Estos intervalos sustituyen el horario habitual de ese día. Sin intervalos significa no disponible.'),overrideRows,button('Añadir intervalo para esta fecha',()=>{addRow(overrideRows);markDirty(false);}),button('Marcar no disponible',()=>{overrideRows.replaceChildren();markDirty(false);}));
   const overrideSave=element('button','Guardar excepción','button'); overrideSave.type='submit';
-  const restore=button('Restaurar horario habitual',()=>{void save(overrideForm,()=>deleteDoc(doc(db,'availability',uid,'overrides',selectedDate.value)));});
-  overrideForm.append(overrideSave,restore); selectedDate.addEventListener('change',()=>{if(validDate(selectedDate.value))loadOverride();});
+  const restore=button('Restaurar horario habitual',()=>{const date=selectedDate.value;void save(overrideForm,()=>deleteDoc(doc(db,'availability',uid,'overrides',date)),()=>{delete ownOverrides[date];loadOverride();});});
+  let previousDate=selectedDate.value;
+  overrideForm.append(overrideSave,restore); selectedDate.addEventListener('change',()=>{
+    if(!validDate(selectedDate.value))return;
+    if(overrideDirty && !window.confirm('¿Descartar los cambios sin guardar de esta fecha?')){selectedDate.value=previousDate;return;}
+    previousDate=selectedDate.value;overrideDirty=false;loadOverride();status.textContent=weeklyDirty?'Cambios sin guardar.':'Excepción cargada. Guarda para aplicar cambios.';
+  });
   editor.append(weeklyForm,overrideForm);
   function setDisabled(form:HTMLFormElement, disabled:boolean) {for(const control of form.querySelectorAll<HTMLInputElement|HTMLButtonElement|HTMLSelectElement>('input,button,select'))control.disabled=disabled;}
   setDisabled(weeklyForm,true); setDisabled(overrideForm,true);
-  async function save(form:HTMLFormElement, write:()=>Promise<void>) {
+  async function save(form:HTMLFormElement, write:()=>Promise<void>, committed:()=>void=()=>{}) {
     if(!alive || !loaded)return;
     try {
       if(!validDate(selectedDate.value))throw new Error('Fecha no válida.');
       setDisabled(form,true); status.textContent='Guardando…'; await write();
-      if(alive)status.textContent='Disponibilidad guardada.';
+      if(alive){if(form===weeklyForm)weeklyDirty=false;else overrideDirty=false;committed();status.textContent=weeklyDirty||overrideDirty?'Guardado. Todavía hay cambios sin guardar.':'Disponibilidad guardada.';}
     } catch {if(alive)status.textContent='No se ha guardado. Revisa las horas y vuelve a intentarlo.';}
     finally {if(alive)setDisabled(form,false);}
   }
-  weeklyForm.addEventListener('submit',(event)=>{event.preventDefault(); void save(weeklyForm,()=>{
+  weeklyForm.addEventListener('submit',(event)=>{event.preventDefault();let weekly:WeeklyInterval[]=[]; void save(weeklyForm,()=>{
     const raw=readRows(weeklyRows,true);
-    const weekly=[0,1,2,3,4,5,6].flatMap(day=>normalizeIntervals(raw.filter(slot=>slot.day===day)).map(slot=>({...slot,day})));
+    weekly=[0,1,2,3,4,5,6].flatMap(day=>normalizeIntervals(raw.filter(slot=>slot.day===day)).map(slot=>({...slot,day})));
     return setDoc(doc(db,'availability',uid),{weekly});
-  });});
-  overrideForm.addEventListener('submit',(event)=>{event.preventDefault(); void save(overrideForm,()=>setDoc(doc(db,'availability',uid,'overrides',selectedDate.value),{intervals:normalizeIntervals(readRows(overrideRows))}));});
+  },()=>{ownWeekly=weekly;rows(weeklyRows,weekly,true);loadOverride();});});
+  overrideForm.addEventListener('submit',(event)=>{event.preventDefault();const date=selectedDate.value;let intervals:Interval[]=[];void save(overrideForm,()=>{intervals=normalizeIntervals(readRows(overrideRows));return setDoc(doc(db,'availability',uid,'overrides',date),{intervals});},()=>{ownOverrides[date]=intervals;loadOverride();});});
   const displaySlots=(slots:Interval[])=>slots.length ? slots.map(slot=>`${slot.start}–${slot.end}`).join(', ') : 'No disponible';
   function renderOverview() {
     if(!alive)return; overview.replaceChildren();
@@ -98,7 +107,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
         if(!alive || data.metadata.fromCache || data.metadata.hasPendingWrites)return;
         member.weekly=Array.isArray(data.data()?.weekly)?data.data()!.weekly:[];
         weeklyReady.add(record.id);
-        if(record.id===uid){ownWeekly=member.weekly;weeklyLoaded=true; rows(weeklyRows,ownWeekly,true);loadOverride();enableEditing();}
+        if(record.id===uid){ownWeekly=member.weekly;weeklyLoaded=true;if(!weeklyDirty)rows(weeklyRows,ownWeekly,true);loadOverride();enableEditing();}
         renderOverview();
       },fail);
       const overrides=onSnapshot(collection(db,'availability',record.id,'overrides'),{includeMetadataChanges:true}, data=>{
