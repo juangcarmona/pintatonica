@@ -2,6 +2,8 @@ import { collection, deleteDoc, doc, onSnapshot, setDoc, type Firestore } from '
 import { dateLabel, effectiveAvailability, madridDate, normalizeIntervals, planningDates, validDate, weekdays, type Interval, type Overrides, type WeeklyInterval } from './availability';
 import { button, element, field, input } from './dom';
 import {renderOpportunities} from './opportunities-view';
+import {confirmationForm} from './rehearsals-view';
+import {upcoming} from './rehearsals';
 
 export type MemberAvailability = {uid:string; name:string; weekly:WeeklyInterval[]; overrides:Overrides};
 export function mountAvailability(db: Firestore, uid: string, host: HTMLElement) {
@@ -80,7 +82,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
   const displaySlots=(slots:Interval[])=>slots.length ? slots.map(slot=>`${slot.start}–${slot.end}`).join(', ') : 'No disponible';
   function renderOverview() {
     if(!alive)return; overview.replaceChildren();
-    const qualified=renderOpportunities(opportunities,dates,[...members.values()],rosterReady&&!readFailed&&[...members.keys()].every(id=>weeklyReady.has(id)&&overridesReady.has(id)));
+    const qualified=renderOpportunities(opportunities,dates,[...members.values()],rosterReady&&!readFailed&&[...members.keys()].every(id=>weeklyReady.has(id)&&overridesReady.has(id)),(date,slot)=>upcoming([{date,start:slot.start,end:slot.end}]).length?confirmationForm(db,uid,date,slot,[...members.values()]):element('p','Esta ventana ya ha terminado.'));
     for(let week=0;week<6;week++) {
       const section=element('details',undefined,'panel week'); if(week===0)section.open=true;
       const hasFull=dates.slice(week*7,week*7+7).some(date=>qualified.has(date));

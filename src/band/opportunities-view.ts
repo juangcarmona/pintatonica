@@ -2,7 +2,7 @@ import {dateLabel, effectiveAvailability} from './availability';
 import {findWindows, type Window} from './opportunities';
 import {element} from './dom';
 import type {MemberAvailability} from './availability-view';
-export function renderOpportunities(host:HTMLElement,dates:string[],members:MemberAvailability[],ready:boolean):Set<string> {
+export function renderOpportunities(host:HTMLElement,dates:string[],members:MemberAvailability[],ready:boolean,confirm?:(date:string,slot:Window)=>HTMLElement):Set<string> {
   host.replaceChildren();
   host.append(element('h2','Opciones para ensayar'));
   if(!ready){host.append(element('p','Esperando la disponibilidad de todos los miembros activos…'));return new Set();}
@@ -16,6 +16,7 @@ export function renderOpportunities(host:HTMLElement,dates:string[],members:Memb
   function card(date:string,slot:Window) {
     const card=element('article',undefined,'opportunity');
     card.append(element('h4',`${dateLabel(date)} · ${slot.start}–${slot.end}`),element('p',`${slot.members.length}/${members.length} miembros · ${slot.duration} min`),element('p',slot.members.map(id=>names.get(id)).join(', ')));
+    if(confirm)card.append(confirm(date,slot));
     return card;
   }
   try {

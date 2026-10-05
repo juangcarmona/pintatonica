@@ -6,6 +6,10 @@ description: Shared architectural mechanisms applied across multiple building bl
 
 # Crosscutting Concepts
 
+## Confirmation persistence
+
+The admitted workspace composes a live rehearsal collection view alongside availability. Explicit client writes snapshot civil date/clock values, required/available/expected UIDs and display names, and the confirming UID. Separate attendance validation and Madrid-time upcoming selection are pure transformations in [rehearsals.ts](../../src/band/rehearsals.ts); [rehearsals-view.ts](../../src/band/rehearsals-view.ts) owns Firestore interaction and DOM lifecycle. The random document identity is retained across a failed attempt/retry; pending controls stay disabled, and only server-confirmed collection snapshots populate shared saved rehearsals. Submission rechecks the clock, and a disposable minute timer removes finished rehearsals even without data changes; unchanged visible IDs avoid unnecessary timer rerenders. Existing membership rules protect both read and write. No calculation persists a rehearsal, no external calendar integration is introduced, and loss of admission disposes both views/listeners/timers.
+
 ## Availability persistence and time representation
 
 GH-3 realizes BR-AVAILABILITY through the existing UID-owned Firestore paths. Weekly rows contain weekday numbers (Sunday 0), start/end clock strings; override document IDs are civil YYYY-MM-DD dates with replacement interval arrays. An empty replacement and absence of a document stay distinct. The pure transformer uses UTC only as a civil-date arithmetic carrier; current date is derived explicitly with Europe/Madrid, so client timezone and DST cannot shift calendar dates.
@@ -47,3 +51,5 @@ The [emulator-backed rules tests](../../src/tests/firebase/firestore.rules.test.
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->
 
 <!-- pdac:cite id="BR-AVAILABILITY" digest="sha256:3846c5660be556161069445fe1cf8c8e96bb2fe5df0cc36121a5d8a2def914b3" -->
+
+<!-- pdac:cite id="BR-REHEARSAL-CONFIRMATION" digest="sha256:2522bd383ef243a1aced24f77f917fced2c7c03178d6f077717a56b4be9c5ef0" -->
