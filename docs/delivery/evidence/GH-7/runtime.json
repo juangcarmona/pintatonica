@@ -1,0 +1,29 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "savedReload": true,
+      "timingAttendanceRetained": true,
+      "resourceLink": true,
+      "secondMemberCanEdit": true,
+      "dirtyDraftSurvivesSnapshot": true,
+      "conflictPreservesDraft": true,
+      "deniedSaveNeverClaimsSuccess": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "savedReload": true,
+      "timingAttendanceRetained": true,
+      "resourceLink": true,
+      "secondMemberCanEdit": true,
+      "dirtyDraftSurvivesSnapshot": true,
+      "conflictPreservesDraft": true,
+      "deniedSaveNeverClaimsSuccess": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    }
+  ]
+}
