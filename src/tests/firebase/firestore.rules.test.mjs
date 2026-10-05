@@ -55,12 +55,14 @@ describe('firestore rules', () => {
     await assertFails(getDoc(doc(db, 'members/alice')));
     await assertFails(setDoc(doc(db, 'availability/stranger'), { weekly: [] }));
     await assertFails(setDoc(doc(db, 'members/stranger'), { active: true }));
+    await assertFails(setDoc(doc(db, 'rehearsals/not-allowed'), {date:'2026-11-02',expected:['stranger']}));
   });
 
   it('denies a deactivated member', async () => {
     await seedMembers();
     const db = env.authenticatedContext('former', { firebase: { sign_in_provider: 'google.com' } }).firestore();
     await assertFails(getDoc(doc(db, 'rehearsals/r1')));
+    await assertFails(setDoc(doc(db, 'rehearsals/former-attempt'), {date:'2026-11-02',expected:['former']}));
   });
 
   it('lets a user read only their own member record to learn their status', async () => {

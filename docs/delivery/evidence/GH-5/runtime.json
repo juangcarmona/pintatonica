@@ -1,0 +1,25 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "explicitFullAndPartialConfirmation": true,
+      "failedWriteNeverConfirmed": true,
+      "retrySingleSavedRecord": true,
+      "persistsAfterReload": true,
+      "otherMemberSeesExpectedAttendance": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "explicitFullAndPartialConfirmation": true,
+      "failedWriteNeverConfirmed": true,
+      "retrySingleSavedRecord": true,
+      "persistsAfterReload": true,
+      "otherMemberSeesExpectedAttendance": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    }
+  ]
+}

@@ -14,8 +14,8 @@ export function firestoreValue(value) {
   return {mapValue:{fields:Object.fromEntries(Object.entries(value).map(([key,item])=>[key,firestoreValue(item)]))}};
 }
 export const seedData=(path,data)=>seed(path,Object.fromEntries(Object.entries(data).map(([key,value])=>[key,firestoreValue(value)])));
-export async function memberSession(browser,label,viewport) {
-  const reset=await fetch(`http://127.0.0.1:8080/emulator/v1/projects/${project}/databases/(default)/documents`,{method:'DELETE'});assert.equal(reset.ok,true);
+export async function memberSession(browser,label,viewport,{reset=true}={}) {
+  if(reset){const response=await fetch(`http://127.0.0.1:8080/emulator/v1/projects/${project}/databases/(default)/documents`,{method:'DELETE'});assert.equal(response.ok,true);}
   const context=await browser.newContext({viewport});const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto(origin+'/band/');
   const pending=page.waitForEvent('popup');await page.getByRole('button',{name:'Entrar con Google',exact:true}).click();const popup=await pending;await popup.waitForLoadState();

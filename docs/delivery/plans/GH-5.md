@@ -12,10 +12,10 @@ Firestore rehearsals use civil date/start/end (Madrid), attendance snapshot and 
 
 ## Tasks
 
-- [ ] TDD attendance validation/classification and upcoming selection with Madrid time.
-- [ ] Explicit candidate confirmation with agreed timing/participants and fail-honest saves; live shared upcoming view, admitted-workspace disposal.
-- [ ] Demo-only mobile/desktop browser full/partial confirmation, reload, shared visibility and data-layer denial; capture screenshots.
-- [ ] Reconcile documentation/citations; frozen install, security and full CI-derived verification; independent audits.
+- [x] TDD attendance validation/classification and upcoming selection with Madrid time.
+- [x] Explicit candidate confirmation with agreed timing/participants and fail-honest saves; live shared upcoming view, admitted-workspace disposal.
+- [x] Demo-only mobile/desktop browser full/partial confirmation, reload, shared visibility and data-layer denial; capture screenshots.
+- [x] Reconcile documentation/citations; frozen install, security and full CI-derived verification; independent audits.
 - [ ] Archive after fold, final pushed-head checks/audit, ready screenshot PR, authorized merge and native production observation.
 
 ## Test plan and Done
@@ -25,3 +25,7 @@ Literal expected attendance subsets demonstrate distinction; empty/unknown/dupli
 ## Progress
 
 Planned before implementation; no new product-policy decision required.
+
+<!-- pdac:cite id="BR-REHEARSAL-CONFIRMATION" digest="sha256:2522bd383ef243a1aced24f77f917fced2c7c03178d6f077717a56b4be9c5ef0" -->
+
+Implementation complete; attendance example ran red before code and green afterwards. Upcoming selection adds a literal Madrid/DST regression. Full frozen install/security/verify passes 66 tests; citations and documentation lint pass. Real mobile/desktop demo browser confirms both types, rejected-write failure, same-ID retry, reload and second-member visibility; GH-3 browser regression also passes. No rules behaviour changed, only denial assertions extended. Independent audit/closure remain pending. See ../evidence/GH-5/README.md.

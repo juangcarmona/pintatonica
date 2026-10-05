@@ -2,6 +2,7 @@ import { initializeBrowserFirebase } from '../firebase/browser';
 import { createAccessSession, type AccessState } from './access';
 import { firebaseAccessPort } from './firebase-access';
 import { mountAvailability } from './availability-view';
+import {mountRehearsals} from './rehearsals-view';
 
 const status = document.querySelector<HTMLElement>('[data-access-status]');
 const dashboard = document.querySelector<HTMLElement>('[data-member-dashboard]');
@@ -34,7 +35,12 @@ void initializeBrowserFirebase().then((client) => {
   const controller = createAccessSession(firebaseAccessPort(client.auth, client.db), (state)=>{
     disposeWorkspace(); disposeWorkspace=()=>{};
     render(state);
-    if(state.kind==='member' && workspace && client.auth.currentUser)disposeWorkspace=mountAvailability(client.db,client.auth.currentUser.uid,workspace);
+    if(state.kind==='member' && workspace && client.auth.currentUser){
+      const rehearsals=document.createElement('div'),availability=document.createElement('div');
+      workspace.append(rehearsals,availability);
+      const stopRehearsals=mountRehearsals(client.db,rehearsals),stopAvailability=mountAvailability(client.db,client.auth.currentUser.uid,availability);
+      disposeWorkspace=()=>{stopRehearsals();stopAvailability();workspace.replaceChildren();};
+    }
   });
   login.addEventListener('click', () => { void controller.signIn(); });
   logout.addEventListener('click', () => { void controller.signOut(); });
