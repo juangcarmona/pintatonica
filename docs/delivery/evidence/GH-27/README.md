@@ -1,6 +1,6 @@
 # GH-27 proposal evidence
 
-[Ready evaluation](../../proposals/GH-27-refinement.md), [delivery plan](../../plans/GH-27.md) and proposed CHG-AREA-NAVIGATION are the review package. This evidence proves proposal health and unchanged runtime source; it does not prove Product Change approval/apply/accepted baseline or new navigation delivery.
+[Ready evaluation](../../proposals/GH-27-refinement.md), [delivery plan](../../completed/GH-27.md) and proposed CHG-AREA-NAVIGATION are the review package. This evidence proves proposal health and unchanged runtime source; it does not prove Product Change approval/apply/accepted baseline or new navigation delivery.
 
 `proposal-install.txt`, `proposal-security.txt` and `proposal-checks.txt` record frozen installation, clean history/index/worktree scans and the complete current CI-derived chain. The check file is a sanitized summary retaining script invocations, test names/counts, product/check verdicts and successful emulator exit. Observed command exit codes: install 0, security 0, verify 0. All 86 tests pass: 9 design, 18 security, 46 web, 13 rules. Typecheck/build,55-artifact baseline validation, generated integration integrity and doctor pass. Baseline and proposed overlay separately validate with zero errors/warnings. No changed-code test is expected for this definition-only proposal. Raw diagnostic files remain ignored; two scanner-identified diagnostic lines were redacted, and the subsequent full scan passed without exclusions.
 
@@ -18,3 +18,7 @@ Juan explicitly approved the complete proposal and plan at c5d98087153a30cc49413
 `accepted-security.txt` records full history/index/worktree scan exit 0 after redacting two scanner-identified ignored diagnostic lines. No exclusions or executable changes were introduced. Existing runbook diagnostic hygiene covers this expected emulator-log recurrence; no new process amendment is warranted.
 
 [Independent IMPLEMENT audit](implementation-audit.md) records task/diff reconciliation and the corrected historical-status sentence. The approved source/model changes are commit 70005bd; integration evidence follows.
+
+[Fresh INTEGRATE audit](integration-audit.md) found no substantive gap before final folding/archival. Final pushed-head audit/checks remain separate requirements.
+
+Final archived-plan verification: `final-checks.txt` records full verify exit 0 and 86 passing tests; `final-security.txt` records full clean scans after expected ignored-diagnostic hygiene. Product/application content is unchanged from approved-apply verification. Final-head remote checks/audit are observed separately after pushing, rather than self-referentially committing a verdict for a not-yet-created head.

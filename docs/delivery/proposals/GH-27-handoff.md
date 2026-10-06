@@ -2,7 +2,7 @@
 
 Start with [issue #27](https://github.com/juangcarmona/pintatonica/issues/27), on branch `work/GH-27-area-navigation`. Current accepted baseline is 93e1162124b10b203bedcb696b29fe5115c127b9. Read README.md, AGENTS.md and docs/engineering-lifecycle.md before the normal lifecycle. The [Product Change](../../product/changes/completed/chg-area-navigation/change.md) is applied, with complete future-state artifacts and no open product questions. Juan approved the complete proposal and plan on 2026-10-06; ProductShape has applied the extension on the working branch. Application source remains unchanged; PR integration accepts the resulting baseline.
 
-Lifecycle progress: [Ready evaluation](GH-27-refinement.md) is complete and the [delivery plan](../plans/GH-27.md) was approved by Juan at the Planned/Product Change gate. GH-22 postmerge closeout was brought forward as documentation-only commit b8344f5. ProductShape apply is complete; application implementation remains excluded.
+Lifecycle progress: [Ready evaluation](GH-27-refinement.md) is complete and the [delivery plan](../completed/GH-27.md) was approved by Juan at the Planned/Product Change gate. GH-22 postmerge closeout was brought forward as documentation-only commit b8344f5. ProductShape apply is complete; application implementation remains excluded.
 
 ## Confirmed product decisions
 
