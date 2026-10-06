@@ -20,4 +20,4 @@ Ownership, permitted use and licensing of supplied imagery, photos and video rem
 
 ## Status
 
-The accepted MVP uses the supplied logo, canonical tokens and enforced guardrails. Public pages use editorial ink/paper sections and deliberate brand geometry; Backstage uses the same identity with readable forms and panels. Astro and Firebase decisions are recorded in architecture documentation. Actual public contact and additional licensed media remain editorial inputs.
+GH-20 evolves the accepted MVP's supplied logo, canonical tokens and enforced guardrails into ink primary actions, separate semantic state roles and reusable compact bar geometry. Public pages keep editorial ink/paper sections; Backstage uses calm paper surfaces with readable forms and panels. Astro and Firebase decisions are recorded in architecture documentation. Actual public contact, names/roles and additional licensed media remain explicitly approved editorial inputs.

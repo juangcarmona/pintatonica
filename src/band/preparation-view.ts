@@ -1,5 +1,5 @@
 import {doc,runTransaction,type Firestore} from 'firebase/firestore';
-import {button,element,field,input} from './dom';
+import {button,element,field,input,setStatus} from './dom';
 import {validatePreparation} from './preparation';
 import {safeURL,type Song} from './repertoire';
 import type {Rehearsal} from './rehearsals';
@@ -22,18 +22,18 @@ export function preparationEditor(db:Firestore,id:string) {
     choices.replaceChildren(element('legend','Canciones para este ensayo'));
     if(!songs.length)choices.append(element('p','Añade primero canciones al repertorio.'));
     for(const song of songs){const check=input('checkbox');check.value=song.id;check.checked=selected.includes(song.id);const label=field(song.title,check);label.classList.add('check-field');choices.append(label);}
-    if(revision!==version){focus.value=current.focus??'';revision=version;status.textContent='Preparación guardada cargada.';}
+    if(revision!==version){focus.value=current.focus??'';revision=version;setStatus(status,'Preparación guardada cargada.','neutral');}
   }
-  form.addEventListener('input',()=>{dirty=true;status.textContent='Preparación sin guardar.';});
+  form.addEventListener('input',()=>{dirty=true;setStatus(status,'Preparación sin guardar.','warning');});
   form.addEventListener('submit',event=>{event.preventDefault();if(saving||songs===null)return;void(async()=>{
     try {
       const draft=validatePreparation(Array.from(choices.querySelectorAll<HTMLInputElement>('input:checked')).map(node=>node.value),focus.value,songs.map(song=>song.id));
-      saving=true;disabled(true);status.textContent='Guardando preparación…';
+      saving=true;disabled(true);setStatus(status,'Guardando preparación…','neutral');
       await runTransaction(db,async tx=>{const ref=doc(db,'rehearsals',id),stored=await tx.get(ref);if(!stored.exists())throw Error('missing-rehearsal');if((stored.data().preparationRevision??0)!==revision)throw Error('shared-conflict');
         for(const songId of draft.songIds)if(!(await tx.get(doc(db,'songs',songId))).exists())throw Error('missing-song');
         tx.update(ref,{...draft,preparationRevision:revision+1});});
-      if(alive){revision++;dirty=false;status.textContent='Preparación guardada y compartida.';resources(draft.songIds);}
-    }catch(error){if(alive)status.textContent=error instanceof Error&&error.message==='shared-conflict'?'Otra persona ha cambiado la preparación. Tu borrador sigue aquí; recarga antes de editar.':'No se ha guardado la preparación. Tu borrador sigue aquí.';}
+      if(alive){revision++;dirty=false;setStatus(status,'Preparación guardada y compartida.','positive');resources(draft.songIds);}
+    }catch(error){if(alive)setStatus(status,error instanceof Error&&error.message==='shared-conflict'?'Otra persona ha cambiado la preparación. Tu borrador sigue aquí; recarga antes de editar.':'No se ha guardado la preparación. Tu borrador sigue aquí.','error');}
     finally{saving=false;if(alive)disabled(songs===null);}
   })();});
   disabled(true);

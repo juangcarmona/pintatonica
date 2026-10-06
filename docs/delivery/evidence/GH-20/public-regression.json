@@ -1,0 +1,37 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "selectedPublicMusicAndMedia": true,
+      "onlyUpcomingPublicGigs": true,
+      "noPrivateMaterial": true,
+      "realPrivateReadDenied": true,
+      "titleAndBrandFeedback": true,
+      "keyboardSkipVisible": true,
+      "mobileMenuEscapeLinkResize": true,
+      "fixedHeader": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "selectedPublicMusicAndMedia": true,
+      "onlyUpcomingPublicGigs": true,
+      "noPrivateMaterial": true,
+      "realPrivateReadDenied": true,
+      "titleAndBrandFeedback": true,
+      "keyboardSkipVisible": true,
+      "mobileMenuEscapeLinkResize": true,
+      "fixedHeader": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "syntheticEditorialConfigurationRendersContactAndPhoto": true,
+      "editorialMediaEmptyStateAccurate": true,
+      "contactKeyboardFocusContrasts": true,
+      "productionEditorialStillPending": true
+    }
+  ]
+}

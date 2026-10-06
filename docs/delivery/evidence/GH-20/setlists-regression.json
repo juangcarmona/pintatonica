@@ -1,0 +1,35 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "orderedSongsReload": true,
+      "boundaryMoveControlsDisabled": true,
+      "approximateDurationAndNotes": true,
+      "gigAndRehearsalAssociation": true,
+      "secondMemberEdit": true,
+      "conflictDraftPreserved": true,
+      "failedSaveNeverClaimsSuccess": true,
+      "anonymousPrivateAndSetlistReadDenied": true,
+      "publicGigWhitelist": true,
+      "unpublicationRemovesProjection": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "orderedSongsReload": true,
+      "boundaryMoveControlsDisabled": true,
+      "approximateDurationAndNotes": true,
+      "gigAndRehearsalAssociation": true,
+      "secondMemberEdit": true,
+      "conflictDraftPreserved": true,
+      "failedSaveNeverClaimsSuccess": true,
+      "anonymousPrivateAndSetlistReadDenied": true,
+      "publicGigWhitelist": true,
+      "unpublicationRemovesProjection": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    }
+  ]
+}

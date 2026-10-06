@@ -13,3 +13,7 @@ export function field(label: string, input: HTMLInputElement | HTMLSelectElement
 export function input(type: string, value=''): HTMLInputElement {
   const node=element('input'); node.type=type; node.value=value; return node;
 }
+export function setStatus(node: HTMLElement, text: string, tone: 'neutral'|'positive'|'warning'|'error' = 'neutral') {
+  node.dataset.tone=tone;
+  node.textContent=text;
+}

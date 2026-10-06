@@ -3,7 +3,7 @@ import {attendance,upcoming,type Rehearsal} from './rehearsals';
 import {dateLabel} from './availability';
 import type {Window} from './opportunities';
 import type {MemberAvailability} from './availability-view';
-import {element,field,input} from './dom';
+import {element,field,input,setStatus} from './dom';
 import {preparationEditor} from './preparation-view';
 import type {Song} from './repertoire';
 export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window,members:MemberAvailability[]) {
@@ -24,10 +24,10 @@ export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window
       const decision=attendance(required,expected);
       if(!agreed.checked)throw Error('Confirma el acuerdo.');
       for(const node of form.querySelectorAll<HTMLInputElement|HTMLButtonElement>('input,button'))node.disabled=true;
-      status.textContent='Guardando confirmación…';
+      setStatus(status,'Guardando confirmación…','neutral');
       await setDoc(doc(db,'rehearsals',id),{date,start:slot.start,end:slot.end,required,available:slot.members,expected:decision.expected,kind:decision.kind,names,confirmedBy:uid});
-      status.textContent='Ensayo confirmado. Ya está en la lista compartida.';
-    } catch {status.textContent='No se ha confirmado el ensayo. Revisa la asistencia y vuelve a intentarlo.';for(const node of form.querySelectorAll<HTMLInputElement|HTMLButtonElement>('input,button'))node.disabled=false;}
+      setStatus(status,'Ensayo confirmado. Ya está en la lista compartida.','positive');
+    } catch {setStatus(status,'No se ha confirmado el ensayo. Revisa la asistencia y vuelve a intentarlo.','error');for(const node of form.querySelectorAll<HTMLInputElement|HTMLButtonElement>('input,button'))node.disabled=false;}
   })();});
   return form;
 }

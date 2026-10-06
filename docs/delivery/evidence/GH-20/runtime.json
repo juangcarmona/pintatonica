@@ -1,0 +1,30 @@
+[
+  {
+    "viewport": "mobile",
+    "admittedControls": true,
+    "positiveSavedStatus": true,
+    "destructiveAction": true,
+    "visibleFocus": true,
+    "touchTarget": true,
+    "nativeConfirmationPreservesDraft": true,
+    "noApplicationDialog": true,
+    "reusableBars": true,
+    "reducedMotion": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "desktop",
+    "admittedControls": true,
+    "positiveSavedStatus": true,
+    "destructiveAction": true,
+    "visibleFocus": true,
+    "touchTarget": true,
+    "nativeConfirmationPreservesDraft": true,
+    "noApplicationDialog": true,
+    "reusableBars": true,
+    "reducedMotion": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  }
+]

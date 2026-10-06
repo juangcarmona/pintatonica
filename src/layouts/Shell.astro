@@ -1,6 +1,7 @@
 ---
 import '../styles/tokens.css';
 import '../styles/shell.css';
+import BrandBars from '../components/BrandBars.astro';
 interface Props { title: string; area?: 'public' | 'band' }
 const { area = 'public' } = Astro.props;
 ---
@@ -29,7 +30,7 @@ const { area = 'public' } = Astro.props;
       </nav>
     </header>
     <main id="contenido" tabindex="-1"><slot /></main>
-    <footer class="site-footer"><span>Pintatónica</span><a href="/#contacto">Contacto</a></footer>
+    <footer class="site-footer"><span class="brand-lockup"><BrandBars />Pintatónica</span><a href="/#contacto">Contacto</a></footer>
     <script>
       import '../public-site/navigation';
       import { initializeBrowserFirebase } from '../firebase/browser';
