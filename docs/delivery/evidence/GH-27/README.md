@@ -22,3 +22,7 @@ Juan explicitly approved the complete proposal and plan at c5d98087153a30cc49413
 [Fresh INTEGRATE audit](integration-audit.md) found no substantive gap before final folding/archival. Final pushed-head audit/checks remain separate requirements.
 
 Final archived-plan verification: `final-checks.txt` records full verify exit 0 and 86 passing tests; `final-security.txt` records full clean scans after expected ignored-diagnostic hygiene. Product/application content is unchanged from approved-apply verification. Final-head remote checks/audit are observed separately after pushing, rather than self-referentially committing a verdict for a not-yet-created head.
+
+## Postmerge record
+
+PR #31 merged as abec922e9d4b6830892f1cd8e1379aa9ef861d90; issue #27 is CLOSED. `final-audit.md` and `final-head-checks.json` bind the final premerge audit/checks to cdf44fb. `main-checks.json` separately records main CI, snapshot and native deployment success. Main model and consumer reports retain 57/26/43 valid counts; `production-assets.json` proves both entries HTTP200 and four verified entry JS/CSS assets byte-matched. This is unchanged-runtime observation, not delivery of future navigation. Downstream issue bodies now use accepted definition and preserve #30 after #29. Postmerge evidence/review is docs-only carryover on the next issue branch, with no #28 implementation.

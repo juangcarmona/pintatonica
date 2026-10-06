@@ -1,0 +1,44 @@
+{
+  "observedAt": "2026-10-06T17:17:44.563Z",
+  "origin": "https://pintatonica.jgcarmona-pro.workers.dev",
+  "definitionOnly": true,
+  "newNavigationImplemented": false,
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "expectedAssetsPresent": true
+    },
+    {
+      "route": "/band/",
+      "status": 200,
+      "expectedAssetsPresent": true
+    }
+  ],
+  "assets": [
+    {
+      "asset": "/_astro/Shell.vMDJHTQx.css",
+      "status": 200,
+      "sha256": "475850a4ff32ac07e8c1c43dc719b56bbeb37f2b8994e1e776be02b70993c805",
+      "matchesVerifiedBuild": true
+    },
+    {
+      "asset": "/_astro/Shell.astro_astro_type_script_index_0_lang.CjvIwOZb.js",
+      "status": 200,
+      "sha256": "cc42e853a0aff2795b96f796f55c6f42997c41ebbf70eaf7646e6f2f16850b66",
+      "matchesVerifiedBuild": true
+    },
+    {
+      "asset": "/_astro/index.astro_astro_type_script_index_0_lang.V2U1TuL9.js",
+      "status": 200,
+      "sha256": "d9e60e1b73a63dff314be96e697d40088809926bab206deed9feedf45bbbbf57",
+      "matchesVerifiedBuild": true
+    },
+    {
+      "asset": "/_astro/index.astro_astro_type_script_index_0_lang.QheY-Zj4.js",
+      "status": 200,
+      "sha256": "d50ef6ba7d2bb658c576c40476fc529f548cba3f142b045b51a56c45d6ffdb9a",
+      "matchesVerifiedBuild": true
+    }
+  ]
+}

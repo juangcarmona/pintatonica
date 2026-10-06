@@ -31,3 +31,13 @@ What did not: the initial leakage guard rejected approved optional descriptions 
 Next time: exact approved field exemptions must include optional editorial fields while always rejecting private collection/auth references and unexpected identities. Five focused tests now enforce that boundary. Browser checks wait for loaded images, and representative section screenshots expose typography issues. The public-content runbook retains fixture restoration and sequential verification. No lifecycle amendment or Product Change is warranted.
 
 Effort: unavailable; no project telemetry/session mapping supplies measured human/agent time, cost or tokens. Earlier GH-1–GH-9 review debt remains disclosed. GH-23 production inventory found no verified contamination; approval of real copy/names/roles remains an external editorial input.
+
+## 2026-10-06 — GH-27 area navigation definition
+
+What worked: separate complete semantic approval from application delivery, apply the exact eight reviewed artifacts through ProductShape, and reconcile consumers without pretending private pages or section tracking already existed. PR #31 merged abec922 after three independent audits, full 86-test verification and exact-head CI/snapshot/native success. Main checks and separate unchanged production assets pass.
+
+What did not: historical proposal-stage status prose read as current even after approved apply. Independent audit caught the ambiguity and it was qualified before integration. Earlier architecture phase statements treated already delivered storage/workflows as future.
+
+Next time: distinguish historical proposal evidence, accepted intent and current implementation explicitly. Reconcile semantic consumer statements before refreshing CLI citations. Existing lifecycle and ownership rules already cover this; no new guard or amendment is warranted. #28/#29 are independent after accepted definition; #30 follows #29.
+
+Effort: unavailable; no project telemetry/session mapping configured. Amendment: none. GH-23 editorial input and earlier review/tooling debt remain independent and disclosed.
