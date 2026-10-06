@@ -1,6 +1,6 @@
 # GH-22 evidence
 
-[Plan](../../plans/GH-22.md), [PR #26](https://github.com/juangcarmona/pintatonica/pull/26). Approved existing introduction and exact logo are reused. Member/media/contact configuration remains empty; no tagline, biography, identity or event is invented. Flexible editorial cards are independent of membership. Existing public selection/data rules and hosting remain unchanged.
+[Plan](../../completed/GH-22.md), [PR #26](https://github.com/juangcarmona/pintatonica/pull/26). Approved existing introduction and exact logo are reused. Member/media/contact configuration remains empty; no tagline, biography, identity or event is invented. Flexible editorial cards are independent of membership. Existing public selection/data rules and hosting remain unchanged.
 
 `install.txt`, `security.txt`, `checks.txt` and `citations.json` record frozen installation, clean history/index/worktree scans, complete CI-derived verification (9 design, 18 security, 46 web, 13 rules tests), 55 product artifacts and 26 current architecture citations. `source-manifest.json` binds all 79 canonical Git source blobs.
 
