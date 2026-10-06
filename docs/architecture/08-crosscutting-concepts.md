@@ -54,7 +54,7 @@ The mechanism spans the browser access controller, SDK and Firestore security bo
 
 ### Evidence
 
-The [emulator-backed rules tests](../../src/tests/firebase/firestore.rules.test.mjs) exercise direct denied unauthenticated/non-member/inactive/non-Google requests, permitted member-owned writes and protected membership mutation. The [access tests](../../src/tests/web/access.test.mjs) and [runtime harness](../../src/tooling/web/verify-access-runtime.mjs) prove the separate UI gate. Scheduling and musical features remain later slices. Deployment and live-account evidence is recorded in the GH-2 delivery evidence, not inferred from source inspection.
+The [emulator-backed rules tests](../../src/tests/firebase/firestore.rules.test.mjs) exercise direct denied unauthenticated/non-member/inactive/non-Google requests, permitted member-owned writes and protected membership mutation. The [access tests](../../src/tests/web/access.test.mjs) and [runtime harness](../../src/tooling/web/verify-access-runtime.mjs) prove the separate UI gate. Current scheduling, confirmation, repertoire, preparation and setlist harnesses prove permitted saves and security-layer denial. Public browser queries read only strict publicSongs/publicGigs projections; private notes and resource lists are never copied into those projections. Deployment and live-account evidence is recorded in the GH-2 delivery evidence, not inferred from source inspection.
 
 <!-- pdac:cite id="BR-MEMBERSHIP" digest="sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45" -->
 

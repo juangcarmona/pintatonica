@@ -1,0 +1,45 @@
+{
+  "origin": "https://work-gh-9-public-presence-pintatonica.jgcarmona-pro.workers.dev",
+  "observedAt": "2026-10-05T13:08:27.641Z",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "status": 200,
+      "signedOut": true,
+      "dashboardHidden": true,
+      "noIdentity": true,
+      "pageErrors": 0,
+      "horizontalOverflow": false,
+      "entryAssetsMatchVerifiedBuild": [
+        {
+          "path": "/_astro/Shell.astro_astro_type_script_index_0_lang.CjvIwOZb.js",
+          "sha256": "cc42e853a0aff2795b96f796f55c6f42997c41ebbf70eaf7646e6f2f16850b66"
+        },
+        {
+          "path": "/_astro/index.astro_astro_type_script_index_0_lang.Da_uJTce.js",
+          "sha256": "07a5552f52a9e7ba577dcb368c6af760a6cab20637c2ff0846ad9daed9a2b398"
+        }
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "status": 200,
+      "signedOut": true,
+      "dashboardHidden": true,
+      "noIdentity": true,
+      "pageErrors": 0,
+      "horizontalOverflow": false,
+      "entryAssetsMatchVerifiedBuild": [
+        {
+          "path": "/_astro/Shell.astro_astro_type_script_index_0_lang.CjvIwOZb.js",
+          "sha256": "cc42e853a0aff2795b96f796f55c6f42997c41ebbf70eaf7646e6f2f16850b66"
+        },
+        {
+          "path": "/_astro/index.astro_astro_type_script_index_0_lang.Da_uJTce.js",
+          "sha256": "07a5552f52a9e7ba577dcb368c6af760a6cab20637c2ff0846ad9daed9a2b398"
+        }
+      ]
+    }
+  ],
+  "liveGoogleSignIn": "Juan confirmed greeting and sign-out in GH-2 preview; not repeated by this anonymous harness"
+}

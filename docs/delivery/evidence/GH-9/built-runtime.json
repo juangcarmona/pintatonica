@@ -1,0 +1,51 @@
+{
+  "url": "http://127.0.0.1:55766",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 1
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 1
+    },
+    {
+      "firebase": "initialized in production browser",
+      "emulator": null
+    },
+    {
+      "viewport": "desktop",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 4
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 4
+    },
+    {
+      "firebase": "initialized in production browser",
+      "emulator": null
+    }
+  ],
+  "privateRequests": 0,
+  "pageErrors": 0
+}

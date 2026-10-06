@@ -46,3 +46,9 @@ Astro configuration is executable source under src/. Root Wrangler JSON is decla
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->
 
 <!-- pdac:cite id="BR-OPPORTUNITY" digest="sha256:cc00716d47bbf9de4c555b4f9aa4fb723b5e0f35b20f1e7b5b76612760708cbc" -->
+
+## Public content and member navigation
+
+[src/public-site](../../src/public-site/) owns typed repository editorial content, guarded public links, Madrid upcoming-gig selection and anonymous reads of whitelisted public collections. Static Astro sections remain usable when data loading fails. Backstage navigation links to mounted feature sections without recreating editors or discarding drafts. Publication enforcement remains owned by [08](08-crosscutting-concepts.md).
+
+<!-- pdac:cite id="FR-PUBLIC" digest="sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3" -->

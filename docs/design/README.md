@@ -20,4 +20,4 @@ Ownership, permitted use and licensing of supplied imagery, photos and video rem
 
 ## Status
 
-Foundations and tokens are derived from the logo and become binding once Juan accepts them. Components and patterns stay provisional until the MVP is accepted in ProductShape. Architecture and framework choices are unresolved; the implementation side (`src/styles/tokens.css`, `src/tooling/design/`, `src/tests/design/`) is framework-neutral.
+The accepted MVP uses the supplied logo, canonical tokens and enforced guardrails. Public pages use editorial ink/paper sections and deliberate brand geometry; Backstage uses the same identity with readable forms and panels. Astro and Firebase decisions are recorded in architecture documentation. Actual public contact and additional licensed media remain editorial inputs.

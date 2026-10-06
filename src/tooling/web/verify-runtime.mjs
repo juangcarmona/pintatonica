@@ -12,12 +12,14 @@ try {
   for (const [label, viewport] of [['mobile', { width: 390, height: 844 }], ['desktop', { width: 1440, height: 1000 }]]) {
     const context = await browser.newContext({ viewport });
     const page = await context.newPage();
-    const errors = [], privateRequests = [], clients = [];
+    const errors = [], privateRequests = [], publicRequests = [], clients = [];
     page.on('request', (request) => { if (/\/client\.[^/]+\.js/.test(request.url())) clients.push(request.url()); });
     page.on('pageerror', (error) => errors.push(error.message));
-    page.on('request', (request) => { if (/firestore.googleapis.com|identitytoolkit.googleapis.com/.test(request.url())) privateRequests.push(new URL(request.url()).origin); });
+    page.on('request', (request) => { if (/identitytoolkit.googleapis.com/.test(request.url())) privateRequests.push(new URL(request.url()).origin);else if(/firestore.googleapis.com/.test(request.url())){const route=new URL(request.frame().url()).pathname;(route==='/'?publicRequests:privateRequests).push(new URL(request.url()).origin);} });
     for (const route of ['/', '/band/']) {
-      const response = await page.goto(url + route, { waitUntil: 'networkidle' });
+      const response = await page.goto(url + route, { waitUntil: 'load' });
+      await page.locator('.site-header.navigation-ready').waitFor();
+      if(route==='/band/')await page.getByRole('button',{name:'Entrar con Google',exact:true}).waitFor();
       assert.equal(response.status(), 200);
       assert.equal(await page.locator('h1').count(), 1, JSON.stringify(await page.locator('h1').allTextContents()));
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, 'No horizontal overflow');
@@ -27,7 +29,7 @@ try {
       await page.keyboard.press('Enter');
       assert.equal(await page.locator(':focus').getAttribute('id'), 'contenido');
       await page.screenshot({ path: `artifacts/runtime/${label}-${route === '/' ? 'public' : 'band'}.png`, fullPage: true });
-      observations.push({ viewport: label, route, status: response.status(), heading: await page.locator('h1').innerText(), keyboardSkip: true, overflow: false });
+      observations.push({ viewport: label, route, status: response.status(), heading: await page.locator('h1').innerText(), keyboardSkip: true, overflow: false,publicDataRequests:publicRequests.length });
     }
     if (process.env.RUNTIME_FIREBASE === 'development') {
       const state = await page.evaluate(async () => {
