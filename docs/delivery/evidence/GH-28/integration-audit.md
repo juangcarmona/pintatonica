@@ -1,0 +1,7 @@
+# GH-28 independent INTEGRATE audit
+
+2026-10-06, fresh separate `/root/gh28_integration_audit`, canonical read-only contract, exact head 474e60a606fb017003b0a48fa112f79704b20e89. No writes, checks, captures or lifecycle delegation.
+
+All adopted dimensions reconciled: acceptance—both local/preview viewport scenarios and visible current-area screenshot; completeness—all five completed tasks supported, remaining integration/postmerge tasks unchecked; tests—88 pass; quality—frozen install/full scans/full verify and exact-head CI; security—actual demo private denial, zero navigation private requests, unchanged rules/access/dependencies; architecture/design—native browser-local geometry/history with current consumers; documentation—27 current architecture citations and affected operations/design; product/spec—unchanged validated 57 artifacts; evidence—four byte-identical preview assets and both viewport preview runtime; human review—Juan's explicit FF scope, zero required approving reviews, no invented vote; limitations—later private slices/editorial work and unavailable effort disclosed. Judgement owner remains Juan.
+
+No material defect, unsupported checked task, scope expansion or failed verification. Pre-final verdict: not Done yet, because durable remote linking, consumer fold/archive and resulting final-head checks/audit were pending. These are sequential integration steps, not failed implementation. Postmerge main CI/production/closure/review remain separate.
