@@ -8,17 +8,17 @@ description: Static decomposition, responsibilities, interfaces, and dependencie
 
 ## Availability workspace
 
-The browser access entry mounts [availability-view.ts](../../src/band/availability-view.ts) only for an admitted UID and disposes its listeners and DOM on loss of admission. [availability.ts](../../src/band/availability.ts) owns civil-date/interval transformations independently of Firebase and DOM. The view composes native labelled forms, dynamic active-roster listeners and a read-only band overview. Persistence ownership is documented in [08](08-crosscutting-concepts.md).
+The browser access entry mounts [availability-view.ts](../../src/band/availability-view.ts) only in admitted Ensayos and disposes listeners/DOM on loss of admission. [availability-observer.ts](../../src/band/availability-observer.ts) owns server-confirmed active-roster/weekly/override readers shared with Inicio; [availability.ts](../../src/band/availability.ts) owns civil-date/interval transformations. [planning-summary.ts](../../src/band/planning-summary.ts) supplies identical full/partial calculations to the read-only home and opportunity presentation. The availability view retains labelled forms and band overview. Persistence ownership is documented in [08](08-crosscutting-concepts.md).
 
 [opportunities.ts](../../src/band/opportunities.ts) sweeps effective interval boundaries as a pure calculation; [opportunities-view.ts](../../src/band/opportunities-view.ts) presents its distinct outputs. The workspace supplies only fully loaded, server-confirmed active-roster data and disposes calculation presentation with the rest of the private view. No scheduling data is published publicly or persisted merely by inspecting calculated windows.
 
 ## Whitebox Overall System
 
-The admitted browser entry also composes [repertoire-view.ts](../../src/band/repertoire-view.ts), separating pure metadata/link validation from [transactional persistence](../../src/band/repertoire-store.ts). Repertoire collection reads never enter public pages. The safe public projection and consistency boundary are owned by [section 08](08-crosscutting-concepts.md) and justified by [ADR-0002](../adr/0002-store-shared-songs-with-safe-public-projections.md).
+Five Astro documents use [BandPage](../../src/components/BandPage.astro) and [areas.ts](../../src/band/areas.ts). After admission [browser.ts](../../src/band/browser.ts) creates secondary navigation and mounts only the selected area. Inicio owns guarded home/scheduling readers; Ensayos owns rehearsal/preparation and availability/opportunity/confirmation; other pages own their existing repertoire, setlist or gig views. Repertoire validation and [transactional persistence](../../src/band/repertoire-store.ts) retain the safe public boundary in [08](08-crosscutting-concepts.md)/[ADR-0002](../adr/0002-store-shared-songs-with-safe-public-projections.md). [unsaved.ts](../../src/band/unsaved.ts) binds explicit editor dirty/pending flags to native departure protection without adding persistence or an application dialog.
 
 ```mermaid
 flowchart LR
-    Pages["Astro pages / and /band"] --> Layout["Shared shell layout"]
+    Pages["Astro public page and five private access documents"] --> Layout["Shared shell layout"]
     Layout --> Tokens["Canonical CSS tokens and brand asset"]
     Layout --> Guard["Browser configuration guard"]
     Guard --> SDK["Existing Firebase SDK client"]

@@ -14,7 +14,7 @@ sequenceDiagram
     participant Host as Cloudflare static assets
     participant Guard as Browser entry
     participant SDK as Firebase SDK
-    Browser->>Host: GET / or /band/
+    Browser->>Host: GET public page or private area document
     Host-->>Browser: Static branded HTML and assets
     Browser->>Guard: Run client script
     alt Public default or complete explicit override present
@@ -37,7 +37,13 @@ The public Backstage · Entrar utility opens the member-only access shell, which
 
 Page suspension clears the member DOM and stops its observers. Persisted browser restoration creates a fresh controller and rechecks membership; a cached page cannot retain an admitted identity indefinitely.
 
-The admitted home waits for server-confirmed rehearsal/song/gig/setlist snapshots before composing current context. Read failure clears its summaries; its minute timer reuses existing time selection. Scheduling summaries come from the already guarded availability calculation. Home observers and timers are disposed alongside every feature on identity loss, failure, suspension or revocation. Anchor navigation opens preparation disclosures without recreating editors or losing drafts. A resize observer measures the wrapped member navigation for visible anchor targets and is disposed with the workspace; this is runtime geometry rather than a new design token.
+The admitted home waits for server-confirmed rehearsal/song/gig/setlist snapshots before composing current context. Read failure clears summaries; its minute timer retains existing time selection. Scheduling uses the shared guarded availability observer and pure summary, without hidden editors. Each page disposes its selected area's observers/timers/DOM on identity loss, failure, suspension or revocation.
+
+Native secondary links load the destination static document and repeat the same membership decision before mounting its one area/current indicator. Home onward actions use actual area paths; a guarded async preparation target opens its existing disclosure and receives focus/scroll after creation. Header and wrapped member-navigation measurement leave targets visible. Native history restoration rechecks admission; no cached private DOM grants access.
+
+Editor dirty and pending-save attributes trigger the native beforeunload choice. Cancel keeps the document/draft; deliberate departure may discard it. Confirmed saves and explicitly accepted in-area reloads clear the corresponding attribute; failed/conflicting saves keep it. Identity loss clears private DOM independently of draft state. No private draft storage or reusable application dialog is introduced. [ADR-0003](../adr/0003-use-static-private-pages-with-native-draft-protection.md) records this document lifecycle tradeoff.
+
+<!-- pdac:cite id="FR-NAVIGATION" digest="sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6" -->
 
 See the [GH-2 plan](../delivery/completed/GH-2.md), [controller tests](../../src/tests/web/access.test.mjs) and [demo-only runtime harness](../../src/tooling/web/verify-access-runtime.mjs). Live OAuth requires the real account holder and is reported separately from emulator evidence.
 
@@ -51,10 +57,12 @@ See the [GH-2 plan](../delivery/completed/GH-2.md), [controller tests](../../src
 
 ## Public discovery and complete MVP verification
 
-Astro emits the editorial sections and approved contact/media configuration at build time. The browser independently fetches publicSongs and publicGigs once per page visit, renders text safely, filters upcoming gigs in Madrid time and reports empty/unavailable states. No anonymous private read or Auth request is needed. The compact navigation responds to keyboard, Escape, link activation and viewport changes. Public navigation measures the fixed header and content, selects the viewport reading section, and updates aria-current plus the current URL hash without adding scroll history entries. Native fragment links retain query context and create navigation history; visible explicit entry/history destinations are retained until manual scrolling resumes geometry selection. Page restoration and resize reconcile the same state. The access sequence above includes GH-29 entry presentation; the anchored workspace remains current until GH-30 delivers private pages.
+Astro emits the editorial sections and approved contact/media configuration at build time. The browser independently fetches publicSongs and publicGigs once per page visit, renders text safely, filters upcoming gigs in Madrid time and reports empty/unavailable states. No anonymous private read or Auth request is needed. The compact navigation responds to keyboard, Escape, link activation and viewport changes. Public navigation measures the fixed header and content, selects the viewport reading section, and updates aria-current plus the current URL hash without adding scroll history entries. Native fragment links retain query context and create navigation history; visible explicit entry/history destinations are retained until manual scrolling resumes geometry selection. Page restoration and resize reconcile the same state. The member sequence above includes GH-29 entry presentation and GH-30 separate-page lifecycle.
 
 Approved editorial member presentation is also static. An empty profile collection emits an honest absence state. Public event dates use semantic time elements with Madrid civil-date formatting, while repertoire media links remain guarded external navigation. No private member listener is added to discovery. The built-shell guard permits only exact matching approved card fields and retains identity denial outside that deliberate surface; private collection/auth references remain forbidden even inside approved fields.
 
 [Public runtime harness](../../src/tooling/web/verify-public-runtime.mjs) observes discovery and actual private-read denial using demo fixtures. GH-9 reruns the predecessor access, availability, opportunities, confirmation, repertoire, preparation and setlist browser suites against the current source; evidence distinguishes synthetic local journeys from anonymous deployed observations.
 
 <!-- pdac:cite id="FR-PUBLIC" digest="sha256:5c70258017dd04a564f3a07ee727c1507b93efc0ea6c80f40617948aef48839b" -->
+
+<!-- pdac:cite id="FR-NAVIGATION" digest="sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6" -->

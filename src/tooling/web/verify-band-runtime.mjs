@@ -17,7 +17,7 @@ try {
     assert.equal(reset.ok,true,'Reset only the explicit local demo database between independent browser scenarios');
     const context=await browser.newContext({viewport}); const page=await context.newPage(); const errors=[];
     page.on('pageerror',error=>errors.push(error.message));
-    await page.goto(origin+'/band/');
+    await page.goto(origin+'/band/ensayos/');
     const popupPromise=page.waitForEvent('popup'); await page.getByRole('button',{name:'Entrar con Google',exact:true}).click(); const popup=await popupPromise;
     await popup.waitForLoadState();
     await popup.getByText('Add new account',{exact:true}).click(); await popup.locator('#email-input').fill(`${label}-${Date.now()}@example.test`); await popup.locator('#display-name-input').fill('Cuenta sintética'); await popup.getByRole('button',{name:'Sign in with Google.com',exact:true}).click();

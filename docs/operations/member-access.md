@@ -30,17 +30,27 @@ Run `pnpm verify` for source/build/security/product/rules checks. For browser ac
 
 Full verification owns its Firestore emulator lifecycle. Before `pnpm verify`, confirm no manually started emulator is listening on port 8080; stop your runtime emulator first. Run browser harnesses sequentially because they reset the shared local demo database. A port collision is a failed full run, requiring the entire verification command to run again after the collision is resolved.
 
-Member editors start collapsed. Editing scenarios deliberately open the relevant native disclosure after admission, reload or restored browser admission; record selection alone is a read action. The member-home harness also checks that sticky navigation leaves section and preparation targets visible. Its temporary read-denial rules are restricted to the explicit local demo endpoint, restored in `finally`, and never deployed.
+Member editors start collapsed. Editing scenarios deliberately open the relevant native disclosure after admission, reload or restored browser admission; record selection alone is a read action. The member-home harness also checks that actual cross-area preparation navigation leaves its target visible below sticky navigation. Its temporary read-denial rules are restricted to the explicit local demo endpoint, restored in `finally`, and never deployed.
 
 Retain scrubbed check summaries and harness JSON/screenshots rather than raw emulator/CLI debug logs. Run security scanning after runtime checks too: the scanner includes ignored logs, so diagnostic credentials or fixture-looking keys must be redacted before evidence is copied or committed. Never exempt those logs from scanning.
 
 Live Google-account completion requires its owner. Emulator evidence is not evidence that the real Google account signed in successfully.
 
-Public header/footer Backstage · Entrar opens `/band/` as an exclusive-member access shell. The explicit Entrar con Google button starts the popup; visiting the route alone never starts it. Existing authenticated active sessions are checked and admitted without repeat sign-in. The explanation disappears after admission. No public identity listener, email eligibility mechanism or self-enrolment is introduced. GH-30 owns separate private-area pages.
+Public header/footer Backstage · Entrar opens `/band/` as an exclusive-member access shell. The explicit Entrar con Google button starts the popup; visiting the route alone never starts it. Existing authenticated active sessions are checked and admitted without repeat sign-in. The explanation disappears after admission. No public identity listener, email eligibility mechanism or self-enrolment is introduced. Separate private-area pages are delivered by GH-30.
 
 The access runtime additionally follows the public entry and checks admitted refresh/return without popup, absence of member navigation before admission and after sign-out, and the existing cancellation/nonmember/revocation lifecycle. `RUNTIME_OUTPUT` optionally selects its ignored evidence directory. Wait until both Auth and Firestore emulators report readiness before starting the browser; a started CLI process alone is insufficient.
+
+## Private area documents
+
+Inicio is `/band/`; Ensayos `/band/ensayos/` retains availability, opportunities, confirmation and preparation; repertoire, setlists and gigs use `/band/repertorio/`, `/band/setlists/` and `/band/conciertos/`. Each document checks membership before creating private navigation or mounting its selected view. Direct entry, reload and restored history use the same gate. Inicio obtains actual scheduling summaries through shared read-only observation/calculation, without hidden editors.
+
+Unsaved or pending-save forms trigger the native browser leave choice. Cancel to continue editing; deliberately leave to discard local changes. Confirmed saves and accepted reload/discard clear the corresponding protection; failed/conflicting saves retain it. No private draft persistence or new application dialog. Revocation/sign-out still removes private data immediately.
+
+Run `node src/tooling/web/verify-member-navigation.mjs` for both widths/all five direct/refresh/history/current-area/admission/revocation/denied cases and all seven changed form kinds. Shared fixture helpers default to Ensayos; specific journeys request their actual area and use real secondary links. Native leave prompts are asserted and handled only when a case explicitly continues or discards; do not suppress the guard globally. Predecessor suites retain save/reload/conflict/failure/ownership/public whitelist evidence through real pages. A new popup must finish its identity/admission state before navigating elsewhere.
 
 Availability runtime verification uses the same complete demo-only override, emulator and dev-server setup: `node src/tooling/web/verify-band-runtime.mjs`. It verifies real forms/save/reload, replacement/empty/restored exceptions, dirty drafts and direct ownership denial, and captures synthetic evidence under `artifacts/runtime/GH-3`. It resets only the explicitly guarded local demo database between viewport scenarios; never run production fixture writes.
 
 
-GH-27 applies the [navigation definition extension](../product/changes/completed/chg-area-navigation/change.md). The current presentation/access mechanisms described here remain implemented; GH-28–GH-30 own their subsequent navigation/entry realization. Manual Google UID membership provisioning and revocation remain unchanged.
+GH-27 applies the [navigation definition extension](../product/changes/completed/chg-area-navigation/change.md). GH-28–GH-30 realize that accepted definition; the current mechanisms above remain implemented. Manual Google UID membership provisioning and revocation remain unchanged.
+
+Before retaining runtime evidence, inspect each newly reported capability against an executed assertion in the current harness diff; an observation flag alone is not proof. Scripted harness edits must read/write explicit UTF-8 and assert the expected match count before replacing text. A missing match or assertion leaves that capability unverified.

@@ -26,4 +26,6 @@ The existing Cloudflare Worker is named pintatonica in the account referenced by
 
 Wrangler's build command runs pnpm build and assets.directory maps dist. Unknown routes return 404 rather than an SPA fallback. The native integration owns deployment; GitHub Actions provides verification without deployment credentials. Native deployment is not claimed to wait for CI. The user authorized GH-1 implementation, verified integration and deployment in one continuous run.
 
+The same static asset deployment emits `/band/`, `/band/ensayos/`, `/band/repertorio/`, `/band/setlists/` and `/band/conciertos/`. Every response is an unadmitted shell; no hosting rewrite, runtime backend or binding is added. Direct-page runtime and exact deployed asset observations remain separate from CI.
+
 Static output has no member identity, server script, paid compute or new storage binding. The public configuration and access mechanism are owned by [08](08-crosscutting-concepts.md). The stable GH-2 preview and production use the same Firebase project and rules; only their exact domains are authorized. Synthetic tests use local demo emulators. Actual published URLs/version evidence belongs in [infrastructure](infrastructure.md) and the delivery record.

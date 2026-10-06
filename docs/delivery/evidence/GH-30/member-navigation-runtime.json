@@ -1,0 +1,36 @@
+[
+  {
+    "viewport": "mobile",
+    "fiveSeparatePages": true,
+    "oneCurrentSecondaryArea": true,
+    "selectedAreaOnly": true,
+    "directRefreshHistory": true,
+    "allAreaRevocationAndInactiveDirectDenial": true,
+    "allSignedOutAndNonmemberPagesWithholdNavigation": true,
+    "sevenFormKindsProtected": true,
+    "cancelLeaveKeepsDraft": true,
+    "deliberateLeaveDiscards": true,
+    "failedSaveRemainsProtected": true,
+    "dirtyRefreshAndHistoryCancelled": true,
+    "successfulSaveClearsProtection": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "desktop",
+    "fiveSeparatePages": true,
+    "oneCurrentSecondaryArea": true,
+    "selectedAreaOnly": true,
+    "directRefreshHistory": true,
+    "allAreaRevocationAndInactiveDirectDenial": true,
+    "allSignedOutAndNonmemberPagesWithholdNavigation": true,
+    "sevenFormKindsProtected": true,
+    "cancelLeaveKeepsDraft": true,
+    "deliberateLeaveDiscards": true,
+    "failedSaveRemainsProtected": true,
+    "dirtyRefreshAndHistoryCancelled": true,
+    "successfulSaveClearsProtection": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  }
+]

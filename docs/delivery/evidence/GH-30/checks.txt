@@ -1,0 +1,164 @@
+CURRENT audit-corrected source
+pnpm install --frozen-lockfile: exit0
+pnpm security:check: exit0
+pnpm verify: exit0
+Node24.11.1, pnpm10.34.6, Java21, demo-pintatonica
+95 tests:9 design/18 security/55 web/13 rules
+
+> pintatonica@0.0.0 verify C:\dev\juangcarmona\pintatonica
+> pnpm verify:fast && pnpm build && pnpm test:web && pnpm product:validate && pnpm product:integrity && pnpm product:doctor && pnpm firebase:rules:test
+> pintatonica@0.0.0 verify:fast C:\dev\juangcarmona\pintatonica
+> pnpm design:check && pnpm design:test && pnpm typecheck && pnpm security:test
+> pintatonica@0.0.0 design:check C:\dev\juangcarmona\pintatonica
+> node src/tooling/design/check-design.mjs
+design:check scanned 43 file(s), 0 violation(s).
+> pintatonica@0.0.0 design:test C:\dev\juangcarmona\pintatonica
+> node --test "src/tests/design/**/*.test.mjs"
+✔ DS001 flags hex and colour functions, ignores tokens and id selectors (1.8398ms)
+✔ DS002 flags literal spacing, allows tokens and zero (0.3078ms)
+✔ DS003 flags literal radius, allows tokens and zero (0.2085ms)
+✔ DS004 flags shadows, blurs and gradients (0.2668ms)
+✔ run excludes configured paths and reports violations elsewhere (9.6371ms)
+✔ repository src/ currently passes the design check (16.3445ms)
+✔ brand colours match the logo sample (0.64ms)
+✔ approved text/background pairs meet WCAG AA (4.5:1) (1.1212ms)
+✔ focus ring has 3:1 contrast on page surface (0.1229ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.2415
+> pintatonica@0.0.0 typecheck C:\dev\juangcarmona\pintatonica
+> astro check --tsconfig src/tsconfig.json --config src/astro.config.mjs
+Result (43 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+> pintatonica@0.0.0 security:test C:\dev\juangcarmona\pintatonica
+> node --test src/tests/security/*.test.mjs
+✔ scanner verifies archive bytes and rejects a changed download (1.2011ms)
+✔ scanner subprocesses receive OS paths but no credentials or scanner overrides (0.5223ms)
+✔ unborn repository still scans the working tree with redaction (0.721ms)
+✔ all-ref history failure blocks success but still scans the working tree (0.4905ms)
+✔ staged changes are scanned without printing their content (0.4919ms)
+✔ scanner execution errors and unknown history fail closed (1.132ms)
+✔ environment example contains only placeholders and a false emulator default (0.6798ms)
+✔ real scanner detects an ignored synthetic secret and redacts reports (640.3309ms)
+✔ only the exact public Firebase key is exempt; other Google keys remain detected (974.5551ms)
+✔ corrupted archive is rejected with the underlying ZIP extraction error (20.5085ms)
+✔ official checksum mismatch stops installation before extraction (6.7795ms)
+✔ valid cached binary is version-checked and reused without downloading (28.8789ms)
+✔ incomplete and corrupt previous installs are safely replaced (26.0288ms)
+✔ cached or downloaded wrong-version binaries cannot be accepted (17.5401ms)
+✔ simultaneous installers publish only one verified cache (78.792ms)
+✔ extraction failure retains process exit and stderr diagnostics (2.9999ms)
+✔ failed installation never runs or reports a successful security scan (4.9436ms)
+✔ a busy installation lock fails closed without deleting another owner (4.2ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1892.9742
+> pintatonica@0.0.0 build C:\dev\juangcarmona\pintatonica
+> astro build --config src/astro.config.mjs
+> pintatonica@0.0.0 test:web C:\dev\juangcarmona\pintatonica
+> node --experimental-strip-types --test src/tests/web/*.test.mjs
+✔ signed-out state contains no member identity (2.1965ms)
+✔ active Google member is recognised by membership without name selection (0.3649ms)
+✔ missing and inactive memberships deny access (0.2328ms)
+✔ non-Google identity never initiates membership reads (0.1747ms)
+✔ revocation removes the recognised member immediately (0.2155ms)
+✔ stale membership callbacks cannot restore a prior identity (0.2447ms)
+✔ failed membership checks and auth observation fail closed (0.2951ms)
+✔ sign-in failure is safe and does not grant access (1.4017ms)
+✔ sign-out clears identity before completion; stale callbacks cannot restore it (0.3709ms)
+✔ failed sign-out cannot retain dashboard or claim success (0.3648ms)
+✔ stopped controller ignores delayed observations (0.2028ms)
+✔ navigation suspension clears identity and restoration rechecks membership (0.2793ms)
+✔ a replacement date exception preserves later weekly habits; empty and removal are distinct (1.9197ms)
+✔ Madrid civil dates and six Monday-based weeks remain correct across DST and month boundaries (32.7267ms)
+✔ separated intervals remain separate; overlapping or touching intervals form a continuous union (1.6675ms)
+✔ missing, blank and example configuration does not initialize Firebase (1.1401ms)
+✔ server initialization guard never imports the eager Firebase client (0.1783ms)
+✔ native builds use the existing public app; partial overrides fail closed (0.3051ms)
+✔ member home derives the next confirmed rehearsal and only its existing musical preparation (25.6208ms)
+✔ member home derives upcoming gig context and associated setlists without publication inference (0.8322ms)
+✔ member home keeps missing rehearsal, songs and gigs honestly empty (0.605ms)
+✔ current public section changes at the visible reading boundary (1.0141ms)
+✔ top and short final public areas remain identifiable (0.2123ms)
+✔ full opportunities use all active members and a continuous fixed two hours (2.1608ms)
+✔ partial windows remain secondary, include short overlaps, and rank participation then duration (0.6099ms)
+✔ membership is dynamic; touching intervals stay continuous without duplicate participants (0.5231ms)
+✔ preparation selects existing unique songs and preserves lightweight musical focus (2.2367ms)
+✔ private identity leakage remains forbidden on public and unadmitted member shells (2.3068ms)
+✔ only an explicitly approved public member name is allowed in its matching editorial card (2.3927ms)
+✔ an approved card cannot hide another private identity or private collection reference (0.5526ms)
+✔ approved editorial names and roles are matched safely as HTML text (0.4354ms)
+✔ explicit approved descriptions and image labels may contain the public name but never private references (0.5072ms)
+✔ private onward destinations address distinct documents and a safe preparation fragment (1.2572ms)
+✔ home planning never exposes calculated windows before all server readers are ready or after failure (1.1807ms)
+✔ home and rehearsal planning share date exceptions and full/partial qualification (0.7528ms)
+✔ public music consumes only intended fields and rejects executable media or credential links (1.4015ms)
+✔ public upcoming gigs use Madrid civil time, retaining date-only today and sorting future events (16.2044ms)
+✔ expected attendance, not candidate classification, distinguishes full from partial rehearsals (1.922ms)
+✔ upcoming includes ongoing/future rehearsals and filters finished Madrid times across DST (15.4975ms)
+✔ public song projection includes only deliberately selected safe fields, never internal material (1.6782ms)
+✔ resources retain provider links and reject executable schemes or embedded credentials (0.7223ms)
+✔ musical running order preserves songs and repeats, duration/notes and a valid rehearsal or gig association (1.1421ms)
+✔ basic gig dates are real Madrid civil dates and publication whitelists exclude preparation (1.4734ms)
+✔ built / is a branded, non-sensitive HTML shell (58.4983ms)
+✔ built /band/ is a branded, non-sensitive HTML shell (13.4969ms)
+✔ built /band is a branded, non-sensitive HTML shell (12.3535ms)
+✔ built /band/ensayos/ is a branded, non-sensitive HTML shell (7.872ms)
+✔ built /band/repertorio/ is a branded, non-sensitive HTML shell (8.3015ms)
+✔ built /band/setlists/ is a branded, non-sensitive HTML shell (6.711ms)
+✔ built /band/conciertos/ is a branded, non-sensitive HTML shell (6.1779ms)
+✔ published logo is the exact existing brand asset (3.584ms)
+✔ public presentation uses approved title, undotted wordmark, navigation and honest editorial sections (1.8777ms)
+✔ built member page withholds identity and dashboard until browser authorization (2.4994ms)
+✔ unknown routes remain missing rather than becoming the member shell (1.7913ms)
+✔ missing production build fails the serving harness (0.5986ms)
+ℹ tests 55
+ℹ suites 0
+ℹ pass 55
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 478.3245
+> pintatonica@0.0.0 product:validate C:\dev\juangcarmona\pintatonica
+> prodshape validate
+> pintatonica@0.0.0 product:integrity C:\dev\juangcarmona\pintatonica
+> prodshape integration update --check
+All managed integration files match the installation lock.
+> pintatonica@0.0.0 product:doctor C:\dev\juangcarmona\pintatonica
+> prodshape doctor
+ok   configuration: .product/config.yaml valid (or defaults in effect)
+ok   model validation: 0 error(s), 0 warning(s) across 57 artifact(s)
+ok   product structure: docs/product/model present
+ok   authoring templates: 11 authoring template(s) present
+ok   framework version: integrations generated with v0.22.0
+ok   managed files: all managed files match the installation lock
+ok   skill references: all skill references resolve
+ok   generated outputs: .product/generated present
+> pintatonica@0.0.0 firebase:rules:test C:\dev\juangcarmona\pintatonica
+> firebase emulators:exec --only firestore --project demo-pintatonica "node --test src/tests/firebase/*.test.mjs"
+i  emulators: Starting emulators: firestore {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: firestore"}}
+i  emulators: Detected demo project ID "demo-pintatonica", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail. {"metadata":{"emulator":{"name":"hub"},"message":"Detected demo project ID \"demo-pintatonica\", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail."}}
+✔ firestore rules (3937.5783ms)
+ℹ tests 13
+ℹ suites 1
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4321.3019
++  Script exited successfully (code 0) 
+i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}

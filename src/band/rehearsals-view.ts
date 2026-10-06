@@ -1,3 +1,4 @@
+import {setUnsaved} from "./unsaved";
 import {collection,doc,onSnapshot,setDoc,type Firestore} from 'firebase/firestore';
 import {attendance,upcoming,type Rehearsal} from './rehearsals';
 import {dateLabel} from './availability';
@@ -17,6 +18,7 @@ export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window
   const submit=element('button','Confirmar ensayo','button compact');submit.type='submit';
   const status=element('p');status.role='status';status.setAttribute('aria-live','polite');
   form.append(attendanceGroup,agreement,submit,status);
+  form.addEventListener('input',()=>setUnsaved(form,true));
   form.addEventListener('submit',(event)=>{event.preventDefault();void(async()=>{
     try {
       if(!upcoming([{date,start:slot.start,end:slot.end}]).length)throw Error('La ventana ha terminado.');
@@ -24,9 +26,9 @@ export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window
       const decision=attendance(required,expected);
       if(!agreed.checked)throw Error('Confirma el acuerdo.');
       for(const node of form.querySelectorAll<HTMLInputElement|HTMLButtonElement>('input,button'))node.disabled=true;
-      setStatus(status,'Guardando confirmación…','neutral');
+      setUnsaved(form,true);setStatus(status,'Guardando confirmación…','neutral');
       await setDoc(doc(db,'rehearsals',id),{date,start:slot.start,end:slot.end,required,available:slot.members,expected:decision.expected,kind:decision.kind,names,confirmedBy:uid});
-      setStatus(status,'Ensayo confirmado. Ya está en la lista compartida.','positive');
+      setUnsaved(form,false);setStatus(status,'Ensayo confirmado. Ya está en la lista compartida.','positive');
     } catch {setStatus(status,'No se ha confirmado el ensayo. Revisa la asistencia y vuelve a intentarlo.','error');for(const node of form.querySelectorAll<HTMLInputElement|HTMLButtonElement>('input,button'))node.disabled=false;}
   })();});
   return form;

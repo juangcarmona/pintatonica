@@ -7,7 +7,7 @@ import {publicProfile} from '../../public-site/content.ts';
 let app;
 before(async () => { app = await serveBuild(); });
 after(async () => { await app?.close(); });
-for (const [path, heading] of [['/', 'Pintatónica'], ['/band/', 'Backstage'], ['/band', 'Backstage']]) {
+for (const [path, heading] of [['/', 'Pintatónica'], ['/band/', 'Backstage'], ['/band', 'Backstage'], ...['ensayos','repertorio','setlists','conciertos'].map(area=>[`/band/${area}/`,'Backstage'])]) {
   test(`built ${path} is a branded, non-sensitive HTML shell`, async () => {
     const response = await fetch(app.url + path);
     assert.equal(response.status, 200);
@@ -21,7 +21,10 @@ for (const [path, heading] of [['/', 'Pintatónica'], ['/band/', 'Backstage'], [
       assert.doesNotMatch(html, /aria-current="page"/);
       assert.match(html, /data-public-area="inicio"/);
       assert.match(html, /Backstage · Entrar/);
-    } else assert.match(html, /aria-current="page"/);
+    } else {
+      assert.match(html, /aria-current="page"/);
+      assert.doesNotMatch(html, /class="band-navigation"|class="song-editor"|class="gig-editor"|class="setlist-editor"/);
+    }
     assertShellPrivacy(html,{area:path==='/'?'public':'band',approvedMembers:publicProfile.members});
     for (const asset of html.matchAll(/(?:src|href)="([^"#]+\.(?:css|js|png))"/g)) {
       assert.equal((await fetch(app.url + asset[1])).status, 200, asset[1]);
@@ -53,6 +56,7 @@ test('built member page withholds identity and dashboard until browser authoriza
 });
 test('unknown routes remain missing rather than becoming the member shell', async () => {
   assert.equal((await fetch(app.url + '/unknown-route')).status, 404);
+  assert.equal((await fetch(app.url + '/band/unknown-area/')).status, 404);
 });
 test('missing production build fails the serving harness', async () => {
   await assert.rejects(serveBuild('not-a-built-directory'), /ENOENT/);

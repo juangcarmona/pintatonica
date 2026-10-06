@@ -1,0 +1,36 @@
+[
+  {
+    "viewport": "mobile",
+    "loadingBeforeServerSnapshots": true,
+    "failedReadClearsSummary": true,
+    "emptyHome": true,
+    "defaultEditorsClosed": true,
+    "availabilityWithinRehearsalsOnly": true,
+    "nextRehearsalPreparationAndResource": true,
+    "upcomingGigAndSetlist": true,
+    "crossPagePreparationSavedAndHomeUpdated": true,
+    "deliberateEditing": true,
+    "cancelledLeaveRetainsDraft": true,
+    "stickyNavigationLeavesTargetsVisible": true,
+    "revocationClearsWorkspace": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "desktop",
+    "loadingBeforeServerSnapshots": true,
+    "failedReadClearsSummary": true,
+    "emptyHome": true,
+    "defaultEditorsClosed": true,
+    "availabilityWithinRehearsalsOnly": true,
+    "nextRehearsalPreparationAndResource": true,
+    "upcomingGigAndSetlist": true,
+    "crossPagePreparationSavedAndHomeUpdated": true,
+    "deliberateEditing": true,
+    "cancelledLeaveRetainsDraft": true,
+    "stickyNavigationLeavesTargetsVisible": true,
+    "revocationClearsWorkspace": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  }
+]

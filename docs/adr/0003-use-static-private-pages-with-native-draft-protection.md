@@ -1,9 +1,9 @@
 ---
 name: use-static-private-pages-with-native-draft-protection
 description: Use separate static private area documents with per-document admission and native unsaved-leave protection.
-status: Proposed
+status: Accepted
 date: 2026-10-06
-deciders: []
+deciders: [Juan (delegated engineering decisions), Codex]
 tags: [navigation, security, lifecycle]
 ---
 
@@ -15,7 +15,7 @@ Accepted FR-NAVIGATION requires five private pages, meaningful direct entry/hist
 
 ## Decision
 
-We will emit separate static Astro access shells, recheck membership in every document and mount only its selected area. Shared read-only availability observation and the existing pure scheduling calculation will serve Inicio and Ensayos. Ordinary links use browser history; a native beforeunload guard reads explicit editor dirty/pending state, allowing continued editing or deliberate loss without introducing a router, private draft store or application dialog.
+We emit separate static Astro access shells, recheck membership in every document and mount only its selected area. Shared read-only availability observation and the existing pure scheduling calculation will serve Inicio and Ensayos. Ordinary links use browser history; a native beforeunload guard reads explicit editor dirty/pending state, allowing continued editing or deliberate loss without introducing a router, private draft store or application dialog.
 
 ## Consequences
 
@@ -33,3 +33,5 @@ We will emit separate static Astro access shells, recheck membership in every do
 
 - [GH-30 plan](../delivery/plans/GH-30.md), [FR-NAVIGATION](../product/model/requirements/functional/fr-navigation.md), [FR-ACCESS](../product/model/requirements/functional/fr-access.md)
 - [ADR-0001](0001-build-static-shells-with-astro.md), [runtime](../architecture/06-runtime-view.md), [security](../architecture/08-crosscutting-concepts.md)
+
+Accepted within Juan’s explicit FF authorization for GH-30 engineering decisions. Validation uses actual five-page and native leave-choice journeys; this does not assert a separate human review or GitHub vote.

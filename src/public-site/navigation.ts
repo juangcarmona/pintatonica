@@ -8,6 +8,8 @@ if(toggle&&nav&&header){
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){close();toggle.focus();}});
   nav.addEventListener('click',event=>{const link=(event.target as Element).closest('a');if(link){close();if(link.hash&&new URL(link.href).pathname===location.pathname){const destination=document.getElementById(link.hash.slice(1));destination?.focus({preventScroll:true});}}});
   compact.addEventListener('change',()=>{toggle.hidden=!compact.matches;close();});
+  const measureHeader=()=>document.documentElement.style.setProperty('--public-header-height',`${header.getBoundingClientRect().height}px`);
+  const headerSize=new ResizeObserver(measureHeader);headerSize.observe(header);measureHeader();
   const sections=[...nav.querySelectorAll<HTMLAnchorElement>('[data-public-area]')].flatMap(link=>{const section=document.getElementById(link.dataset.publicArea!);return section?[{link,section}]:[];});
   if(sections.length){
     let frame=0, entryReady=false, requested:string|undefined, requestedAt:number|undefined;

@@ -7,6 +7,8 @@ import {mountRepertoire} from './repertoire-view';
 import {mountSetlists} from './setlists-view';
 import {mountGigs} from './gigs-view';
 import {mountHome} from './home-view';
+import {bandAreas,bandArea} from './areas';
+import {protectUnsavedDeparture} from './unsaved';
 
 const status = document.querySelector<HTMLElement>('[data-access-status]');
 const dashboard = document.querySelector<HTMLElement>('[data-member-dashboard]');
@@ -14,6 +16,7 @@ const memberName = document.querySelector<HTMLElement>('[data-member-name]');
 const login = document.querySelector<HTMLButtonElement>('[data-google-login]');
 const logout = document.querySelector<HTMLButtonElement>('[data-google-logout]');
 const introduction = document.querySelector<HTMLElement>('[data-access-introduction]');
+protectUnsavedDeparture();
 const messages = {
   checking: 'Comprobando el acceso…',
   'signed-out': 'Entra con tu cuenta de Google. El acceso está reservado a miembros de Pintatónica.',
@@ -43,22 +46,32 @@ void initializeBrowserFirebase().then((client) => {
     disposeWorkspace(); disposeWorkspace=()=>{};
     render(state);
     if(state.kind==='member' && workspace && client.auth.currentUser){
-      const home=document.createElement('div'),rehearsals=document.createElement('div'),availability=document.createElement('div'),repertoire=document.createElement('div');
-      const setlists=document.createElement('div'),gigs=document.createElement('div');
-      const sections=[['Inicio',home],['Ensayos',rehearsals],['Repertorio',repertoire],['Setlists',setlists],['Conciertos',gigs]] as const;
+      const current=bandArea(document.querySelector<HTMLElement>('[data-band-area]')?.dataset.bandArea);
+      const section=document.createElement('div');section.id=`band-section-${bandAreas.indexOf(current)}`;section.tabIndex=-1;
       const navigation=document.createElement('nav');navigation.className='band-navigation';navigation.setAttribute('aria-label','Backstage');
-      for(const [index,[label,section]] of sections.entries()){section.id=`band-section-${index}`;section.tabIndex=-1;const link=document.createElement('a');link.href=`#${section.id}`;link.textContent=label;navigation.append(link);}
-      availability.id='band-availability';availability.tabIndex=-1;
-      workspace.append(navigation,home,rehearsals,repertoire,setlists,gigs);
+      for(const area of bandAreas){const link=document.createElement('a');link.href=area.path;link.textContent=area.label;if(area.id===current.id)link.setAttribute('aria-current','page');navigation.append(link);}
+      workspace.append(navigation,section);
       const measureNavigation=()=>workspace.style.setProperty('--member-navigation-height',`${navigation.getBoundingClientRect().height}px`);
       const navigationSize=new ResizeObserver(measureNavigation);navigationSize.observe(navigation);measureNavigation();
-      const memberHome=mountHome(client.db,home);
-      const rehearsalList=document.createElement('div');rehearsals.append(rehearsalList,availability);
-      const stopRehearsals=mountRehearsals(client.db,rehearsalList),stopAvailability=mountAvailability(client.db,client.auth.currentUser.uid,availability,memberHome.updateScheduling),stopRepertoire=mountRepertoire(client.db,repertoire);
-      const stopSetlists=mountSetlists(client.db,setlists),stopGigs=mountGigs(client.db,gigs);
-      const openEditor=(event:Event)=>{const link=(event.target as Element).closest<HTMLAnchorElement>('a[data-open-editor]');if(!link)return;const target=document.getElementById(link.hash.slice(1));const disclosure=target?.closest('details');if(disclosure)disclosure.open=true;target?.focus();};
-      workspace.addEventListener('click',openEditor);
-      disposeWorkspace=()=>{navigationSize.disconnect();workspace.style.removeProperty('--member-navigation-height');workspace.removeEventListener('click',openEditor);memberHome.dispose();stopRehearsals();stopAvailability();stopRepertoire();stopSetlists();stopGigs();workspace.replaceChildren();};
+      let stopArea=()=>{};
+      if(current.id==='inicio')stopArea=mountHome(client.db,section).dispose;
+      else if(current.id==='ensayos'){
+        const rehearsalList=document.createElement('div'),availability=document.createElement('div');availability.id='band-availability';availability.tabIndex=-1;section.append(rehearsalList,availability);
+        const stopRehearsals=mountRehearsals(client.db,rehearsalList),stopAvailability=mountAvailability(client.db,client.auth.currentUser.uid,availability);
+        stopArea=()=>{stopRehearsals();stopAvailability();};
+      }else if(current.id==='repertorio')stopArea=mountRepertoire(client.db,section);
+      else if(current.id==='setlists')stopArea=mountSetlists(client.db,section);
+      else stopArea=mountGigs(client.db,section);
+      let reached='';
+      const reachAnchor=()=>{
+        if(!location.hash||reached===location.hash)return;
+        let id:string;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}
+        const target=document.getElementById(id);if(!target||!section.contains(target))return;
+        const disclosure=target.closest('details');if(disclosure)disclosure.open=true;
+        target.focus({preventScroll:true});target.scrollIntoView({block:'start'});reached=location.hash;
+      };
+      const targets=new MutationObserver(reachAnchor);targets.observe(section,{childList:true,subtree:true});addEventListener('hashchange',reachAnchor);reachAnchor();
+      disposeWorkspace=()=>{targets.disconnect();removeEventListener('hashchange',reachAnchor);navigationSize.disconnect();workspace.style.removeProperty('--member-navigation-height');stopArea();workspace.replaceChildren();};
     }
   });
   login.addEventListener('click', () => { void controller.signIn(); });
