@@ -20,6 +20,7 @@ for (const [path, heading] of [['/', 'Pintatónica'], ['/band/', 'Backstage'], [
     if(path==='/') {
       assert.doesNotMatch(html, /aria-current="page"/);
       assert.match(html, /data-public-area="inicio"/);
+      assert.match(html, /Backstage · Entrar/);
     } else assert.match(html, /aria-current="page"/);
     assertShellPrivacy(html,{area:path==='/'?'public':'band',approvedMembers:publicProfile.members});
     for (const asset of html.matchAll(/(?:src|href)="([^"#]+\.(?:css|js|png))"/g)) {
@@ -46,6 +47,9 @@ test('built member page withholds identity and dashboard until browser authoriza
   assert.match(html, /data-member-name><\/span>/);
   assert.match(html, /data-google-login[^>]*hidden/);
   assert.match(html, /Activa JavaScript/);
+  assert.match(html, /Acceso exclusivo para miembros de Pintatónica/);
+  assert.match(html, /Iniciar sesión no crea una membresía/);
+  assert.doesNotMatch(html, /class="band-navigation"/);
 });
 test('unknown routes remain missing rather than becoming the member shell', async () => {
   assert.equal((await fetch(app.url + '/unknown-route')).status, 404);

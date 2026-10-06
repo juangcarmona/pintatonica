@@ -1,0 +1,26 @@
+{
+  "schema": "product-definition-as-code/citations/v1alpha1",
+  "targets": [
+    "docs/delivery/plans/GH-29.md"
+  ],
+  "citations": [
+    {
+      "id": "FR-ACCESS",
+      "digest": "sha256:829c0792a764b759e908257acec47c921107aad3593da3f88a346c85313c24de",
+      "source": "docs/delivery/plans/GH-29.md",
+      "line": 29,
+      "form": "inline",
+      "status": "current"
+    }
+  ],
+  "diagnostics": [],
+  "summary": {
+    "total": 1,
+    "current": 1,
+    "stale": 0,
+    "tampered": 0,
+    "unresolved": 0,
+    "errors": 0,
+    "warnings": 0
+  }
+}

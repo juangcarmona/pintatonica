@@ -26,11 +26,11 @@ const { area = 'public' } = Astro.props;
         <a href={area === 'public' ? '#media' : '/#media'} data-public-area={area === 'public' ? 'media' : undefined}>Media</a>
         <a href={area === 'public' ? '#conciertos' : '/#conciertos'} data-public-area={area === 'public' ? 'conciertos' : undefined}>Conciertos</a>
         <a href={area === 'public' ? '#contacto' : '/#contacto'} data-public-area={area === 'public' ? 'contacto' : undefined}>Contacto</a>
-        <a class="backstage-link" href="/band/" aria-current={area === 'band' ? 'page' : undefined}>Backstage</a>
+        <a class="backstage-link" href="/band/" aria-current={area === 'band' ? 'page' : undefined}>{area === 'public' ? 'Backstage · Entrar' : 'Backstage'}</a>
       </nav>
     </header>
     <main id="contenido" tabindex="-1"><slot /></main>
-    <footer class="site-footer"><span class="brand-lockup"><BrandBars />Pintatónica</span><a href="/#contacto">Contacto</a><a href="/band/">Backstage <span aria-hidden="true">↗</span></a></footer>
+    <footer class="site-footer"><span class="brand-lockup"><BrandBars />Pintatónica</span><a href="/#contacto">Contacto</a><a href="/band/">{area === 'public' ? 'Backstage · Entrar' : 'Backstage'} <span aria-hidden="true">↗</span></a></footer>
     <script>
       import '../public-site/navigation';
       import { initializeBrowserFirebase } from '../firebase/browser';
