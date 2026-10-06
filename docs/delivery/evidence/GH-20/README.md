@@ -1,6 +1,6 @@
 # GH-20 evidence
 
-[Plan](../../plans/GH-20.md), [PR #24](https://github.com/juangcarmona/pintatonica/pull/24). Product model, public/private projection rules and logo bytes are unchanged. Canonical tokens implement ink primary actions, accessible darker state tones, neutral member surfaces, label/control geometry and compact decorative bars.
+[Plan](../../completed/GH-20.md), [PR #24](https://github.com/juangcarmona/pintatonica/pull/24). Product model, public/private projection rules and logo bytes are unchanged. Canonical tokens implement ink primary actions, accessible darker state tones, neutral member surfaces, label/control geometry and compact decorative bars.
 
 `checks.txt` records the full current CI-derived chain, including 9 design, 18 security, 38 web and 13 emulator tests. `citations.json` records current architecture citations. `source-manifest.json` binds all source bytes. `runtime.json` records actual mobile/desktop admitted controls, destructive labels, 44px targets, positive saved status, visible focus, reduced motion, native confirmation preserving a draft, four-bar primitive and no horizontal overflow/page errors. Screenshots named `mobile/desktop-controls/member/public.png` were opened and inspected. They contain isolated synthetic demo content, never real member identities. Public/repertoire/preparation regression JSON records safe projection, direct denial, save/reload, conflicts and membership revocation on this source.
 
