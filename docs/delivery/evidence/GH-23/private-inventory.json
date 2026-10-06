@@ -1,0 +1,64 @@
+{
+  "observedAt": "2026-10-06T06:32:37.054Z",
+  "project": "pintatonica-band",
+  "mode": "read-only cached Firebase CLI operator",
+  "collections": {
+    "members": {
+      "count": 1,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "availability": {
+      "count": 0,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "rehearsals": {
+      "count": 0,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "songs": {
+      "count": 0,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "setlists": {
+      "count": 0,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "gigs": {
+      "count": 0,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "publicSongs": {
+      "count": 0,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "publicGigs": {
+      "count": 0,
+      "syntheticCandidateCount": 0,
+      "categories": {}
+    },
+    "overrides collection group": {
+      "count": 0,
+      "syntheticCandidateCount": null,
+      "categories": {},
+      "inspection": "Read document count only; field content not inspected."
+    }
+  },
+  "limits": [
+    "Candidate heuristic is not proof a record is synthetic.",
+    "No records modified.",
+    "No private identities, document IDs or field contents captured.",
+    "Known top-level collections inventoried; overrides collection group counted without inspecting fields; empty unknown top-level collections cannot be discovered."
+  ],
+  "topLevelCollectionCoverage": {
+    "observedCount": 1,
+    "knownCount": 1,
+    "unknownCount": 0
+  }
+}
