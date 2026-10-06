@@ -1,0 +1,146 @@
+> pintatonica@0.0.0 verify C:\dev\juangcarmona\pintatonica
+> pnpm verify:fast && pnpm build && pnpm test:web && pnpm product:validate && pnpm product:integrity && pnpm product:doctor && pnpm firebase:rules:test
+> pintatonica@0.0.0 verify:fast C:\dev\juangcarmona\pintatonica
+> pnpm design:check && pnpm design:test && pnpm typecheck && pnpm security:test
+> pintatonica@0.0.0 design:check C:\dev\juangcarmona\pintatonica
+> node src/tooling/design/check-design.mjs
+design:check scanned 33 file(s), 0 violation(s).
+> pintatonica@0.0.0 design:test C:\dev\juangcarmona\pintatonica
+> node --test "src/tests/design/**/*.test.mjs"
+✔ DS001 flags hex and colour functions, ignores tokens and id selectors (1.9147ms)
+✔ DS002 flags literal spacing, allows tokens and zero (0.3239ms)
+✔ DS003 flags literal radius, allows tokens and zero (0.2154ms)
+✔ DS004 flags shadows, blurs and gradients (0.3132ms)
+✔ run excludes configured paths and reports violations elsewhere (10.2747ms)
+✔ repository src/ currently passes the design check (14.3227ms)
+✔ brand colours match the logo sample (0.5942ms)
+✔ approved text/background pairs meet WCAG AA (4.5:1) (1.0654ms)
+✔ focus ring has 3:1 contrast on page surface (0.1152ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.6528
+> pintatonica@0.0.0 typecheck C:\dev\juangcarmona\pintatonica
+> astro check --tsconfig src/tsconfig.json --config src/astro.config.mjs
+Result (33 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+> pintatonica@0.0.0 security:test C:\dev\juangcarmona\pintatonica
+> node --test src/tests/security/*.test.mjs
+✔ scanner verifies archive bytes and rejects a changed download (2.0525ms)
+✔ scanner subprocesses receive OS paths but no credentials or scanner overrides (1.231ms)
+✔ unborn repository still scans the working tree with redaction (1.0037ms)
+✔ all-ref history failure blocks success but still scans the working tree (0.8089ms)
+✔ staged changes are scanned without printing their content (0.9261ms)
+✔ scanner execution errors and unknown history fail closed (1.4556ms)
+✔ environment example contains only placeholders and a false emulator default (0.8324ms)
+✔ real scanner detects an ignored synthetic secret and redacts reports (807.9881ms)
+✔ only the exact public Firebase key is exempt; other Google keys remain detected (1274.298ms)
+✔ corrupted archive is rejected with the underlying ZIP extraction error (28.7569ms)
+✔ official checksum mismatch stops installation before extraction (12.3124ms)
+✔ valid cached binary is version-checked and reused without downloading (58.7545ms)
+✔ incomplete and corrupt previous installs are safely replaced (183.4457ms)
+✔ cached or downloaded wrong-version binaries cannot be accepted (24.2694ms)
+✔ simultaneous installers publish only one verified cache (64.7065ms)
+✔ extraction failure retains process exit and stderr diagnostics (4.5237ms)
+✔ failed installation never runs or reports a successful security scan (5.5568ms)
+✔ a busy installation lock fails closed without deleting another owner (5.8013ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2612.4892
+> pintatonica@0.0.0 build C:\dev\juangcarmona\pintatonica
+> astro build --config src/astro.config.mjs
+> pintatonica@0.0.0 test:web C:\dev\juangcarmona\pintatonica
+> node --experimental-strip-types --test src/tests/web/*.test.mjs
+✔ signed-out state contains no member identity (2.4792ms)
+✔ active Google member is recognised by membership without name selection (0.4121ms)
+✔ missing and inactive memberships deny access (0.2772ms)
+✔ non-Google identity never initiates membership reads (0.207ms)
+✔ revocation removes the recognised member immediately (0.2383ms)
+✔ stale membership callbacks cannot restore a prior identity (0.288ms)
+✔ failed membership checks and auth observation fail closed (0.3151ms)
+✔ sign-in failure is safe and does not grant access (0.5962ms)
+✔ sign-out clears identity before completion; stale callbacks cannot restore it (0.3567ms)
+✔ failed sign-out cannot retain dashboard or claim success (0.4299ms)
+✔ stopped controller ignores delayed observations (0.2207ms)
+✔ navigation suspension clears identity and restoration rechecks membership (0.3061ms)
+✔ a replacement date exception preserves later weekly habits; empty and removal are distinct (2.0611ms)
+✔ Madrid civil dates and six Monday-based weeks remain correct across DST and month boundaries (41.3048ms)
+✔ separated intervals remain separate; overlapping or touching intervals form a continuous union (2.1771ms)
+✔ missing, blank and example configuration does not initialize Firebase (1.1931ms)
+✔ server initialization guard never imports the eager Firebase client (0.237ms)
+✔ native builds use the existing public app; partial overrides fail closed (0.2371ms)
+✔ member home derives the next confirmed rehearsal and only its existing musical preparation (24.1985ms)
+✔ member home derives upcoming gig context and associated setlists without publication inference (0.6448ms)
+✔ member home keeps missing rehearsal, songs and gigs honestly empty (0.491ms)
+✔ full opportunities use all active members and a continuous fixed two hours (2.7594ms)
+✔ partial windows remain secondary, include short overlaps, and rank participation then duration (0.4686ms)
+✔ membership is dynamic; touching intervals stay continuous without duplicate participants (0.4747ms)
+✔ preparation selects existing unique songs and preserves lightweight musical focus (2.31ms)
+✔ private identity leakage remains forbidden on public and unadmitted member shells (2.7368ms)
+✔ only an explicitly approved public member name is allowed in its matching editorial card (2.2977ms)
+✔ an approved card cannot hide another private identity or private collection reference (0.521ms)
+✔ approved editorial names and roles are matched safely as HTML text (0.4408ms)
+✔ explicit approved descriptions and image labels may contain the public name but never private references (0.5347ms)
+✔ public music consumes only intended fields and rejects executable media or credential links (1.8446ms)
+✔ public upcoming gigs use Madrid civil time, retaining date-only today and sorting future events (20.2621ms)
+✔ expected attendance, not candidate classification, distinguishes full from partial rehearsals (2.6064ms)
+✔ upcoming includes ongoing/future rehearsals and filters finished Madrid times across DST (24.2126ms)
+✔ public song projection includes only deliberately selected safe fields, never internal material (2.2147ms)
+✔ resources retain provider links and reject executable schemes or embedded credentials (0.9393ms)
+✔ musical running order preserves songs and repeats, duration/notes and a valid rehearsal or gig association (2.0849ms)
+✔ basic gig dates are real Madrid civil dates and publication whitelists exclude preparation (2.4353ms)
+✔ built / is a branded, non-sensitive HTML shell (76.3867ms)
+✔ built /band/ is a branded, non-sensitive HTML shell (15.0972ms)
+✔ built /band is a branded, non-sensitive HTML shell (10.5328ms)
+✔ published logo is the exact existing brand asset (6.4739ms)
+✔ public presentation uses approved title, undotted wordmark, navigation and honest editorial sections (2.7327ms)
+✔ built member page withholds identity and dashboard until browser authorization (3.3397ms)
+✔ unknown routes remain missing rather than becoming the member shell (3.1565ms)
+✔ missing production build fails the serving harness (1.056ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 485.7127
+> pintatonica@0.0.0 product:validate C:\dev\juangcarmona\pintatonica
+> prodshape validate
+0 error(s), 0 warning(s) across 55 artifact(s)
+> pintatonica@0.0.0 product:integrity C:\dev\juangcarmona\pintatonica
+> prodshape integration update --check
+> pintatonica@0.0.0 product:doctor C:\dev\juangcarmona\pintatonica
+> prodshape doctor
+ok   configuration: .product/config.yaml valid (or defaults in effect)
+ok   model validation: 0 error(s), 0 warning(s) across 55 artifact(s)
+ok   product structure: docs/product/model present
+ok   authoring templates: 11 authoring template(s) present
+ok   framework version: integrations generated with v0.22.0
+ok   managed files: all managed files match the installation lock
+ok   skill references: all skill references resolve
+ok   generated outputs: .product/generated present
+All checks passed.
+> pintatonica@0.0.0 firebase:rules:test C:\dev\juangcarmona\pintatonica
+> firebase emulators:exec --only firestore --project demo-pintatonica "node --test src/tests/firebase/*.test.mjs"
+✔ firestore rules (4132.5724ms)
+ℹ tests 13
+ℹ suites 1
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6606.6468
++  Script exited successfully (code 0)
