@@ -17,3 +17,9 @@ export function setStatus(node: HTMLElement, text: string, tone: 'neutral'|'posi
   node.dataset.tone=tone;
   node.textContent=text;
 }
+export function editorDisclosure(label: string, content: HTMLElement) {
+  const details=element('details',undefined,'editor-disclosure');
+  details.dataset.editorDisclosure='';
+  details.append(element('summary',label),content);
+  return details;
+}

@@ -38,7 +38,7 @@ try {
     await other.page.getByText('Ensayo confirmado · grupo completo',{exact:true}).waitFor();await other.page.getByText('Ensayo confirmado · asistencia parcial',{exact:true}).waitFor();
     const shared=other.page.locator('[data-rehearsal]').filter({hasText:'asistencia parcial'});const expected=await shared.locator('p').filter({hasText:'Esperados:'}).textContent();assert.match(expected,/Miembro de prueba/);assert.match(expected,/Miembro B/);assert.doesNotMatch(expected,/Miembro C/);
     await other.context.close();assert.deepEqual(errors,[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-    await page.locator('[data-band-workspace] > div').first().screenshot({path:`${output}/${label}.png`});
+    await page.locator('#band-section-1').screenshot({path:`${output}/${label}.png`});
     observations.push({viewport:label,explicitFullAndPartialConfirmation:true,failedWriteNeverConfirmed:true,retrySingleSavedRecord:true,persistsAfterReload:true,expiredOpenWindowCannotConfirm:true,upcomingExpiresWithoutSnapshot:true,otherMemberSeesExpectedAttendance:true,noOverflow:true,pageErrors:0});await context.close();
   }
   await writeFile(`${output}/runtime.json`,JSON.stringify({project,observations},null,2)+'\n');console.log(JSON.stringify(observations));

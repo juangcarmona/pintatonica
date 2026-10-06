@@ -35,6 +35,8 @@ Identity changes invalidate prior membership callbacks. Membership revocation, l
 
 Page suspension clears the member DOM and stops its observers. Persisted browser restoration creates a fresh controller and rechecks membership; a cached page cannot retain an admitted identity indefinitely.
 
+The admitted home waits for server-confirmed rehearsal/song/gig/setlist snapshots before composing current context. Read failure clears its summaries; its minute timer reuses existing time selection. Scheduling summaries come from the already guarded availability calculation. Home observers and timers are disposed alongside every feature on identity loss, failure, suspension or revocation. Anchor navigation opens preparation disclosures without recreating editors or losing drafts. A resize observer measures the wrapped member navigation for visible anchor targets and is disposed with the workspace; this is runtime geometry rather than a new design token.
+
 See the [GH-2 plan](../delivery/completed/GH-2.md), [controller tests](../../src/tests/web/access.test.mjs) and [demo-only runtime harness](../../src/tooling/web/verify-access-runtime.mjs). Live OAuth requires the real account holder and is reported separately from emulator evidence.
 
 ## Verification

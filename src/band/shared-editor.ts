@@ -1,12 +1,13 @@
 import {collection,doc,onSnapshot,type Firestore} from 'firebase/firestore';
-import {button,element,setStatus} from './dom';
+import {button,element,setStatus,editorDisclosure} from './dom';
 type RecordBase={id:string;title:string;revision:number};
 export function sharedEditor<T extends RecordBase>(db:Firestore,host:HTMLElement,path:string,label:string,options:{form:HTMLFormElement;fill:(item?:T)=>void;read:()=>Omit<T,'id'|'revision'>;details:(item:T)=>HTMLElement;save:(id:string,revision:number,draft:Omit<T,'id'|'revision'>)=>Promise<void>;ready:()=>boolean}) {
   let alive=true,loaded=false,dirty=false,saving=false,id='',revision=0,items:T[]=[];
   const status=element('p','Cargando datos compartidos…'),list=element('div'),details=element('div');status.role='status';status.setAttribute('aria-live','polite');
   const save=element('button',`Guardar ${label}`,'button compact');save.type='submit';
   options.form.append(save,button(`Recargar ${label} guardado`,()=>select(items.find(item=>item.id===id))));
-  host.append(element('h2',path==='setlists'?'Setlists':'Conciertos'),status,button(`Nuevo ${label}`,()=>select()),list,details,options.form);
+  const disclosure=editorDisclosure(`Editar ${label}`,options.form);
+  host.append(element('h2',path==='setlists'?'Setlists':'Conciertos'),status,button(`Nuevo ${label}`,()=>{select();disclosure.open=true;}),list,details,disclosure);
   function disabled(){for(const control of host.querySelectorAll<HTMLInputElement|HTMLButtonElement|HTMLSelectElement|HTMLTextAreaElement>('input,button,select,textarea'))control.disabled=saving||!loaded||!options.ready()||control.dataset.unavailable==='true';}
   function select(item?:T){if(saving)return;if(dirty&&!window.confirm('¿Descartar los cambios sin guardar?'))return;id=item?.id??doc(collection(db,path)).id;revision=item?.revision??0;dirty=false;options.fill(item);details.replaceChildren();if(item)details.append(options.details(item));setStatus(status,item?'Versión compartida cargada.':'Nuevo borrador. Guarda para compartirlo.');}
   function markDirty(){dirty=true;setStatus(status,'Cambios sin guardar.','warning');}

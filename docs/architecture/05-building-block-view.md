@@ -52,3 +52,9 @@ Astro configuration is executable source under src/. Root Wrangler JSON is decla
 [src/public-site](../../src/public-site/) owns typed repository editorial content, guarded public links, Madrid upcoming-gig selection and anonymous reads of whitelisted public collections. Static Astro sections remain usable when data loading fails. Backstage navigation links to mounted feature sections without recreating editors or discarding drafts. Publication enforcement remains owned by [08](08-crosscutting-concepts.md).
 
 <!-- pdac:cite id="FR-PUBLIC" digest="sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3" -->
+
+The admitted [member home](../../src/band/home-view.ts) composes existing rehearsal/song/gig/setlist state; [home derivation](../../src/band/home.ts) reuses existing Madrid-time selection. Rehearsal planning contains availability. The opportunity renderer supplies a concise full/partial summary from its existing calculation output. Native editor disclosures separate readable saved detail from editing while retaining mounted drafts. Observer and revocation ownership is documented in [06](06-runtime-view.md).
+
+<!-- pdac:cite id="FR-PREPARATION" digest="sha256:0bc5dae67dd450f814bafba786a9bcb657ecba07acada44b3c9f3113ee70b50f" -->
+
+<!-- pdac:cite id="QR-USABILITY" digest="sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b" -->

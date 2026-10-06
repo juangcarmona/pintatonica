@@ -1,0 +1,31 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "createAndReload": true,
+      "externalPrivateResourceLink": true,
+      "explicitSafePublicProjection": true,
+      "anonymousPrivateReadDenied": true,
+      "otherMemberCanEdit": true,
+      "conflictingDraftPreserved": true,
+      "unsafeResourceRejected": true,
+      "unpublishingRemovesProjection": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "createAndReload": true,
+      "externalPrivateResourceLink": true,
+      "explicitSafePublicProjection": true,
+      "anonymousPrivateReadDenied": true,
+      "otherMemberCanEdit": true,
+      "conflictingDraftPreserved": true,
+      "unsafeResourceRejected": true,
+      "unpublishingRemovesProjection": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "viewport": "mobile",
+    "fiveMemberAnchors": true,
+    "unsavedDraftSurvivesNavigation": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "desktop",
+    "fiveMemberAnchors": true,
+    "unsavedDraftSurvivesNavigation": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  }
+]
