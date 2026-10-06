@@ -1,0 +1,51 @@
+{
+  "url": "https://work-gh-21-member-journey-pintatonica.jgcarmona-pro.workers.dev",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 4
+    },
+    {
+      "firebase": "initialized in production browser",
+      "emulator": null
+    },
+    {
+      "viewport": "desktop",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 4
+    },
+    {
+      "firebase": "initialized in production browser",
+      "emulator": null
+    }
+  ],
+  "privateRequests": 0,
+  "pageErrors": 0
+}
