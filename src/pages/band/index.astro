@@ -1,9 +1,10 @@
 ---
 import Shell from '../../layouts/Shell.astro';
+import BrandBars from '../../components/BrandBars.astro';
 ---
 <Shell title="La banda" area="band">
   <section class="band-shell" aria-labelledby="banda-titulo">
-    <p class="eyebrow">Área privada de Pintatónica</p>
+    <p class="eyebrow brand-lockup"><BrandBars />Área privada de Pintatónica</p>
     <h1 id="banda-titulo">Backstage</h1>
     <p data-access-status role="status" aria-live="polite">Comprobando el acceso…</p>
     <button class="button" type="button" data-google-login hidden>Entrar con Google</button>

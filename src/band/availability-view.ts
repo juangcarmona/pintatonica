@@ -1,6 +1,6 @@
 import { collection, deleteDoc, doc, onSnapshot, setDoc, type Firestore } from 'firebase/firestore';
 import { dateLabel, effectiveAvailability, madridDate, normalizeIntervals, planningDates, validDate, weekdays, type Interval, type Overrides, type WeeklyInterval } from './availability';
-import { button, element, field, input } from './dom';
+import { button, element, field, input, setStatus } from './dom';
 import {renderOpportunities} from './opportunities-view';
 import {confirmationForm} from './rehearsals-view';
 import {upcoming} from './rehearsals';
@@ -37,7 +37,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
     }
     const start=input('time',slot.start), end=input('time',slot.end); start.required=end.required=true;
     start.dataset.start=''; end.dataset.end='';
-    row.append(field('Desde',start),field('Hasta',end),button('Quitar intervalo',()=>{row.remove();markDirty(weekly);})); container.append(row);
+    row.append(field('Desde',start),field('Hasta',end),button('Quitar intervalo',()=>{row.remove();markDirty(weekly);},'button destructive compact')); container.append(row);
   }
   function readRows(container:HTMLElement, weekly=false): (Interval & {day?:number})[] {
     return Array.from(container.children).map((row)=>({
@@ -46,7 +46,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
       ...(weekly ? {day:Number(row.querySelector<HTMLSelectElement>('[data-day]')!.value)} : {}),
     }));
   }
-  function markDirty(weekly:boolean) {if(weekly)weeklyDirty=true;else overrideDirty=true;status.textContent='Cambios sin guardar.';}
+  function markDirty(weekly:boolean) {if(weekly)weeklyDirty=true;else overrideDirty=true;setStatus(status,'Cambios sin guardar.','warning');}
   function loadOverride() { if(!overrideDirty)rows(overrideRows, effectiveAvailability(ownWeekly,ownOverrides,selectedDate.value)); }
   weeklyForm.addEventListener('input',()=>markDirty(true));
   overrideForm.addEventListener('input',(event)=>{if(event.target!==selectedDate)markDirty(false);});
@@ -68,9 +68,9 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
     if(!alive || !loaded)return;
     try {
       if(!validDate(selectedDate.value))throw new Error('Fecha no válida.');
-      setDisabled(form,true); status.textContent='Guardando…'; await write();
-      if(alive){if(form===weeklyForm)weeklyDirty=false;else overrideDirty=false;committed();status.textContent=weeklyDirty||overrideDirty?'Guardado. Todavía hay cambios sin guardar.':'Disponibilidad guardada.';}
-    } catch {if(alive)status.textContent='No se ha guardado. Revisa las horas y vuelve a intentarlo.';}
+      setDisabled(form,true); setStatus(status,'Guardando…','neutral'); await write();
+      if(alive){if(form===weeklyForm)weeklyDirty=false;else overrideDirty=false;committed();setStatus(status,weeklyDirty||overrideDirty?'Guardado. Todavía hay cambios sin guardar.':'Disponibilidad guardada.',weeklyDirty||overrideDirty?'warning':'positive');}
+    } catch {if(alive)setStatus(status,'No se ha guardado. Revisa las horas y vuelve a intentarlo.','error');}
     finally {if(alive)setDisabled(form,false);}
   }
   weeklyForm.addEventListener('submit',(event)=>{event.preventDefault();let weekly:WeeklyInterval[]=[]; void save(weeklyForm,()=>{
@@ -96,11 +96,11 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
       overview.append(section);
     }
   }
-  function fail() {if(alive){readFailed=true;status.textContent='No se ha podido cargar la disponibilidad. Vuelve a entrar para reintentar.';renderOverview();}}
+  function fail() {if(alive){readFailed=true;setStatus(status,'No se ha podido cargar la disponibilidad. Vuelve a entrar para reintentar.','error');renderOverview();}}
   function enableEditing() {
     const wasLoaded=loaded;
     loaded=weeklyLoaded && overridesLoaded;
-    if(loaded && !wasLoaded){setDisabled(weeklyForm,false);setDisabled(overrideForm,false);status.textContent='Disponibilidad cargada. Los cambios se guardan con cada botón.';}
+    if(loaded && !wasLoaded){setDisabled(weeklyForm,false);setDisabled(overrideForm,false);setStatus(status,'Disponibilidad cargada. Los cambios se guardan con cada botón.','neutral');}
   }
   const roster=onSnapshot(collection(db,'members'),{includeMetadataChanges:true},snapshot=>{
     if(!alive || snapshot.metadata.fromCache)return;

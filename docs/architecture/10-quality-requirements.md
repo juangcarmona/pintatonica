@@ -13,7 +13,7 @@ Accepted quality meaning remains in [ProductShape](../product/model/requirements
 | ProductShape artifact | Realization | Evidence or limit |
 | --- | --- | --- |
 | QR-COST-OPERATIONS | Static assets, no new paid runtime, binding or storage; existing free-tier infrastructure | [07](07-deployment-view.md); [Expected free-tier envelope and monitoring](../operations/public-content.md); estimates are not measured production traffic |
-| QR-USABILITY | Existing tokens, fixed responsive navigation, keyboard skip and mounted Backstage section anchors | GH-9 public mobile/desktop evidence and current-source reruns of GH-2–GH-8 journeys |
+| QR-USABILITY | Canonical shared visual roles, separate state/action contrasts, fixed responsive navigation, keyboard skip and mounted Backstage section anchors | GH-20 component evidence extends GH-9 public/member journeys without changing data or authorization boundaries |
 | QR-SECURITY | Google-provider and active-membership rules plus independent browser gate and secret checks | [08](08-crosscutting-concepts.md); GH-2 emulator/live evidence distinguishes verified paths |
 | QR-MAINTAINABILITY | Source-local components/config/tests, pinned packages, source checking | [05](05-building-block-view.md); package scripts |
 | QR-VERIFICATION | Frozen install, build and HTTP tests composed into existing CI; repeatable browser harness | [Lifecycle](../engineering-lifecycle.md); deployment observed separately from CI |

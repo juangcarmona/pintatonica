@@ -28,6 +28,10 @@ A deployment override must supply all four required `PUBLIC_FIREBASE_*` values t
 
 Run `pnpm verify` for source/build/security/product/rules checks. For browser access verification, start `pnpm firebase:emulators`, then `pnpm dev` with the complete demo-only override, and run `pnpm verify:access`. The harness refuses a remote app, verifies demo configuration, uses synthetic accounts and writes screenshots/observations under ignored `artifacts/runtime/GH-2`.
 
+Full verification owns its Firestore emulator lifecycle. Before `pnpm verify`, confirm no manually started emulator is listening on port 8080; stop your runtime emulator first. Run browser harnesses sequentially because they reset the shared local demo database. A port collision is a failed full run, requiring the entire verification command to run again after the collision is resolved.
+
+Retain scrubbed check summaries and harness JSON/screenshots rather than raw emulator/CLI debug logs. Run security scanning after runtime checks too: the scanner includes ignored logs, so diagnostic credentials or fixture-looking keys must be redacted before evidence is copied or committed. Never exempt those logs from scanning.
+
 Live Google-account completion requires its owner. Emulator evidence is not evidence that the real Google account signed in successfully.
 
 Availability runtime verification uses the same complete demo-only override, emulator and dev-server setup: `node src/tooling/web/verify-band-runtime.mjs`. It verifies real forms/save/reload, replacement/empty/restored exceptions, dirty drafts and direct ownership denial, and captures synthetic evidence under `artifacts/runtime/GH-3`. It resets only the explicitly guarded local demo database between viewport scenarios; never run production fixture writes.

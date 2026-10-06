@@ -8,3 +8,5 @@ Layout patterns derived from the logo and refined through MVP browser evidence.
 - **Spacing.** Gutters and padding come from `--space-*`; stagger heights, not gutters.
 - **Media.** Imagery sits in square-cornered frames without overlays or shadows; text over images needs a solid ink or paper block behind it.
 - **Motion.** Instant or short transitions; honour `prefers-reduced-motion`.
+
+Public surfaces favour editorial spacing; member surfaces favour constrained readable forms and compact controls. The reusable four-bar primitive supports lockups and small markers without repeating all four colours on every panel. State borders use semantic roles, not brand assignments. Focus is blue on paper and paper on ink, with explicit labels and minimum touch geometry. Existing native confirmations remain native.

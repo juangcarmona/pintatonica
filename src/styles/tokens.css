@@ -11,6 +11,11 @@
   --color-red: #ea2e2c;
   --color-ink: #080808;
   --color-paper: #fefefe;
+  --color-mist: #f2f1ed;
+  --color-muted: #595957;
+  --color-positive: #24551f;
+  --color-destructive: #8f1d1c;
+  --color-warning: #705900;
 
   /* Semantic roles */
   --surface-page: var(--color-paper);
@@ -18,7 +23,7 @@
   --text-default: var(--color-ink);
   --text-inverse: var(--color-paper);
   --text-link: var(--color-blue);
-  --action-primary-bg: var(--color-blue);
+  --action-primary-bg: var(--color-ink);
   --action-primary-text: var(--color-paper);
   --accent-1: var(--color-blue);
   --accent-2: var(--color-green);
@@ -26,6 +31,11 @@
   --accent-4: var(--color-red);
   --border-default: var(--color-ink);
   --focus-ring: var(--color-blue);
+  --surface-subtle: var(--color-mist);
+  --text-muted: var(--color-muted);
+  --state-positive: var(--color-positive);
+  --state-warning: var(--color-warning);
+  --action-destructive: var(--color-destructive);
 
   /* Typography */
   --font-display: "Cooper Black", "Windsor", Georgia, "Times New Roman", serif;
@@ -42,6 +52,15 @@
   --font-size-700: 4.5rem;
   --line-height-tight: 1.1;
   --line-height-body: 1.5;
+  --tracking-label: 0.12em;
+  --measure-body: 42rem;
+  --measure-editor: 48rem;
+  --measure-site: 80rem;
+  --control-min-height: 2.75rem;
+  --mark-width: 2.5rem;
+  --mark-height: 1.75rem;
+  --layer-header: 10;
+  --layer-skip: 20;
 
   /* Spacing: 4px base */
   --space-0: 0;

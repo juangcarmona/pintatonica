@@ -1,7 +1,7 @@
 import {collection,doc,onSnapshot,type Firestore} from 'firebase/firestore';
 import {resourceKinds,safeURL,type Song,type SongResource} from './repertoire';
 import {saveSong} from './repertoire-store';
-import {button,element,field,input} from './dom';
+import {button,element,field,input,setStatus} from './dom';
 export function mountRepertoire(db:Firestore,host:HTMLElement) {
   let alive=true,loaded=false,dirty=false,saving=false,id='',revision=0;
   let songs:Song[]=[];
@@ -20,13 +20,13 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
   form.append(publicLabel,field('Enlace de media pública (selección explícita)',controls.publicMediaUrl),element('p','Este enlace se publica si seleccionas la canción. El resto de recursos y notas siguen siendo privados.'),element('h4','Recursos privados'),resources,button('Añadir recurso',()=>{addResource();markDirty();}),save,reload);
   host.append(heading,status,newSong,list,details,form);setDisabled(true);
   function setDisabled(value:boolean){for(const control of host.querySelectorAll<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement|HTMLButtonElement>('input,textarea,select,button'))control.disabled=value;}
-  function markDirty(){dirty=true;status.textContent='Cambios de canción sin guardar.';}
+  function markDirty(){dirty=true;setStatus(status,'Cambios de canción sin guardar.','warning');}
   form.addEventListener('input',markDirty);
   function addResource(resource:SongResource={kind:'Partitura',label:'',url:''}) {
     const row=element('div',undefined,'resource-row');const kind=element('select');kind.dataset.resourceKind='';
     for(const value of resourceKinds){const option=element('option',value);option.value=value;kind.append(option);}kind.value=resource.kind;
     const label=input('text',resource.label),url=input('url',resource.url);url.required=true;label.dataset.resourceLabel='';url.dataset.resourceUrl='';
-    row.append(field('Tipo de recurso',kind),field('Nombre del recurso',label),field('Enlace privado',url),button('Quitar recurso',()=>{row.remove();markDirty();}));resources.append(row);
+    row.append(field('Tipo de recurso',kind),field('Nombre del recurso',label),field('Enlace privado',url),button('Quitar recurso',()=>{row.remove();markDirty();},'button destructive compact'));resources.append(row);
   }
   function select(song?:Song) {
     if(saving)return;
@@ -34,7 +34,7 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
     id=song?.id??doc(collection(db,'songs')).id;revision=song?.revision??0;dirty=false;
     for(const key of Object.keys(controls) as (keyof typeof controls)[])controls[key].value=song?.[key]??'';
     publicCheck.checked=song?.public===true;resources.replaceChildren();for(const resource of song?.resources??[])addResource(resource);
-    renderDetails(song);status.textContent=song?'Canción cargada.':'Nueva canción. Guarda para compartirla.';
+    renderDetails(song);setStatus(status,song?'Canción cargada.':'Nueva canción. Guarda para compartirla.');
   }
   function renderDetails(song?:Song) {
     details.replaceChildren();if(!song)return;
@@ -45,11 +45,11 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
   }
   form.addEventListener('submit',event=>{event.preventDefault();if(saving||!loaded)return;void(async()=>{
     try {
-      saving=true;setDisabled(true);status.textContent='Guardando canción…';
+      saving=true;setDisabled(true);setStatus(status,'Guardando canción…','neutral');
       const draft={...Object.fromEntries(Object.entries(controls).map(([key,control])=>[key,control.value])),public:publicCheck.checked,resources:Array.from(resources.children).map(row=>({kind:row.querySelector<HTMLSelectElement>('[data-resource-kind]')!.value,label:row.querySelector<HTMLInputElement>('[data-resource-label]')!.value,url:row.querySelector<HTMLInputElement>('[data-resource-url]')!.value}))} as Omit<Song,'id'|'revision'>;
       await saveSong(db,id,revision,draft);
-      if(alive){revision++;dirty=false;renderDetails({...draft,id,revision});status.textContent='Canción guardada y compartida.';}
-    }catch(error){if(alive)status.textContent=error instanceof Error&&error.message==='shared-conflict'?'Otra persona ha cambiado esta canción. Tu borrador sigue aquí; recarga la versión guardada antes de volver a editar.':'No se ha guardado la canción. Revisa los datos y los enlaces.';}
+      if(alive){revision++;dirty=false;renderDetails({...draft,id,revision});setStatus(status,'Canción guardada y compartida.','positive');}
+    }catch(error){if(alive)setStatus(status,error instanceof Error&&error.message==='shared-conflict'?'Otra persona ha cambiado esta canción. Tu borrador sigue aquí; recarga la versión guardada antes de volver a editar.':'No se ha guardado la canción. Revisa los datos y los enlaces.','error');}
     finally {saving=false;if(alive)setDisabled(false);}
   })();});
   const stop=onSnapshot(collection(db,'songs'),{includeMetadataChanges:true},snapshot=>{
@@ -59,6 +59,6 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
     for(const song of songs)list.append(button(`${song.title}${song.artist?` · ${song.artist}`:''}`,()=>select(song)));
     if(!loaded){loaded=true;setDisabled(false);select();}
     else if(id&&!dirty&&!saving){const current=songs.find(song=>song.id===id);if(current&&current.revision!==revision)select(current);}
-  },()=>{if(alive){loaded=false;status.textContent='No se ha podido cargar el repertorio. Vuelve a entrar para reintentar.';setDisabled(true);}});
+  },()=>{if(alive){loaded=false;setStatus(status,'No se ha podido cargar el repertorio. Vuelve a entrar para reintentar.','error');setDisabled(true);}});
   return ()=>{alive=false;stop();host.replaceChildren();};
 }
