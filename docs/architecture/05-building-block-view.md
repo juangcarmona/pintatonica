@@ -60,3 +60,7 @@ The admitted [member home](../../src/band/home-view.ts) composes existing rehear
 <!-- pdac:cite id="FR-PREPARATION" digest="sha256:0bc5dae67dd450f814bafba786a9bcb657ecba07acada44b3c9f3113ee70b50f" -->
 
 <!-- pdac:cite id="QR-USABILITY" digest="sha256:c92d80381f9db69175e40c2ca07e2ac246565fd241c5907b56ea5a22e9192753" -->
+
+Public [navigation.ts](../../src/public-site/navigation.ts) owns compact-menu interactions and browser-local current-section/history state; [current-section.ts](../../src/public-site/current-section.ts) selects visible geometry without Firebase dependencies. No new data or authentication responsibility is introduced.
+
+<!-- pdac:cite id="FR-NAVIGATION" digest="sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6" -->

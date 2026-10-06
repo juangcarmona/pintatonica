@@ -17,7 +17,10 @@ for (const [path, heading] of [['/', 'Pintatónica'], ['/band/', 'Backstage'], [
     assert.match(html, /lang="es"/);
     assert.match(html, /viewport/);
     assert.match(html, /Saltar al contenido/);
-    assert.match(html, /aria-current="page"/);
+    if(path==='/') {
+      assert.doesNotMatch(html, /aria-current="page"/);
+      assert.match(html, /data-public-area="inicio"/);
+    } else assert.match(html, /aria-current="page"/);
     assertShellPrivacy(html,{area:path==='/'?'public':'band',approvedMembers:publicProfile.members});
     for (const asset of html.matchAll(/(?:src|href)="([^"#]+\.(?:css|js|png))"/g)) {
       assert.equal((await fetch(app.url + asset[1])).status, 200, asset[1]);
