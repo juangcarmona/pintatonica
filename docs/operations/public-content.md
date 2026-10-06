@@ -4,6 +4,8 @@
 
 [src/public-site/content.ts](../../src/public-site/content.ts) holds approved introduction, optional public contact and selected external media. Current introduction uses known band context only; contact is null and additional media is empty pending Juan's approved material. Do not publish the operational Google-login email by inference. Add licensed photo/video links with meaningful labels; large media stays external. Rebuild through the normal PR/native hosting flow after editorial changes.
 
+Its editorial member array is empty until public names/roles are explicitly approved. Optional descriptions/images need the same editorial input. It is separate from Firebase membership and never populated by roster reads. GH-23 owns the inventory and approvals. The shell guard allows only exact matching approved card fields and continues rejecting private identities elsewhere and throughout the unadmitted Backstage shell. Private collection/auth references cannot be approved away.
+
 Active members explicitly select songs and gigs for publication in Backstage. Security rules require matching, strictly whitelisted public projections; anonymous pages read only publicSongs/publicGigs. Private notes, sheet music and working resources are not public content. Upcoming gigs are selected in Madrid time. Empty/unavailable sections are visible and honest. No CMS, media-hosting service or production test fixtures are required.
 
 ## Expected cost envelope
@@ -21,3 +23,5 @@ Inspect Firebase billing status and Firestore Usage (reads/writes/storage/transf
 ## Verification boundary
 
 Demo browser fixtures exercise populated public content, private-read denial, configured contact/photo rendering, mobile/desktop/keyboard navigation and earlier member journeys. Fixtures never seed production. Exact-head native deployment and anonymous production observations are recorded with each delivery item; CI alone does not prove hosting or real Google OAuth. Actual editorial material and real traffic remain operational inputs.
+
+The public design harness temporarily supplies synthetic editorial members/media/contact in the local Astro source and restores exact content in `finally`, refusing concurrent changes. Keep source changes and fixture harnesses sequential. Wait for lazy images to load before recording successful rendering; merely finding the image element does not prove its content loaded. Never commit the temporary configuration or run fixture writes against preview/production Firebase.

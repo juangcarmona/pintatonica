@@ -1,7 +1,9 @@
 import {safeURL} from '../band/repertoire.ts';
 export type Contact={label:string;url:string};
-export type PublicProfile={introduction:string;contact:Contact|null;media:{label:string;url:string;kind:'photo'|'video'|'audio'|'link'}[]};
-export const publicProfile:PublicProfile={introduction:'Pintatónica es una pequeña banda de música.',contact:null,media:[]};
+export type PublicMember={name:string;role:string;description?:string;image?:{url:string;label:string}};
+export type PublicProfile={introduction:string;contact:Contact|null;media:{label:string;url:string;kind:'photo'|'video'|'audio'|'link'}[];members:PublicMember[]};
+// Public editorial entries require explicit approval; never derive these from membership.
+export const publicProfile:PublicProfile={introduction:'Pintatónica es una pequeña banda de música.',contact:null,media:[],members:[]};
 export function contactLink(contact:Contact|null) {
   if(!contact)return null;
   const url=new URL(contact.url);

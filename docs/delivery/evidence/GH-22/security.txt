@@ -1,0 +1,10 @@
+
+> pintatonica@0.0.0 security:check C:\dev\juangcarmona\pintatonica
+> node src/tooling/security/check-secrets.mjs
+
+8:33AM INF 58 commits scanned.
+8:33AM INF scanned ~3553501 bytes (3.55 MB) in 373ms
+8:33AM INF no leaks found
+8:33AM INF scanned ~9163809 bytes (9.16 MB) in 190ms
+8:33AM INF no leaks found
+Index and working-tree scans passed (including untracked and ignored environment/log files)

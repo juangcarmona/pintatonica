@@ -51,6 +51,8 @@ Astro configuration is executable source under src/. Root Wrangler JSON is decla
 
 [src/public-site](../../src/public-site/) owns typed repository editorial content, guarded public links, Madrid upcoming-gig selection and anonymous reads of whitelisted public collections. Static Astro sections remain usable when data loading fails. Backstage navigation links to mounted feature sections without recreating editors or discarding drafts. Publication enforcement remains owned by [08](08-crosscutting-concepts.md).
 
+The static public profile also carries editorial member cards, separate from membership records. Astro composes their text and guarded optional images; no public roster read is introduced. Header/footer utilities and event/music card hierarchy remain presentation within the same static hosting and public-projection boundary. Editorial approval inputs are tracked by GH-23, not represented as a new application workflow.
+
 <!-- pdac:cite id="FR-PUBLIC" digest="sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3" -->
 
 The admitted [member home](../../src/band/home-view.ts) composes existing rehearsal/song/gig/setlist state; [home derivation](../../src/band/home.ts) reuses existing Madrid-time selection. Rehearsal planning contains availability. The opportunity renderer supplies a concise full/partial summary from its existing calculation output. Native editor disclosures separate readable saved detail from editing while retaining mounted drafts. Observer and revocation ownership is documented in [06](06-runtime-view.md).
