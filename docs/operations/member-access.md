@@ -30,6 +30,8 @@ Run `pnpm verify` for source/build/security/product/rules checks. For browser ac
 
 Full verification owns its Firestore emulator lifecycle. Before `pnpm verify`, confirm no manually started emulator is listening on port 8080; stop your runtime emulator first. Run browser harnesses sequentially because they reset the shared local demo database. A port collision is a failed full run, requiring the entire verification command to run again after the collision is resolved.
 
+Member editors start collapsed. Editing scenarios deliberately open the relevant native disclosure after admission, reload or restored browser admission; record selection alone is a read action. The member-home harness also checks that sticky navigation leaves section and preparation targets visible. Its temporary read-denial rules are restricted to the explicit local demo endpoint, restored in `finally`, and never deployed.
+
 Retain scrubbed check summaries and harness JSON/screenshots rather than raw emulator/CLI debug logs. Run security scanning after runtime checks too: the scanner includes ignored logs, so diagnostic credentials or fixture-looking keys must be redacted before evidence is copied or committed. Never exempt those logs from scanning.
 
 Live Google-account completion requires its owner. Emulator evidence is not evidence that the real Google account signed in successfully.

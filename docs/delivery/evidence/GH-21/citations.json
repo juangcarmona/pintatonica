@@ -1,0 +1,226 @@
+{
+  "schema": "product-definition-as-code/citations/v1alpha1",
+  "targets": [
+    "docs/architecture"
+  ],
+  "citations": [
+    {
+      "id": "CON-SINGLE-BAND",
+      "digest": "sha256:59e879c69ee07f61737be895e059ea3b1be35d6f3a82236715821277082dfabb",
+      "source": "docs/architecture/02-constraints.md",
+      "line": 18,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-COST-OPERATIONS",
+      "digest": "sha256:18df4d28e10c2b4f64596df6196e2fc404334d4854653a6c53abc424c790230c",
+      "source": "docs/architecture/04-solution-strategy.md",
+      "line": 18,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-MAINTAINABILITY",
+      "digest": "sha256:40a7ffe79142cd37afaf6d04a8edcc62d666a539ad54de1c0357acc8244dc362",
+      "source": "docs/architecture/04-solution-strategy.md",
+      "line": 20,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-VERIFICATION",
+      "digest": "sha256:1a0f617f80f103442dddf61fc11a360e4ca9e023d6f18bcace259ffa3fa0e73e",
+      "source": "docs/architecture/04-solution-strategy.md",
+      "line": 22,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-USABILITY",
+      "digest": "sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b",
+      "source": "docs/architecture/04-solution-strategy.md",
+      "line": 24,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-SECURITY",
+      "digest": "sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9",
+      "source": "docs/architecture/04-solution-strategy.md",
+      "line": 26,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "BR-MEMBERSHIP",
+      "digest": "sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 44,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-SECURITY",
+      "digest": "sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 46,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "BR-OPPORTUNITY",
+      "digest": "sha256:cc00716d47bbf9de4c555b4f9aa4fb723b5e0f35b20f1e7b5b76612760708cbc",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 48,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "FR-PUBLIC",
+      "digest": "sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 54,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "FR-PREPARATION",
+      "digest": "sha256:0bc5dae67dd450f814bafba786a9bcb657ecba07acada44b3c9f3113ee70b50f",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 58,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-USABILITY",
+      "digest": "sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 60,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "BR-MEMBERSHIP",
+      "digest": "sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45",
+      "source": "docs/architecture/06-runtime-view.md",
+      "line": 46,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-SECURITY",
+      "digest": "sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9",
+      "source": "docs/architecture/06-runtime-view.md",
+      "line": 48,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "FR-PUBLIC",
+      "digest": "sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3",
+      "source": "docs/architecture/06-runtime-view.md",
+      "line": 56,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "FR-PREPARATION",
+      "digest": "sha256:0bc5dae67dd450f814bafba786a9bcb657ecba07acada44b3c9f3113ee70b50f",
+      "source": "docs/architecture/08-crosscutting-concepts.md",
+      "line": 17,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "BR-MEMBERSHIP",
+      "digest": "sha256:409b040a33d66b37f725e3cc707f503832341a2f52c3504ee3fea3c851a5cd45",
+      "source": "docs/architecture/08-crosscutting-concepts.md",
+      "line": 59,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-SECURITY",
+      "digest": "sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9",
+      "source": "docs/architecture/08-crosscutting-concepts.md",
+      "line": 61,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "BR-AVAILABILITY",
+      "digest": "sha256:3846c5660be556161069445fe1cf8c8e96bb2fe5df0cc36121a5d8a2def914b3",
+      "source": "docs/architecture/08-crosscutting-concepts.md",
+      "line": 63,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "BR-REHEARSAL-CONFIRMATION",
+      "digest": "sha256:2522bd383ef243a1aced24f77f917fced2c7c03178d6f077717a56b4be9c5ef0",
+      "source": "docs/architecture/08-crosscutting-concepts.md",
+      "line": 65,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "BR-PUBLIC-SELECTION",
+      "digest": "sha256:573557a2468714b35e9fdbd01c58bd6822d12d6f66998c818c0eac96f35b4807",
+      "source": "docs/architecture/08-crosscutting-concepts.md",
+      "line": 67,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-COST-OPERATIONS",
+      "digest": "sha256:18df4d28e10c2b4f64596df6196e2fc404334d4854653a6c53abc424c790230c",
+      "source": "docs/architecture/10-quality-requirements.md",
+      "line": 21,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-MAINTAINABILITY",
+      "digest": "sha256:40a7ffe79142cd37afaf6d04a8edcc62d666a539ad54de1c0357acc8244dc362",
+      "source": "docs/architecture/10-quality-requirements.md",
+      "line": 23,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-VERIFICATION",
+      "digest": "sha256:1a0f617f80f103442dddf61fc11a360e4ca9e023d6f18bcace259ffa3fa0e73e",
+      "source": "docs/architecture/10-quality-requirements.md",
+      "line": 25,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-USABILITY",
+      "digest": "sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b",
+      "source": "docs/architecture/10-quality-requirements.md",
+      "line": 27,
+      "form": "inline",
+      "status": "current"
+    },
+    {
+      "id": "QR-SECURITY",
+      "digest": "sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9",
+      "source": "docs/architecture/10-quality-requirements.md",
+      "line": 29,
+      "form": "inline",
+      "status": "current"
+    }
+  ],
+  "diagnostics": [],
+  "summary": {
+    "total": 26,
+    "current": 26,
+    "stale": 0,
+    "tampered": 0,
+    "unresolved": 0,
+    "errors": 0,
+    "warnings": 0
+  }
+}

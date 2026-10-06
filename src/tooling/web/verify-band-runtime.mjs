@@ -24,6 +24,7 @@ try {
     await page.waitForFunction(()=>document.querySelector('[data-access-status]').textContent.includes('no tiene una membresía'));
     const uid=await page.evaluate(async()=>{const client=await import('/src/firebase/client.ts');if(client.auth.app.options.projectId!=='demo-pintatonica')throw Error('Not a demo project');return client.auth.currentUser.uid;});
     await seed(`members/${uid}`,{active:{booleanValue:true},name:{stringValue:'Miembro de prueba'}});
+    await page.getByText('Editar mi disponibilidad',{exact:true}).click();
     const weekly=page.locator('form').filter({has:page.getByRole('heading',{name:'Horario semanal',exact:true})});
     const override=page.locator('form').filter({has:page.getByRole('heading',{name:'Excepción para una fecha',exact:true})});
     await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).waitFor();
@@ -33,11 +34,11 @@ try {
     await weekly.locator('[data-start]').nth(1).fill('21:00');await weekly.locator('[data-end]').nth(1).fill('22:00');
     await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).click();
     await page.getByText('Disponibilidad guardada.',{exact:true}).waitFor();
-    await page.reload(); await page.waitForFunction(()=>document.querySelectorAll('[data-day]').length===2);
+    await page.reload();await page.getByText('Editar mi disponibilidad',{exact:true}).click(); await page.waitForFunction(()=>document.querySelectorAll('[data-day]').length===2);
     assert.equal(await weekly.locator('[data-start]').nth(0).inputValue(),'18:00');
     const monday=await page.evaluate(async()=> (await import('/src/band/availability.ts')).planningDates()[0]);
     async function reloadDate() {
-      await page.reload();
+      await page.reload();await page.getByText('Editar mi disponibilidad',{exact:true}).click();
       await page.waitForFunction(()=>Array.from(document.querySelectorAll('button')).find(node=>node.textContent==='Guardar excepción')?.disabled===false);
       await override.getByLabel('Fecha',{exact:true}).fill(monday);await override.getByLabel('Fecha',{exact:true}).press('Tab');
     }
@@ -65,7 +66,7 @@ try {
     await page.locator('.planning-day').first().getByText('Miembro de prueba: 18:00–20:00, 21:00–22:00',{exact:true}).waitFor();
     await weekly.locator('[data-end]').nth(0).fill('17:00');await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).click();
     await page.getByText('No se ha guardado. Revisa las horas y vuelve a intentarlo.',{exact:true}).waitFor();
-    await page.reload();await page.waitForFunction(()=>document.querySelectorAll('[data-day]').length===2);
+    await page.reload();await page.getByText('Editar mi disponibilidad',{exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('[data-day]').length===2);
     assert.equal(await weekly.locator('[data-end]').nth(0).inputValue(),'20:00');
     const other=`other-${label}`;
     await seed(`members/${other}`,{active:{booleanValue:true},name:{stringValue:'Otro miembro de prueba'}});
@@ -87,6 +88,7 @@ try {
     await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
     assert.equal(await page.locator('[data-band-workspace]').textContent(),'');
     await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
+    await page.getByText('Editar mi disponibilidad',{exact:true}).click();
     await weekly.getByRole('button',{name:'Guardar horario semanal',exact:true}).waitFor();
     observations.push({viewport:label,weeklyIntervalsPersistAfterReload:true,replacementPreservesHabit:true,replacementPersistsInOverviewAfterReload:true,emptyOverridePersistsAfterReload:true,restorationPersistsInOverviewAfterReload:true,dirtyDraftNeverLabelledSaved:true,weeklySavePreservesExceptionDraft:true,invalidSaveFailsWithoutChangingStoredHabit:true,otherMemberSavedExceptionVisible:true,crossMemberWriteDenied:true,workspaceDisposedOnSuspension:true,weeks:6,horizontalOverflow:false,pageErrors:0});
     await context.close();

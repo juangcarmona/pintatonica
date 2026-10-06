@@ -10,3 +10,5 @@ Layout patterns derived from the logo and refined through MVP browser evidence.
 - **Motion.** Instant or short transitions; honour `prefers-reduced-motion`.
 
 Public surfaces favour editorial spacing; member surfaces favour constrained readable forms and compact controls. The reusable four-bar primitive supports lockups and small markers without repeating all four colours on every panel. State borders use semantic roles, not brand assignments. Focus is blue on paper and paper on ink, with explicit labels and minimum touch geometry. Existing native confirmations remain native.
+
+Backstage starts with current confirmed rehearsal/preparation and gig context. Home summaries link to the mounted detail views; availability belongs to rehearsal planning. Saved musical context is readable before editing. Native details disclosures open the existing forms deliberately; navigation retains their mounted drafts. The member navigation remains reachable below the fixed public header on phones and desktop.

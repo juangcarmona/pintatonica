@@ -1,0 +1,39 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "weeklyIntervalsPersistAfterReload": true,
+      "replacementPreservesHabit": true,
+      "replacementPersistsInOverviewAfterReload": true,
+      "emptyOverridePersistsAfterReload": true,
+      "restorationPersistsInOverviewAfterReload": true,
+      "dirtyDraftNeverLabelledSaved": true,
+      "weeklySavePreservesExceptionDraft": true,
+      "invalidSaveFailsWithoutChangingStoredHabit": true,
+      "otherMemberSavedExceptionVisible": true,
+      "crossMemberWriteDenied": true,
+      "workspaceDisposedOnSuspension": true,
+      "weeks": 6,
+      "horizontalOverflow": false,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "weeklyIntervalsPersistAfterReload": true,
+      "replacementPreservesHabit": true,
+      "replacementPersistsInOverviewAfterReload": true,
+      "emptyOverridePersistsAfterReload": true,
+      "restorationPersistsInOverviewAfterReload": true,
+      "dirtyDraftNeverLabelledSaved": true,
+      "weeklySavePreservesExceptionDraft": true,
+      "invalidSaveFailsWithoutChangingStoredHabit": true,
+      "otherMemberSavedExceptionVisible": true,
+      "crossMemberWriteDenied": true,
+      "workspaceDisposedOnSuspension": true,
+      "weeks": 6,
+      "horizontalOverflow": false,
+      "pageErrors": 0
+    }
+  ]
+}

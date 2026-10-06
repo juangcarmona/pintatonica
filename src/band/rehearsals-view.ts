@@ -3,9 +3,9 @@ import {attendance,upcoming,type Rehearsal} from './rehearsals';
 import {dateLabel} from './availability';
 import type {Window} from './opportunities';
 import type {MemberAvailability} from './availability-view';
-import {element,field,input,setStatus} from './dom';
+import {element,field,input,setStatus,editorDisclosure} from './dom';
 import {preparationEditor} from './preparation-view';
-import type {Song} from './repertoire';
+import {safeURL,type Song} from './repertoire';
 export function confirmationForm(db:Firestore,uid:string,date:string,slot:Window,members:MemberAvailability[]) {
   const form=element('form',undefined,'confirmation-form');
   const id=doc(collection(db,'rehearsals')).id;
@@ -43,8 +43,10 @@ export function mountRehearsals(db:Firestore,host:HTMLElement) {
     empty.hidden=rehearsals.length>0;empty.textContent='Todavía no hay ensayos confirmados próximos.';
     for(const [index,item] of rehearsals.entries()) {
       let entry=cards.get(item.id);
-      if(!entry){const card=element('article',undefined,'panel'),summary=element('div'),editor=preparationEditor(db,item.id);card.dataset.rehearsal=item.id;card.append(summary,editor.form);entry={card,summary,editor};cards.set(item.id,entry);}
+      if(!entry){const card=element('article',undefined,'panel'),summary=element('div'),editor=preparationEditor(db,item.id);card.dataset.rehearsal=item.id;editor.form.id=`preparation-${item.id}`;editor.form.tabIndex=-1;card.append(summary,editorDisclosure('Editar preparación',editor.form));entry={card,summary,editor};cards.set(item.id,entry);}
       entry.summary.replaceChildren(element('h3',`${dateLabel(item.date)} · ${item.start}–${item.end} · Madrid`),element('p',item.kind==='full'?'Ensayo confirmado · grupo completo':'Ensayo confirmado · asistencia parcial'),element('p',`Esperados: ${item.expected.map(id=>item.names[id]??'Miembro').join(', ')}`),element('p',`Disponibles al confirmar: ${item.available.map(id=>item.names[id]??'Miembro').join(', ')}`));
+      entry.summary.append(element('h4','Preparación guardada'),element('p',item.focus||'Todavía no hay foco compartido.'),element('p',(item.songIds??[]).map(id=>songs?.find(song=>song.id===id)?.title??'Canción no disponible').join(' · ')||'Todavía no hay canciones seleccionadas.'));
+      for(const id of item.songIds??[]){const song=songs?.find(song=>song.id===id);for(const resource of song?.resources??[]){try{const link=element('a',`${resource.kind}: ${resource.label}`);link.href=safeURL(resource.url);link.target='_blank';link.rel='noopener noreferrer';entry.summary.append(link,element('br'));}catch{entry.summary.append(element('p','Recurso con enlace no válido. Revísalo en el repertorio.'));}}}
       entry.editor.update(item,songs);const position=host.children[index+2]??null;if(position!==entry.card)host.insertBefore(entry.card,position);
     }
   }

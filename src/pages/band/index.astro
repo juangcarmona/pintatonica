@@ -6,12 +6,13 @@ import BrandBars from '../../components/BrandBars.astro';
   <section class="band-shell" aria-labelledby="banda-titulo">
     <p class="eyebrow brand-lockup"><BrandBars />Área privada de Pintatónica</p>
     <h1 id="banda-titulo">Backstage</h1>
-    <p data-access-status role="status" aria-live="polite">Comprobando el acceso…</p>
-    <button class="button" type="button" data-google-login hidden>Entrar con Google</button>
-    <button class="button secondary" type="button" data-google-logout hidden>Salir de la cuenta</button>
+    <div class="band-access">
+      <p data-access-status role="status" aria-live="polite">Comprobando el acceso…</p>
+      <button class="button compact" type="button" data-google-login hidden>Entrar con Google</button>
+      <button class="button secondary compact" type="button" data-google-logout hidden>Salir de la cuenta</button>
+    </div>
     <section data-member-dashboard hidden aria-label="Panel de la banda">
-      <h2>Hola, <span data-member-name></span></h2>
-      <p>Este es tu espacio privado en Pintatónica.</p>
+      <p class="member-greeting">Hola, <span data-member-name></span></p>
       <div data-band-workspace></div>
     </section>
     <noscript>Activa JavaScript para iniciar sesión y acceder al área privada.</noscript>

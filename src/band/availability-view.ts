@@ -1,12 +1,12 @@
 import { collection, deleteDoc, doc, onSnapshot, setDoc, type Firestore } from 'firebase/firestore';
 import { dateLabel, effectiveAvailability, madridDate, normalizeIntervals, planningDates, validDate, weekdays, type Interval, type Overrides, type WeeklyInterval } from './availability';
-import { button, element, field, input, setStatus } from './dom';
-import {renderOpportunities} from './opportunities-view';
+import { button, element, field, input, setStatus, editorDisclosure } from './dom';
+import {renderOpportunities,type SchedulingSummary} from './opportunities-view';
 import {confirmationForm} from './rehearsals-view';
 import {upcoming} from './rehearsals';
 
 export type MemberAvailability = {uid:string; name:string; weekly:WeeklyInterval[]; overrides:Overrides};
-export function mountAvailability(db: Firestore, uid: string, host: HTMLElement) {
+export function mountAvailability(db: Firestore, uid: string, host: HTMLElement, summarize?:(summary:SchedulingSummary)=>void) {
   let alive=true, loaded=false, weeklyLoaded=false, overridesLoaded=false, ownWeekly:WeeklyInterval[]=[], ownOverrides:Overrides={};
   let weeklyDirty=false, overrideDirty=false;
   const members=new Map<string,MemberAvailability>();
@@ -24,7 +24,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
   const opportunities=element('div',undefined,'opportunities');
   let rosterReady=false, readFailed=false;
   const title=element('h2','Disponibilidad');
-  host.append(title,element('p','Tu horario habitual y las excepciones por fecha. Todas las horas son de Madrid.'),status,editor,opportunities,element('h3','Próximas seis semanas'),overview);
+  host.append(title,element('p','Tu horario habitual y las excepciones por fecha. Todas las horas son de Madrid.'),status,editorDisclosure('Editar mi disponibilidad',editor),opportunities,element('h3','Próximas seis semanas'),overview);
   function rows(container:HTMLElement, slots:(Interval & {day?:number})[], weekly=false) {
     container.replaceChildren(); for(const slot of slots) addRow(container,slot,weekly);
   }
@@ -82,7 +82,7 @@ export function mountAvailability(db: Firestore, uid: string, host: HTMLElement)
   const displaySlots=(slots:Interval[])=>slots.length ? slots.map(slot=>`${slot.start}–${slot.end}`).join(', ') : 'No disponible';
   function renderOverview() {
     if(!alive)return; overview.replaceChildren();
-    const qualified=renderOpportunities(opportunities,dates,[...members.values()],rosterReady&&!readFailed&&[...members.keys()].every(id=>weeklyReady.has(id)&&overridesReady.has(id)),(date,slot)=>upcoming([{date,start:slot.start,end:slot.end}]).length?confirmationForm(db,uid,date,slot,[...members.values()]):element('p','Esta ventana ya ha terminado.'));
+    const qualified=renderOpportunities(opportunities,dates,[...members.values()],rosterReady&&!readFailed&&[...members.keys()].every(id=>weeklyReady.has(id)&&overridesReady.has(id)),(date,slot)=>upcoming([{date,start:slot.start,end:slot.end}]).length?confirmationForm(db,uid,date,slot,[...members.values()]):element('p','Esta ventana ya ha terminado.'),summary=>summarize?.({...summary,failed:readFailed||summary.failed}));
     for(let week=0;week<6;week++) {
       const section=element('details',undefined,'panel week'); if(week===0)section.open=true;
       const hasFull=dates.slice(week*7,week*7+7).some(date=>qualified.has(date));

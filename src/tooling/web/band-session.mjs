@@ -14,7 +14,7 @@ export function firestoreValue(value) {
   return {mapValue:{fields:Object.fromEntries(Object.entries(value).map(([key,item])=>[key,firestoreValue(item)]))}};
 }
 export const seedData=(path,data)=>seed(path,Object.fromEntries(Object.entries(data).map(([key,value])=>[key,firestoreValue(value)])));
-export async function memberSession(browser,label,viewport,{reset=true,clock=false}={}) {
+export async function memberSession(browser,label,viewport,{reset=true,clock=false,openEditors=true,prepareAdmission}={}) {
   if(reset){const response=await fetch(`http://127.0.0.1:8080/emulator/v1/projects/${project}/databases/(default)/documents`,{method:'DELETE'});assert.equal(response.ok,true);}
   const context=await browser.newContext({viewport});const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
   if(clock)await page.clock.install({time:new Date()});
@@ -23,8 +23,10 @@ export async function memberSession(browser,label,viewport,{reset=true,clock=fal
   await popup.getByText('Add new account',{exact:true}).click();await popup.locator('#email-input').fill(`${label}-${Date.now()}@example.test`);await popup.locator('#display-name-input').fill('Cuenta sintética');await popup.getByRole('button',{name:'Sign in with Google.com',exact:true}).click();
   await page.waitForFunction(()=>document.querySelector('[data-access-status]').textContent.includes('no tiene una membresía'));
   const uid=await page.evaluate(async()=>{const client=await import('/src/firebase/client.ts');assertDemo(client.auth.app.options.projectId);function assertDemo(id){if(id!=='demo-pintatonica')throw Error('Not demo');}return client.auth.currentUser.uid;});
+  await prepareAdmission?.(page);
   await seedData(`members/${uid}`,{active:true,name:'Miembro de prueba'});
   await page.waitForFunction(()=>Array.from(document.querySelectorAll('button')).find(node=>node.textContent==='Guardar horario semanal')?.disabled===false);
+  if(openEditors){for(const disclosure of await page.locator('[data-editor-disclosure]').all()){if(!await disclosure.evaluate(node=>node.open))await disclosure.locator('summary').first().click();}}
   const dates=await page.evaluate(async()=> (await import('/src/band/availability.ts')).planningDates());
   return {context,page,uid,dates,errors};
 }

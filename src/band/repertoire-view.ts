@@ -1,7 +1,7 @@
 import {collection,doc,onSnapshot,type Firestore} from 'firebase/firestore';
 import {resourceKinds,safeURL,type Song,type SongResource} from './repertoire';
 import {saveSong} from './repertoire-store';
-import {button,element,field,input,setStatus} from './dom';
+import {button,element,field,input,setStatus,editorDisclosure} from './dom';
 export function mountRepertoire(db:Firestore,host:HTMLElement) {
   let alive=true,loaded=false,dirty=false,saving=false,id='',revision=0;
   let songs:Song[]=[];
@@ -12,13 +12,14 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
   controls.title.required=true;controls.tempo.min='1';controls.tempo.step='any';
   const publicCheck=input('checkbox');const publicLabel=field('Seleccionar para el repertorio público',publicCheck);publicLabel.classList.add('check-field');
   const resources=element('div');
-  const newSong=button('Nueva canción',()=>select());
+  const disclosure=editorDisclosure('Editar canción',form);
+  const newSong=button('Nueva canción',()=>{select();disclosure.open=true;});
   const save=element('button','Guardar canción','button');save.type='submit';
   const reload=button('Recargar versión guardada',()=>select(songs.find(song=>song.id===id)));
   form.append(element('h3','Canción y material de trabajo'));
   for(const [key,label] of [['title','Título'],['artist','Artista original'],['status','Estado'],['key','Tonalidad'],['tempo','Tempo (BPM)'],['arrangement','Estructura / arreglo'],['notes','Notas de la banda']] as const)form.append(field(label,controls[key]));
   form.append(publicLabel,field('Enlace de media pública (selección explícita)',controls.publicMediaUrl),element('p','Este enlace se publica si seleccionas la canción. El resto de recursos y notas siguen siendo privados.'),element('h4','Recursos privados'),resources,button('Añadir recurso',()=>{addResource();markDirty();}),save,reload);
-  host.append(heading,status,newSong,list,details,form);setDisabled(true);
+  host.append(heading,status,newSong,list,details,disclosure);setDisabled(true);
   function setDisabled(value:boolean){for(const control of host.querySelectorAll<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement|HTMLButtonElement>('input,textarea,select,button'))control.disabled=value;}
   function markDirty(){dirty=true;setStatus(status,'Cambios de canción sin guardar.','warning');}
   form.addEventListener('input',markDirty);
