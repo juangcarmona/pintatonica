@@ -2,6 +2,8 @@ import { after, before, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { serveBuild } from '../../tooling/web/serve-build.mjs';
+import {assertShellPrivacy} from '../../tooling/web/assert-shell-privacy.mjs';
+import {publicProfile} from '../../public-site/content.ts';
 let app;
 before(async () => { app = await serveBuild(); });
 after(async () => { await app?.close(); });
@@ -16,7 +18,7 @@ for (const [path, heading] of [['/', 'Pintatónica'], ['/band/', 'Backstage'], [
     assert.match(html, /viewport/);
     assert.match(html, /Saltar al contenido/);
     assert.match(html, /aria-current="page"/);
-    assert.doesNotMatch(html, /Guille|Juan|Will|Pablo|signInWithPopup|members\//);
+    assertShellPrivacy(html,{area:path==='/'?'public':'band',approvedMembers:publicProfile.members});
     for (const asset of html.matchAll(/(?:src|href)="([^"#]+\.(?:css|js|png))"/g)) {
       assert.equal((await fetch(app.url + asset[1])).status, 200, asset[1]);
     }

@@ -1,0 +1,36 @@
+[
+  {
+    "viewport": "mobile",
+    "loadingBeforeServerSnapshots": true,
+    "failedReadClearsSummary": true,
+    "emptyHome": true,
+    "defaultEditorsClosed": true,
+    "availabilityWithinRehearsals": true,
+    "nextRehearsalPreparationAndResource": true,
+    "upcomingGigAndSetlist": true,
+    "directPreparationSaved": true,
+    "deliberateEditing": true,
+    "draftSurvivesNavigation": true,
+    "stickyNavigationLeavesTargetsVisible": true,
+    "revocationClearsHomeAndWorkspace": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "desktop",
+    "loadingBeforeServerSnapshots": true,
+    "failedReadClearsSummary": true,
+    "emptyHome": true,
+    "defaultEditorsClosed": true,
+    "availabilityWithinRehearsals": true,
+    "nextRehearsalPreparationAndResource": true,
+    "upcomingGigAndSetlist": true,
+    "directPreparationSaved": true,
+    "deliberateEditing": true,
+    "draftSurvivesNavigation": true,
+    "stickyNavigationLeavesTargetsVisible": true,
+    "revocationClearsHomeAndWorkspace": true,
+    "noOverflow": true,
+    "pageErrors": 0
+  }
+]

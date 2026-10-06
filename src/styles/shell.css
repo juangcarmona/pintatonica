@@ -28,7 +28,7 @@ nav a[aria-current="page"] { font-weight: var(--font-weight-bold); text-decorati
 .band-navigation { flex-wrap: wrap; gap: var(--space-3); padding-block: var(--space-4); border-bottom: var(--border-width) solid var(--color-paper); }
 [id^="band-section-"], [id^="preparation-"], #band-availability { scroll-margin-top: var(--member-navigation-height, var(--space-16)); }
 .public-section { padding: var(--space-12) var(--space-8); }
-.public-section > * { max-width: 76rem; margin-inline: auto; }
+.public-section > * { max-width: calc(var(--measure-site) - var(--space-8) * 2); margin-inline: auto; }
 .public-section h2 { font-family: var(--font-display); font-size: var(--font-size-600); line-height: var(--line-height-tight); margin-block: var(--space-4) var(--space-8); }
 .paper-section { background: var(--surface-page); color: var(--text-default); }
 .paper-section :focus-visible { outline-color: var(--focus-ring); }
@@ -45,6 +45,22 @@ nav a[aria-current="page"] { font-weight: var(--font-weight-bold); text-decorati
 main { min-height: 75vh; }
 .hero, .band-shell { max-width: var(--measure-site); margin-inline: auto; padding: var(--space-12) var(--space-8); }
 .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: var(--space-8); }
+.hero-story { max-width: var(--measure-body); }
+.hero-introduction { font-size: var(--font-size-400); max-width: var(--measure-body); }
+.hero-identity { max-width: var(--measure-body); justify-self: end; }
+.hero .hero-rhythm { grid-column: 1 / -1; width: 100%; height: var(--space-12); gap: var(--space-3); }
+.public-section > .brand-lockup { display: flex; }
+.member-presentation { padding-top: var(--space-8); border-top: var(--border-width) solid var(--border-default); }
+.member-role { font-weight: var(--font-weight-bold); }
+.public-empty { border-inline-start: var(--border-width-heavy) solid currentColor; padding: var(--space-4) var(--space-6); max-width: var(--measure-body); }
+.public-song { padding-block: var(--space-6); }
+.public-song h3 { margin-bottom: var(--space-2); }
+.public-song .song-artist { font-size: var(--font-size-300); }
+.public-gig { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--space-6); }
+.event-date { font-size: var(--font-size-400); font-weight: var(--font-weight-bold); line-height: var(--line-height-tight); }
+.public-gig h3 { margin-bottom: var(--space-3); }
+.event-venue { font-weight: var(--font-weight-bold); }
+.site-header .backstage-link { background: var(--surface-page); color: var(--text-default); font-size: var(--font-size-100); }
 .eyebrow { font-size: var(--font-size-100); text-transform: uppercase; letter-spacing: var(--tracking-label); margin: 0; }
 .public-section > .eyebrow { margin-inline: auto; }
 h1 { font-family: var(--font-display); font-size: clamp(var(--font-size-600), 8vw, var(--font-size-700)); line-height: var(--line-height-tight); font-weight: var(--font-weight-black); margin: 0; }
@@ -78,6 +94,7 @@ p { margin-block: var(--space-4); }
 .panel p { max-width: var(--measure-body); }
 .panel fieldset { border: var(--border-width) solid var(--border-default); padding: var(--space-3); }
 [role="status"] { font-size: var(--font-size-100); border-inline-start: var(--border-width-heavy) solid currentColor; padding-inline-start: var(--space-3); }
+.public-grid[role="status"], .media-links[role="status"] { font-size: inherit; border-inline-start: 0; padding-inline-start: 0; }
 .panel [role="status"] { color: var(--text-muted); }
 [data-tone="positive"] { color: var(--state-positive); }
 [data-tone="warning"] { color: var(--state-warning); }
@@ -140,6 +157,9 @@ summary { cursor: pointer; font-weight: var(--font-weight-bold); }
   .site-header, .site-footer { padding: var(--space-4); }
   .hero, .band-shell { padding: var(--space-8) var(--space-4); }
   .hero { grid-template-columns: 1fr; }
+  .hero-identity { max-width: var(--measure-editor); justify-self: start; }
+  .hero .hero-rhythm { height: var(--mark-height); }
+  .public-gig { grid-template-columns: 1fr; gap: var(--space-3); }
   .band-logo { max-width: 24rem; justify-self: center; }
   .hero-bottom { align-items: stretch; }
   .button { width: 100%; }

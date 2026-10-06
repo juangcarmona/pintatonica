@@ -6,6 +6,8 @@ description: Architectural realization and evidence for product quality requirem
 
 # Quality Requirements
 
+GH-22 public evidence covers empty and synthetic approved-editorial states at both viewport sizes, one public hero action, secondary Backstage entry, event/music hierarchy, keyboard navigation, reduced motion, private-request absence and direct private-read denial. Evidence is linked from the delivery plan; real editorial approvals remain a distinct external input. Existing public usability and security citations govern the same surface.
+
 ## Quality Requirements Overview
 
 Accepted quality meaning remains in [ProductShape](../product/model/requirements/quality/). This table describes realization and practical limits, not replacement acceptance criteria.
