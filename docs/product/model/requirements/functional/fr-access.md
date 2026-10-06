@@ -13,6 +13,10 @@ The product MUST support Google sign-in and /band as the private member-facing a
 
 Membership creation/removal is manually provisioned outside normal member-facing flows. No administrator product role or granular permission model is included. Members edit their own availability; any active member may edit shared repertoire metadata, rehearsal focus and setlists and explicitly confirm rehearsals.
 
+Backstage MUST be presented as a clear member-only login/entry action. A signed-out person can deliberately start Google sign-in; an already authenticated active member can enter without repeated authentication. Authentication alone MUST NOT enrol a member or grant private access. Missing/inactive membership, failed checks and revocation deny every private area and direct data operation.
+
+Admitted members MUST have secondary navigation between separate Inicio, Ensayos, Repertorio, Setlists and Conciertos pages under FR-NAVIGATION, with the current area identified. Direct private addresses, refresh and browser history remain subject to the same membership boundary. Login/access-status shells may be reached without admission, but private data and member navigation MUST NOT be exposed before active membership is confirmed.
+
 ## Rationale
 
 Protect real band organisation while replacing prototype access mechanics and keeping the MVP simple.

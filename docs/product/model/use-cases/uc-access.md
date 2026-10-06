@@ -6,7 +6,7 @@ status: "draft"
 primary-actor: "ACT-MEMBER"
 bounded-context: "BC-PINTATONICA"
 governed-by: ["BR-MEMBERSHIP"]
-uses-terms: ["TERM-MEMBER","TERM-BAND"]
+uses-terms: ["TERM-MEMBER","TERM-BAND","TERM-AREA"]
 ---
 
 ## Goal
@@ -15,7 +15,7 @@ Reach /band, the member-facing application surface distinct from the public webs
 
 ## Trigger
 
-A person requests /band or private data.
+A person activates the Backstage login/entry action, requests a private area address under /band or requests private data.
 
 ## Preconditions
 
@@ -23,13 +23,16 @@ The person can attempt Google sign-in; active membership is checked independentl
 
 ## Main Flow
 
-1. Authenticate with Google.
+1. Deliberately start Google sign-in through the member-only Backstage entry when signed out.
 2. Check the active Pintatónica membership record for that identity.
-3. Allow the active member to enter the /band dashboard with their identity already known.
+3. Allow the active member to enter the /band dashboard or directly requested private area with their identity already known.
+4. Offer secondary navigation between separate Inicio, Ensayos, Repertorio, Setlists and Conciertos pages, identifying the current area.
 
 ## Alternative Flows
 
 An authenticated non-member or inactive member is denied private access. A member never needs to select their own name after login.
+
+An already authenticated active member can use the Backstage entry without repeated sign-in. Each directly requested private area requires the same membership decision. Sign-out or membership revocation removes private content and access; public navigation remains available. No Backstage entry creates membership.
 
 ## Failure Conditions
 

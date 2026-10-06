@@ -13,7 +13,7 @@ description: Fundamental approaches that shape the architecture and realize its 
 | Usability (QR-USABILITY) | Reuse existing logo and canonical design tokens; inspect responsive/keyboard browser evidence | [08](08-crosscutting-concepts.md); [design](../design/README.md) |
 | Security (QR-SECURITY) | Keep member data out of static output; browser membership gate plus independent Google-provider/active-membership enforcement in Firestore | [06](06-runtime-view.md); [08](08-crosscutting-concepts.md) |
 
-Storage/editing boundaries for musical features and scheduling architecture remain later decisions. Static HTML is not an authorization boundary; the GH-2 access mechanism is documented in [08](08-crosscutting-concepts.md).
+Musical records persist in Firestore with rules-enforced ownership and safe public projections; scheduling calculations run in the admitted browser workspace. [08](08-crosscutting-concepts.md) owns those current boundaries. Static HTML is not an authorization boundary; the GH-2 access mechanism is documented in [08](08-crosscutting-concepts.md).
 
 <!-- pdac:cite id="QR-COST-OPERATIONS" digest="sha256:18df4d28e10c2b4f64596df6196e2fc404334d4854653a6c53abc424c790230c" -->
 
@@ -21,6 +21,6 @@ Storage/editing boundaries for musical features and scheduling architecture rema
 
 <!-- pdac:cite id="QR-VERIFICATION" digest="sha256:1a0f617f80f103442dddf61fc11a360e4ca9e023d6f18bcace259ffa3fa0e73e" -->
 
-<!-- pdac:cite id="QR-USABILITY" digest="sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b" -->
+<!-- pdac:cite id="QR-USABILITY" digest="sha256:c92d80381f9db69175e40c2ca07e2ac246565fd241c5907b56ea5a22e9192753" -->
 
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->

@@ -49,10 +49,10 @@ See the [GH-2 plan](../delivery/completed/GH-2.md), [controller tests](../../src
 
 ## Public discovery and complete MVP verification
 
-Astro emits the editorial sections and approved contact/media configuration at build time. The browser independently fetches publicSongs and publicGigs once per page visit, renders text safely, filters upcoming gigs in Madrid time and reports empty/unavailable states. No anonymous private read or Auth request is needed. The compact navigation responds to keyboard, Escape, link activation and viewport changes.
+Astro emits the editorial sections and approved contact/media configuration at build time. The browser independently fetches publicSongs and publicGigs once per page visit, renders text safely, filters upcoming gigs in Madrid time and reports empty/unavailable states. No anonymous private read or Auth request is needed. The compact navigation responds to keyboard, Escape, link activation and viewport changes. It currently lacks visible-section tracking; GH-28 owns that extension. The access and anchored workspace sequences above remain current until GH-29/GH-30 deliver the accepted entry and private-page changes.
 
 Approved editorial member presentation is also static. An empty profile collection emits an honest absence state. Public event dates use semantic time elements with Madrid civil-date formatting, while repertoire media links remain guarded external navigation. No private member listener is added to discovery. The built-shell guard permits only exact matching approved card fields and retains identity denial outside that deliberate surface; private collection/auth references remain forbidden even inside approved fields.
 
 [Public runtime harness](../../src/tooling/web/verify-public-runtime.mjs) observes discovery and actual private-read denial using demo fixtures. GH-9 reruns the predecessor access, availability, opportunities, confirmation, repertoire, preparation and setlist browser suites against the current source; evidence distinguishes synthetic local journeys from anonymous deployed observations.
 
-<!-- pdac:cite id="FR-PUBLIC" digest="sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3" -->
+<!-- pdac:cite id="FR-PUBLIC" digest="sha256:5c70258017dd04a564f3a07ee727c1507b93efc0ea6c80f40617948aef48839b" -->

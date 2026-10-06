@@ -30,13 +30,18 @@ QR-SECURITY, QR-USABILITY, QR-MAINTAINABILITY, QR-COST-OPERATIONS, QR-VERIFICATI
 - [Completed GH-1 implementation plan](completed/GH-1.md) and [merged PR #10](https://github.com/juangcarmona/pintatonica/pull/10).
 - [Archived GH-2 access plan](completed/GH-2.md) and [PR #12](https://github.com/juangcarmona/pintatonica/pull/12) record recognised access.
 - [Archived GH-3 availability plan](completed/GH-3.md) and [merged PR #13](https://github.com/juangcarmona/pintatonica/pull/13) record saved availability.
-- GitHub issues #1–#9 are published. GH-1–GH-7 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [Archived GH-4 plan](completed/GH-4.md) records opportunity inspection; [Archived GH-5 plan](completed/GH-5.md) records confirmation; [Archived GH-6 plan](completed/GH-6.md) records repertoire; [Archived GH-7 plan](completed/GH-7.md) records shared focus; [GH-8 plan](completed/GH-8.md) is current. Slice 9 remains unstarted.
+- GitHub issues #1–#9 are published. GH-1–GH-9 are closed, merged and deployed. [Remaining-slice readiness](proposals/remaining-slices-readiness.md) records questions/inputs; [Archived GH-4 plan](completed/GH-4.md) records opportunity inspection; [Archived GH-5 plan](completed/GH-5.md) records confirmation; [Archived GH-6 plan](completed/GH-6.md) records repertoire; [Archived GH-7 plan](completed/GH-7.md) records shared focus; [GH-8 plan](completed/GH-8.md) is current. Slice 9 merged through PR #19. GH-20–GH-22 subsequently refined design, member journeys and the public structure through PRs #24–#26.
 
 ## Product gaps and delivery risks
 
-No genuine product semantic gap or contradiction was found that requires a Product Change. Baseline artifacts remain untouched. Editorial public content and actual member identities are supplied operational inputs, not new product policy. Repository-managed repertoire versus browser editing needs an architectural solution when slice 6 is planned; it is not permission to weaken shared editing or create a CMS feature.
+The initial MVP decomposition required no semantic change. GH-27 now applies the explicitly approved CHG-AREA-NAVIGATION definition extension; it does not implement navigation. Editorial public content and actual member identities are supplied operational inputs, not new product policy. ADR-0002 records the delivered shared repertoire and safe public projection boundary.
 
-The accepted model is present and validates with 55 artifacts. Its individual frontmatter statuses remain draft after official application; this delivery map relies on Juan's explicit baseline acceptance and the applied change, and does not mutate those statuses. GH-1 reconciled affected architecture and lifecycle documentation and verified the existing Cloudflare deployment. See [completed plan](completed/GH-1.md) and [deployment evidence](evidence/GH-1/README.md) for actual outcomes and limitations.
+The accepted model is present and validates with 57 artifacts. Its individual frontmatter statuses remain draft after official application; this delivery map relies on Juan's explicit baseline acceptance and the applied change, and does not mutate those statuses. GH-1 reconciled affected architecture and lifecycle documentation and verified the existing Cloudflare deployment. See [completed plan](completed/GH-1.md) and [deployment evidence](evidence/GH-1/README.md) for actual outcomes and limitations.
+
+
+## Navigation extension delivery boundary
+
+[CHG-AREA-NAVIGATION](../product/changes/completed/chg-area-navigation/change.md) defines the next navigation baseline. GH-27 is product-definition acceptance only: [GH-28](https://github.com/juangcarmona/pintatonica/issues/28) delivers public single-page orientation/history and [GH-29](https://github.com/juangcarmona/pintatonica/issues/29) delivers clearer member-only entry independently after acceptance. [GH-30](https://github.com/juangcarmona/pintatonica/issues/30) follows GH-29 for private area pages, direct-entry gating and unsaved-edit safety. Governing artifacts are FR-NAVIGATION, TERM-AREA, UC-PUBLIC, UC-ACCESS, FR-PUBLIC, FR-ACCESS, QR-USABILITY and JRN-DISCOVER. Existing musical capabilities, membership/revocation and public-selection boundaries remain unchanged. GH-23 editorial approvals do not block these structural slices.
 
 ## ProductShape citations
 
@@ -57,19 +62,19 @@ The CLI-generated citations below bind the map's artifact references to current 
 
 <!-- pdac:cite id="CON-SINGLE-BAND" digest="sha256:59e879c69ee07f61737be895e059ea3b1be35d6f3a82236715821277082dfabb" -->
 
-<!-- pdac:cite id="FR-ACCESS" digest="sha256:d204efca1c924cd6c70f21eea5b7d0c82d16f3ebbac6dd698e52d910a7db7c14" -->
+<!-- pdac:cite id="FR-ACCESS" digest="sha256:829c0792a764b759e908257acec47c921107aad3593da3f88a346c85313c24de" -->
 
 <!-- pdac:cite id="FR-AVAILABILITY" digest="sha256:76b84c21229736ace1a172389d896eb8472a17b0869c25ddf4e87d6becdf9a85" -->
 
 <!-- pdac:cite id="FR-PREPARATION" digest="sha256:0bc5dae67dd450f814bafba786a9bcb657ecba07acada44b3c9f3113ee70b50f" -->
 
-<!-- pdac:cite id="FR-PUBLIC" digest="sha256:46aabeb5bd38ee43137c55e7fe8b7e108de20cd2b4d318c250de46c2494095c3" -->
+<!-- pdac:cite id="FR-PUBLIC" digest="sha256:5c70258017dd04a564f3a07ee727c1507b93efc0ea6c80f40617948aef48839b" -->
 
 <!-- pdac:cite id="FR-REPERTOIRE" digest="sha256:19c0f3e6a2bf99f8ce11f96b382d0d029570459ab8638cd6fa0cdef6073689f4" -->
 
 <!-- pdac:cite id="FR-SCHEDULING" digest="sha256:d8c50417079fc3b286eb9a0164ac4ec6d53f8163b5d79a5761b2f7d3dc1f1a3f" -->
 
-<!-- pdac:cite id="JRN-DISCOVER" digest="sha256:361a772c191ae0dd81d07c686255053a0c064ca865f4e8f0e5186de9170f360a" -->
+<!-- pdac:cite id="JRN-DISCOVER" digest="sha256:d5ba2ed7de4b2ee22bbc630e1c34a0b0ea78273a935926f8484a9759617d38c4" -->
 
 <!-- pdac:cite id="JRN-NEXT-REHEARSAL" digest="sha256:2d387a217db7638b5dbe82d379e2d862a0af7a098d65b34cb27af88b8494a3ea" -->
 
@@ -85,7 +90,7 @@ The CLI-generated citations below bind the map's artifact references to current 
 
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->
 
-<!-- pdac:cite id="QR-USABILITY" digest="sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b" -->
+<!-- pdac:cite id="QR-USABILITY" digest="sha256:c92d80381f9db69175e40c2ca07e2ac246565fd241c5907b56ea5a22e9192753" -->
 
 <!-- pdac:cite id="QR-VERIFICATION" digest="sha256:1a0f617f80f103442dddf61fc11a360e4ca9e023d6f18bcace259ffa3fa0e73e" -->
 
@@ -107,7 +112,7 @@ The CLI-generated citations below bind the map's artifact references to current 
 
 <!-- pdac:cite id="TERM-SONG-RESOURCE" digest="sha256:0985b37dc50bb506b97e12fd123e849b669aae5191e23580c5b9f1493757eea4" -->
 
-<!-- pdac:cite id="UC-ACCESS" digest="sha256:314f550728dff6142bcf2e1706bd29a33f371d4e88df014dba8b47cb815201de" -->
+<!-- pdac:cite id="UC-ACCESS" digest="sha256:5691e79a155bb42f6b01d39a29f07f62552cfb5ac3fbc9b4990711ce84fb4788" -->
 
 <!-- pdac:cite id="UC-AVAILABILITY" digest="sha256:4a1ed60fdab4541a8d111290ff21a5ab9184878bb543a9c4a6babc7ff0bb091e" -->
 
@@ -117,8 +122,13 @@ The CLI-generated citations below bind the map's artifact references to current 
 
 <!-- pdac:cite id="UC-PREPARE" digest="sha256:b88c6b68b7d051a041d94118c79e2c1929b40681a7be22f79820a8a3e8fd768a" -->
 
-<!-- pdac:cite id="UC-PUBLIC" digest="sha256:4ed19e5a08ae69b1f3008e32f3afeacffd4a50ccfed9bc181507eb12067e9ce8" -->
+<!-- pdac:cite id="UC-PUBLIC" digest="sha256:277f5a1618483eafa1201ba7bb58135db4c3fb7bad2325a1bdd1603adcc04607" -->
 
 <!-- pdac:cite id="UC-REPERTOIRE" digest="sha256:718e20283024d4a35875a1c3f7f28783b3e2bd8e7c696b9d4992d5a41ed38f27" -->
 
 <!-- pdac:cite id="UC-SETLIST" digest="sha256:fb25b1351f4cc5aef0e68ae3783dcb303d03317814d4c89fbb2dd0d68eb58fc6" -->
+
+
+<!-- pdac:cite id="FR-NAVIGATION" digest="sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6" -->
+
+<!-- pdac:cite id="TERM-AREA" digest="sha256:50b0bb32cc88b9032d0f8c857d27c3222bd18b1ae2b7104ee2bcb8497891801d" -->

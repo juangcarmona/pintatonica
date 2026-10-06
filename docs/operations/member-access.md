@@ -37,3 +37,6 @@ Retain scrubbed check summaries and harness JSON/screenshots rather than raw emu
 Live Google-account completion requires its owner. Emulator evidence is not evidence that the real Google account signed in successfully.
 
 Availability runtime verification uses the same complete demo-only override, emulator and dev-server setup: `node src/tooling/web/verify-band-runtime.mjs`. It verifies real forms/save/reload, replacement/empty/restored exceptions, dirty drafts and direct ownership denial, and captures synthetic evidence under `artifacts/runtime/GH-3`. It resets only the explicitly guarded local demo database between viewport scenarios; never run production fixture writes.
+
+
+GH-27 applies the [navigation definition extension](../product/changes/completed/chg-area-navigation/change.md). The current presentation/access mechanisms described here remain implemented; GH-28–GH-30 own their subsequent navigation/entry realization. Manual Google UID membership provisioning and revocation remain unchanged.

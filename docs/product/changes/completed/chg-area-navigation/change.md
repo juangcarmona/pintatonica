@@ -2,7 +2,7 @@
 id: CHG-AREA-NAVIGATION
 type: product-change
 title: Oriented public and Backstage areas with member-only entry
-status: proposed
+status: applied
 base-revision: '93e1162124b10b203bedcb696b29fe5115c127b9'
 operations:
   add: [TERM-AREA, FR-NAVIGATION]

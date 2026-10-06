@@ -1,0 +1,48 @@
+{
+  "proposalHead": "c5d98087153a30cc49413d5ffb354651ec7f13ae",
+  "base": "93e1162124b10b203bedcb696b29fe5115c127b9",
+  "sourceTree": "c3189b24b1d736d1987a29e2b061c9a8434fc78f",
+  "runtimeConfigurationUnchanged": true,
+  "identity": [
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/journeys\\jrn-discover.md",
+      "result": "docs/product/model/journeys\\jrn-discover.md",
+      "identical": true
+    },
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/use-cases\\uc-access.md",
+      "result": "docs/product/model/use-cases\\uc-access.md",
+      "identical": true
+    },
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/use-cases\\uc-public.md",
+      "result": "docs/product/model/use-cases\\uc-public.md",
+      "identical": true
+    },
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/domain\\terms\\term-area.md",
+      "result": "docs/product/model/domain\\terms\\term-area.md",
+      "identical": true
+    },
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/requirements\\functional\\fr-access.md",
+      "result": "docs/product/model/requirements\\functional\\fr-access.md",
+      "identical": true
+    },
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/requirements\\functional\\fr-navigation.md",
+      "result": "docs/product/model/requirements\\functional\\fr-navigation.md",
+      "identical": true
+    },
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/requirements\\functional\\fr-public.md",
+      "result": "docs/product/model/requirements\\functional\\fr-public.md",
+      "identical": true
+    },
+    {
+      "proposal": "docs/product/changes/completed/chg-area-navigation/proposed/requirements\\quality\\qr-usability.md",
+      "result": "docs/product/model/requirements\\quality\\qr-usability.md",
+      "identical": true
+    }
+  ]
+}
