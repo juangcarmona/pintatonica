@@ -16,4 +16,3 @@ Public discovery is organised into Inicio, La banda, Repertorio, Media, Conciert
 ## Rationale
 
 Support visitors discovering Pintatónica. Visual tokens and logo evidence remain in design documentation.
-
