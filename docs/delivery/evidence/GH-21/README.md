@@ -1,6 +1,6 @@
 # GH-21 evidence
 
-[Plan](../../plans/GH-21.md), [PR #25](https://github.com/juangcarmona/pintatonica/pull/25). The admitted home composes accepted, existing rehearsal/preparation/song/gig/setlist state and the existing opportunity output. Availability belongs to rehearsal planning. Native disclosures retain mounted editors and drafts. No product-model, schema, rules, publication-policy or logo changes.
+[Plan](../../completed/GH-21.md), [PR #25](https://github.com/juangcarmona/pintatonica/pull/25). The admitted home composes accepted, existing rehearsal/preparation/song/gig/setlist state and the existing opportunity output. Availability belongs to rehearsal planning. Native disclosures retain mounted editors and drafts. No product-model, schema, rules, publication-policy or logo changes.
 
 `install.txt`, `security.txt` and `checks.txt` record frozen installation, passing history/index/worktree scans and the complete CI-derived verification: 9 design, 18 security, 41 web and 13 rules tests, 55 accepted product artifacts and no type errors. `citations.json` records 26 current architecture citations. `source-manifest.json` binds all 76 canonical Git-index source blobs (line endings normalized by Git, binary assets unchanged).
 
