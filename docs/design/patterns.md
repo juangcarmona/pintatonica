@@ -17,3 +17,5 @@ Public discovery uses a story-first hero, one repertoire action and a wide four-
 
 
 GH-27 applies the [navigation definition extension](../product/changes/completed/chg-area-navigation/change.md). The current presentation/access mechanisms described here remain implemented; GH-28–GH-30 own their subsequent navigation/entry realization. Manual Google UID membership provisioning and revocation remain unchanged.
+
+Public section location uses the existing bold/heavy underline with aria-current=location. Explicit links focus their section and retain useful native history; scrolling updates location without filling history with intermediate positions. Geometry includes short final sections and the unobscured viewport; no new colour/status role or editorial content is added.

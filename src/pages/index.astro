@@ -6,7 +6,7 @@ import BrandBars from '../components/BrandBars.astro';
 const contact=contactLink(publicProfile.contact);
 ---
 <Shell title="Pintatónica">
-  <section class="hero" aria-labelledby="inicio-titulo">
+  <section class="hero" id="inicio" tabindex="-1" aria-labelledby="inicio-titulo">
     <div class="hero-story"><p class="eyebrow">Banda de música</p><h1 id="inicio-titulo">Pintatónica</h1><p class="hero-introduction">{publicProfile.introduction}</p><a class="button public-button" href="#repertorio">Nuestro repertorio <span aria-hidden="true">↓</span></a></div>
     <div class="hero-identity"><img class="band-logo" src="/brand/logo.png" alt="Pintatónica" width="1024" height="1024" fetchpriority="high" /></div>
     <BrandBars class="hero-rhythm" />

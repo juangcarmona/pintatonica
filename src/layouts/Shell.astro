@@ -20,12 +20,12 @@ const { area = 'public' } = Astro.props;
       <a class="wordmark" href="/" aria-label="Pintatónica, inicio">Pintatónica</a>
       <button class="menu-toggle" type="button" data-menu-toggle aria-label="Abrir navegación" aria-controls="site-navigation" aria-expanded="false" hidden><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
       <nav id="site-navigation" aria-label="Principal">
-        <a href="/" aria-current={area === 'public' ? 'page' : undefined}>Inicio</a>
-        <a href="/#quienes-somos">La banda</a>
-        <a href="/#repertorio">Repertorio</a>
-        <a href="/#media">Media</a>
-        <a href="/#conciertos">Conciertos</a>
-        <a href="/#contacto">Contacto</a>
+        <a href={area === 'public' ? '#inicio' : '/#inicio'} data-public-area={area === 'public' ? 'inicio' : undefined}>Inicio</a>
+        <a href={area === 'public' ? '#quienes-somos' : '/#quienes-somos'} data-public-area={area === 'public' ? 'quienes-somos' : undefined}>La banda</a>
+        <a href={area === 'public' ? '#repertorio' : '/#repertorio'} data-public-area={area === 'public' ? 'repertorio' : undefined}>Repertorio</a>
+        <a href={area === 'public' ? '#media' : '/#media'} data-public-area={area === 'public' ? 'media' : undefined}>Media</a>
+        <a href={area === 'public' ? '#conciertos' : '/#conciertos'} data-public-area={area === 'public' ? 'conciertos' : undefined}>Conciertos</a>
+        <a href={area === 'public' ? '#contacto' : '/#contacto'} data-public-area={area === 'public' ? 'contacto' : undefined}>Contacto</a>
         <a class="backstage-link" href="/band/" aria-current={area === 'band' ? 'page' : undefined}>Backstage</a>
       </nav>
     </header>

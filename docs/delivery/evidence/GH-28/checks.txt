@@ -1,0 +1,165 @@
+Final full pnpm verify: observed exit 0; 88 tests (9 design,18 security,48 web,13 rules). New navigation.test.mjs and updated shell.test.mjs ran.
+> pintatonica@0.0.0 verify C:\dev\juangcarmona\pintatonica
+> pnpm verify:fast && pnpm build && pnpm test:web && pnpm product:validate && pnpm product:integrity && pnpm product:doctor && pnpm firebase:rules:test
+> pintatonica@0.0.0 verify:fast C:\dev\juangcarmona\pintatonica
+> pnpm design:check && pnpm design:test && pnpm typecheck && pnpm security:test
+> pintatonica@0.0.0 design:check C:\dev\juangcarmona\pintatonica
+> node src/tooling/design/check-design.mjs
+> pintatonica@0.0.0 design:test C:\dev\juangcarmona\pintatonica
+> node --test "src/tests/design/**/*.test.mjs"
+✔ DS001 flags hex and colour functions, ignores tokens and id selectors (1.8262ms)
+✔ DS002 flags literal spacing, allows tokens and zero (0.3023ms)
+✔ DS003 flags literal radius, allows tokens and zero (0.2126ms)
+✔ DS004 flags shadows, blurs and gradients (0.2849ms)
+✔ run excludes configured paths and reports violations elsewhere (4.7615ms)
+✔ repository src/ currently passes the design check (15.9161ms)
+✔ brand colours match the logo sample (0.5917ms)
+✔ approved text/background pairs meet WCAG AA (4.5:1) (1.0846ms)
+✔ focus ring has 3:1 contrast on page surface (0.13ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.7218
+> pintatonica@0.0.0 typecheck C:\dev\juangcarmona\pintatonica
+> astro check --tsconfig src/tsconfig.json --config src/astro.config.mjs
+Result (34 files):
+- 0 errors
+- 0 warnings
+> pintatonica@0.0.0 security:test C:\dev\juangcarmona\pintatonica
+> node --test src/tests/security/*.test.mjs
+✔ scanner verifies archive bytes and rejects a changed download (1.3422ms)
+✔ scanner subprocesses receive OS paths but no credentials or scanner overrides (0.6105ms)
+✔ unborn repository still scans the working tree with redaction (0.8154ms)
+✔ all-ref history failure blocks success but still scans the working tree (0.8027ms)
+✔ staged changes are scanned without printing their content (0.536ms)
+✔ scanner execution errors and unknown history fail closed (1.6424ms)
+✔ environment example contains only placeholders and a false emulator default (0.7748ms)
+✔ real scanner detects an ignored synthetic secret and redacts reports (770.702ms)
+✔ only the exact public Firebase key is exempt; other Google keys remain detected (1054.2618ms)
+✔ corrupted archive is rejected with the underlying ZIP extraction error (11.6982ms)
+✔ official checksum mismatch stops installation before extraction (6.888ms)
+✔ valid cached binary is version-checked and reused without downloading (39.4548ms)
+✔ incomplete and corrupt previous installs are safely replaced (28.767ms)
+✔ cached or downloaded wrong-version binaries cannot be accepted (21.663ms)
+✔ simultaneous installers publish only one verified cache (69.2241ms)
+✔ extraction failure retains process exit and stderr diagnostics (3.136ms)
+✔ failed installation never runs or reports a successful security scan (4.4817ms)
+✔ a busy installation lock fails closed without deleting another owner (3.8073ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2114.2543
+> pintatonica@0.0.0 build C:\dev\juangcarmona\pintatonica
+> astro build --config src/astro.config.mjs
+> pintatonica@0.0.0 test:web C:\dev\juangcarmona\pintatonica
+> node --experimental-strip-types --test src/tests/web/*.test.mjs
+✔ signed-out state contains no member identity (2.6457ms)
+✔ active Google member is recognised by membership without name selection (0.4573ms)
+✔ missing and inactive memberships deny access (0.2921ms)
+✔ non-Google identity never initiates membership reads (0.2276ms)
+✔ revocation removes the recognised member immediately (0.2623ms)
+✔ stale membership callbacks cannot restore a prior identity (0.3104ms)
+✔ failed membership checks and auth observation fail closed (0.3245ms)
+✔ sign-in failure is safe and does not grant access (1.4832ms)
+✔ sign-out clears identity before completion; stale callbacks cannot restore it (0.3297ms)
+✔ failed sign-out cannot retain dashboard or claim success (0.3459ms)
+✔ stopped controller ignores delayed observations (0.1939ms)
+✔ navigation suspension clears identity and restoration rechecks membership (0.2871ms)
+✔ a replacement date exception preserves later weekly habits; empty and removal are distinct (3.0214ms)
+✔ Madrid civil dates and six Monday-based weeks remain correct across DST and month boundaries (33.4836ms)
+✔ separated intervals remain separate; overlapping or touching intervals form a continuous union (1.9964ms)
+✔ missing, blank and example configuration does not initialize Firebase (1.3662ms)
+✔ server initialization guard never imports the eager Firebase client (0.2543ms)
+✔ native builds use the existing public app; partial overrides fail closed (0.3224ms)
+✔ member home derives the next confirmed rehearsal and only its existing musical preparation (28.501ms)
+✔ member home derives upcoming gig context and associated setlists without publication inference (0.957ms)
+✔ member home keeps missing rehearsal, songs and gigs honestly empty (0.7005ms)
+✔ current public section changes at the visible reading boundary (1.1355ms)
+✔ top and short final public areas remain identifiable (0.233ms)
+✔ full opportunities use all active members and a continuous fixed two hours (3.1732ms)
+✔ partial windows remain secondary, include short overlaps, and rank participation then duration (0.3847ms)
+✔ membership is dynamic; touching intervals stay continuous without duplicate participants (0.3212ms)
+✔ preparation selects existing unique songs and preserves lightweight musical focus (2.5048ms)
+✔ private identity leakage remains forbidden on public and unadmitted member shells (3.3165ms)
+✔ only an explicitly approved public member name is allowed in its matching editorial card (2.0229ms)
+✔ an approved card cannot hide another private identity or private collection reference (0.4856ms)
+✔ approved editorial names and roles are matched safely as HTML text (0.3366ms)
+✔ explicit approved descriptions and image labels may contain the public name but never private references (0.3873ms)
+✔ public music consumes only intended fields and rejects executable media or credential links (1.931ms)
+✔ public upcoming gigs use Madrid civil time, retaining date-only today and sorting future events (22.5866ms)
+✔ expected attendance, not candidate classification, distinguishes full from partial rehearsals (2.8362ms)
+✔ upcoming includes ongoing/future rehearsals and filters finished Madrid times across DST (21.2214ms)
+✔ public song projection includes only deliberately selected safe fields, never internal material (1.5239ms)
+✔ resources retain provider links and reject executable schemes or embedded credentials (0.5953ms)
+✔ musical running order preserves songs and repeats, duration/notes and a valid rehearsal or gig association (1.8312ms)
+✔ basic gig dates are real Madrid civil dates and publication whitelists exclude preparation (2.6623ms)
+✔ built / is a branded, non-sensitive HTML shell (72.6701ms)
+✔ built /band/ is a branded, non-sensitive HTML shell (14.3668ms)
+✔ built /band is a branded, non-sensitive HTML shell (11.2362ms)
+✔ published logo is the exact existing brand asset (5.4371ms)
+✔ public presentation uses approved title, undotted wordmark, navigation and honest editorial sections (2.7428ms)
+✔ built member page withholds identity and dashboard until browser authorization (3.9113ms)
+✔ unknown routes remain missing rather than becoming the member shell (2.4724ms)
+✔ missing production build fails the serving harness (0.8245ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 48
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 503.7216
+> pintatonica@0.0.0 product:validate C:\dev\juangcarmona\pintatonica
+> prodshape validate
+> pintatonica@0.0.0 product:integrity C:\dev\juangcarmona\pintatonica
+> prodshape integration update --check
+> pintatonica@0.0.0 product:doctor C:\dev\juangcarmona\pintatonica
+> prodshape doctor
+> pintatonica@0.0.0 firebase:rules:test C:\dev\juangcarmona\pintatonica
+> firebase emulators:exec --only firestore --project demo-pintatonica "node --test src/tests/firebase/*.test.mjs"
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:321)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+	at com.google.cloud.datastore.emulator.impl.rules.DefaultEmulatorRulesAuthorizer.withVerboseErrors(DefaultEmulatorRulesAuthorizer.java:326)
+✔ firestore rules (3595.6898ms)
+ℹ tests 13
+ℹ suites 1
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4011.9911
++  Script exited successfully (code 0)
