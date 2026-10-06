@@ -21,3 +21,13 @@ What did not: initial harness interactions assumed editors were visible after re
 Next time: deliberate editor-entry interactions belong in journey harnesses; sticky navigation must be checked against actual target bounds. Guarded delayed server reads and isolated read denial prove honest summaries. These assertions and the member-access runbook now retain the lessons. No product change or lifecycle weakening.
 
 Effort: not captured. Earlier GH-1–GH-9 review debt remains disclosed; no speculative measurements or retrospective claims added.
+
+## 2026-10-06 — GH-22 public band presence
+
+What worked: structural public delivery proceeded with the approved introduction and honest empty states, independently of editorial completion. Empty/populated browser cases at both widths proved flexible static member presentation without private roster reads. PR #26 merged at 93e11621 after three independent audits and final-head CI/native success. Main checks and separate production observation pass; all three deployed entry assets match the verified build.
+
+What did not: the initial leakage guard rejected approved optional descriptions and image labels. A lazy photo was initially asserted before its actual loading. Existing public status typography reduced whole card lists.
+
+Next time: exact approved field exemptions must include optional editorial fields while always rejecting private collection/auth references and unexpected identities. Five focused tests now enforce that boundary. Browser checks wait for loaded images, and representative section screenshots expose typography issues. The public-content runbook retains fixture restoration and sequential verification. No lifecycle amendment or Product Change is warranted.
+
+Effort: unavailable; no project telemetry/session mapping supplies measured human/agent time, cost or tokens. Earlier GH-1–GH-9 review debt remains disclosed. GH-23 production inventory found no verified contamination; approval of real copy/names/roles remains an external editorial input.

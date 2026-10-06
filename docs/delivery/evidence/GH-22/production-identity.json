@@ -1,0 +1,18 @@
+{
+  "origin": "https://pintatonica.jgcarmona-pro.workers.dev",
+  "merge": "93e1162124b10b203bedcb696b29fe5115c127b9",
+  "assets": [
+    {
+      "path": "/_astro/Shell.astro_astro_type_script_index_0_lang.CjvIwOZb.js",
+      "sha256": "cc42e853a0aff2795b96f796f55c6f42997c41ebbf70eaf7646e6f2f16850b66"
+    },
+    {
+      "path": "/_astro/index.astro_astro_type_script_index_0_lang.V2U1TuL9.js",
+      "sha256": "d9e60e1b73a63dff314be96e697d40088809926bab206deed9feedf45bbbbf57"
+    },
+    {
+      "path": "/_astro/index.astro_astro_type_script_index_0_lang.QheY-Zj4.js",
+      "sha256": "d50ef6ba7d2bb658c576c40476fc529f548cba3f142b045b51a56c45d6ffdb9a"
+    }
+  ]
+}
