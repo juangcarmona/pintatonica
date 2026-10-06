@@ -41,3 +41,13 @@ What did not: historical proposal-stage status prose read as current even after 
 Next time: distinguish historical proposal evidence, accepted intent and current implementation explicitly. Reconcile semantic consumer statements before refreshing CLI citations. Existing lifecycle and ownership rules already cover this; no new guard or amendment is warranted. #28/#29 are independent after accepted definition; #30 follows #29.
 
 Effort: unavailable; no project telemetry/session mapping configured. Amendment: none. GH-23 editorial input and earlier review/tooling debt remain independent and disclosed.
+
+## 2026-10-06 — GH-28 public orientation
+
+What worked: preserve native links/history and add actual viewport orientation while keeping anonymous data boundaries and the existing visual language. PR32 merged ed4a03e after three independent audits, 88 tests and exact-head CI/native success. Main checks and separate mobile/desktop production navigation pass; four assets match the verified build.
+
+What did not: initial geometry assumptions skipped short bottom sections and initial hash landing; async layout assertions assumed a fixed browser scroll-anchoring result. Browser regressions exposed these before integration.
+
+Next time: wait for actual native anchor landing, preserve visible explicit destination intent until manual scrolling, and assert visible/current consistency after layout changes. Those cases now live in the navigation harness. No Product Change or lifecycle amendment.
+
+Effort: unavailable; no captured telemetry/session mapping. Earlier review debt and GH-23 editorial input remain independent. GH-29 then GH-30 continue under explicit FF authorization.

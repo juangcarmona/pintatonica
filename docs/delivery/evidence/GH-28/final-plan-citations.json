@@ -1,0 +1,26 @@
+{
+  "schema": "product-definition-as-code/citations/v1alpha1",
+  "targets": [
+    "docs/delivery/completed/GH-28.md"
+  ],
+  "citations": [
+    {
+      "id": "FR-NAVIGATION",
+      "digest": "sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6",
+      "source": "docs/delivery/completed/GH-28.md",
+      "line": 31,
+      "form": "inline",
+      "status": "current"
+    }
+  ],
+  "diagnostics": [],
+  "summary": {
+    "total": 1,
+    "current": 1,
+    "stale": 0,
+    "tampered": 0,
+    "unresolved": 0,
+    "errors": 0,
+    "warnings": 0
+  }
+}

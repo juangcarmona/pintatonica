@@ -13,6 +13,7 @@ const dashboard = document.querySelector<HTMLElement>('[data-member-dashboard]')
 const memberName = document.querySelector<HTMLElement>('[data-member-name]');
 const login = document.querySelector<HTMLButtonElement>('[data-google-login]');
 const logout = document.querySelector<HTMLButtonElement>('[data-google-logout]');
+const introduction = document.querySelector<HTMLElement>('[data-access-introduction]');
 const messages = {
   checking: 'Comprobando el acceso…',
   'signed-out': 'Entra con tu cuenta de Google. El acceso está reservado a miembros de Pintatónica.',
@@ -23,6 +24,7 @@ const messages = {
 function render(state: AccessState) {
   if (!status || !dashboard || !memberName || !login || !logout) return;
   dashboard.hidden = state.kind !== 'member';
+  if (introduction) introduction.hidden = state.kind === 'member';
   dashboard.closest('.band-shell')?.toggleAttribute('data-admitted',state.kind==='member');
   memberName.textContent = state.kind === 'member' ? state.name : '';
   status.textContent = messages[state.kind];

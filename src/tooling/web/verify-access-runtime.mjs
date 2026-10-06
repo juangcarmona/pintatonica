@@ -6,7 +6,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const url = new URL(process.env.RUNTIME_URL ?? 'http://127.0.0.1:4321');
 assert.equal(url.hostname, '127.0.0.1', 'Access runtime verification must target localhost');
 const project = 'demo-pintatonica';
-const output = 'artifacts/runtime/GH-2';
+const output = process.env.RUNTIME_OUTPUT ?? 'artifacts/runtime/GH-2';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ channel: process.env.PLAYWRIGHT_CHANNEL ?? 'msedge' });
 const evidence = [];
@@ -23,8 +23,15 @@ try {
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    await page.goto(new URL('/band/', url).href);
+    await page.goto(url.href);
+    const menu=page.locator('[data-menu-toggle]');
+    if(await menu.isVisible())await menu.click();
+    await page.locator('.site-header').getByRole('link',{name:'Backstage · Entrar',exact:true}).click();
     await page.locator('[data-google-login]').waitFor({ state: 'visible' });
+    assert.equal(new URL(page.url()).pathname,'/band/');
+    assert.equal(await page.locator('[data-access-introduction]').isVisible(),true);
+    assert.equal(await page.locator('.band-navigation').count(),0);
+    await page.screenshot({path:`${output}/${label}-entry.png`,fullPage:true});
     const config = await page.evaluate(async () => {
       const { initializeBrowserFirebase } = await import('/src/firebase/browser.ts');
       const client = await initializeBrowserFirebase();
@@ -43,6 +50,7 @@ try {
     await cancelled.close();
     await page.waitForFunction(() => document.querySelector('[data-access-status]').textContent.startsWith('No se ha podido'));
     assert.equal(await page.locator('[data-member-dashboard]').isVisible(), false);
+    assert.equal(await page.locator('.band-navigation').count(),0);
     const popupPromise = page.waitForEvent('popup');
     await page.locator('[data-google-login]').click();
     const popup = await popupPromise;
@@ -53,11 +61,29 @@ try {
     await popup.getByRole('button', { name: 'Sign in with Google.com', exact: true }).click();
     await page.waitForFunction(() => document.querySelector('[data-access-status]').textContent.includes('no tiene una membresía activa'));
     assert.equal(await page.locator('[data-member-dashboard]').isVisible(), false);
+    assert.equal(await page.locator('.band-navigation').count(),0);
+    const privateReadStatus=()=>page.evaluate(async()=>{
+      const {auth}=await import('/src/firebase/client.ts');
+      const token=await auth.currentUser.getIdToken();
+      const response=await fetch('http://127.0.0.1:8080/v1/projects/demo-pintatonica/databases/(default)/documents/songs/private',{headers:{Authorization:`Bearer ${token}`}});
+      return response.status;
+    });
+    assert.equal(await privateReadStatus(),403,'Google identity without membership cannot read private data');
     const uid = await page.evaluate(async () => (await import('/src/firebase/client.ts')).auth.currentUser.uid);
     await page.screenshot({ path: `${output}/${label}-denied.png`, fullPage: true });
     await membership(uid, true);
     await page.locator('[data-member-dashboard]').waitFor({ state: 'visible' });
     assert.equal(await page.locator('[data-member-name]').innerText(), 'Miembro de prueba');
+    assert.equal(await page.locator('[data-access-introduction]').isVisible(),false);
+    assert.equal(await page.locator('[data-google-login]').isVisible(),false);
+    let repeatedPopups=0;page.on('popup',()=>repeatedPopups++);
+    await page.reload();
+    await page.locator('[data-member-dashboard]').waitFor({state:'visible'});
+    await page.goto(url.href);
+    if(await menu.isVisible())await menu.click();
+    await page.locator('.site-header').getByRole('link',{name:'Backstage · Entrar',exact:true}).click();
+    await page.locator('[data-member-dashboard]').waitFor({state:'visible'});
+    assert.equal(repeatedPopups,0,'Returning admitted session must not repeat Google sign-in');
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await page.screenshot({ path: `${output}/${label}-member.png`, fullPage: true });
     // Exercise the browser lifecycle hooks even when a test browser disables BFCache.
@@ -72,13 +98,17 @@ try {
     await membership(uid, false);
     await page.locator('[data-member-dashboard]').waitFor({ state: 'hidden' });
     assert.equal(await page.locator('[data-member-name]').textContent(), '');
+    assert.equal(await page.locator('.band-navigation').count(),0);
+    assert.equal(await privateReadStatus(),403,'Revoked membership denies direct private data');
     await page.locator('[data-google-logout]').focus();
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => document.querySelector('[data-access-status]').textContent.startsWith('Entra con tu cuenta'));
     assert.equal(await page.locator('[data-google-logout]').isVisible(), false);
+    assert.equal(await page.locator('.band-navigation').count(),0);
+    assert.equal(await page.locator('[data-access-introduction]').isVisible(),true);
     await page.screenshot({ path: `${output}/${label}-signed-out.png`, fullPage: true });
     assert.deepEqual(errors, []);
-    evidence.push({ viewport: label, GoogleEmulatorPopup: true, cancelledPopupFailsClosed: true, nonMemberDenied: true, manuallyProvisionedMemberRecognised: true, persistedLifecycleEventsRecheckMembership: true, membershipRevocationClearsDashboard: true, signOut: true, keyboardSkip: true, horizontalOverflow: false, pageErrors: 0 });
+    evidence.push({ viewport: label, publicEntryMemberOnly: true, GoogleEmulatorPopup: true, cancelledPopupFailsClosed: true, nonMemberDenied: true, noMemberNavigationBeforeAdmission: true, actualNonmemberAndRevokedReadsDenied: true, manuallyProvisionedMemberRecognised: true, admittedRefreshAndReturnWithoutPopup: true, persistedLifecycleEventsRecheckMembership: true, membershipRevocationClearsDashboard: true, signOut: true, keyboardSkip: true, horizontalOverflow: false, pageErrors: 0 });
     await context.close();
   }
   await writeFile(`${output}/access.json`, JSON.stringify({ project, observed: evidence, liveGoogleSignIn: 'not exercised by this emulator harness' }, null, 2) + '\n');

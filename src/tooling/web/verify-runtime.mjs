@@ -23,7 +23,13 @@ try {
       assert.equal(response.status(), 200);
       assert.equal(await page.locator('h1').count(), 1, JSON.stringify(await page.locator('h1').allTextContents()));
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, 'No horizontal overflow');
-      assert.equal(await page.locator('nav a[aria-current="page"]').count(), 1);
+      assert.equal(await page.locator(route==='/'?'nav a[aria-current="location"]':'nav a[aria-current="page"]').count(), 1);
+      if(route==='/')assert.equal(await page.locator('.site-header .backstage-link').innerText(),'Backstage · Entrar');
+      else {
+        assert.equal(await page.locator('[data-access-introduction]').isVisible(),true);
+        assert.equal(await page.locator('.band-navigation').count(),0);
+        assert.equal(await page.locator('[data-member-dashboard]').isVisible(),false);
+      }
       await page.keyboard.press('Tab');
       assert.equal(await page.locator(':focus').innerText(), 'Saltar al contenido');
       await page.keyboard.press('Enter');

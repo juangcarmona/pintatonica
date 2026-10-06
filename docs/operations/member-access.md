@@ -36,6 +36,10 @@ Retain scrubbed check summaries and harness JSON/screenshots rather than raw emu
 
 Live Google-account completion requires its owner. Emulator evidence is not evidence that the real Google account signed in successfully.
 
+Public header/footer Backstage · Entrar opens `/band/` as an exclusive-member access shell. The explicit Entrar con Google button starts the popup; visiting the route alone never starts it. Existing authenticated active sessions are checked and admitted without repeat sign-in. The explanation disappears after admission. No public identity listener, email eligibility mechanism or self-enrolment is introduced. GH-30 owns separate private-area pages.
+
+The access runtime additionally follows the public entry and checks admitted refresh/return without popup, absence of member navigation before admission and after sign-out, and the existing cancellation/nonmember/revocation lifecycle. `RUNTIME_OUTPUT` optionally selects its ignored evidence directory. Wait until both Auth and Firestore emulators report readiness before starting the browser; a started CLI process alone is insufficient.
+
 Availability runtime verification uses the same complete demo-only override, emulator and dev-server setup: `node src/tooling/web/verify-band-runtime.mjs`. It verifies real forms/save/reload, replacement/empty/restored exceptions, dirty drafts and direct ownership denial, and captures synthetic evidence under `artifacts/runtime/GH-3`. It resets only the explicitly guarded local demo database between viewport scenarios; never run production fixture writes.
 
 

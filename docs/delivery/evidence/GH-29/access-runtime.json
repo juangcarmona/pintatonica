@@ -1,0 +1,40 @@
+{
+  "project": "demo-pintatonica",
+  "observed": [
+    {
+      "viewport": "mobile",
+      "publicEntryMemberOnly": true,
+      "GoogleEmulatorPopup": true,
+      "cancelledPopupFailsClosed": true,
+      "nonMemberDenied": true,
+      "noMemberNavigationBeforeAdmission": true,
+      "actualNonmemberAndRevokedReadsDenied": true,
+      "manuallyProvisionedMemberRecognised": true,
+      "admittedRefreshAndReturnWithoutPopup": true,
+      "persistedLifecycleEventsRecheckMembership": true,
+      "membershipRevocationClearsDashboard": true,
+      "signOut": true,
+      "keyboardSkip": true,
+      "horizontalOverflow": false,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "publicEntryMemberOnly": true,
+      "GoogleEmulatorPopup": true,
+      "cancelledPopupFailsClosed": true,
+      "nonMemberDenied": true,
+      "noMemberNavigationBeforeAdmission": true,
+      "actualNonmemberAndRevokedReadsDenied": true,
+      "manuallyProvisionedMemberRecognised": true,
+      "admittedRefreshAndReturnWithoutPopup": true,
+      "persistedLifecycleEventsRecheckMembership": true,
+      "membershipRevocationClearsDashboard": true,
+      "signOut": true,
+      "keyboardSkip": true,
+      "horizontalOverflow": false,
+      "pageErrors": 0
+    }
+  ],
+  "liveGoogleSignIn": "not exercised by this emulator harness"
+}
