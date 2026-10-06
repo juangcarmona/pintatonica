@@ -1,0 +1,24 @@
+# GH-27 proposal evidence
+
+[Ready evaluation](../../proposals/GH-27-refinement.md), [delivery plan](../../completed/GH-27.md) and proposed CHG-AREA-NAVIGATION are the review package. This evidence proves proposal health and unchanged runtime source; it does not prove Product Change approval/apply/accepted baseline or new navigation delivery.
+
+`proposal-install.txt`, `proposal-security.txt` and `proposal-checks.txt` record frozen installation, clean history/index/worktree scans and the complete current CI-derived chain. The check file is a sanitized summary retaining script invocations, test names/counts, product/check verdicts and successful emulator exit. Observed command exit codes: install 0, security 0, verify 0. All 86 tests pass: 9 design, 18 security, 46 web, 13 rules. Typecheck/build,55-artifact baseline validation, generated integration integrity and doctor pass. Baseline and proposed overlay separately validate with zero errors/warnings. No changed-code test is expected for this definition-only proposal. Raw diagnostic files remain ignored; two scanner-identified diagnostic lines were redacted, and the subsequent full scan passed without exclusions.
+
+`proposal-architecture-citations.json` and `proposal-delivery-citations.json` record current accepted-model citations with zero diagnostics. Their digests must be reconciled after approved apply; they are not evidence against an unapplied future model. `proposal-source-identity.json` binds the current source tree to origin/main 93e1162 and proves accepted model/executable configuration unchanged. The checked source remains identical to GH-22's source-bound runtime evidence. New UI runtime verification is N/A for #27; #28–#30 own implementation/runtime proof.
+
+At the historical proposal stage, full semantic/plan approval, ProductShape apply, consumer reconciliation, independent IMPLEMENT/INTEGRATE/final-head audits and reviewed baseline integration were outstanding tasks. The approved-application section below records subsequent progress. GH-22 postmerge closeout is disclosed documentation-only carryover, preserved independently of incomplete GH-23. No human or GitHub approval is fabricated.
+
+
+## Approved application evidence
+
+Juan explicitly approved the complete proposal and plan at c5d98087153a30cc49413d5ffb354651ec7f13ae on 2026-10-06. `approved-dry-run.json` and `applied.json` show the exact two-add/six-modify/no-remove operation and CLI archive; `accepted-identity.json` proves all eight resulting artifacts byte-match the reviewed proposals and runtime/configuration is unchanged. `accepted-model.json` records 57 artifacts, zero errors/warnings. `accepted-architecture-citations.json` covers 26 current citations; `accepted-delivery-citations.json` covers 43. Historical GH-1 completed/proposal citations intentionally retain the historical baseline and are not current consumers. No custom citation resolver is added. Consumer semantic review retained current anchored architecture and marked future realization gaps; views 01/04 stale phase statements were corrected.
+
+`accepted-install.txt` records frozen install exit 0; `accepted-checks.txt` is the sanitized full verify summary (exit 0, 86 tests). Current-head security scan and independent audits follow. New-navigation runtime evidence is N/A: no application changes are made. Integration authorization follows Juan’s explicit approval of the concrete proposal and plan in response to the request to apply, verify and integrate #27; no GitHub review vote is fabricated.
+
+`accepted-security.txt` records full history/index/worktree scan exit 0 after redacting two scanner-identified ignored diagnostic lines. No exclusions or executable changes were introduced. Existing runbook diagnostic hygiene covers this expected emulator-log recurrence; no new process amendment is warranted.
+
+[Independent IMPLEMENT audit](implementation-audit.md) records task/diff reconciliation and the corrected historical-status sentence. The approved source/model changes are commit 70005bd; integration evidence follows.
+
+[Fresh INTEGRATE audit](integration-audit.md) found no substantive gap before final folding/archival. Final pushed-head audit/checks remain separate requirements.
+
+Final archived-plan verification: `final-checks.txt` records full verify exit 0 and 86 passing tests; `final-security.txt` records full clean scans after expected ignored-diagnostic hygiene. Product/application content is unchanged from approved-apply verification. Final-head remote checks/audit are observed separately after pushing, rather than self-referentially committing a verdict for a not-yet-created head.

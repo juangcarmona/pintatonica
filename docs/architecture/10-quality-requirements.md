@@ -15,7 +15,7 @@ Accepted quality meaning remains in [ProductShape](../product/model/requirements
 | ProductShape artifact | Realization | Evidence or limit |
 | --- | --- | --- |
 | QR-COST-OPERATIONS | Static assets, no new paid runtime, binding or storage; existing free-tier infrastructure | [07](07-deployment-view.md); [Expected free-tier envelope and monitoring](../operations/public-content.md); estimates are not measured production traffic |
-| QR-USABILITY | Canonical shared visual roles, fixed responsive navigation/skip, current-context member home and mounted detail/editor disclosures that retain drafts | GH-21 member-journey evidence extends GH-20 components; private readers retain the existing authorization boundary |
+| QR-USABILITY | Canonical shared visual roles, fixed responsive navigation/skip, current-context member home and mounted detail/editor disclosures that retain drafts | GH-21 member-journey evidence extends GH-20 components; private readers retain the existing authorization boundary. Accurate public section tracking, clearer entry and private pages remain delivery gaps assigned to GH-28–GH-30 |
 | QR-SECURITY | Google-provider and active-membership rules plus independent browser gate and secret checks | [08](08-crosscutting-concepts.md); GH-2 emulator/live evidence distinguishes verified paths |
 | QR-MAINTAINABILITY | Source-local components/config/tests, pinned packages, source checking | [05](05-building-block-view.md); package scripts |
 | QR-VERIFICATION | Frozen install, build and HTTP tests composed into existing CI; repeatable browser harness | [Lifecycle](../engineering-lifecycle.md); deployment observed separately from CI |
@@ -26,6 +26,6 @@ Accepted quality meaning remains in [ProductShape](../product/model/requirements
 
 <!-- pdac:cite id="QR-VERIFICATION" digest="sha256:1a0f617f80f103442dddf61fc11a360e4ca9e023d6f18bcace259ffa3fa0e73e" -->
 
-<!-- pdac:cite id="QR-USABILITY" digest="sha256:bdeb7fc494fdad4f94d8c8b1ca67a0289ae7f31d39afab9a5a0250537c6e6f7b" -->
+<!-- pdac:cite id="QR-USABILITY" digest="sha256:c92d80381f9db69175e40c2ca07e2ac246565fd241c5907b56ea5a22e9192753" -->
 
 <!-- pdac:cite id="QR-SECURITY" digest="sha256:cc17a6ca5aa934716df56692e158d82384992152e4f3fdfd57bc1a83ff1ca9e9" -->

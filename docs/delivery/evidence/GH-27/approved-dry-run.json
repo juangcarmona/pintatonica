@@ -1,0 +1,241 @@
+{
+  "applied": false,
+  "change": "CHG-AREA-NAVIGATION",
+  "actions": [
+    {
+      "kind": "write",
+      "description": "Replace FR-ACCESS at docs/product/model/requirements/functional/fr-access.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/requirements/functional/fr-access.md",
+      "to": "docs/product/model/requirements/functional/fr-access.md"
+    },
+    {
+      "kind": "write",
+      "description": "Add FR-NAVIGATION at docs/product/model/requirements/functional/fr-navigation.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/requirements/functional/fr-navigation.md",
+      "to": "docs/product/model/requirements/functional/fr-navigation.md"
+    },
+    {
+      "kind": "write",
+      "description": "Replace FR-PUBLIC at docs/product/model/requirements/functional/fr-public.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/requirements/functional/fr-public.md",
+      "to": "docs/product/model/requirements/functional/fr-public.md"
+    },
+    {
+      "kind": "write",
+      "description": "Replace JRN-DISCOVER at docs/product/model/journeys/jrn-discover.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/journeys/jrn-discover.md",
+      "to": "docs/product/model/journeys/jrn-discover.md"
+    },
+    {
+      "kind": "write",
+      "description": "Replace QR-USABILITY at docs/product/model/requirements/quality/qr-usability.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/requirements/quality/qr-usability.md",
+      "to": "docs/product/model/requirements/quality/qr-usability.md"
+    },
+    {
+      "kind": "write",
+      "description": "Add TERM-AREA at docs/product/model/domain/terms/term-area.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/domain/terms/term-area.md",
+      "to": "docs/product/model/domain/terms/term-area.md"
+    },
+    {
+      "kind": "write",
+      "description": "Replace UC-ACCESS at docs/product/model/use-cases/uc-access.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/use-cases/uc-access.md",
+      "to": "docs/product/model/use-cases/uc-access.md"
+    },
+    {
+      "kind": "write",
+      "description": "Replace UC-PUBLIC at docs/product/model/use-cases/uc-public.md",
+      "from": "docs/product/changes/active/chg-area-navigation/proposed/use-cases/uc-public.md",
+      "to": "docs/product/model/use-cases/uc-public.md"
+    },
+    {
+      "kind": "set-status",
+      "description": "Set CHG-AREA-NAVIGATION status to applied",
+      "from": "docs/product/changes/active/chg-area-navigation/change.md"
+    },
+    {
+      "kind": "move-change",
+      "description": "Move change to docs/product/changes/completed/chg-area-navigation",
+      "from": "docs/product/changes/active/chg-area-navigation",
+      "to": "docs/product/changes/completed/chg-area-navigation"
+    }
+  ],
+  "diff": {
+    "added": [
+      {
+        "id": "TERM-AREA",
+        "file": "docs/product/model/domain/terms/term-area.md",
+        "kind": "added",
+        "digest": "sha256:50b0bb32cc88b9032d0f8c857d27c3222bd18b1ae2b7104ee2bcb8497891801d"
+      },
+      {
+        "id": "FR-NAVIGATION",
+        "file": "docs/product/model/requirements/functional/fr-navigation.md",
+        "kind": "added",
+        "digest": "sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6"
+      }
+    ],
+    "modified": [
+      {
+        "id": "JRN-DISCOVER",
+        "file": "docs/product/model/journeys/jrn-discover.md",
+        "kind": "modified",
+        "digest": "sha256:d5ba2ed7de4b2ee22bbc630e1c34a0b0ea78273a935926f8484a9759617d38c4"
+      },
+      {
+        "id": "FR-ACCESS",
+        "file": "docs/product/model/requirements/functional/fr-access.md",
+        "kind": "modified",
+        "digest": "sha256:829c0792a764b759e908257acec47c921107aad3593da3f88a346c85313c24de"
+      },
+      {
+        "id": "FR-PUBLIC",
+        "file": "docs/product/model/requirements/functional/fr-public.md",
+        "kind": "modified",
+        "digest": "sha256:5c70258017dd04a564f3a07ee727c1507b93efc0ea6c80f40617948aef48839b"
+      },
+      {
+        "id": "QR-USABILITY",
+        "file": "docs/product/model/requirements/quality/qr-usability.md",
+        "kind": "modified",
+        "digest": "sha256:c92d80381f9db69175e40c2ca07e2ac246565fd241c5907b56ea5a22e9192753"
+      },
+      {
+        "id": "UC-ACCESS",
+        "file": "docs/product/model/use-cases/uc-access.md",
+        "kind": "modified",
+        "digest": "sha256:5691e79a155bb42f6b01d39a29f07f62552cfb5ac3fbc9b4990711ce84fb4788"
+      },
+      {
+        "id": "UC-PUBLIC",
+        "file": "docs/product/model/use-cases/uc-public.md",
+        "kind": "modified",
+        "digest": "sha256:277f5a1618483eafa1201ba7bb58135db4c3fb7bad2325a1bdd1603adcc04607"
+      }
+    ],
+    "removed": []
+  },
+  "affectedCitations": [
+    {
+      "id": "QR-USABILITY",
+      "source": "docs/architecture/04-solution-strategy.md",
+      "line": 24,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-PUBLIC",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 56,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "QR-USABILITY",
+      "source": "docs/architecture/05-building-block-view.md",
+      "line": 62,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-PUBLIC",
+      "source": "docs/architecture/06-runtime-view.md",
+      "line": 58,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "QR-USABILITY",
+      "source": "docs/architecture/10-quality-requirements.md",
+      "line": 29,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-ACCESS",
+      "source": "docs/delivery/README.md",
+      "line": 60,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-PUBLIC",
+      "source": "docs/delivery/README.md",
+      "line": 66,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "JRN-DISCOVER",
+      "source": "docs/delivery/README.md",
+      "line": 72,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "QR-USABILITY",
+      "source": "docs/delivery/README.md",
+      "line": 88,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "UC-ACCESS",
+      "source": "docs/delivery/README.md",
+      "line": 110,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "UC-PUBLIC",
+      "source": "docs/delivery/README.md",
+      "line": 120,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-ACCESS",
+      "source": "docs/delivery/completed/GH-1.md",
+      "line": 85,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-PUBLIC",
+      "source": "docs/delivery/completed/GH-1.md",
+      "line": 87,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "QR-USABILITY",
+      "source": "docs/delivery/completed/GH-1.md",
+      "line": 95,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-ACCESS",
+      "source": "docs/delivery/proposals/executable-web-shell-issue.md",
+      "line": 79,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "FR-PUBLIC",
+      "source": "docs/delivery/proposals/executable-web-shell-issue.md",
+      "line": 81,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    },
+    {
+      "id": "QR-USABILITY",
+      "source": "docs/delivery/proposals/executable-web-shell-issue.md",
+      "line": 89,
+      "form": "inline",
+      "prospectiveStatus": "stale"
+    }
+  ]
+}
