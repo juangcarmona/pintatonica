@@ -51,3 +51,13 @@ What did not: initial geometry assumptions skipped short bottom sections and ini
 Next time: wait for actual native anchor landing, preserve visible explicit destination intent until manual scrolling, and assert visible/current consistency after layout changes. Those cases now live in the navigation harness. No Product Change or lifecycle amendment.
 
 Effort: unavailable; no captured telemetry/session mapping. Earlier review debt and GH-23 editorial input remain independent. GH-29 then GH-30 continue under explicit FF authorization.
+
+## 2026-10-06 — GH-29 restricted entry
+
+What worked: refine against existing accepted access mechanisms rather than inventing eligibility policy; keep explicit popup activation and independently verify returning sessions, revocation and direct denied reads. PR33 merged c51d1ff after three independent readings,88 tests and final-head CI/native success. Main checks and separate anonymous production entry pass; four assets match verified build.
+
+What did not: the first runtime attempt started before Firestore readiness. Sanitized evidence initially omitted benign design/integrity/doctor summaries; independent audit requested retaining them. Agent thread capacity prevented new audit threads.
+
+Next time: wait for both emulator readiness endpoints, retain complete benign check summaries, and when capacity requires existing independent prior-issue threads, explicitly prohibit reusing prior verdicts and identify the fresh current-item reading. Operations/evidence retain these guards; no lifecycle amendment or Product Change.
+
+Effort: unavailable; no captured project telemetry. GH-30 follows; editorial/review debt stays independent.

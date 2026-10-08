@@ -1,0 +1,26 @@
+{
+  "origin": "https://pintatonica.jgcarmona-pro.workers.dev",
+  "mergeHead": "c51d1ffbcf41d07f3b1d3344e7c4a8caec5133ee",
+  "assets": [
+    {
+      "path": "/_astro/Shell.DnRezlzM.css",
+      "sha256": "bc517563bc5d4057af675213a3d145d6d8d80278b4c3962df478b43295b40478",
+      "byteIdentical": true
+    },
+    {
+      "path": "/_astro/Shell.astro_astro_type_script_index_0_lang.BGpeq3jy.js",
+      "sha256": "f24aac7401c4bff6556c475988243910cd9bfe688f1ad2ecb8449c2c3629cdbf",
+      "byteIdentical": true
+    },
+    {
+      "path": "/_astro/index.astro_astro_type_script_index_0_lang.V2U1TuL9.js",
+      "sha256": "d9e60e1b73a63dff314be96e697d40088809926bab206deed9feedf45bbbbf57",
+      "byteIdentical": true
+    },
+    {
+      "path": "/_astro/index.astro_astro_type_script_index_0_lang.DpOzHlSN.js",
+      "sha256": "bcf8db3986c442fcf606330b0753ab10e8ea4358a93849f1dadbf1a1ae5ce902",
+      "byteIdentical": true
+    }
+  ]
+}

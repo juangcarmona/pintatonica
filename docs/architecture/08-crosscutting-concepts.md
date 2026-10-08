@@ -65,3 +65,11 @@ The [emulator-backed rules tests](../../src/tests/firebase/firestore.rules.test.
 <!-- pdac:cite id="BR-REHEARSAL-CONFIRMATION" digest="sha256:2522bd383ef243a1aced24f77f917fced2c7c03178d6f077717a56b4be9c5ef0" -->
 
 <!-- pdac:cite id="BR-PUBLIC-SELECTION" digest="sha256:573557a2468714b35e9fdbd01c58bd6822d12d6f66998c818c0eac96f35b4807" -->
+
+## Private document and draft lifecycle
+
+The shared static BandPage contains only access-status markup. Canonical area paths address separate documents; the browser membership controller creates secondary navigation and the selected private view after admission. Every document/history restoration independently resolves its session and server-confirmed membership; security rules remain the data boundary.
+
+Views expose their existing dirty/pending state as form attributes. The common native departure guard consults only connected private forms, so accepted discard/success clears the relevant form while failures remain protected. Page suspension and identity loss dispose private observers and DOM; this mechanism creates no draft storage, router or application dialog. The durable choice is recorded in [ADR-0003](../adr/0003-use-static-private-pages-with-native-draft-protection.md).
+
+<!-- pdac:cite id="FR-NAVIGATION" digest="sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6" -->

@@ -1,0 +1,43 @@
+{
+  "url": "https://pintatonica.jgcarmona-pro.workers.dev",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 4
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 4
+    },
+    {
+      "viewport": "desktop",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    }
+  ],
+  "privateRequests": 0,
+  "pageErrors": 0
+}

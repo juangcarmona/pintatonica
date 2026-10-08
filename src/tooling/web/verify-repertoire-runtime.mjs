@@ -8,7 +8,7 @@ const endpoint=`http://127.0.0.1:8080/v1/projects/${project}/databases/(default)
 let currentPage;
 try {
   for(const [label,viewport] of [['mobile',{width:390,height:844}],['desktop',{width:1440,height:1000}]]) {
-    const {context,page,errors}=await memberSession(browser,label,viewport);
+    const {context,page,errors}=await memberSession(browser,label,viewport,{area:'repertorio'});
     currentPage=page;
     const form=page.locator('.song-editor');await page.waitForFunction(()=>document.querySelector('.song-editor button[type=submit]')?.disabled===false);
     await form.getByLabel('Título',{exact:true}).fill('Tema sintético');await form.getByLabel('Artista original',{exact:true}).fill('Artista de prueba');await form.getByLabel('Notas de la banda',{exact:true}).fill('Notas internas de ensayo');await form.getByLabel('Estructura / arreglo',{exact:true}).fill('Puente lento');await form.getByLabel('Tempo (BPM)',{exact:true}).fill('100');await form.getByLabel('Tonalidad',{exact:true}).fill('Am');
@@ -22,7 +22,7 @@ try {
     await page.reload();await page.getByRole('button',{name:'Tema sintético · Artista de prueba',exact:true}).click();assert.equal(await form.getByLabel('Notas de la banda',{exact:true}).inputValue(),'Notas internas de ensayo');
     await page.getByText('Editar canción',{exact:true}).click();
     await form.getByLabel('Notas de la banda',{exact:true}).fill('Mi borrador sin guardar');
-    const other=await memberSession(browser,`${label}-other`,viewport,{reset:false});const otherForm=other.page.locator('.song-editor');await other.page.getByRole('button',{name:'Tema sintético · Artista de prueba',exact:true}).click();await otherForm.getByLabel('Notas de la banda',{exact:true}).fill('Cambio de otro miembro');await otherForm.getByRole('button',{name:'Guardar canción',exact:true}).click();await other.page.getByText('Canción guardada y compartida.',{exact:true}).waitFor();
+    const other=await memberSession(browser,`${label}-other`,viewport,{reset:false,area:'repertorio'});const otherForm=other.page.locator('.song-editor');await other.page.getByRole('button',{name:'Tema sintético · Artista de prueba',exact:true}).click();await otherForm.getByLabel('Notas de la banda',{exact:true}).fill('Cambio de otro miembro');await otherForm.getByRole('button',{name:'Guardar canción',exact:true}).click();await other.page.getByText('Canción guardada y compartida.',{exact:true}).waitFor();
     await form.getByRole('button',{name:'Guardar canción',exact:true}).click();await page.getByText('Otra persona ha cambiado esta canción. Tu borrador sigue aquí; recarga la versión guardada antes de volver a editar.',{exact:true}).waitFor();assert.equal(await form.getByLabel('Notas de la banda',{exact:true}).inputValue(),'Mi borrador sin guardar');
     page.once('dialog',dialog=>dialog.accept());await form.getByRole('button',{name:'Recargar versión guardada',exact:true}).click();assert.equal(await form.getByLabel('Notas de la banda',{exact:true}).inputValue(),'Cambio de otro miembro');
     await form.getByLabel('Enlace privado',{exact:true}).fill('javascript:alert(1)');await form.getByRole('button',{name:'Guardar canción',exact:true}).click();await page.getByText('No se ha guardado la canción. Revisa los datos y los enlaces.',{exact:true}).waitFor();

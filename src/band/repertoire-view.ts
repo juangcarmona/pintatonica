@@ -1,3 +1,4 @@
+import {setUnsaved} from "./unsaved";
 import {collection,doc,onSnapshot,type Firestore} from 'firebase/firestore';
 import {resourceKinds,safeURL,type Song,type SongResource} from './repertoire';
 import {saveSong} from './repertoire-store';
@@ -21,7 +22,7 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
   form.append(publicLabel,field('Enlace de media pública (selección explícita)',controls.publicMediaUrl),element('p','Este enlace se publica si seleccionas la canción. El resto de recursos y notas siguen siendo privados.'),element('h4','Recursos privados'),resources,button('Añadir recurso',()=>{addResource();markDirty();}),save,reload);
   host.append(heading,status,newSong,list,details,disclosure);setDisabled(true);
   function setDisabled(value:boolean){for(const control of host.querySelectorAll<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement|HTMLButtonElement>('input,textarea,select,button'))control.disabled=value;}
-  function markDirty(){dirty=true;setStatus(status,'Cambios de canción sin guardar.','warning');}
+  function markDirty(){dirty=true;setUnsaved(form,true);setStatus(status,'Cambios de canción sin guardar.','warning');}
   form.addEventListener('input',markDirty);
   function addResource(resource:SongResource={kind:'Partitura',label:'',url:''}) {
     const row=element('div',undefined,'resource-row');const kind=element('select');kind.dataset.resourceKind='';
@@ -32,7 +33,7 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
   function select(song?:Song) {
     if(saving)return;
     if(dirty&&!window.confirm('¿Descartar los cambios de canción sin guardar?'))return;
-    id=song?.id??doc(collection(db,'songs')).id;revision=song?.revision??0;dirty=false;
+    id=song?.id??doc(collection(db,'songs')).id;revision=song?.revision??0;dirty=false;setUnsaved(form,false);
     for(const key of Object.keys(controls) as (keyof typeof controls)[])controls[key].value=song?.[key]??'';
     publicCheck.checked=song?.public===true;resources.replaceChildren();for(const resource of song?.resources??[])addResource(resource);
     renderDetails(song);setStatus(status,song?'Canción cargada.':'Nueva canción. Guarda para compartirla.');
@@ -46,10 +47,10 @@ export function mountRepertoire(db:Firestore,host:HTMLElement) {
   }
   form.addEventListener('submit',event=>{event.preventDefault();if(saving||!loaded)return;void(async()=>{
     try {
-      saving=true;setDisabled(true);setStatus(status,'Guardando canción…','neutral');
+      saving=true;setUnsaved(form,true);setDisabled(true);setStatus(status,'Guardando canción…','neutral');
       const draft={...Object.fromEntries(Object.entries(controls).map(([key,control])=>[key,control.value])),public:publicCheck.checked,resources:Array.from(resources.children).map(row=>({kind:row.querySelector<HTMLSelectElement>('[data-resource-kind]')!.value,label:row.querySelector<HTMLInputElement>('[data-resource-label]')!.value,url:row.querySelector<HTMLInputElement>('[data-resource-url]')!.value}))} as Omit<Song,'id'|'revision'>;
       await saveSong(db,id,revision,draft);
-      if(alive){revision++;dirty=false;renderDetails({...draft,id,revision});setStatus(status,'Canción guardada y compartida.','positive');}
+      if(alive){revision++;dirty=false;setUnsaved(form,false);renderDetails({...draft,id,revision});setStatus(status,'Canción guardada y compartida.','positive');}
     }catch(error){if(alive)setStatus(status,error instanceof Error&&error.message==='shared-conflict'?'Otra persona ha cambiado esta canción. Tu borrador sigue aquí; recarga la versión guardada antes de volver a editar.':'No se ha guardado la canción. Revisa los datos y los enlaces.','error');}
     finally {saving=false;if(alive)setDisabled(false);}
   })();});

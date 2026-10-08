@@ -14,19 +14,37 @@ export function firestoreValue(value) {
   return {mapValue:{fields:Object.fromEntries(Object.entries(value).map(([key,item])=>[key,firestoreValue(item)]))}};
 }
 export const seedData=(path,data)=>seed(path,Object.fromEntries(Object.entries(data).map(([key,value])=>[key,firestoreValue(value)])));
-export async function memberSession(browser,label,viewport,{reset=true,clock=false,openEditors=true,prepareAdmission}={}) {
+export async function openAreaEditors(page) {
+  for(const disclosure of await page.locator('[data-editor-disclosure]').all()){if(!await disclosure.evaluate(node=>node.open))await disclosure.locator('summary').first().click();}
+}
+export async function visitArea(page,area,{openEditors=true}={}) {
+  const link=page.getByRole('navigation',{name:'Backstage',exact:true}).getByRole('link',{name:area,exact:true});
+  const destination=new URL(await link.getAttribute('href'),origin).pathname;
+  await link.click();await page.waitForURL(url=>url.pathname===destination);
+  await page.locator('[data-member-dashboard]').waitFor({state:'visible'});
+  if(area!=='Inicio')await page.waitForFunction(()=>document.querySelector('[data-band-workspace] form button[type=submit]')?.disabled===false);
+  if(openEditors)await openAreaEditors(page);
+}
+export async function cancelAreaLeave(page,area) {
+  const before=page.url();let observed=false;
+  page.once('dialog',async dialog=>{assert.equal(dialog.type(),'beforeunload');observed=true;await dialog.dismiss();});
+  await page.getByRole('navigation',{name:'Backstage',exact:true}).getByRole('link',{name:area,exact:true}).click();
+  assert.equal(observed,true,'Dirty navigation must offer a native leave choice');assert.equal(page.url(),before,'Continue editing retains the document');
+}
+export async function memberSession(browser,label,viewport,{reset=true,clock=false,openEditors=true,prepareAdmission,area='ensayos'}={}) {
   if(reset){const response=await fetch(`http://127.0.0.1:8080/emulator/v1/projects/${project}/databases/(default)/documents`,{method:'DELETE'});assert.equal(response.ok,true);}
   const context=await browser.newContext({viewport});const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
   if(clock)await page.clock.install({time:new Date()});
-  await page.goto(origin+'/band/');
+  await page.goto(origin+(area==='inicio'?'/band/':`/band/${area}/`));
   const pending=page.waitForEvent('popup');await page.getByRole('button',{name:'Entrar con Google',exact:true}).click();const popup=await pending;await popup.waitForLoadState();
   await popup.getByText('Add new account',{exact:true}).click();await popup.locator('#email-input').fill(`${label}-${Date.now()}@example.test`);await popup.locator('#display-name-input').fill('Cuenta sintética');await popup.getByRole('button',{name:'Sign in with Google.com',exact:true}).click();
   await page.waitForFunction(()=>document.querySelector('[data-access-status]').textContent.includes('no tiene una membresía'));
   const uid=await page.evaluate(async()=>{const client=await import('/src/firebase/client.ts');assertDemo(client.auth.app.options.projectId);function assertDemo(id){if(id!=='demo-pintatonica')throw Error('Not demo');}return client.auth.currentUser.uid;});
   await prepareAdmission?.(page);
   await seedData(`members/${uid}`,{active:true,name:'Miembro de prueba'});
-  await page.waitForFunction(()=>Array.from(document.querySelectorAll('button')).find(node=>node.textContent==='Guardar horario semanal')?.disabled===false);
-  if(openEditors){for(const disclosure of await page.locator('[data-editor-disclosure]').all()){if(!await disclosure.evaluate(node=>node.open))await disclosure.locator('summary').first().click();}}
+  await page.locator('[data-member-dashboard]').waitFor({state:'visible'});
+  if(area!=='inicio')await page.waitForFunction(()=>document.querySelector('[data-band-workspace] form button[type=submit]')?.disabled===false);
+  if(openEditors)await openAreaEditors(page);
   const dates=await page.evaluate(async()=> (await import('/src/band/availability.ts')).planningDates());
   return {context,page,uid,dates,errors};
 }

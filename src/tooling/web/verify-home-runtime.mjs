@@ -1,7 +1,7 @@
 import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
-import {memberSession,seedData,project} from './band-session.mjs';
+import {memberSession,visitArea,cancelAreaLeave,seedData,project} from './band-session.mjs';
 const rules=(await readFile('src/firebase/firestore.rules','utf8')).replaceAll('\r\n','\n');
 async function setRules(content){const response=await fetch(`http://127.0.0.1:8080/emulator/v1/projects/${project}:securityRules`,{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer owner'},body:JSON.stringify({rules:{files:[{name:'firestore.rules',content}]}})});assert.equal(response.ok,true,'Rules manipulation must stay in the explicit local demo emulator');}
 const output='artifacts/runtime/GH-21';await mkdir(output,{recursive:true});
@@ -9,7 +9,7 @@ const browser=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL??'ms
 try {
   for(const [label,viewport] of [['mobile',{width:390,height:844}],['desktop',{width:1440,height:1000}]]) {
     let loadingObserved=false,loadingIntercepted=false;
-    const {page,context,uid,dates,errors}=await memberSession(browser,label,viewport,{openEditors:false,prepareAdmission:async page=>{
+    const {page,context,uid,dates,errors}=await memberSession(browser,label,viewport,{area:'inicio',openEditors:false,prepareAdmission:async page=>{
       await page.route('**/Listen/channel**',async route=>{
         if(!loadingIntercepted&&decodeURIComponent(route.request().postData()??'').includes('collectionId')){
           loadingIntercepted=true;
@@ -22,7 +22,7 @@ try {
     const home=page.locator('#band-section-0');
     await home.getByText('Todavía no hay ensayos confirmados próximos.',{exact:true}).waitFor();
     assert.equal(await page.locator('[data-editor-disclosure][open]').count(),0);
-    assert.equal(await page.locator('#band-section-1 #band-availability').count(),1);
+    assert.equal(await page.locator('#band-availability').count(),0,'Inicio does not mount unrelated editors');
     await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:`${output}/${label}-empty.png`});
     const song={title:'Tema del próximo ensayo',artist:'Artista sintético',status:'En trabajo',key:'Am',tempo:'100',arrangement:'Puente suave',notes:'Nota privada',public:false,publicMediaUrl:'',resources:[{kind:'Partitura',label:'Material del ensayo',url:'https://docs.google.com/document/d/demo-home'}],revision:1};
     await seedData('songs/home-song',song);
@@ -45,24 +45,27 @@ try {
     await page.reload();await home.getByText('Preparar el puente',{exact:true}).waitFor();
     await home.getByRole('link',{name:'Preparar ensayo',exact:true}).click();
     const preparation=page.locator('#preparation-home-rehearsal');
+    await preparation.waitFor({state:'visible'});
     assert.equal(await preparation.isVisible(),true);
+    assert.equal(await page.locator('#band-section-1 #band-availability').count(),1);
     const visibleTarget=async target=>assert.equal(await target.evaluate(node=>node.getBoundingClientRect().top>=document.querySelector('.band-navigation').getBoundingClientRect().bottom),true,'Sticky navigation must leave the selected target visible');
     await visibleTarget(preparation);
     await preparation.getByLabel('Foco / notas del ensayo',{exact:true}).fill('Preparar la entrada');
     await preparation.getByRole('button',{name:'Guardar preparación',exact:true}).click();
     await preparation.getByText('Preparación guardada y compartida.',{exact:true}).waitFor();
+    await visitArea(page,'Inicio',{openEditors:false});
     await home.getByText('Preparar la entrada',{exact:true}).waitFor();
+    await home.getByRole('link',{name:'Abrir repertorio',exact:true}).click();
+    await page.locator('.song-editor').waitFor({state:'attached'});
     await page.getByRole('button',{name:'Nueva canción',exact:true}).click();
     const title=page.locator('.song-editor').getByLabel('Título',{exact:true});await title.fill('Borrador conservado');
-    const nav=page.getByRole('navigation',{name:'Backstage',exact:true});
-    await nav.getByRole('link',{name:'Conciertos',exact:true}).click();await nav.getByRole('link',{name:'Repertorio',exact:true}).click();assert.equal(await title.inputValue(),'Borrador conservado');
-    await visibleTarget(page.locator('#band-section-2'));
+    await cancelAreaLeave(page,'Conciertos');assert.equal(await title.inputValue(),'Borrador conservado');
     await page.screenshot({path:`${output}/${label}-editing.png`});
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await seedData(`members/${uid}`,{active:false,name:'Miembro sintético'});
     await page.locator('[data-member-dashboard]').waitFor({state:'hidden'});
     assert.equal(await page.locator('[data-band-workspace]').innerText(),'');assert.deepEqual(errors,[]);
-    observations.push({viewport:label,loadingBeforeServerSnapshots:loadingObserved,failedReadClearsSummary:true,emptyHome:true,defaultEditorsClosed:true,availabilityWithinRehearsals:true,nextRehearsalPreparationAndResource:true,upcomingGigAndSetlist:true,directPreparationSaved:true,deliberateEditing:true,draftSurvivesNavigation:true,stickyNavigationLeavesTargetsVisible:true,revocationClearsHomeAndWorkspace:true,noOverflow:true,pageErrors:0});
+    observations.push({viewport:label,loadingBeforeServerSnapshots:loadingObserved,failedReadClearsSummary:true,emptyHome:true,defaultEditorsClosed:true,availabilityWithinRehearsalsOnly:true,nextRehearsalPreparationAndResource:true,upcomingGigAndSetlist:true,crossPagePreparationSavedAndHomeUpdated:true,deliberateEditing:true,cancelledLeaveRetainsDraft:true,stickyNavigationLeavesTargetsVisible:true,revocationClearsWorkspace:true,noOverflow:true,pageErrors:0});
     await context.close();
   }
   await writeFile(`${output}/runtime.json`,JSON.stringify(observations,null,2)+'\n');console.log(JSON.stringify(observations));

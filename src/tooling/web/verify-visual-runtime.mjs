@@ -1,7 +1,7 @@
 import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
-import {memberSession,origin} from './band-session.mjs';
+import {memberSession,visitArea,origin} from './band-session.mjs';
 
 const output='artifacts/runtime/GH-20';
 await mkdir(output,{recursive:true});
@@ -23,6 +23,7 @@ try {
     assert.ok(await removal.evaluate(node=>parseFloat(getComputedStyle(node).outlineWidth)>0));
     assert.ok(await removal.evaluate(node=>node.getBoundingClientRect().height>=44));
     await form.screenshot({path:`${output}/${label}-controls.png`});
+    await visitArea(page,'Repertorio');
     const song=page.locator('.song-editor');
     await song.getByLabel('Título',{exact:true}).fill('Borrador sintético');
     let nativeConfirmation=false;
@@ -34,10 +35,11 @@ try {
     await page.evaluate(()=>scrollTo(0,0));
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await page.screenshot({path:`${output}/${label}-member.png`});
+    page.once('dialog',async dialog=>{assert.equal(dialog.type(),'beforeunload');await dialog.accept();});
     await page.goto(origin+'/');
     await page.locator('.site-header.navigation-ready').waitFor();
     await page.locator('footer .brand-bars').waitFor();
-    assert.equal(await page.locator('.brand-bars > span').count(),4);
+    assert.equal(await page.locator('footer .brand-bars > span').count(),4);
     await page.locator('.public-button').focus();
     assert.ok(await page.locator('.public-button').evaluate(node=>parseFloat(getComputedStyle(node).outlineWidth)>0));
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);

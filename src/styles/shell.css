@@ -120,7 +120,7 @@ p { margin-block: var(--space-4); }
 .home-rehearsal { border-inline-start: var(--border-width-heavy) solid var(--border-default); }
 .editor-disclosure { margin-block: var(--space-4); max-width: var(--measure-editor); }
 .editor-disclosure > summary { min-height: var(--control-min-height); padding: var(--space-3); background: var(--surface-subtle); border: var(--border-width) solid var(--border-default); }
-.band-navigation { position: sticky; top: var(--header-height); z-index: var(--layer-header); background: var(--surface-page); }
+.band-navigation { position: sticky; top: var(--public-header-height, var(--header-height)); z-index: var(--layer-header); background: var(--surface-page); }
 .field > span, legend { font-size: var(--font-size-100); font-weight: var(--font-weight-bold); }
 .field input, .field select, .field textarea { line-height: var(--line-height-body); }
 .field textarea { min-height: 6rem; resize: vertical; }

@@ -1,0 +1,70 @@
+{
+  "project": "demo-pintatonica",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "state": "empty",
+      "approvedEditorialMembersOnly": true,
+      "heroSinglePublicAction": true,
+      "integratedFourBars": true,
+      "secondaryBackstage": true,
+      "readablePublicEventDate": false,
+      "honestEmptyStates": true,
+      "noPrivateRequests": true,
+      "realPrivateReadsDenied": true,
+      "keyboardSkip": true,
+      "reducedMotion": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "state": "empty",
+      "approvedEditorialMembersOnly": true,
+      "heroSinglePublicAction": true,
+      "integratedFourBars": true,
+      "secondaryBackstage": true,
+      "readablePublicEventDate": false,
+      "honestEmptyStates": true,
+      "noPrivateRequests": true,
+      "realPrivateReadsDenied": true,
+      "keyboardSkip": true,
+      "reducedMotion": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "mobile",
+      "state": "populated",
+      "approvedEditorialMembersOnly": true,
+      "heroSinglePublicAction": true,
+      "integratedFourBars": true,
+      "secondaryBackstage": true,
+      "readablePublicEventDate": true,
+      "honestEmptyStates": false,
+      "noPrivateRequests": true,
+      "realPrivateReadsDenied": true,
+      "keyboardSkip": true,
+      "reducedMotion": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    },
+    {
+      "viewport": "desktop",
+      "state": "populated",
+      "approvedEditorialMembersOnly": true,
+      "heroSinglePublicAction": true,
+      "integratedFourBars": true,
+      "secondaryBackstage": true,
+      "readablePublicEventDate": true,
+      "honestEmptyStates": false,
+      "noPrivateRequests": true,
+      "realPrivateReadsDenied": true,
+      "keyboardSkip": true,
+      "reducedMotion": true,
+      "noOverflow": true,
+      "pageErrors": 0
+    }
+  ],
+  "syntheticEditorialNeverProduction": true
+}
