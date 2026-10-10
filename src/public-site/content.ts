@@ -3,7 +3,8 @@ export type Contact={label:string;url:string};
 // Editorial media may be a repo-served static asset (root-relative path, no protocol or traversal) or an external http(s) link.
 export function editorialURL(value:string):string {
   const trimmed=value.trim();
-  if(trimmed.startsWith('/')&&!trimmed.includes('..')&&!/\s/.test(trimmed))return trimmed;
+  // A single leading slash only: no protocol-relative '//' and no backslash that browsers could normalise into one.
+  if(trimmed.startsWith('/')&&!trimmed.startsWith('//')&&!/[\s\\]/.test(trimmed)&&!trimmed.includes('..'))return trimmed;
   return safeURL(trimmed);
 }
 export type PublicMember={name:string;role:string;description?:string;image?:{url:string;label:string}};

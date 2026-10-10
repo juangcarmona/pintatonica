@@ -56,7 +56,7 @@ try{
   const begin='  // editorial-approved begin',end='  // editorial-approved end';
   const beginIndex=original.indexOf(begin),endIndex=original.indexOf(end);
   assert.ok(beginIndex>=0&&endIndex>beginIndex,'Editorial profile markers must bracket the approved content');
-  const withFixture=profile=>original.slice(0,beginIndex)+begin+`\n  contact:${JSON.stringify(profile.contact)},\n  media:${JSON.stringify(profile.media)},\n  members:${JSON.stringify(profile.members)}\n`+original.slice(endIndex);
+  const withFixture=profile=>original.slice(0,beginIndex)+begin+`\n  introduction:'Presentación editorial sintética.',\n  contact:${JSON.stringify(profile.contact)},\n  media:${JSON.stringify(profile.media)},\n  members:${JSON.stringify(profile.members)}\n`+original.slice(endIndex);
   // The empty state is now a fixture too: production editorial is populated, and both renderings must stay regression-verified.
   fixture=withFixture({contact:null,media:[],members:[]});
   await writeFile(profilePath,fixture);

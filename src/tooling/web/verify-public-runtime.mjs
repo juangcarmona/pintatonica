@@ -28,7 +28,7 @@ try{
   const begin='  // editorial-approved begin',end='  // editorial-approved end';
   const beginIndex=original.indexOf(begin),endIndex=original.indexOf(end);
   assert.ok(beginIndex>=0&&endIndex>beginIndex,'Editorial profile markers must bracket the approved content');
-  fixture=original.slice(0,beginIndex)+begin+`\n  contact:{label:'Contacto de prueba',url:'mailto:band@example.test'},\n  media:[{label:'Imagen sintética de marca',url:'${origin}/brand/logo.png',kind:'photo'}],\n  members:[]\n`+original.slice(endIndex);
+  fixture=original.slice(0,beginIndex)+begin+`\n  introduction:'Presentación editorial sintética.',\n  contact:{label:'Contacto de prueba',url:'mailto:band@example.test'},\n  media:[{label:'Imagen sintética de marca',url:'${origin}/brand/logo.png',kind:'photo'}],\n  members:[]\n`+original.slice(endIndex);
   await writeFile(profilePath,fixture);
   assert.equal((await fetch(`${endpoint}/publicSongs/selected`,{method:'DELETE',headers:{Authorization:'Bearer owner'}})).ok,true);
   const context=await browser.newContext(),page=await context.newPage();await page.goto(origin+'/?editorial-fixture=1');await page.getByRole('link',{name:'Contacto de prueba',exact:true}).waitFor();assert.equal(await page.getByRole('link',{name:'Contacto de prueba',exact:true}).getAttribute('href'),'mailto:band@example.test');assert.equal(await page.getByRole('img',{name:'Imagen sintética de marca',exact:true}).evaluate(img=>img.complete&&img.naturalWidth>0),true);await page.getByText('Todavía no hay enlaces de canciones publicados.',{exact:true}).waitFor();assert.equal(await page.getByText('Todavía no hay fotos o vídeos publicados.',{exact:true}).count(),0);
