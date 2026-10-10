@@ -1,0 +1,7 @@
+# GH-30 closeout record
+
+Postmerge closeout, executed after a prior session's capacity exhaustion left task 6 partly and task 7 unrecorded. PR #34 was squash-merged by Juan on 2026-10-08 as fe8720b with issue #30 closed by the same push; no review vote was recorded on the pull request and main carries no branch protection, so the merge rests on Juan's explicit FF authorization plus the deterministic checks below. The lifecycle's fresh INTEGRATE and final-pushed-head auditor threads were not separately recorded before that merge; this record does not claim they were.
+
+Deterministic facts now observed on the exact merge head: fe8720b all three main check runs SUCCESS (productshape workflow, product snapshot, Cloudflare native Workers build) — `main-checks.json`. The merge tree is identical to the verified branch head a1de71d (same git tree object decd25b), so the a1de71d prearchive evidence (source identity, exact-head CI, native preview checks, preview runtime/assets, opened-threads check) remains binding for the merged source. Separate anonymous production observation at both viewport widths across all six routes passed with zero private requests and zero page errors, and production Firebase initialized non-emulator — `production-runtime.json`. All four anonymous deployed production assets are byte-identical to a fresh local build of the merged source — `production-assets.json`.
+
+No application source, asset, product model, test or configuration change is part of this closeout; it records evidence and archives the plan only.

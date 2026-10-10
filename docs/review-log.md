@@ -61,3 +61,11 @@ What did not: the first runtime attempt started before Firestore readiness. Sani
 Next time: wait for both emulator readiness endpoints, retain complete benign check summaries, and when capacity requires existing independent prior-issue threads, explicitly prohibit reusing prior verdicts and identify the fresh current-item reading. Operations/evidence retain these guards; no lifecycle amendment or Product Change.
 
 Effort: unavailable; no captured project telemetry. GH-30 follows; editorial/review debt stays independent.
+
+## 2026-10-10 — GH-30 private area pages
+
+What worked: separate the five private Backstage documents behind the existing admission gate with one shared lifecycle and a native beforeunload choice, reusing the scheduling observer instead of mounting hidden editors; twelve sequential browser suites and full verification passed before integration. PR34 merged fe8720b under Juan's FF authorization; fresh postmerge closeout verified exact-head main checks, anonymous production journeys at both widths and four byte-identical deployed assets.
+
+What did not: the integrate tail was interrupted by agent capacity exhaustion. Prearchive evidence (exact-head CI/preview checks, git identity, preview runtime/assets) was gathered but left uncommitted, and the lifecycle's fresh pre-merge INTEGRATE/final-head auditor threads were never separately recorded before Juan merged PR34 directly. Issue closure therefore preceded the recorded integration gates.
+
+Next time: when integration evidence is gathered, commit it immediately rather than batch it after the merge; if capacity is exhausted, finish with the postmerge closeout and disclose the skipped pre-merge threads as a deviation rather than reconstructing them retroactively. Deterministic postmerge facts (tree-identical merge head, main checks, production identity) carried the audit. Editorial GH-23 remains independent.
