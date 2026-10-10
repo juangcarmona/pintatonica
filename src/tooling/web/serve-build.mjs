@@ -4,7 +4,7 @@ import { resolve, sep, extname } from 'node:path';
 
 export async function serveBuild(root = resolve('dist')) {
   await stat(resolve(root, 'index.html')); // Missing builds fail rather than collecting false-positive tests.
-  const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png' };
+  const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.jpg': 'image/jpeg' };
   const server = createServer(async (request, response) => {
     try {
       const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
