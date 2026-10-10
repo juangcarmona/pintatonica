@@ -1,9 +1,34 @@
 import {safeURL} from '../band/repertoire.ts';
 export type Contact={label:string;url:string};
+// Editorial media may be a repo-served static asset (root-relative path, no protocol or traversal) or an external http(s) link.
+export function editorialURL(value:string):string {
+  const trimmed=value.trim();
+  if(trimmed.startsWith('/')&&!trimmed.includes('..')&&!/\s/.test(trimmed))return trimmed;
+  return safeURL(trimmed);
+}
 export type PublicMember={name:string;role:string;description?:string;image?:{url:string;label:string}};
 export type PublicProfile={introduction:string;contact:Contact|null;media:{label:string;url:string;kind:'photo'|'video'|'audio'|'link'}[];members:PublicMember[]};
 // Public editorial entries require explicit approval; never derive these from membership.
-export const publicProfile:PublicProfile={introduction:'Pintatónica es una pequeña banda de música.',contact:null,media:[],members:[]};
+// The profile literal between the editorial markers is replaced only by approved real content or, locally and reversibly, by fixture harnesses.
+// Approved by Juan, 2026-10-10: debut fact, four member name/role pairs and the Paracuellos 2026 photos.
+export const publicProfile:PublicProfile={
+  // editorial-approved begin
+  introduction:'Pintatónica empezó con una idea sencilla: tocar juntos y construir un repertorio. Poco a poco fuimos sumando canciones, ensayos y ganas, y en las fiestas de Paracuellos de Jarama de 2026 por fin lo llevamos al directo: nuestro primer concierto, en la plaza.',
+  contact:null,
+  media:[
+    {label:'Tras nuestro primer concierto — Fiestas de Paracuellos de Jarama 2026',url:'/media/paracuellos-2026-1.jpg',kind:'photo'},
+    {label:'Tras nuestro primer concierto — Fiestas de Paracuellos de Jarama 2026',url:'/media/paracuellos-2026-2.jpg',kind:'photo'},
+    {label:'Tras nuestro primer concierto — Fiestas de Paracuellos de Jarama 2026',url:'/media/paracuellos-2026-3.jpg',kind:'photo'},
+    {label:'Tras nuestro primer concierto — Fiestas de Paracuellos de Jarama 2026',url:'/media/paracuellos-2026-4.jpg',kind:'photo'}
+  ],
+  members:[
+    {name:'Guille',role:'Guitarra'},
+    {name:'Will',role:'Bajo'},
+    {name:'Pablo',role:'Batería'},
+    {name:'Juan',role:'Teclado'}
+  ]
+  // editorial-approved end
+};
 export function contactLink(contact:Contact|null) {
   if(!contact)return null;
   const url=new URL(contact.url);

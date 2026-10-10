@@ -53,9 +53,15 @@ async function capture(state){
   }
 }
 try{
+  const begin='  // editorial-approved begin',end='  // editorial-approved end';
+  const beginIndex=original.indexOf(begin),endIndex=original.indexOf(end);
+  assert.ok(beginIndex>=0&&endIndex>beginIndex,'Editorial profile markers must bracket the approved content');
+  const withFixture=profile=>original.slice(0,beginIndex)+begin+`\n  contact:${JSON.stringify(profile.contact)},\n  media:${JSON.stringify(profile.media)},\n  members:${JSON.stringify(profile.members)}\n`+original.slice(endIndex);
+  // The empty state is now a fixture too: production editorial is populated, and both renderings must stay regression-verified.
+  fixture=withFixture({contact:null,media:[],members:[]});
+  await writeFile(profilePath,fixture);
   await reset();await capture('empty');
-  assert.ok(original.includes('contact:null,media:[],members:[]'));
-  fixture=original.replace('contact:null,media:[],members:[]',`contact:{label:'Contacto sintético',url:'mailto:band@example.test'},media:[{label:'Imagen editorial sintética',url:'${origin}/brand/logo.png',kind:'photo'}],members:${JSON.stringify(members)}`);
+  fixture=withFixture({contact:{label:'Contacto sintético',url:'mailto:band@example.test'},media:[{label:'Imagen editorial sintética',url:`${origin}/brand/logo.png`,kind:'photo'}],members});
   await writeFile(profilePath,fixture);
   await seedData('publicSongs/design-song',{title:'Tema público sintético',artist:'Artista sintético',mediaUrl:'https://www.youtube.com/watch?v=demo-public'});
   await seedData('publicGigs/design-gig',{title:'Actuación pública sintética',date:'2099-11-02',time:'19:00',venue:'Sala sintética',info:'Información pública sintética'});
