@@ -31,7 +31,7 @@ We emit separate static Astro access shells, recheck membership in every documen
 
 ## References
 
-- [GH-30 plan](../delivery/plans/GH-30.md), [FR-NAVIGATION](../product/model/requirements/functional/fr-navigation.md), [FR-ACCESS](../product/model/requirements/functional/fr-access.md)
+- [GH-30 plan](../delivery/completed/GH-30.md), [FR-NAVIGATION](../product/model/requirements/functional/fr-navigation.md), [FR-ACCESS](../product/model/requirements/functional/fr-access.md)
 - [ADR-0001](0001-build-static-shells-with-astro.md), [runtime](../architecture/06-runtime-view.md), [security](../architecture/08-crosscutting-concepts.md)
 
 Accepted within Juan’s explicit FF authorization for GH-30 engineering decisions. Validation uses actual five-page and native leave-choice journeys; this does not assert a separate human review or GitHub vote.

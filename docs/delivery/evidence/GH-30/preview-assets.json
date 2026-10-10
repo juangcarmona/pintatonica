@@ -1,0 +1,34 @@
+{
+  "origin": "https://work-gh-30-private-area-pages-pintatonica.jgcarmona-pro.workers.dev",
+  "sourceHead": "a1de71db7348a170669220aa9b1a6c5cc4f378a7",
+  "routes": [
+    "/",
+    "/band/",
+    "/band/ensayos/",
+    "/band/repertorio/",
+    "/band/setlists/",
+    "/band/conciertos/"
+  ],
+  "assets": [
+    {
+      "path": "/_astro/Shell.B9XNlU4b.css",
+      "sha256": "e6c79a5739b4ec14a9516d339151da13bd5bc7c297e99146742a614493c0b30e",
+      "byteIdentical": true
+    },
+    {
+      "path": "/_astro/Shell.astro_astro_type_script_index_0_lang.DWduynkl.js",
+      "sha256": "d8e50a7bcaa1abb79e70c34a66d45c0ec763c1cf9d13c6070229ff734943f1cb",
+      "byteIdentical": true
+    },
+    {
+      "path": "/_astro/index.astro_astro_type_script_index_0_lang.V2U1TuL9.js",
+      "sha256": "d9e60e1b73a63dff314be96e697d40088809926bab206deed9feedf45bbbbf57",
+      "byteIdentical": true
+    },
+    {
+      "path": "/_astro/BandPage.astro_astro_type_script_index_0_lang.Cdg8upM1.js",
+      "sha256": "772a54224591a803e25923f9340a9eb174f44d15961cd2ac3a831432f25021b7",
+      "byteIdentical": true
+    }
+  ]
+}

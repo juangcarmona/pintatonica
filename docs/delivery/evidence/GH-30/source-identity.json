@@ -183,7 +183,7 @@
     },
     {
       "path": "src/public/brand/logo.png",
-      "sha256": "7df1e868db2990ca4a2bd86176a673859a4f42a94cf7233dfe0a8d4781bd09b2"
+      "sha256": "4a7db6ebc6285044cc825885a6e7514ca00c25d0d3d4c1fd7d80a2386cb05354"
     },
     {
       "path": "src/styles/shell.css",
@@ -369,5 +369,6 @@
       "path": "src/tsconfig.json",
       "sha256": "be314a380509e4fbfc2dacf334cfb4d661d302f0345d98777fe97a7c4c406eec"
     }
-  ]
+  ],
+  "normalization": "LF for text; binary assets unchanged raw bytes"
 }

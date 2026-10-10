@@ -1,0 +1,115 @@
+{
+  "url": "https://work-gh-30-private-area-pages-pintatonica.jgcarmona-pro.workers.dev",
+  "observations": [
+    {
+      "viewport": "mobile",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/ensayos/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/repertorio/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/setlists/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "mobile",
+      "route": "/band/conciertos/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/",
+      "status": 200,
+      "heading": "Pintatónica",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/ensayos/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/repertorio/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/setlists/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    },
+    {
+      "viewport": "desktop",
+      "route": "/band/conciertos/",
+      "status": 200,
+      "heading": "Backstage",
+      "keyboardSkip": true,
+      "overflow": false,
+      "publicDataRequests": 2
+    }
+  ],
+  "privateRequests": 0,
+  "pageErrors": 0
+}
