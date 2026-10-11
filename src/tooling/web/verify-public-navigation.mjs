@@ -58,7 +58,7 @@ try{
     // Local-only DOM changes prove that short sections and late content alter measured geometry.
     if(local){
       await page.evaluate(()=>{document.querySelector('#repertorio').style.minHeight='200vh';});
-      await activate('media');await page.locator('#repertorio').evaluate(node=>node.style.minHeight='');await page.waitForFunction(()=>{const id=document.querySelector('[aria-current="location"]')?.dataset.publicArea;const box=id&&document.getElementById(id).getBoundingClientRect();return id!=='media'&&box&&box.bottom>document.querySelector('.site-header').getBoundingClientRect().height&&box.top<innerHeight;});await page.mouse.wheel(0,10000);await current('contacto');
+      await activate('media');await page.locator('#repertorio').evaluate(node=>node.style.minHeight='');await page.waitForFunction(()=>{const id=document.querySelector('[aria-current="location"]')?.dataset.publicArea;const box=id&&document.getElementById(id).getBoundingClientRect();return box&&box.bottom>document.querySelector('.site-header').getBoundingClientRect().height&&box.top<innerHeight;});await page.mouse.wheel(0,10000);await current('contacto');
       await activate('media');await current('media');
     }
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);

@@ -1,0 +1,41 @@
+{
+  "recordedAt": "2026-10-10T07:03:57.644Z",
+  "branch": "work/GH-23-real-content",
+  "base": "79184c32385d41aaff7dbd69a443a44d8b49b47c",
+  "changed": [
+    "M src/pages/index.astro",
+    " M src/public-site/content.ts",
+    " M src/tooling/web/serve-build.mjs",
+    " M src/tooling/web/verify-public-design-runtime.mjs",
+    " M src/tooling/web/verify-public-navigation.mjs",
+    " M src/tooling/web/verify-public-runtime.mjs",
+    "?? src/public/media/"
+  ],
+  "verify": "pnpm verify passed at branch state 79184c3 + working tree (design:check, design:test, typecheck, security:test, build, test:web, product checks, firebase:rules:test 13/13)",
+  "photos": {
+    "source": "C:/dev/juangcarmona/pintatonica-inbox/paracuellos (Juan-supplied, renamed from UUID filenames)",
+    "dimensions": "1600x900 JPEG progressive",
+    "sha256": [
+      {
+        "file": "paracuellos-2026-1.jpg",
+        "sha256": "eb79e374a32e65d7a86e090f7dc184c7d0b17ec1b32ee2d1ac81855cf031237a"
+      },
+      {
+        "file": "paracuellos-2026-2.jpg",
+        "sha256": "04389ca7bbb8158059373c7c8405a56b7d190e0dffff9d9a0f1be76316745faf"
+      },
+      {
+        "file": "paracuellos-2026-3.jpg",
+        "sha256": "a4bdf1e452257ea371837f43131044da60aaf4c4a6f073e3b007e4d3822baa18"
+      },
+      {
+        "file": "paracuellos-2026-4.jpg",
+        "sha256": "57fe6312915e8cac7d9eb398ff16519c54fe4d73d979a2ca8fdd2d1682fa9f50"
+      }
+    ]
+  },
+  "visualChecks": {
+    "runtimeProbes": "anonymous Playwright probe of pnpm build via serveBuild: 4 .public-image elements load after scrollIntoView (complete && naturalWidth>0), four photo cards with approved label, new introduction text, member cards Guille/Will/Pablo/Juan rendered, no page errors",
+    "screenshots": "artifacts/gh23-inicio.png, gh23-members.png, gh23-media-grid.png, gh23-conciertos.png, gh23-contacto.png (untracked local artifacts)"
+  }
+}
