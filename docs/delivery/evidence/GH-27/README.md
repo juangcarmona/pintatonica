@@ -17,7 +17,6 @@ Juan explicitly approved the complete proposal and plan at c5d98087153a30cc49413
 
 `accepted-security.txt` records full history/index/worktree scan exit 0 after redacting two scanner-identified ignored diagnostic lines. No exclusions or executable changes were introduced. Existing runbook diagnostic hygiene covers this expected emulator-log recurrence; no new process amendment is warranted.
 
-[Independent IMPLEMENT audit](implementation-audit.md) records task/diff reconciliation and the corrected historical-status sentence. The approved source/model changes are commit 70005bd; integration evidence follows.
 
 [Fresh INTEGRATE audit](integration-audit.md) found no substantive gap before final folding/archival. Final pushed-head audit/checks remain separate requirements.
 

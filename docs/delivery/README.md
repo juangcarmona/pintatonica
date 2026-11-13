@@ -2,7 +2,7 @@
 
 Derived delivery state from the accepted [ProductShape model](../product/model/), not another source of product intent. Slice numbers below are ordering references, not GitHub issue identifiers or new lifecycle states. Slices 1–8 are merged and deployed. Slice 9 completes the functional MVP under Juan's sequential FF authorization of 2026-10-05. Each slice has its own plan, verification, independent audit and PR; exact integration/deployment outcomes live in the linked issues. Real public contact/media remain editorial inputs, not fabricated content.
 
-The canonical lifecycle remains [engineering-lifecycle.md](../engineering-lifecycle.md): refine → propose → human Planned gate → implement → verify/audit → integrate → review. No SDD framework or technical-layer backlog is introduced.
+Keep delivery plans and evidence here. Product intent remains in ProductShape; the repository checks and human review determine integration readiness.
 
 ## Ordered slices
 
@@ -37,7 +37,6 @@ QR-SECURITY, QR-USABILITY, QR-MAINTAINABILITY, QR-COST-OPERATIONS, QR-VERIFICATI
 The initial MVP decomposition required no semantic change. GH-27 now applies the explicitly approved CHG-AREA-NAVIGATION definition extension; it does not implement navigation. Editorial public content and actual member identities are supplied operational inputs, not new product policy. ADR-0002 records the delivered shared repertoire and safe public projection boundary.
 
 The accepted model is present and validates with 57 artifacts. Its individual frontmatter statuses remain draft after official application; this delivery map relies on Juan's explicit baseline acceptance and the applied change, and does not mutate those statuses. GH-1 reconciled affected architecture and lifecycle documentation and verified the existing Cloudflare deployment. See [completed plan](completed/GH-1.md) and [deployment evidence](evidence/GH-1/README.md) for actual outcomes and limitations.
-
 
 ## Navigation extension delivery boundary
 
@@ -127,7 +126,6 @@ The CLI-generated citations below bind the map's artifact references to current 
 <!-- pdac:cite id="UC-REPERTOIRE" digest="sha256:718e20283024d4a35875a1c3f7f28783b3e2bd8e7c696b9d4992d5a41ed38f27" -->
 
 <!-- pdac:cite id="UC-SETLIST" digest="sha256:fb25b1351f4cc5aef0e68ae3783dcb303d03317814d4c89fbb2dd0d68eb58fc6" -->
-
 
 <!-- pdac:cite id="FR-NAVIGATION" digest="sha256:90a7bf2a42e9cb61493b32b073abc81808c63958725f0ae29def2cdeaa297dc6" -->
 

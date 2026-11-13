@@ -18,7 +18,7 @@ Accepted quality meaning remains in [ProductShape](../product/model/requirements
 | QR-USABILITY | Canonical shared visual roles, fixed responsive navigation/skip, current-context member home, focused private pages and deliberate edit disclosures with native draft departure protection | GH-21 member-journey evidence extends GH-20 components; private readers retain the existing authorization boundary. GH-28 evidence adds public scroll/link/shared-entry/history orientation, short final sections and layout resize. GH-29 adds clear restricted entry and verified returning-session admission; GH-30 delivers focused private documents, per-entry checks and native unsaved-leave choice |
 | QR-SECURITY | Google-provider and active-membership rules plus independent browser gate and secret checks | [08](08-crosscutting-concepts.md); GH-2 emulator/live evidence distinguishes verified paths |
 | QR-MAINTAINABILITY | Source-local components/config/tests, pinned packages, source checking | [05](05-building-block-view.md); package scripts |
-| QR-VERIFICATION | Frozen install, build and HTTP tests composed into existing CI; repeatable browser harness | [Lifecycle](../engineering-lifecycle.md); deployment observed separately from CI |
+| QR-VERIFICATION | Frozen install, build and HTTP tests composed into existing CI; repeatable browser harness | [repository instructions](../../AGENTS.md); deployment observed separately from CI |
 
 <!-- pdac:cite id="QR-COST-OPERATIONS" digest="sha256:18df4d28e10c2b4f64596df6196e2fc404334d4854653a6c53abc424c790230c" -->
 

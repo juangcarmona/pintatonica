@@ -16,4 +16,4 @@ description: Architectural orientation, drivers, quality goals, and documentatio
 
 ## Stakeholders
 
-Juan owns product and delivery acceptance. Humans and agents use the [engineering lifecycle](../engineering-lifecycle.md), accepted ProductShape artifacts and architecture evidence together.
+Juan owns product and delivery acceptance. Humans and agents use the [repository instructions](../../AGENTS.md), accepted ProductShape artifacts and architecture evidence together.

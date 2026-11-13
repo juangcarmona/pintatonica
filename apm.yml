@@ -4,13 +4,9 @@ description: APM project for pintatonica
 author: Juan G. Carmona
 dependencies:
   apm:
-    - juangcarmona/agent-toolkit/packages/agentic-sdlc
-    - git: juangcarmona/agent-toolkit
+    - git: juangcarmona/agent-toolkit#3b0c543077d3ad9a09a18e46feebd3258a7738c6
       skills:
-        - adr
         - architecture-docs
-        - git-worktrees
-        - rebase-safely
   mcp: []
 includes: auto
 scripts: {}

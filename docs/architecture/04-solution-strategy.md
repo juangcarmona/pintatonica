@@ -9,7 +9,7 @@ description: Fundamental approaches that shape the architecture and realize its 
 | Driver | Strategy | Detailed view or source |
 | --- | --- | --- |
 | Low operations/cost (QR-COST-OPERATIONS) | Build static Astro pages; serve existing Cloudflare Worker static assets without custom runtime compute | [ADR-0001](../adr/0001-build-static-shells-with-astro.md); [07](07-deployment-view.md) |
-| Maintainable delivery (QR-MAINTAINABILITY, QR-VERIFICATION) | Pinned pnpm tooling, Astro/TypeScript checking, built-route tests and retained CI/security/emulator suites | [05](05-building-block-view.md); [lifecycle](../engineering-lifecycle.md) |
+| Maintainable delivery (QR-MAINTAINABILITY, QR-VERIFICATION) | Pinned pnpm tooling, Astro/TypeScript checking, built-route tests and retained CI/security/emulator suites | [05](05-building-block-view.md); [repository instructions](../../AGENTS.md) |
 | Usability (QR-USABILITY) | Reuse existing logo and canonical design tokens; inspect responsive/keyboard browser evidence | [08](08-crosscutting-concepts.md); [design](../design/README.md) |
 | Security (QR-SECURITY) | Keep member data out of static output; browser membership gate plus independent Google-provider/active-membership enforcement in Firestore | [06](06-runtime-view.md); [08](08-crosscutting-concepts.md) |
 
