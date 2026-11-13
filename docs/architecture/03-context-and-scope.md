@@ -31,7 +31,7 @@ This is a tooling context, not an application deployment diagram. Installed depe
 
 | Partner | Current exchange | Evidence / unknown |
 | --- | --- | --- |
-| Contributors | Product proposals, architecture/design documentation and local verification | [AGENTS.md](../../AGENTS.md); [lifecycle](../engineering-lifecycle.md) |
+| Contributors | Product proposals, architecture/design documentation and local verification | [AGENTS.md](../../AGENTS.md); [repository instructions](../../AGENTS.md) |
 | ProductShape | Markdown/configuration input and diagnostics/generated outputs | [.product/config.yaml](../../.product/config.yaml); [tooling](../tooling.md) |
 | Agent Toolkit / APM | Skill distribution and locked source provenance | [apm.yml](../../apm.yml) |
 | GitHub | Issues/PRs, verification and ProductShape snapshots | [Delivery](../delivery/README.md); existing workflows |

@@ -19,8 +19,8 @@ The ProductShape baseline is accepted in docs/product/model. GH-1 delivers only 
 
 ## Delivery
 
-Use the installed agent-toolkit `agentic-sdlc` skills for refinement, proposal, implementation, integration and review. Read [docs/tooling.md](docs/tooling.md) before restoring or updating tools. Before a delivery stage, read the adopted [engineering lifecycle](docs/engineering-lifecycle.md): GitHub Issues, native plan mode and durable Markdown plans, without an SDD framework. ProductShape changes and delivery plans have distinct lifecycles.
+Read [docs/tooling.md](docs/tooling.md) before restoring or updating tools. Keep product changes separate from implementation work and obtain human review before integration.
 
 Delivery planning follows an accepted product baseline, documented architecture and a basic design system (now established in `docs/design/`). Derive vertical slices from accepted artifact IDs. Use SDD and TDD where appropriate: accepted intent → cited delivery context → behaviour → tests → implementation → verification → review.
 
-Read the installed `git-worktrees` skill before creating or managing worktrees. Preserve user work. Generated toolkit and ProductShape capabilities are updated by their installers, not edited locally.
+Use isolated worktrees to preserve concurrent work. Update generated ProductShape capabilities through their installer.

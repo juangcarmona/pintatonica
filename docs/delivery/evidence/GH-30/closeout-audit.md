@@ -1,6 +1,6 @@
 # GH-30 independent closeout audit
 
-Fresh independent reading of GH-30 by a separate agent context under a read-only contract (no writes, no state-changing commands), performed on 2026-10-10 after the closeout was assembled. It read the issue, plan, PR #34, merge fe8720b and evidence anew; no prior auditor verdict was reused. The implementation and pre-merge integration findings remain in [implementation-audit.md](implementation-audit.md); this audit covers only the postmerge closeout.
+Fresh independent reading of GH-30 by a separate agent context under a read-only contract (no writes, no state-changing commands), performed on 2026-10-10 after the closeout was assembled. It read the issue, plan, PR #34, merge fe8720b and evidence anew; no prior auditor verdict was reused. This audit covers only the postmerge closeout.
 
 ## Findings
 
